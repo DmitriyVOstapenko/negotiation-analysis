@@ -13,6 +13,7 @@ from typing import Any
 from .common import (
     ANALYSIS_FILES,
     PLUGIN_ROOT,
+    NaError,
     gate_state,
     meeting_dirs,
     meeting_meta,
@@ -23,6 +24,7 @@ from .common import (
     relative,
     write_json,
     write_text,
+    yaml_scalar,
 )
 from .registries import organization_dirs, people_names
 from .review import build_queue
@@ -82,9 +84,12 @@ def table_row(values: list[Any]) -> str:
 
 
 def ontology_version() -> str | None:
-    for candidate in sorted((PLUGIN_ROOT / "core" / "ontology").glob("*.yaml")) if (PLUGIN_ROOT / "core" / "ontology").is_dir() else []:
-        data = read_yaml(candidate)
-        version = data.get("version") or (data.get("ontology") or {}).get("version") if isinstance(data, dict) else None
+    """Версия онтологии из core/ontology/*.yaml; сложный YAML вне подмножества читается регулярным выражением."""
+    ontology_dir = PLUGIN_ROOT / "core" / "ontology"
+    if not ontology_dir.is_dir():
+        return None
+    for candidate in sorted(ontology_dir.glob("*.yaml")):
+        version = yaml_scalar(candidate.read_text(encoding="utf-8-sig"), "version")
         if version:
             return str(version)
     return None
@@ -95,8 +100,12 @@ def profile_summary(root: Path) -> dict[str, Any]:
     for name in ("role", "organization", "policy"):
         path = root / "profile" / f"{name}.yaml"
         if path.is_file():
-            data = read_yaml(path)
-            result[name] = data.get("id") or data.get("name") or data.get("title") or "задан"
+            try:
+                data = read_yaml(path)
+            except NaError:
+                data = {}
+            text = path.read_text(encoding="utf-8-sig")
+            result[name] = data.get("id") or data.get("name") or data.get("title") or yaml_scalar(text, "id") or yaml_scalar(text, "name") or "задан"
     return result
 
 

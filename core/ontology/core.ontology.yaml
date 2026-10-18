@@ -39,6 +39,7 @@ meta:
   version: "1.0.0"
   language: "ru"
   identifiers_language: "en"
+  license: "CC-BY-NC-SA-4.0"          # решение владельца по docs/DECISIONS.md (2026-10-18): онтология, методика, промпты и документация
   evidence_first: true
   last_updated: "2026-10-18"
   # Значения, которыми помечается неизвестное. Неизвестное никогда не
@@ -1560,6 +1561,10 @@ invariants:
     rule: "Аудиометрики не используются как детектор лжи, намерений или манипуляций и не заявляют смысловые или клинические выводы сами по себе."
   - id: 10
     rule: "Контрольная дата не заменяет исходный срок обязательства."
+  - id: 11
+    rule: "Память меняется только после показанного diff и явного подтверждения пользователя."
+  - id: 12
+    rule: "Follow-up и проекты сообщений всегда draft_not_sent; автоматическая отправка запрещена."
 
 # Правила связей и доказательности (из онтологии владельца/CEO, обобщены).
 relationship_rules:
@@ -1886,7 +1891,7 @@ profile_extension_points:
   non_overridable_by_profiles:
     - "evidence_classes и требование EvidenceRef для каждого извлечённого объекта"
     - "thresholds с profile_may_override: none или raise_only (ослабление запрещено)"
-    - "invariants 1-10"
+    - "invariants 1-12"
     - "psychological_layer.prohibited"
     - "lifecycle_rules.closing_requires_user_confirmation и follow_up.automatic_sending=false"
     - "masking_rules.inherited_from_previous_source=false и default_before_confirmation=blocked"

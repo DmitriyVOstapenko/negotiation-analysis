@@ -33,6 +33,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -147,7 +148,10 @@ def harvest(path: Path, source: str) -> list[dict]:
                     continue
                 n = list_counter.get(parent, 0) + 1
                 list_counter[parent] = n
-                add(f"{parent}[{n}]", "text", item[:80])
+                # Текст правила в снимок не попадает (он может содержать
+                # локальные названия): хранится только хеш для сверки.
+                digest = hashlib.sha256(item.encode("utf-8")).hexdigest()[:16]
+                add(f"{parent}[{n}]", "text", f"sha256:{digest}")
     return items
 
 

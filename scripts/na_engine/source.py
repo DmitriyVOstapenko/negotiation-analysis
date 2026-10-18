@@ -46,9 +46,9 @@ def _looks_like_speaker(label: str) -> bool:
         return False
     if _SPEAKER_LABEL_RE.match(label):
         return True
-    if any(char in label for char in ".?!«»\""):
+    if any(char in label for char in "?!«»\"") or ". " in label:
         return False
-    # Имя, роль в скобках не допускаем в метке; допускаем «Имя Фамилия», «И. Петров», «CFO»
+    # Допускаем «Имя Фамилия», «И. Петров», «Анна С.», «CFO»; граница предложения («. ») — не метка
     return len(label.split()) <= 4
 
 
@@ -205,7 +205,9 @@ def create_source(
         "meeting": {
             "id": meeting_id,
             "title": title or meeting_id,
-            "date": captured_at,
+            # дата встречи: явный --captured-at, иначе префикс YYYY-MM-DD из meeting_id
+            "date": (captured_at[:10] if captured_at else None)
+            or (meeting_id[:10] if re.match(r"^\d{4}-\d{2}-\d{2}", meeting_id) else None),
             "timezone": None,
             "duration_min": None,
             "meeting_type": None,
