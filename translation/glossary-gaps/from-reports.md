@@ -39,6 +39,15 @@
 - gerente de planta → директор завода (третий вариант!); gerente de sucursal → управляющий отделением; supervisor regional → региональный руководитель
 - Alumno → Ученик; Vendedor/Cliente → Продавец/Клиент; framing → рамка, в речи Артура «фрейм»; bajas por estrés → больничные
 
+## batch-003
+- lucha (упражнение) → борьба; (Roles Invertidos) / [Cambio de roles] → (смена ролей) / [Смена ролей]; (Situación N) → (ситуация N)
+- hiring manager → нанимающий менеджер (hiring manager); director de arte → арт-директор; consultor junior → младший консультант
+- gerente → менеджер; gerente de sucursal → управляющий отделением
+- compromiso / comprometido → вовлечённость / вовлечён; terreno elevado → возвышенность; zona gris → серая зона
+- agarre / garra → захват (расходится с batch-005: garra → «напор»!); dejarse agarrar → дать взять себя в захват (в batch-004: «дать себя захватить»)
+- solidez / sólido → твёрдость / твёрдое; aquí y ahora → здесь и сейчас; jerga legal → юридический жаргон
+- английские вставки оставлены: office skills / soft skill, A-players, buyer persona, scrum, fully booked
+
 ## Служебные файлы канона
 - Eval/Calificación/Veredicto → Оценка/Результат/Вердикт; turno 1 → сообщение 1; Reconciliación → Согласование; tensión → нестыковка
 - socio → компаньон; acoso laboral → травля на работе; directos → прямые эфиры; clases → занятия
@@ -48,3 +57,6 @@
 - gerente comercial: коммерческий менеджер / коммерческий директор
 - jefe: руководитель / начальник / шеф
 - framing: рамка / фрейм
+- garra: напор (batch-005) / захват (batch-003)
+- dejarse agarrar: дать себя захватить / дать взять себя в захват
+- gerente (без уточнения): менеджер / руководитель
