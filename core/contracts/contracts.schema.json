@@ -1,0 +1,664 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DmitriyVOstapenko/negotiation-analysis/schemas/negotiation-analysis-contracts.schema.json",
+  "title": "Исполняемые контракты 11 результатов анализа переговоров",
+  "x-contract-version": "1.0.0",
+  "x-file-contracts": {
+    "01_extraction.json": "#/$defs/extraction",
+    "02_tactics.json": "#/$defs/tactics",
+    "03_manipulations.json": "#/$defs/manipulations",
+    "04_arguments.json": "#/$defs/arguments",
+    "05_power.json": "#/$defs/power",
+    "06_emotions.json": "#/$defs/emotions",
+    "07_commitments.json": "#/$defs/commitments",
+    "08_risks.json": "#/$defs/risks",
+    "09_decision_authority.json": "#/$defs/decision_authority",
+    "10_argument_map.json": "#/$defs/argument_map",
+    "11_meeting_effectiveness.json": "#/$defs/meeting_effectiveness"
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nullable_string": {
+      "type": ["string", "null"]
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^(?:[0-9]{2}:)?[0-9]{2}:[0-9]{2}$"
+    },
+    "nullable_timestamp": {
+      "type": ["string", "null"],
+      "pattern": "^(?:[0-9]{2}:)?[0-9]{2}:[0-9]{2}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "nullable_date": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["certain", "probable", "possible", "speculative"]
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["quote", "timestamp"],
+      "properties": {
+        "quote": {"$ref": "#/$defs/non_empty_string"},
+        "timestamp": {"$ref": "#/$defs/timestamp"}
+      },
+      "additionalProperties": false
+    },
+    "evidence_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "string_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/non_empty_string"}
+    },
+    "nullable_id": {
+      "type": ["string", "null"]
+    },
+    "extraction": {
+      "type": "object",
+      "required": ["meeting_id", "participants", "companies", "topics", "key_facts", "outcome", "outcome_summary", "excluded_source_range"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["person_id", "full_name", "role", "role_freeform", "company_id", "is_our_side", "identity_source", "confidence"],
+            "properties": {
+              "person_id": {"$ref": "#/$defs/non_empty_string"},
+              "full_name": {"$ref": "#/$defs/non_empty_string"},
+              "role": {
+                "type": "string",
+                "enum": ["owner", "founder", "owner_founder", "CEO", "board_chair", "board_member", "CFO", "COO", "CTO_CIO", "CSO", "business_unit_head", "functional_head", "treasury_head", "budgeting_head", "accounting_head", "procurement_head", "legal_head", "sales_director", "key_account_manager", "project_manager", "government_customer_representative", "government_official", "regulator_representative", "lawyer", "engineer", "external_advisor", "other"]
+              },
+              "role_freeform": {"$ref": "#/$defs/nullable_string"},
+              "company_id": {"$ref": "#/$defs/non_empty_string"},
+              "is_our_side": {"type": "boolean"},
+              "identity_source": {
+                "type": "string",
+                "enum": ["transcript", "user_confirmed", "user_confirmation", "existing_knowledge"]
+              },
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "companies": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "legal_name", "short_name", "inn", "is_our_side", "relation_type", "confidence"],
+            "properties": {
+              "id": {"$ref": "#/$defs/non_empty_string"},
+              "legal_name": {"$ref": "#/$defs/nullable_string"},
+              "short_name": {"$ref": "#/$defs/non_empty_string"},
+              "inn": {"$ref": "#/$defs/nullable_string"},
+              "is_our_side": {"type": "boolean"},
+              "relation_type": {
+                "type": "string",
+                "enum": ["customer", "supplier", "partner", "competitor", "regulator", "internal"]
+              },
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "topics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "category", "status", "source_quote", "source_timestamp", "confidence"],
+            "properties": {
+              "id": {"$ref": "#/$defs/non_empty_string"},
+              "title": {"$ref": "#/$defs/non_empty_string"},
+              "category": {
+                "type": "string",
+                "enum": ["commercial_terms", "payment_terms", "delivery_terms", "scope", "quality_sla", "warranty", "liability_penalties", "ip_rights", "confidentiality", "compliance", "budget_allocation", "kpi_targets", "resource_allocation", "risks", "timeline", "integration_1c", "integration_bitrix", "security_specific", "other"]
+              },
+              "status": {
+                "type": "string",
+                "enum": ["open", "in_progress", "blocked", "agreed", "formalized", "done", "cancelled", "overdue"]
+              },
+              "source_quote": {"$ref": "#/$defs/non_empty_string"},
+              "source_timestamp": {"$ref": "#/$defs/timestamp"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "key_facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["fact", "quote", "timestamp", "confidence"],
+            "properties": {
+              "fact": {"$ref": "#/$defs/non_empty_string"},
+              "quote": {"$ref": "#/$defs/non_empty_string"},
+              "timestamp": {"$ref": "#/$defs/timestamp"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "outcome": {
+          "type": "string",
+          "enum": ["agreed", "partial", "deferred", "failed", "no_decision"]
+        },
+        "outcome_summary": {"$ref": "#/$defs/non_empty_string"},
+        "excluded_source_range": {
+          "type": ["object", "null"],
+          "required": ["from", "reason"],
+          "properties": {
+            "from": {"$ref": "#/$defs/timestamp"},
+            "reason": {"$ref": "#/$defs/non_empty_string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "cialdini_tactic": {
+      "type": "object",
+      "required": ["id", "tactic_family", "tactic_type", "used_by", "target", "source_quote", "source_timestamp", "effect", "counter_move", "confidence", "explanation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "tactic_family": {"const": "cialdini"},
+        "tactic_type": {
+          "type": "string",
+          "enum": ["reciprocity", "commitment_consistency", "social_proof", "authority", "liking", "scarcity", "unity"]
+        },
+        "used_by": {"$ref": "#/$defs/non_empty_string"},
+        "target": {"$ref": "#/$defs/nullable_id"},
+        "source_quote": {"$ref": "#/$defs/non_empty_string"},
+        "source_timestamp": {"$ref": "#/$defs/timestamp"},
+        "effect": {
+          "type": "string",
+          "enum": ["worked", "partial", "failed", "neutral", "unclear"]
+        },
+        "counter_move": {"$ref": "#/$defs/nullable_string"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "explanation": {"$ref": "#/$defs/non_empty_string"}
+      },
+      "additionalProperties": false
+    },
+    "voss_tactic": {
+      "type": "object",
+      "required": ["id", "tactic_family", "tactic_type", "used_by", "target", "source_quote", "source_timestamp", "effect", "counter_move", "confidence", "explanation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "tactic_family": {"const": "voss"},
+        "tactic_type": {
+          "type": "string",
+          "enum": ["mirroring", "labeling", "tactical_empathy", "accusation_audit", "calibrated_question", "thats_right", "late_night_dj", "no_oriented_question", "anchoring_extreme", "loss_aversion", "other"]
+        },
+        "used_by": {"$ref": "#/$defs/non_empty_string"},
+        "target": {"$ref": "#/$defs/nullable_id"},
+        "source_quote": {"$ref": "#/$defs/non_empty_string"},
+        "source_timestamp": {"$ref": "#/$defs/timestamp"},
+        "effect": {
+          "type": "string",
+          "enum": ["worked", "partial", "failed", "neutral", "unclear"]
+        },
+        "counter_move": {"$ref": "#/$defs/nullable_string"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "explanation": {"$ref": "#/$defs/non_empty_string"}
+      },
+      "additionalProperties": false
+    },
+    "tactics": {
+      "type": "object",
+      "required": ["meeting_id", "cialdini", "voss", "debug_possible"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "cialdini": {"type": "array", "items": {"$ref": "#/$defs/cialdini_tactic"}},
+        "voss": {"type": "array", "items": {"$ref": "#/$defs/voss_tactic"}},
+        "debug_possible": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": false
+    },
+    "manipulation_item": {
+      "type": "object",
+      "required": ["id", "type", "used_by", "target", "source_quote", "source_timestamp", "how_recognized", "response_by_us", "effect", "confidence", "severity"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "type": {
+          "type": "string",
+          "enum": ["false_urgency", "false_scarcity", "anchoring_deceptive", "false_dilemma", "salami_slicing", "gaslighting", "false_consensus", "bait_and_switch", "moving_goalposts", "foot_in_the_door", "door_in_the_face", "guilt_tripping", "fait_accompli", "reference_pressure", "other"]
+        },
+        "used_by": {"$ref": "#/$defs/non_empty_string"},
+        "target": {"$ref": "#/$defs/nullable_id"},
+        "source_quote": {"$ref": "#/$defs/non_empty_string"},
+        "source_timestamp": {"$ref": "#/$defs/timestamp"},
+        "how_recognized": {"$ref": "#/$defs/non_empty_string"},
+        "response_by_us": {"$ref": "#/$defs/nullable_string"},
+        "effect": {
+          "type": "string",
+          "enum": ["worked", "neutralized", "failed", "unclear"]
+        },
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "severity": {"type": "string", "enum": ["low", "medium", "high"]}
+      },
+      "additionalProperties": false
+    },
+    "manipulations": {
+      "type": "object",
+      "required": ["meeting_id", "manipulations", "conclusion"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "manipulations": {"type": "array", "items": {"$ref": "#/$defs/manipulation_item"}},
+        "conclusion": {"$ref": "#/$defs/non_empty_string"}
+      },
+      "additionalProperties": false
+    },
+    "argument_item": {
+      "type": "object",
+      "required": ["id", "speaker", "topic", "claim", "evidence", "warrant", "backing", "counter_argument", "strength", "source_quotes", "confidence"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "speaker": {"$ref": "#/$defs/non_empty_string"},
+        "topic": {"$ref": "#/$defs/non_empty_string"},
+        "claim": {"$ref": "#/$defs/non_empty_string"},
+        "evidence": {"$ref": "#/$defs/non_empty_string"},
+        "warrant": {"$ref": "#/$defs/non_empty_string"},
+        "backing": {"$ref": "#/$defs/nullable_string"},
+        "counter_argument": {"$ref": "#/$defs/nullable_string"},
+        "strength": {"type": "integer", "minimum": 1, "maximum": 5},
+        "source_quotes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      },
+      "additionalProperties": false
+    },
+    "arguments": {
+      "type": "object",
+      "required": ["meeting_id", "arguments"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "arguments": {"type": "array", "items": {"$ref": "#/$defs/argument_item"}}
+      },
+      "additionalProperties": false
+    },
+    "power": {
+      "type": "object",
+      "required": ["meeting_id", "talk_time_share", "question_marks_in_transcript", "interruptions", "dominant_speaker", "framing_control", "framing_moments", "concessions", "evidence_note"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "talk_time_share": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["person_id", "share_pct"],
+            "properties": {
+              "person_id": {"$ref": "#/$defs/non_empty_string"},
+              "share_pct": {"type": "number", "minimum": 0, "maximum": 100}
+            },
+            "additionalProperties": false
+          }
+        },
+        "question_marks_in_transcript": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["person_id", "count"],
+            "properties": {
+              "person_id": {"$ref": "#/$defs/non_empty_string"},
+              "count": {"type": "integer", "minimum": 0}
+            },
+            "additionalProperties": false
+          }
+        },
+        "interruptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["who", "whom", "count"],
+            "properties": {
+              "who": {"$ref": "#/$defs/non_empty_string"},
+              "whom": {"$ref": "#/$defs/non_empty_string"},
+              "count": {"type": "integer", "minimum": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "dominant_speaker": {"$ref": "#/$defs/nullable_id"},
+        "framing_control": {"$ref": "#/$defs/nullable_id"},
+        "framing_moments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["speaker", "quote", "timestamp", "description"],
+            "properties": {
+              "speaker": {"$ref": "#/$defs/non_empty_string"},
+              "quote": {"$ref": "#/$defs/non_empty_string"},
+              "timestamp": {"$ref": "#/$defs/timestamp"},
+              "description": {"$ref": "#/$defs/non_empty_string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "concessions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["speaker", "quote", "timestamp", "prior_position_quote", "prior_position_timestamp"],
+            "properties": {
+              "speaker": {"$ref": "#/$defs/non_empty_string"},
+              "quote": {"$ref": "#/$defs/non_empty_string"},
+              "timestamp": {"$ref": "#/$defs/timestamp"},
+              "prior_position_quote": {"$ref": "#/$defs/non_empty_string"},
+              "prior_position_timestamp": {"$ref": "#/$defs/timestamp"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "evidence_note": {"$ref": "#/$defs/non_empty_string"}
+      },
+      "additionalProperties": false
+    },
+    "emotions": {
+      "type": "object",
+      "required": ["meeting_id", "source", "sentiment_points", "overall_summary", "limitations"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "source": {"type": "string", "enum": ["text_only", "audio", "both"]},
+        "sentiment_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["timestamp_start", "timestamp_end", "speaker", "valence", "arousal", "dominant_emotion", "stress_markers", "quote"],
+            "properties": {
+              "timestamp_start": {"$ref": "#/$defs/timestamp"},
+              "timestamp_end": {"$ref": "#/$defs/timestamp"},
+              "speaker": {"$ref": "#/$defs/non_empty_string"},
+              "valence": {"type": "number", "minimum": -1, "maximum": 1},
+              "arousal": {"type": "number", "minimum": 0, "maximum": 1},
+              "dominant_emotion": {
+                "type": "string",
+                "enum": ["neutral", "satisfaction", "interest", "tension", "stress", "frustration", "anger", "amusement", "other"]
+              },
+              "stress_markers": {"$ref": "#/$defs/string_array"},
+              "quote": {"$ref": "#/$defs/non_empty_string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "overall_summary": {
+          "type": "object",
+          "required": ["overall", "most_negative_timestamp", "most_tense_timestamp", "general_trend"],
+          "properties": {
+            "overall": {"type": "string", "enum": ["collaborative", "neutral", "tense", "hostile"]},
+            "most_negative_timestamp": {"$ref": "#/$defs/timestamp"},
+            "most_tense_timestamp": {"$ref": "#/$defs/timestamp"},
+            "general_trend": {"$ref": "#/$defs/non_empty_string"}
+          },
+          "additionalProperties": false
+        },
+        "limitations": {"$ref": "#/$defs/non_empty_string"}
+      },
+      "additionalProperties": false
+    },
+    "commitment_item": {
+      "type": "object",
+      "required": ["id", "meeting_id", "type", "who", "to_whom", "what", "deadline", "deadline_verbatim", "status", "value_rub", "source_quote", "source_timestamp", "confidence", "linked_topic", "follow_up"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "type": {
+          "type": "string",
+          "enum": ["deliver_document", "make_payment", "approve_decision", "conduct_action", "provide_information", "sign_contract", "deliver_goods_services", "schedule_meeting", "other"]
+        },
+        "who": {"$ref": "#/$defs/non_empty_string"},
+        "to_whom": {"$ref": "#/$defs/nullable_id"},
+        "what": {"$ref": "#/$defs/non_empty_string"},
+        "deadline": {"$ref": "#/$defs/nullable_date"},
+        "deadline_verbatim": {"$ref": "#/$defs/nullable_string"},
+        "status": {
+          "type": "string",
+          "enum": ["open", "in_progress", "blocked", "agreed", "formalized", "done", "cancelled", "overdue"]
+        },
+        "value_rub": {"type": ["number", "null"], "minimum": 0},
+        "source_quote": {"$ref": "#/$defs/non_empty_string"},
+        "source_timestamp": {"$ref": "#/$defs/timestamp"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "linked_topic": {"$ref": "#/$defs/non_empty_string"},
+        "follow_up": {
+          "type": "object",
+          "required": ["reminder_date", "reminder_sent", "actual_completion_date", "completion_notes"],
+          "properties": {
+            "reminder_date": {"$ref": "#/$defs/nullable_date"},
+            "reminder_sent": {"type": "boolean"},
+            "actual_completion_date": {"$ref": "#/$defs/nullable_date"},
+            "completion_notes": {"$ref": "#/$defs/nullable_string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "commitments": {
+      "type": "object",
+      "required": ["meeting_id", "commitments", "open_questions"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "commitments": {"type": "array", "items": {"$ref": "#/$defs/commitment_item"}},
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["topic", "question", "quote", "timestamp"],
+            "properties": {
+              "topic": {"$ref": "#/$defs/non_empty_string"},
+              "question": {"$ref": "#/$defs/non_empty_string"},
+              "quote": {"$ref": "#/$defs/non_empty_string"},
+              "timestamp": {"$ref": "#/$defs/timestamp"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk_item": {
+      "type": "object",
+      "required": ["id", "type", "description", "first_seen_meeting_id", "last_seen_meeting_id", "involved_companies", "involved_people", "linked_topic", "likelihood", "impact_rub", "impact_qualitative", "severity", "mitigation", "status", "evidence", "confidence"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_string"},
+        "type": {
+          "type": "string",
+          "enum": ["financial", "contractual", "operational", "reputational", "compliance_legal", "counterparty", "technology", "security_physical", "security_information", "human_capital", "other"]
+        },
+        "description": {"$ref": "#/$defs/non_empty_string"},
+        "first_seen_meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "last_seen_meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "involved_companies": {"$ref": "#/$defs/string_array"},
+        "involved_people": {"$ref": "#/$defs/string_array"},
+        "linked_topic": {"$ref": "#/$defs/non_empty_string"},
+        "likelihood": {"type": "string", "enum": ["low", "medium", "high"]},
+        "impact_rub": {"type": ["number", "null"], "minimum": 0},
+        "impact_qualitative": {"type": "string", "enum": ["low", "medium", "high"]},
+        "severity": {"type": "string", "enum": ["low", "medium", "high"]},
+        "mitigation": {
+          "type": "object",
+          "required": ["planned_actions", "owner", "deadline"],
+          "properties": {
+            "planned_actions": {"$ref": "#/$defs/non_empty_string"},
+            "owner": {"$ref": "#/$defs/nullable_id"},
+            "deadline": {"$ref": "#/$defs/nullable_date"}
+          },
+          "additionalProperties": false
+        },
+        "status": {"type": "string", "enum": ["open", "mitigating", "closed", "realized"]},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["quote", "meeting_id", "timestamp"],
+            "properties": {
+              "quote": {"$ref": "#/$defs/non_empty_string"},
+              "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+              "timestamp": {"$ref": "#/$defs/timestamp"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "confidence": {"$ref": "#/$defs/confidence"}
+      },
+      "additionalProperties": false
+    },
+    "risks": {
+      "type": "object",
+      "required": ["meeting_id", "risks"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "risks": {"type": "array", "items": {"$ref": "#/$defs/risk_item"}}
+      },
+      "additionalProperties": false
+    },
+    "decision_authority": {
+      "type": "object",
+      "required": ["meeting_id", "view_type", "status", "decision_areas", "authority_observations", "unresolved"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "view_type": {"const": "decision_authority_map"},
+        "status": {"type": "string", "enum": ["fully_defined", "partially_defined", "undefined"]},
+        "decision_areas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["topic", "decision", "options", "current_state", "final_decision_maker", "advisory_participants", "blocking_rights", "proposal_owner", "proposal_owner_source", "deadline", "deadline_source", "evidence", "confidence"],
+            "properties": {
+              "topic": {"$ref": "#/$defs/non_empty_string"},
+              "decision": {"$ref": "#/$defs/non_empty_string"},
+              "options": {"$ref": "#/$defs/string_array"},
+              "current_state": {"$ref": "#/$defs/non_empty_string"},
+              "final_decision_maker": {"$ref": "#/$defs/nullable_id"},
+              "advisory_participants": {"$ref": "#/$defs/string_array"},
+              "blocking_rights": {"$ref": "#/$defs/nullable_string"},
+              "proposal_owner": {"$ref": "#/$defs/nullable_id"},
+              "proposal_owner_source": {
+                "type": ["string", "null"],
+                "enum": ["transcript", "user_confirmation", null]
+              },
+              "deadline": {"$ref": "#/$defs/nullable_date"},
+              "deadline_source": {
+                "type": ["string", "null"],
+                "enum": ["transcript", "user_confirmation", null]
+              },
+              "evidence": {"$ref": "#/$defs/evidence_array"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "authority_observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["person_id", "observed_role", "formal_authority_in_decision", "evidence", "confidence"],
+            "properties": {
+              "person_id": {"$ref": "#/$defs/non_empty_string"},
+              "observed_role": {"$ref": "#/$defs/non_empty_string"},
+              "formal_authority_in_decision": {"$ref": "#/$defs/nullable_string"},
+              "evidence": {"$ref": "#/$defs/evidence_array"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "unresolved": {"$ref": "#/$defs/string_array"}
+      },
+      "additionalProperties": false
+    },
+    "argument_map": {
+      "type": "object",
+      "required": ["meeting_id", "view_type", "argument_clusters"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "view_type": {"const": "argument_map"},
+        "argument_clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["topic", "question", "positions", "resolution", "resolution_note"],
+            "properties": {
+              "topic": {"$ref": "#/$defs/non_empty_string"},
+              "question": {"$ref": "#/$defs/non_empty_string"},
+              "positions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["argument_id", "speaker", "position", "supports", "opposes", "strength", "missing_evidence", "evidence", "confidence"],
+                  "properties": {
+                    "argument_id": {"$ref": "#/$defs/non_empty_string"},
+                    "speaker": {"$ref": "#/$defs/non_empty_string"},
+                    "position": {"$ref": "#/$defs/non_empty_string"},
+                    "supports": {"$ref": "#/$defs/string_array"},
+                    "opposes": {"$ref": "#/$defs/string_array"},
+                    "strength": {"type": "integer", "minimum": 1, "maximum": 5},
+                    "missing_evidence": {"$ref": "#/$defs/non_empty_string"},
+                    "evidence": {"$ref": "#/$defs/evidence_array"},
+                    "confidence": {"$ref": "#/$defs/confidence"}
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "resolution": {"type": "string", "enum": ["resolved", "partially_resolved", "not_resolved"]},
+              "resolution_note": {"$ref": "#/$defs/non_empty_string"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "meeting_effectiveness": {
+      "type": "object",
+      "required": ["meeting_id", "view_type", "method", "dimensions", "overall_score_0_5", "calculation", "classification", "strengths", "losses", "next_meeting_protocol", "confidence"],
+      "properties": {
+        "meeting_id": {"$ref": "#/$defs/non_empty_string"},
+        "view_type": {"const": "meeting_effectiveness"},
+        "method": {"$ref": "#/$defs/non_empty_string"},
+        "dimensions": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["dimension", "score_0_5", "basis", "evidence_refs"],
+            "properties": {
+              "dimension": {
+                "type": "string",
+                "enum": ["agenda_coverage", "decision_closure", "actionability", "role_clarity", "evidence_quality", "participation_balance"]
+              },
+              "score_0_5": {"type": "number", "minimum": 0, "maximum": 5},
+              "basis": {"$ref": "#/$defs/non_empty_string"},
+              "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/non_empty_string"}}
+            },
+            "additionalProperties": false
+          }
+        },
+        "overall_score_0_5": {"type": "number", "minimum": 0, "maximum": 5},
+        "calculation": {"$ref": "#/$defs/non_empty_string"},
+        "classification": {"type": "string", "enum": ["effective", "partial_effectiveness", "low_effectiveness"]},
+        "strengths": {"$ref": "#/$defs/string_array"},
+        "losses": {"$ref": "#/$defs/string_array"},
+        "next_meeting_protocol": {"$ref": "#/$defs/string_array"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

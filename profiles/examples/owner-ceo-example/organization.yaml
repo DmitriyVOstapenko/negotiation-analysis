@@ -1,0 +1,158 @@
+# profiles/examples/owner-ceo-example/organization.yaml
+# СИНТЕТИЧЕСКИЙ пример профиля организации для owner/CEO-профиля.
+# Вымышленная группа «Демо-Групп»: головное АО, две операционные компании,
+# совет директоров, правление и комитет по аудиту. Показывает, куда ушли
+# GovernanceBody-экземпляры, иерархия группы, типы решений, круг лиц для
+# накопительной памяти и незакрытые вопросы объёма из исходного профиля
+# владельца. Все названия, реквизиты и люди вымышлены.
+
+meta:
+  profile_kind: organization
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: example_synthetic
+  confirmed_on: null
+  confirmation_source: synthetic_example
+  description: "Пример группы компаний с советом директоров, правлением и операционными компаниями."
+  synthetic: true
+
+group:
+  id: demo-group
+  display_name: "Группа компаний «Демо-Групп»"
+  legal_name: "АО «Демо-Групп»"
+  domain: "Многопрофильная группа с государственными и коммерческими заказчиками (пример)."
+
+hierarchy:
+  - company_group
+  - legal_entity
+  - business_unit
+  - person_or_governance_body
+
+legal_entities:
+  - id: demo-group
+    display_name: "Демо-Групп"
+    legal_name: "АО «Демо-Групп»"
+    inn: "0000000010"
+    kpp: null
+    organization_type: head_company
+    parent_id: null
+    is_our_side: true
+  - id: demo-service
+    display_name: "Демо-Сервис"
+    legal_name: "ООО «Демо-Сервис»"
+    inn: "0000000011"
+    kpp: null
+    organization_type: operating_company
+    parent_id: demo-group
+    is_our_side: true
+  - id: demo-region
+    display_name: "Демо-Регион"
+    legal_name: "ООО «Демо-Регион»"
+    inn: "0000000012"
+    kpp: null
+    organization_type: operating_company
+    parent_id: demo-group
+    is_our_side: true
+
+governance_bodies:
+  - id: demo-board
+    display_name: "Совет директоров АО «Демо-Групп»"
+    organization_id: demo-group
+    body_type: board_of_directors
+    members: [testov-timofey, maketova-marina, shablonov-semyon]
+    authority_scope: ["стратегия группы", "крупные сделки", "назначение генеральных директоров операционных компаний"]
+    level_in_group: company_group
+  - id: demo-management-board
+    display_name: "Правление"
+    organization_id: demo-group
+    body_type: management_board
+    members: [testov-timofey, primernaya-polina]
+    authority_scope: ["операционные решения группы", "бюджеты операционных компаний"]
+    level_in_group: company_group
+  - id: demo-audit-committee
+    display_name: "Комитет по аудиту"
+    organization_id: null
+    body_type: committee
+    members: [shablonov-semyon]
+    authority_scope: ["внутренний аудит", "отчётность"]
+    level_in_group: null            # уровень группы не подтверждён — пример открытого вопроса
+
+departments:
+  - id: strategy_office
+    title: "Офис стратегии"
+    organization_id: demo-group
+    parent_id: null
+  - id: government_sales
+    title: "Направление государственных заказчиков"
+    organization_id: demo-service
+    parent_id: null
+  - id: hr
+    title: "Управление персоналом"
+    organization_id: demo-group
+    parent_id: null
+
+role_vocabulary:
+  - local_title: "Председатель совета директоров"
+    maps_to_role: board_chair
+    department_id: null
+  - local_title: "Член совета директоров"
+    maps_to_role: board_member
+    department_id: null
+  - local_title: "Генеральный директор"
+    maps_to_role: CEO
+    department_id: null
+  - local_title: "Директор по работе с государственными заказчиками"
+    maps_to_role: business_unit_head
+    department_id: government_sales
+  - local_title: "Представитель государственного заказчика"
+    maps_to_role: government_customer_representative
+    department_id: null
+  - local_title: "Представитель регулятора"
+    maps_to_role: regulator_representative
+    department_id: null
+
+decision_types:
+  - id: board_resolution
+    title: "Решение совета директоров"
+    decision_owner_body_id: demo-board
+    requires_governance_body: true
+  - id: owner_decision
+    title: "Решение собственника"
+    decision_owner_body_id: null
+    requires_governance_body: false
+  - id: management_board_decision
+    title: "Решение правления"
+    decision_owner_body_id: demo-management-board
+    requires_governance_body: true
+  - id: executive_people_decision
+    title: "Кадровое решение по руководителю"
+    decision_owner_body_id: null
+    requires_governance_body: false
+
+our_side_rules:
+  organization_ids: [demo-group, demo-service, demo-region]
+  relation_types_considered_own: [internal]
+  default_for_unknown: false
+  note: "Своя сторона — все юридические лица группы «Демо-Групп»; государственные заказчики и регуляторы — внешняя сторона."
+
+scope:
+  architecture_scope: whole_group
+  initial_data_scope: "executive_core: совет директоров, прямые подчинённые, ключевые руководители и основные внешние стороны"
+  expansion_rule: confirmed_sources_only
+  memory_scope_groups: [board_of_directors, direct_reports, key_managers, key_external_parties]
+
+default_currency: RUB
+
+industry_vocabulary: []
+topic_subcategories: []
+risk_subtypes: []
+
+situation_type_extensions: []
+
+pending_scope_decisions:
+  - "Перечень юридических лиц, бизнес-направлений и органов управления"
+  - "Круг руководителей и иных лиц, по которым ведётся накопительная память"
+  - "Текущий порядок приоритетов среди включённых управленческих направлений"
+
+not_confirmed:
+  - "Уровень группы для комитета по аудиту"

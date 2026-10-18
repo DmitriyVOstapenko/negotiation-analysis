@@ -1,0 +1,836 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:negotiation-analysis:core:ontology:profile.schema:1.0.0",
+  "title": "Подключаемый профиль negotiation-analysis (role + organization + policy)",
+  "description": "Схема трёх частей подключаемого профиля: role (ролевой профиль пользователя), organization (приватная конфигурация организации) и policy (пользовательская политика конфиденциальности, хранения, психологического анализа, источников, интерфейса и методических модулей). Профиль не меняет смысл сущностей core.ontology.yaml, а задаёт приоритеты, словари и значения по умолчанию. Правило приоритетов (от сильного к слабому): 1) непересматриваемые ограничения безопасности и лицензии; 2) явное решение пользователя для конкретного источника или действия; 3) приватная политика организации; 4) ролевой профиль; 5) универсальные значения по умолчанию. Профиль не может молча ослабить согласие, правила обработки данных, требование доказательности или лицензионные ограничения: соответствующие поля перечислены в x-non-overridable и зафиксированы как const.",
+  "x-ontology-version": "1.0.0",
+  "x-priority-order": [
+    "non_overridable_safety_and_license_constraints",
+    "explicit_user_decision_for_specific_source_or_action",
+    "organization_policy",
+    "role_profile",
+    "universal_defaults"
+  ],
+  "x-non-overridable": [
+    {"path": "policy.privacy.per_source_decision_gate.enabled", "reason": "Шлюз согласия, конфиденциальности, класса данных, маскирования и маршрута обязателен для каждого нового источника."},
+    {"path": "policy.privacy.per_source_decision_gate.inherit_previous_decision", "reason": "Решение по одной записи не наследуется новой записью автоматически."},
+    {"path": "policy.privacy.strict_confidential_routing.automatic_external_processing", "reason": "Материал strict_confidential, special_category и голосовые данные не передаются внешнему сервису без явно выбранного маршрута."},
+    {"path": "policy.masking.inherited_from_previous_source", "reason": "Режим маскирования выбирается явно для каждого источника."},
+    {"path": "policy.masking.default_before_confirmation", "reason": "До выбора режима обработка заблокирована."},
+    {"path": "policy.retention.automatic_deletion", "reason": "Удаление выполняется только по точным подтверждённым целям."},
+    {"path": "policy.retention.deletion_requires_explicit_user_confirmation", "reason": "Удаление без подтверждения пользователя запрещено."},
+    {"path": "policy.psychological_analysis.prohibited_outputs", "reason": "Диагноз, клинический ярлык, кадровое решение по гипотезе и превращение отсутствия опровержений в доказательство запрещены независимо от профиля."},
+    {"path": "policy.psychological_analysis.verified_clinical_fact_storage", "reason": "Система не выводит клинический факт сама; хранение допустимо только из проверяемого источника при правовом основании и ограниченном доступе."},
+    {"path": "policy.evidence.require_evidence_ref_for_every_extracted_object", "reason": "Требование доказательности не ослабляется профилем."},
+    {"path": "policy.evidence.thresholds", "reason": "Пороги доказательности ядра (tactic_min_confidence, manipulation_min_confidence, manipulation_min_severity) профиль может только ужесточить (raise_only)."},
+    {"path": "policy.advisory.exact_message_gate.output_status", "reason": "Дословный текст сообщения всегда остаётся draft_not_sent."},
+    {"path": "policy.advisory.exact_message_gate.automatic_sending", "reason": "Автоматическая отправка третьей стороне запрещена."},
+    {"path": "policy.advisory.storage.automatic_knowledge_write", "reason": "Стратегия не записывается в каноническую базу автоматически."},
+    {"path": "policy.advisory.license_terms", "reason": "negociar_ru и negociar_upstream распространяются по CC BY-NC-SA 4.0: атрибуция, ShareAlike и некоммерческое ограничение сохраняются; профиль не может разрешить коммерческое использование."},
+    {"path": "policy.decision_authority.final_authority_remains_with_user", "reason": "Система не принимает решения за пользователя."},
+    {"path": "policy.decision_authority.system_may_not", "reason": "Система не закрывает вопросы, не отдаёт поручения и не отправляет документы без отдельной команды."},
+    {"path": "policy.memory.proposed_diff_before_persist", "reason": "Перед постоянной записью показывается diff."},
+    {"path": "policy.memory.confirmation_required_before_persist", "reason": "Без подтверждения память не меняется."},
+    {"path": "policy.memory.preserve_manual_marker", "reason": "Ручные пометки (m) не перезаписываются автоматически."},
+    {"path": "organization.scope.expansion_rule", "reason": "Новые организации, органы и люди добавляются только из подтверждённых источников."},
+    {"path": "organization.situation_type_extensions[].confirmation_source", "reason": "Новая категория управленческой ситуации добавляется только после явного подтверждения пользователя."}
+  ],
+  "type": "object",
+  "properties": {
+    "role": {"$ref": "#/$defs/role_profile"},
+    "organization": {"$ref": "#/$defs/organization_profile"},
+    "policy": {"$ref": "#/$defs/user_policy"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+
+    "profile_meta": {
+      "type": "object",
+      "required": ["profile_kind", "profile_version", "status"],
+      "properties": {
+        "profile_kind": {"enum": ["role", "organization", "policy"]},
+        "profile_version": {"type": "string", "minLength": 1},
+        "ontology_version": {"type": "string"},
+        "status": {"enum": ["draft", "confirmed", "confirmed_bootstrap_profile", "example_synthetic"]},
+        "confirmed_on": {"type": ["string", "null"]},
+        "confirmation_source": {"enum": ["user_confirmation", "universal_default", "synthetic_example", null]},
+        "description": {"type": "string"},
+        "synthetic": {"type": "boolean", "description": "true для примерных профилей без реальных людей и компаний."}
+      },
+      "additionalProperties": false
+    },
+
+    "role_enum": {
+      "enum": [
+        "owner", "founder", "owner_founder", "CEO", "board_chair", "board_member",
+        "CFO", "COO", "CTO_CIO", "CSO", "business_unit_head", "functional_head",
+        "treasury_head", "budgeting_head", "accounting_head", "procurement_head",
+        "legal_head", "sales_director", "key_account_manager", "project_manager",
+        "government_customer_representative", "government_official",
+        "regulator_representative", "lawyer", "engineer", "external_advisor", "other"
+      ]
+    },
+
+    "view_id": {
+      "enum": [
+        "control_center", "decision_required_today", "review_queue", "person_dossier",
+        "organization_dossier", "pre_meeting_brief", "post_meeting_analysis_and_protocol",
+        "follow_up_package", "strategic_initiative_portfolio", "decision_and_assignment_register",
+        "risk_and_opportunity_map", "key_stakeholder_map", "board_pack", "periodic_review",
+        "cross_meeting_comparison", "evidence_search", "event_projection", "pipeline_run_status",
+        "conversation_strategy"
+      ]
+    },
+
+    "module_id": {
+      "enum": [
+        "meeting_and_negotiation_analysis", "audio_analysis", "strategic_decisions",
+        "strategic_initiatives", "management_assignments", "board_governance",
+        "government_customer_relations", "risk_management", "execution_control",
+        "strategic_advisory"
+      ]
+    },
+
+    "tracked_object_type": {
+      "enum": [
+        "fact_and_evidence", "decision_option", "executive_decision",
+        "decision_rationale_and_dissent", "management_assignment", "strategic_initiative",
+        "external_commitment", "risk_issue_incident_escalation", "opportunity",
+        "stakeholder_position_influence_interest", "open_question_dependency_blocker",
+        "execution_result_and_evidence", "next_action_and_meeting_material",
+        "negotiation_strategy_draft"
+      ]
+    },
+
+    "behavior_dimension": {
+      "enum": [
+        "commitment_reliability", "preparation_and_argument_quality", "decision_influence",
+        "typical_positions_and_objections", "acceleration_delay_and_blocking_patterns",
+        "conflict_and_pressure_response", "repeated_negotiation_and_management_patterns"
+      ]
+    },
+
+    "psychological_dimension": {
+      "enum": [
+        "control_orientation", "status_sensitivity", "conflict_response", "pressure_response",
+        "dominance_or_avoidance_pattern", "decision_style", "motivational_driver",
+        "ambiguity_tolerance", "trust_formation_pattern"
+      ]
+    },
+
+    "advisory_module": {"enum": ["dialogue_contour", "negociar_ru", "negociar_upstream"]},
+
+    "masking_mode": {"enum": ["none", "names_only", "external_participants", "full_deidentification", "custom"]},
+    "business_confidentiality": {"enum": ["public", "internal", "confidential", "strict_confidential"]},
+    "personal_data_class": {"enum": ["none", "personal_data", "special_category", "biometric_or_voice_data", "unknown_requires_review"]},
+    "processing_service": {"enum": ["plaud", "wonderscribe", "chatgpt", "claude_code", "local_only", "custom"]},
+    "processing_route": {"enum": ["explicit_external_service", "deidentified_derivative", "local_only", "defer_processing"]},
+    "confidence_level": {"enum": ["certain", "probable", "possible", "speculative"]},
+    "severity": {"enum": ["low", "medium", "high"]},
+
+    "id_title": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+
+    "string_list": {"type": "array", "items": {"type": "string"}},
+
+    "role_profile": {
+      "type": "object",
+      "description": "Ролевой профиль: кто пользователь, какие представления приоритетны, какая глубина ответа по умолчанию, какие объекты и измерения поведения отслеживаются. Не меняет смысл сущностей ядра.",
+      "required": ["meta", "user_role", "priority_views", "default_depth"],
+      "properties": {
+        "meta": {"$ref": "#/$defs/profile_meta"},
+        "user_role": {"$ref": "#/$defs/role_enum"},
+        "additional_roles": {"type": "array", "items": {"$ref": "#/$defs/role_enum"}},
+        "role_title_freeform": {"type": ["string", "null"], "description": "Должность словами без указания реального лица."},
+        "confirmed_responsibility_areas": {"type": "array", "items": {"$ref": "#/$defs/id_title"}},
+        "scope": {
+          "type": "object",
+          "properties": {
+            "verbatim": {"type": ["string", "null"]},
+            "status": {"enum": ["confirmed", "confirmed_high_level_expand_from_sources", "not_confirmed"]}
+          },
+          "additionalProperties": false
+        },
+        "priority_views": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/view_id"}},
+        "default_depth": {"enum": ["executive_one_screen", "full_report"]},
+        "periodic_reviews": {"type": "array", "items": {"enum": ["weekly", "monthly"]}},
+        "enabled_modules": {"type": "array", "items": {"$ref": "#/$defs/module_id"}},
+        "tracked_object_types": {"type": "array", "items": {"$ref": "#/$defs/tracked_object_type"}},
+        "tracked_behavior_dimensions": {"type": "array", "items": {"$ref": "#/$defs/behavior_dimension"}},
+        "analysis_focus": {
+          "type": "object",
+          "description": "Какие части анализа встречи выводятся на первый экран для этой роли.",
+          "properties": {
+            "primary_entities": {"type": "array", "items": {"type": "string"}},
+            "primary_topic_categories": {"type": "array", "items": {"type": "string"}},
+            "primary_risk_types": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        "not_confirmed": {"$ref": "#/$defs/string_list"}
+      },
+      "additionalProperties": false
+    },
+
+    "organization_profile": {
+      "type": "object",
+      "description": "Приватная конфигурация организации: группа, юридические лица, органы управления, подразделения, словарь ролей, типы решений, правила своей стороны. Все поля, кроме meta, опциональны.",
+      "required": ["meta"],
+      "properties": {
+        "meta": {"$ref": "#/$defs/profile_meta"},
+        "group": {
+          "type": "object",
+          "properties": {
+            "id": {"type": ["string", "null"]},
+            "display_name": {"type": ["string", "null"]},
+            "legal_name": {"type": ["string", "null"]},
+            "domain": {"type": ["string", "null"], "description": "Область деятельности словами; пример отраслевого расширения в профиле организации."}
+          },
+          "additionalProperties": false
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {"enum": ["company_group", "legal_entity", "business_unit", "person_or_governance_body"]}
+        },
+        "legal_entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "display_name"],
+            "properties": {
+              "id": {"type": "string"},
+              "display_name": {"type": "string"},
+              "legal_name": {"type": ["string", "null"]},
+              "inn": {"type": ["string", "null"]},
+              "kpp": {"type": ["string", "null"]},
+              "organization_type": {"type": ["string", "null"]},
+              "parent_id": {"type": ["string", "null"]},
+              "is_our_side": {"type": "boolean"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "governance_bodies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "display_name"],
+            "properties": {
+              "id": {"type": "string"},
+              "display_name": {"type": "string"},
+              "organization_id": {"type": ["string", "null"]},
+              "body_type": {"type": ["string", "null"]},
+              "members": {"$ref": "#/$defs/string_list"},
+              "authority_scope": {"$ref": "#/$defs/string_list"},
+              "level_in_group": {"type": ["string", "null"], "description": "К какому юридическому лицу или уровню группы относится орган; null = не подтверждено."}
+            },
+            "additionalProperties": false
+          }
+        },
+        "departments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "organization_id": {"type": ["string", "null"]},
+              "parent_id": {"type": ["string", "null"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "role_vocabulary": {
+          "type": "array",
+          "description": "Локальные названия должностей и их соответствие ролям ядра.",
+          "items": {
+            "type": "object",
+            "required": ["local_title", "maps_to_role"],
+            "properties": {
+              "local_title": {"type": "string"},
+              "maps_to_role": {"$ref": "#/$defs/role_enum"},
+              "department_id": {"type": ["string", "null"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "decision_types": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "decision_owner_body_id": {"type": ["string", "null"]},
+              "requires_governance_body": {"type": "boolean"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "our_side_rules": {
+          "type": "object",
+          "description": "Как вычисляется Person.is_our_side и Organization.is_our_side.",
+          "properties": {
+            "organization_ids": {"$ref": "#/$defs/string_list"},
+            "relation_types_considered_own": {"type": "array", "items": {"enum": ["internal"]}},
+            "default_for_unknown": {"const": false},
+            "note": {"type": ["string", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "scope": {
+          "type": "object",
+          "properties": {
+            "architecture_scope": {"enum": ["whole_group", "single_legal_entity", "business_unit"]},
+            "initial_data_scope": {"type": ["string", "null"]},
+            "expansion_rule": {"const": "confirmed_sources_only"},
+            "memory_scope_groups": {"$ref": "#/$defs/string_list"}
+          },
+          "additionalProperties": false
+        },
+        "default_currency": {"type": ["string", "null"], "description": "Код валюты для полей value_rub/impact_rub и порогов сумм."},
+        "industry_vocabulary": {
+          "type": "array",
+          "description": "Отраслевые уточнения поверх enums.industry ядра.",
+          "items": {
+            "type": "object",
+            "required": ["id", "maps_to_industry"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "maps_to_industry": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "topic_subcategories": {
+          "type": "array",
+          "description": "Отраслевые подкатегории тем поверх enums.topic_category ядра; контрактный enum не меняется.",
+          "items": {
+            "type": "object",
+            "required": ["id", "maps_to_category"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "maps_to_category": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "risk_subtypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "maps_to_risk_type"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "maps_to_risk_type": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "situation_type_extensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "confirmed_on", "confirmation_source"],
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "confirmed_on": {"type": "string"},
+              "confirmation_source": {"const": "user_confirmation"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "pending_scope_decisions": {"$ref": "#/$defs/string_list"},
+        "not_confirmed": {"$ref": "#/$defs/string_list"}
+      },
+      "additionalProperties": false
+    },
+
+    "user_policy": {
+      "type": "object",
+      "description": "Пользовательская политика: конфиденциальность и согласие, маскирование, хранение, психологический анализ, источники, интерфейс, методические модули, самокритика пользователя, полномочия системы и память.",
+      "required": ["meta", "privacy", "masking", "retention", "psychological_analysis", "sources", "interface", "advisory", "evidence", "decision_authority", "memory"],
+      "properties": {
+        "meta": {"$ref": "#/$defs/profile_meta"},
+
+        "privacy": {
+          "type": "object",
+          "required": ["per_source_decision_gate", "strict_confidential_routing", "defaults"],
+          "properties": {
+            "per_source_decision_gate": {
+              "type": "object",
+              "required": ["enabled", "inherit_previous_decision", "default_processing_status"],
+              "properties": {
+                "enabled": {"const": true},
+                "inherit_previous_decision": {"const": false},
+                "default_processing_status": {"const": "blocked_until_user_confirmation"},
+                "applies_to": {
+                  "type": "array",
+                  "items": {"enum": ["audio", "video", "transcript", "correspondence", "document_with_personal_or_confidential_data", "provider_note_or_summary"]}
+                },
+                "required_confirmations": {
+                  "type": "array",
+                  "items": {"enum": ["lawful_processing_confirmation", "business_confidentiality", "personal_data_class", "masking_mode", "allowed_processing_routes"]}
+                }
+              },
+              "additionalProperties": false
+            },
+            "strict_confidential_routing": {
+              "type": "object",
+              "required": ["policy", "automatic_external_processing"],
+              "properties": {
+                "policy": {"const": "explicit_route_required"},
+                "automatic_external_processing": {"const": false},
+                "default_status": {"const": "blocked_awaiting_route_decision"},
+                "permitted_user_choices": {"type": "array", "items": {"$ref": "#/$defs/processing_route"}},
+                "special_and_voice_data_default_status": {"const": "blocked_awaiting_explicit_route"}
+              },
+              "additionalProperties": false
+            },
+            "defaults": {
+              "type": "object",
+              "properties": {
+                "business_confidentiality": {"$ref": "#/$defs/business_confidentiality"},
+                "consent_required_for_external_participants": {"type": "boolean"},
+                "strict_confidential_amount_threshold": {"type": ["number", "null"], "minimum": 0},
+                "strict_confidential_amount_currency": {"type": ["string", "null"]},
+                "strict_confidential_triggers": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            },
+            "behavior_rules": {"$ref": "#/$defs/string_list"}
+          },
+          "additionalProperties": false
+        },
+
+        "masking": {
+          "type": "object",
+          "required": ["mode_selection", "inherited_from_previous_source", "default_before_confirmation"],
+          "properties": {
+            "mode_selection": {"const": "explicit_per_source"},
+            "inherited_from_previous_source": {"const": false},
+            "default_before_confirmation": {"const": "blocked"},
+            "suggested_mode_for_external_participants": {"$ref": "#/$defs/masking_mode"},
+            "names_only_format": {"enum": ["first_letter_of_surname", "initials", "pseudonym"]}
+          },
+          "additionalProperties": false
+        },
+
+        "retention": {
+          "type": "object",
+          "required": ["automatic_deletion", "deletion_requires_explicit_user_confirmation"],
+          "properties": {
+            "automatic_deletion": {"const": false},
+            "deletion_requires_explicit_user_confirmation": {"const": true},
+            "source_audio_and_video": {
+              "type": "object",
+              "properties": {
+                "review_trigger": {"enum": ["after_transcript_validation"]},
+                "available_decisions": {"type": "array", "items": {"enum": ["retain", "archive", "delete"]}},
+                "default_without_decision": {"const": "retain_and_keep_review_item_open"}
+              },
+              "additionalProperties": false
+            },
+            "transcripts_decisions_and_evidence": {
+              "type": "object",
+              "properties": {
+                "default": {"enum": ["retain_until_explicit_decision_or_corporate_policy"]},
+                "automatic_expiration": {"const": false}
+              },
+              "additionalProperties": false
+            },
+            "strict_confidential": {
+              "type": "object",
+              "properties": {
+                "retention_mode": {"const": "explicit_per_source"},
+                "required_fields": {"type": "array", "items": {"enum": ["retention_decision", "review_or_delete_date_if_set", "decided_by", "decided_at"]}}
+              },
+              "additionalProperties": false
+            },
+            "deletion_scope": {
+              "type": "object",
+              "properties": {
+                "independently_tracked_locations": {
+                  "type": "array",
+                  "items": {"enum": ["local_source_file", "local_derived_files", "project_snapshots_and_backups", "plaud_provider_copy", "wonderscribe_provider_copy", "other_connected_source_copy"]}
+                },
+                "rule": {"type": "string"}
+              },
+              "additionalProperties": false
+            },
+            "deletion_record": {
+              "type": "object",
+              "properties": {
+                "preserve_without_content": {
+                  "type": "array",
+                  "items": {"enum": ["source_id", "content_sha256_if_previously_available", "deleted_locations", "requested_by", "confirmed_at", "verification_reference"]}
+                },
+                "prohibited": {"type": "string"}
+              },
+              "additionalProperties": false
+            },
+            "workflow_rules": {"$ref": "#/$defs/string_list"}
+          },
+          "additionalProperties": false
+        },
+
+        "psychological_analysis": {
+          "type": "object",
+          "required": ["depth", "enabled_levels", "allowed_outputs", "prohibited_outputs", "verified_clinical_fact_storage"],
+          "properties": {
+            "depth": {"enum": ["observations_only", "working_hypotheses"]},
+            "enabled_levels": {
+              "type": "array",
+              "items": {"enum": ["behavior_observation", "working_psychological_hypothesis"]}
+            },
+            "allowed_dimensions": {"type": "array", "items": {"$ref": "#/$defs/psychological_dimension"}},
+            "allowed_outputs": {
+              "type": "array",
+              "items": {"enum": [
+                "observed_behavior_with_source",
+                "working_testable_hypothesis",
+                "evidence_for_and_against",
+                "alternative_explanations",
+                "confidence_and_review_date",
+                "practical_interaction_approach"
+              ]}
+            },
+            "prohibited_outputs": {
+              "type": "array",
+              "minItems": 4,
+              "items": {"enum": [
+                "diagnosis_from_audio_text_or_business_behavior",
+                "clinical_label_as_personal_trait",
+                "hr_decision_based_only_on_hypothesis",
+                "absence_of_refutation_treated_as_proof",
+                "hypothesis_presented_as_established_trait"
+              ]}
+            },
+            "verified_clinical_fact_storage": {"enum": ["disabled", "restricted_access_with_verified_source_only"]},
+            "confidence_scale": {"enum": ["evidence_confidence"]},
+            "mandatory_separation": {"$ref": "#/$defs/string_list"},
+            "output_rule": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+
+        "sources": {
+          "type": "object",
+          "required": ["providers", "normalization"],
+          "properties": {
+            "providers": {
+              "type": "object",
+              "properties": {
+                "plaud": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"type": "boolean"},
+                    "integration_mode": {"enum": ["mcp_connector", "manual_export", "not_available"]},
+                    "user_has_separate_account": {"type": "boolean"},
+                    "expected_artifacts": {"type": "array", "items": {"enum": ["recording_metadata", "transcript", "note", "audio_when_explicitly_requested_and_allowed"]}}
+                  },
+                  "additionalProperties": false
+                },
+                "wonderscribe": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"type": "boolean"},
+                    "integration_mode": {"enum": ["rest_api", "not_available"]},
+                    "secret_reference": {"const": "environment:WONDERSCRIBE_API_KEY"},
+                    "expected_artifacts": {"type": "array", "items": {"enum": ["task_metadata", "full_text", "speaker_segments_with_timestamps", "summary", "json_or_subtitle_export_when_needed"]}},
+                    "secret_rules": {"$ref": "#/$defs/string_list"}
+                  },
+                  "additionalProperties": false
+                },
+                "uploaded_audio_or_video": {"$ref": "#/$defs/manual_source"},
+                "uploaded_transcript": {"$ref": "#/$defs/manual_source"},
+                "management_document": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"type": "boolean"},
+                    "formats": {"type": "array", "items": {"enum": ["board_or_meeting_minutes", "contract", "memo", "presentation", "report", "other_document"]}}
+                  },
+                  "additionalProperties": false
+                },
+                "spreadsheet_or_management_report": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"type": "boolean"},
+                    "integration_mode": {"enum": ["manual_file_or_connected_source", "manual_file"]}
+                  },
+                  "additionalProperties": false
+                },
+                "correspondence": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"type": "boolean"},
+                    "integration_mode": {"enum": ["manual_export_or_explicit_connector", "manual_export"]},
+                    "automatic_access": {"const": false}
+                  },
+                  "additionalProperties": false
+                },
+                "direct_user_confirmation": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {"const": true},
+                    "authority": {"const": "user_confirmation"}
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "normalization": {
+              "type": "object",
+              "properties": {
+                "canonical_source_entity": {"const": "SourceArtifact"},
+                "required_fields": {"$ref": "#/$defs/string_list"},
+                "rules": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+
+        "interface": {
+          "type": "object",
+          "required": ["response_format"],
+          "properties": {
+            "language": {"enum": ["ru", "en"]},
+            "response_format": {
+              "type": "object",
+              "required": ["default"],
+              "properties": {
+                "default": {"enum": ["executive_one_screen", "full_report"]},
+                "default_sections": {"$ref": "#/$defs/string_list"},
+                "detail_disclosure": {
+                  "type": "object",
+                  "properties": {
+                    "proactive_offer_required": {"type": "boolean"},
+                    "trigger": {"enum": ["material_unshown_detail_exists"]},
+                    "available_detail_types": {"$ref": "#/$defs/string_list"},
+                    "question_template": {"type": "string"}
+                  },
+                  "additionalProperties": false
+                },
+                "disclosure_rules": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            },
+            "view_consistency_rules": {"$ref": "#/$defs/string_list"}
+          },
+          "additionalProperties": false
+        },
+
+        "advisory": {
+          "type": "object",
+          "required": ["modules_allowed", "exact_message_gate", "storage", "license_terms"],
+          "properties": {
+            "modules_allowed": {"type": "array", "items": {"$ref": "#/$defs/advisory_module"}},
+            "default_module": {"anyOf": [{"$ref": "#/$defs/advisory_module"}, {"type": "null"}]},
+            "routing_rule": {"enum": ["explicit_user_choice", "default_module_unless_user_chooses"]},
+            "trigger_scope": {
+              "type": "array",
+              "items": {"enum": ["negotiation_strategy", "conflict_strategy", "sales_strategy", "power_and_role_relations", "management_of_people", "difficult_conversation", "how_to_respond", "role_play_training"]}
+            },
+            "evidence_boundary": {
+              "type": "object",
+              "properties": {
+                "factual_sources": {"type": "array", "items": {"enum": ["knowledge", "sources", "meetings", "explicit_user_confirmation"]}},
+                "rules": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            },
+            "response_contract": {
+              "type": "object",
+              "properties": {
+                "executive_screen_first": {"type": "boolean"},
+                "full_response_same_turn": {"type": "boolean"},
+                "required_blocks": {"$ref": "#/$defs/string_list"},
+                "required_elements": {"$ref": "#/$defs/string_list"},
+                "style": {"enum": ["plain_language_soft_form_hard_content"]}
+              },
+              "additionalProperties": false
+            },
+            "exact_message_gate": {
+              "type": "object",
+              "required": ["write_exact_text_only_on_explicit_request", "output_status", "automatic_sending"],
+              "properties": {
+                "write_exact_text_only_on_explicit_request": {"const": true},
+                "questions_before_drafting": {"$ref": "#/$defs/string_list"},
+                "output_status": {"const": "draft_not_sent"},
+                "automatic_sending": {"const": false}
+              },
+              "additionalProperties": false
+            },
+            "storage": {
+              "type": "object",
+              "required": ["automatic_knowledge_write", "default_output"],
+              "properties": {
+                "automatic_knowledge_write": {"const": false},
+                "default_output": {"enum": ["chat_only"]},
+                "knowledge_promotion_rule": {"type": "string"}
+              },
+              "additionalProperties": false
+            },
+            "save_and_reuse_gate": {
+              "type": "object",
+              "properties": {
+                "proactive_question_required": {"type": "boolean"},
+                "question": {"type": "string"},
+                "allowed_choices": {"type": "array", "items": {"enum": ["save_full", "save_selected", "archive_only", "do_not_save"]}},
+                "reusable_status": {"const": "approved_for_reuse"},
+                "future_preflight": {
+                  "type": "object",
+                  "properties": {
+                    "required": {"type": "boolean"},
+                    "lookup_keys": {"type": "array", "items": {"enum": ["related_person_ids", "related_organization_ids", "related_topic_ids", "related_meeting_ids"]}},
+                    "rule": {"type": "string"}
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "outcome_learning": {
+              "type": "object",
+              "properties": {
+                "proactive_followup_question": {"type": "string"},
+                "entity": {"const": "StrategyOutcome"},
+                "rules": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            },
+            "safety": {
+              "type": "object",
+              "properties": {
+                "prohibited": {"$ref": "#/$defs/string_list"}
+              },
+              "additionalProperties": false
+            },
+            "license_terms": {
+              "type": "object",
+              "required": ["negociar_ru", "negociar_upstream", "dialogue_contour"],
+              "properties": {
+                "negociar_ru": {"$ref": "#/$defs/license_term_cc_by_nc_sa"},
+                "negociar_upstream": {"$ref": "#/$defs/license_term_cc_by_nc_sa"},
+                "dialogue_contour": {
+                  "type": "object",
+                  "required": ["license"],
+                  "properties": {
+                    "license": {"enum": ["not_yet_granted", "project_license"]},
+                    "note": {"type": "string"}
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+
+        "evidence": {
+          "type": "object",
+          "required": ["require_evidence_ref_for_every_extracted_object", "thresholds"],
+          "properties": {
+            "require_evidence_ref_for_every_extracted_object": {"const": true},
+            "thresholds": {
+              "type": "object",
+              "description": "Ужесточение порогов ядра. Значение слабее порога ядра недопустимо.",
+              "properties": {
+                "tactic_min_confidence": {"enum": ["probable", "certain"]},
+                "manipulation_min_confidence": {"enum": ["probable", "certain"]},
+                "manipulation_min_severity": {"enum": ["medium", "high"]},
+                "stale_commitments_days": {"type": "integer", "minimum": 1},
+                "topics_stuck_days": {"type": "integer", "minimum": 1},
+                "recent_meetings_window_days": {"type": "integer", "minimum": 1},
+                "stable_pattern_minimum_episodes": {"type": "integer", "minimum": 3}
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+
+        "self_critique": {
+          "type": "object",
+          "description": "Критика решений и поведения самого пользователя (прежнее owner_critique). Субъект — пользователь профиля, без указания реального лица.",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "allowed_analysis": {"$ref": "#/$defs/string_list"},
+            "mandatory_structure": {"$ref": "#/$defs/string_list"},
+            "behavior_rules": {"$ref": "#/$defs/string_list"}
+          },
+          "additionalProperties": false
+        },
+
+        "decision_authority": {
+          "type": "object",
+          "required": ["final_authority_remains_with_user", "system_may_not"],
+          "properties": {
+            "final_authority_remains_with_user": {"const": true},
+            "system_may": {"$ref": "#/$defs/string_list"},
+            "system_may_not": {
+              "type": "array",
+              "minItems": 4,
+              "items": {"enum": ["decide_on_behalf_of_user", "close_item_without_confirmation", "issue_assignment_on_behalf_of_user", "send_message_or_document_without_separate_command"]}
+            }
+          },
+          "additionalProperties": false
+        },
+
+        "memory": {
+          "type": "object",
+          "required": ["proposed_diff_before_persist", "confirmation_required_before_persist", "preserve_manual_marker"],
+          "properties": {
+            "proposed_diff_before_persist": {"const": true},
+            "confirmation_required_before_persist": {"const": true},
+            "preserve_manual_marker": {"const": "(m)"},
+            "original_conclusion_and_actual_result_stored_separately": {"const": true},
+            "hypothesis_version_history_preserved": {"const": true}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "manual_source": {
+      "type": "object",
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "integration_mode": {"enum": ["manual_file"]}
+      },
+      "additionalProperties": false
+    },
+
+    "license_term_cc_by_nc_sa": {
+      "type": "object",
+      "required": ["license", "commercial_use_allowed", "attribution_required", "share_alike_required"],
+      "properties": {
+        "license": {"const": "CC-BY-NC-SA-4.0"},
+        "commercial_use_allowed": {"const": false},
+        "attribution_required": {"const": true},
+        "share_alike_required": {"const": true},
+        "separate_license_zone": {"const": true},
+        "non_commercial_use_confirmed_by_user": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

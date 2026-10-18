@@ -1,0 +1,403 @@
+# profiles/base/policy.yaml
+# Универсальная пользовательская политика по умолчанию.
+# Задаёт самые строгие безопасные значения: шлюз каждого источника, явный выбор
+# маскирования, отсутствие автоматического удаления, психологический анализ
+# только на уровне наблюдений, отправка сообщений запрещена, стратегия не
+# пишется в базу автоматически. Персональный профиль может ужесточать, но не
+# ослаблять поля из x-non-overridable (они зафиксированы как const в схеме).
+# Валидируется по core/ontology/profile.schema.json ($defs/user_policy).
+
+meta:
+  profile_kind: policy
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: confirmed
+  confirmed_on: null
+  confirmation_source: universal_default
+  description: "Универсальные безопасные значения по умолчанию."
+  synthetic: false
+
+# ------------------------------------------------------------
+# Конфиденциальность и согласие
+# ------------------------------------------------------------
+privacy:
+  per_source_decision_gate:
+    enabled: true
+    inherit_previous_decision: false
+    default_processing_status: blocked_until_user_confirmation
+    applies_to:
+      - audio
+      - video
+      - transcript
+      - correspondence
+      - document_with_personal_or_confidential_data
+      - provider_note_or_summary
+    required_confirmations:
+      - lawful_processing_confirmation
+      - business_confidentiality
+      - personal_data_class
+      - masking_mode
+      - allowed_processing_routes
+  strict_confidential_routing:
+    policy: explicit_route_required
+    automatic_external_processing: false
+    default_status: blocked_awaiting_route_decision
+    permitted_user_choices:
+      - explicit_external_service
+      - deidentified_derivative
+      - local_only
+      - defer_processing
+    special_and_voice_data_default_status: blocked_awaiting_explicit_route
+  defaults:
+    business_confidentiality: confidential
+    consent_required_for_external_participants: true
+    strict_confidential_amount_threshold: null
+    strict_confidential_amount_currency: null
+    strict_confidential_triggers:
+      - "условия действующих сделок"
+  behavior_rules:
+    - "Не читать содержимое и не отправлять его во внешний сервис до прохождения обязательного шлюза."
+    - "Подтверждение относится только к указанному SourceArtifact или явно определённому набору источников."
+    - "Согласие и режим предыдущей записи автоматически не применяются к новой записи."
+    - "Выбранные параметры сохраняются рядом с источником как подтверждение пользователя."
+    - "Если класс или допустимый маршрут неизвестен, обработка остаётся заблокированной."
+    - "Режим none допускается только после явного выбора пользователя."
+    - "Система может объяснить варианты, но не выбирает маршрут вместо пользователя."
+    - "Сам факт подключения сервиса не является разрешением на передачу."
+
+# ------------------------------------------------------------
+# Маскирование
+# ------------------------------------------------------------
+masking:
+  mode_selection: explicit_per_source
+  inherited_from_previous_source: false
+  default_before_confirmation: blocked
+  suggested_mode_for_external_participants: external_participants
+  names_only_format: first_letter_of_surname
+
+# ------------------------------------------------------------
+# Хранение и удаление
+# ------------------------------------------------------------
+retention:
+  automatic_deletion: false
+  deletion_requires_explicit_user_confirmation: true
+  source_audio_and_video:
+    review_trigger: after_transcript_validation
+    available_decisions: [retain, archive, delete]
+    default_without_decision: retain_and_keep_review_item_open
+  transcripts_decisions_and_evidence:
+    default: retain_until_explicit_decision_or_corporate_policy
+    automatic_expiration: false
+  strict_confidential:
+    retention_mode: explicit_per_source
+    required_fields: [retention_decision, review_or_delete_date_if_set, decided_by, decided_at]
+  deletion_scope:
+    independently_tracked_locations:
+      - local_source_file
+      - local_derived_files
+      - project_snapshots_and_backups
+      - plaud_provider_copy
+      - wonderscribe_provider_copy
+      - other_connected_source_copy
+    rule: "Удаление в одном контуре не считается удалением в остальных. Пользователь выбирает точные расположения, а система не заявляет об удалении без проверяемого подтверждения результата."
+  deletion_record:
+    preserve_without_content:
+      - source_id
+      - content_sha256_if_previously_available
+      - deleted_locations
+      - requested_by
+      - confirmed_at
+      - verification_reference
+    prohibited: "Сохранять удалённое содержимое внутри записи об удалении."
+  workflow_rules:
+    - "После валидации транскрипта создать отдельный вопрос о судьбе исходного аудио или видео."
+    - "Открытый вопрос о хранении не блокирует готовность подтверждённого анализа."
+    - "До ответа пользователя исходный материал сохраняется и не удаляется автоматически."
+    - "Перед удалением система повторно показывает точные цели и контуры удаления."
+    - "Решение об удалении не распространяется на новые или неуказанные источники."
+
+# ------------------------------------------------------------
+# Психологический анализ
+# ------------------------------------------------------------
+psychological_analysis:
+  depth: observations_only
+  enabled_levels: [behavior_observation]
+  allowed_dimensions: []
+  allowed_outputs:
+    - observed_behavior_with_source
+    - practical_interaction_approach
+  prohibited_outputs:
+    - diagnosis_from_audio_text_or_business_behavior
+    - clinical_label_as_personal_trait
+    - hr_decision_based_only_on_hypothesis
+    - absence_of_refutation_treated_as_proof
+    - hypothesis_presented_as_established_trait
+  verified_clinical_fact_storage: disabled
+  confidence_scale: evidence_confidence
+  mandatory_separation:
+    - "Наблюдение не записывается как интерпретация."
+    - "Интерпретация не записывается как диагноз."
+    - "Гипотеза всегда содержит подтверждающие и опровергающие данные."
+    - "Отсутствие опровергающих данных не считается подтверждением гипотезы."
+  output_rule: "В управленческих материалах показывать конкретное наблюдаемое поведение, практическое значение, рекомендуемый способ взаимодействия, confidence и альтернативные объяснения. Для рабочей гипотезы явно писать, что она не является медицинским диагнозом."
+
+# ------------------------------------------------------------
+# Источники
+# ------------------------------------------------------------
+sources:
+  providers:
+    plaud:
+      enabled: false
+      integration_mode: not_available
+      user_has_separate_account: false
+      expected_artifacts: [recording_metadata, transcript, note, audio_when_explicitly_requested_and_allowed]
+    wonderscribe:
+      enabled: false
+      integration_mode: not_available
+      secret_reference: "environment:WONDERSCRIBE_API_KEY"
+      expected_artifacts: [task_metadata, full_text, speaker_segments_with_timestamps, summary, json_or_subtitle_export_when_needed]
+      secret_rules:
+        - "Реальный API-ключ не хранится в файлах проекта."
+        - "Реальный API-ключ не вставляется в инструкции, промпты, отчёты или журналы."
+        - "Ключ читается только из локальной переменной WONDERSCRIBE_API_KEY."
+        - "В диагностике показывается только наличие ключа, но не его значение."
+    uploaded_audio_or_video:
+      enabled: true
+      integration_mode: manual_file
+    uploaded_transcript:
+      enabled: true
+      integration_mode: manual_file
+    management_document:
+      enabled: true
+      formats: [board_or_meeting_minutes, contract, memo, presentation, report, other_document]
+    spreadsheet_or_management_report:
+      enabled: true
+      integration_mode: manual_file
+    correspondence:
+      enabled: true
+      integration_mode: manual_export
+      automatic_access: false
+    direct_user_confirmation:
+      enabled: true
+      authority: user_confirmation
+  normalization:
+    canonical_source_entity: SourceArtifact
+    required_fields:
+      - id
+      - provider
+      - source_type
+      - external_id_or_local_path
+      - captured_at_or_document_date
+      - ingested_at
+      - content_sha256
+      - sensitivity
+      - processing_status
+    rules:
+      - "Исходный материал сохраняется отдельно от нормализованного представления."
+      - "Одинаковая запись от разных провайдеров выявляется по хешу, времени и метаданным, а не создаётся дважды."
+      - "Провайдерское саммари не считается подтверждённым фактом без проверки по первичному тексту или документу."
+      - "Каждый аналитический вывод сохраняет ссылку на канонический SourceArtifact."
+      - "Получение аудио допускается только после проверки согласия и правил чувствительности."
+
+# ------------------------------------------------------------
+# Интерфейс
+# ------------------------------------------------------------
+interface:
+  language: ru
+  response_format:
+    default: executive_one_screen
+    default_sections:
+      - "Главный вывод"
+      - "Что требуется решить"
+      - "Ключевые факты и доказательства"
+      - "Риски и противоречия"
+      - "Варианты с плюсами и минусами"
+      - "Рекомендуемый следующий шаг"
+    detail_disclosure:
+      proactive_offer_required: true
+      trigger: material_unshown_detail_exists
+      available_detail_types:
+        - "Полные цитаты и ссылки на источники"
+        - "История вопроса и изменений позиции"
+        - "Подробное сравнение вариантов"
+        - "Поведенческий анализ"
+        - "Расчёты, таблицы и зависимости"
+        - "Контраргументы и альтернативные сценарии"
+        - "Полный стратегический разбор"
+      question_template: "За краткой версией остался подробный разбор: {available_details}. Раскрыть его?"
+    disclosure_rules:
+      - "Не ждать, пока пользователь сам попросит подробности, если существенное углубление уже подготовлено."
+      - "После краткого ответа явно назвать доступные виды подробностей и спросить, раскрывать ли их."
+      - "Если существенных скрытых подробностей нет, не задавать формальный вопрос ради ритуала."
+      - "Критически важный факт, высокий риск или необходимое ограничение показывать сразу, а не скрывать за предложением раскрытия."
+      - "При применении методического модуля обязательные блоки выдаются в том же ответе и не откладываются за вопросом о раскрытии."
+      - "Ответ пользователя «да» относится к перечисленному углублению; не добавлять несвязанные блоки."
+      - "При нескольких независимых углублениях предлагать их коротким списком и не смешивать с отдельными управленческими решениями."
+  view_consistency_rules:
+    - "Все представления строятся из одной канонической базы и не являются отдельными источниками фактов."
+    - "Изменение статуса выполняется в канонической сущности и затем отражается во всех представлениях."
+    - "Открытый вопрос не блокирует готовность остальных подтверждённых частей анализа."
+    - "Каждая карточка позволяет перейти к источнику, доказательству или подтверждению пользователя."
+    - "Проекты протоколов и сообщений не отправляются автоматически."
+
+# ------------------------------------------------------------
+# Методические модули стратегии
+# ------------------------------------------------------------
+advisory:
+  modules_allowed: [dialogue_contour]
+  default_module: dialogue_contour
+  routing_rule: explicit_user_choice
+  trigger_scope:
+    - negotiation_strategy
+    - conflict_strategy
+    - sales_strategy
+    - power_and_role_relations
+    - management_of_people
+    - difficult_conversation
+    - how_to_respond
+    - role_play_training
+  evidence_boundary:
+    factual_sources: [knowledge, sources, meetings, explicit_user_confirmation]
+    rules:
+      - "Методический каталог и кейсы не являются доказательством факта текущей ситуации."
+      - "Описание реального человека или события требует EvidenceRef из базы."
+      - "Недостающий контекст маркируется как рабочая гипотеза или вопрос."
+      - "Нельзя переносить вывод методического модуля в карточку человека как установленное свойство."
+  response_contract:
+    executive_screen_first: true
+    full_response_same_turn: true
+    required_blocks:
+      - "Реальная ситуация и возможная слепая зона"
+      - "Что здесь происходит и какой принцип метода применим"
+      - "Последовательность вопросов и действий с вариантами ответов"
+      - "Развилки из-за недостающих данных"
+    required_elements:
+      - "Временная точка и доступное окно действия"
+      - "Вероятные возражения другой стороны"
+      - "Ответ на каждое существенное возражение"
+      - "Худший сценарий"
+      - "Жёсткий, деловой и обратимый ход"
+    style: plain_language_soft_form_hard_content
+  exact_message_gate:
+    write_exact_text_only_on_explicit_request: true
+    questions_before_drafting:
+      - "Что уже было сказано лично, голосом или письменно?"
+      - "Какие признания, обещания или темы нельзя включать?"
+      - "Какой канал и тон требуются?"
+    output_status: draft_not_sent
+    automatic_sending: false
+  storage:
+    automatic_knowledge_write: false
+    default_output: chat_only
+    knowledge_promotion_rule: "Только отдельные фактические утверждения с EvidenceRef могут быть предложены через diff и внесены после подтверждения пользователя."
+  save_and_reuse_gate:
+    proactive_question_required: true
+    question: "Сохранить этот разбор для дальнейшей работы: полностью, только выбранные выводы, как архивный черновик или не сохранять?"
+    allowed_choices: [save_full, save_selected, archive_only, do_not_save]
+    reusable_status: approved_for_reuse
+    future_preflight:
+      required: true
+      lookup_keys: [related_person_ids, related_organization_ids, related_topic_ids, related_meeting_ids]
+      rule: "Перед новым брифингом или стратегическим разбором прочитать релевантные карточки approved_for_reuse и отделить прошлую стратегию от новых фактов."
+  outcome_learning:
+    proactive_followup_question: "Зафиксировать, что произошло после применения стратегии и какие выводы использовать дальше?"
+    entity: StrategyOutcome
+    rules:
+      - "Фактический результат подтверждается пользователем или источником."
+      - "Неудача не удаляет прежнюю стратегию, а создаёт связанный результат."
+      - "Усиление, ослабление или прекращение повторного использования требует подтверждения пользователя."
+  safety:
+    prohibited:
+      - "Медицинский или психиатрический диагноз по поведению."
+      - "Вымышленный кейс, представленный как материал библиотеки."
+      - "Общий совет по переговорам вместо чтения выбранного методического каталога."
+      - "Автоматическая запись стратегии в каноническую базу."
+      - "Автоматическая отправка текста третьей стороне."
+      - "Смешивание текстов, сюжетов или рубрикации разных методических модулей."
+  license_terms:
+    negociar_ru:
+      license: CC-BY-NC-SA-4.0
+      commercial_use_allowed: false
+      attribution_required: true
+      share_alike_required: true
+      separate_license_zone: true
+      non_commercial_use_confirmed_by_user: false
+    negociar_upstream:
+      license: CC-BY-NC-SA-4.0
+      commercial_use_allowed: false
+      attribution_required: true
+      share_alike_required: true
+      separate_license_zone: true
+      non_commercial_use_confirmed_by_user: false
+    dialogue_contour:
+      license: not_yet_granted
+      note: "До отдельного решения правообладателя публичная лицензия не предоставлена."
+
+# ------------------------------------------------------------
+# Доказательность (только ужесточение порогов ядра)
+# ------------------------------------------------------------
+evidence:
+  require_evidence_ref_for_every_extracted_object: true
+  thresholds:
+    tactic_min_confidence: probable
+    manipulation_min_confidence: probable
+    manipulation_min_severity: medium
+    stale_commitments_days: 14
+    topics_stuck_days: 60
+    recent_meetings_window_days: 180
+    stable_pattern_minimum_episodes: 3
+
+# ------------------------------------------------------------
+# Критика решений и поведения самого пользователя
+# ------------------------------------------------------------
+self_critique:
+  enabled: true
+  allowed_analysis:
+    - "Слабые или неподтверждённые аргументы"
+    - "Преждевременные решения"
+    - "Пропущенные вопросы, зависимости и риски"
+    - "Противоречивые поручения"
+    - "Невыполненные собственные обязательства"
+    - "Переговорные и управленческие ошибки"
+  mandatory_structure:
+    - "Наблюдаемый факт или проверяемое расхождение"
+    - "Источник, цитата, документ или подтверждение"
+    - "Интерпретация"
+    - "Confidence"
+    - "Альтернативные объяснения"
+    - "Возможные последствия"
+    - "Варианты действий с плюсами и минусами"
+  behavior_rules:
+    - "Не смягчать существенный вывод ради согласия с пользователем."
+    - "Не использовать лесть как замену анализу."
+    - "Не представлять несогласие системы как решение пользователя."
+    - "Прямо указывать недостаток доказательств и возможность ошибки анализа."
+    - "Применять к пользователю те же требования доказательности, что и к другим участникам."
+    - "Отделять критику конкретного решения или поведения от оценки личности в целом."
+
+# ------------------------------------------------------------
+# Полномочия системы
+# ------------------------------------------------------------
+decision_authority:
+  final_authority_remains_with_user: true
+  system_may:
+    - "Оспорить аргумент"
+    - "Показать противоречие"
+    - "Предложить альтернативу"
+    - "Запросить подтверждение"
+    - "Сформулировать рекомендацию"
+  system_may_not:
+    - decide_on_behalf_of_user
+    - close_item_without_confirmation
+    - issue_assignment_on_behalf_of_user
+    - send_message_or_document_without_separate_command
+
+# ------------------------------------------------------------
+# Память
+# ------------------------------------------------------------
+memory:
+  proposed_diff_before_persist: true
+  confirmation_required_before_persist: true
+  preserve_manual_marker: "(m)"
+  original_conclusion_and_actual_result_stored_separately: true
+  hypothesis_version_history_preserved: true

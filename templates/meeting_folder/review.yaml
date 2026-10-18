@@ -1,0 +1,33 @@
+# review.yaml — решения пользователя. Создаётся движком; шлюз и карта спикеров
+# записываются командами na.py source gate и na.py speakers set.
+meeting_id: "[meeting-id]"
+review_status: "pending"           # pending | confirmed | confirmed_with_open_items
+reviewed_at: null
+processing_gate:
+  consent: "not_set"               # yes | no — без yes источник остаётся blocked_by_gate
+  masking_mode: "not_set"          # none | initials | pseudonyms | full
+  sensitivity: "not_set"           # public | internal | confidential | regulated
+  allowed_routes: "not_set"        # local_only | local_and_cloud_llm
+  retention_decision: "not_set"    # retain | delete_after_validation
+  recorded_at: null
+  source: null                     # user_confirmation
+speaker_mapping:
+  status: "pending"                # pending | confirmed
+  source: null
+  speakers: []                     # [{label, person_name, role, person_id}]
+source_scope:
+  status: "pending"
+  analyzed_from: null
+  analyzed_until: null
+  excluded_from: null
+  exclusion_reason: null
+  source: null
+transcript_quality:
+  status: "pending"
+  known_issues: []
+knowledge_update:
+  diff_reviewed: false
+  write_authorized: false
+  authorized_at: null
+subsequent_confirmations: []       # уточнения пользователя после встречи, source: user_confirmation
+open_review_items: []              # вопросы для человека; попадают в единую очередь

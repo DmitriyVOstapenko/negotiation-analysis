@@ -1,0 +1,39 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "risks": [
+    {
+      "id": "r-2026-10-28-api-documentation",
+      "type": "technology",
+      "description": "Срок интеграции с учётной системой может сдвинуться на 4–6 недель из-за отсутствия документации по API.",
+      "first_seen_meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "last_seen_meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "involved_companies": [
+        "org-polaris",
+        "org-nordtech"
+      ],
+      "involved_people": [
+        "p-krylova-polaris",
+        "p-danilov-nordtech"
+      ],
+      "linked_topic": "wms-api-integration",
+      "likelihood": "medium",
+      "impact_rub": null,
+      "impact_qualitative": "high",
+      "severity": "high",
+      "mitigation": {
+        "planned_actions": "Запросить у прежнего подрядчика сохранившуюся документацию; исполнитель готовит список вопросов для ускорения поиска.",
+        "owner": "p-krylova-polaris",
+        "deadline": null
+      },
+      "status": "open",
+      "evidence": [
+        {
+          "quote": "Давайте тогда прямо запишем это как риск: без документации по API срок интеграции сдвигается на четыре-шесть недель.",
+          "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+          "timestamp": "00:04:26"
+        }
+      ],
+      "confidence": "certain"
+    }
+  ]
+}

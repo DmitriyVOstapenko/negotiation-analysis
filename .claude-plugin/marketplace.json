@@ -1,0 +1,14 @@
+{
+  "name": "negotiation-analysis-marketplace",
+  "owner": {
+    "name": "Dmitriy Ostapenko"
+  },
+  "plugins": [
+    {
+      "name": "negotiation-analysis",
+      "source": ".",
+      "description": "Накопительная система анализа деловых переговоров: доказательный разбор встреч, база знаний с подтверждением перед записью, контрольный центр, брифинги. По-русски.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,1909 @@
+# core.ontology.yaml
+# Универсальная core-онтология плагина negotiation-analysis.
+#
+# Что это:
+#   Единая модель мира деловых встреч и переговоров: какие бывают сущности,
+#   какие у них поля, какие закрытые словари (enum), как сущности связаны,
+#   какие статусы и переходы допустимы и какие инварианты обязательны.
+#   LLM использует эту схему как обязательный формат извлечения фактов;
+#   накопительная память строится поверх неё.
+#
+# Границы:
+#   - здесь только универсальное: сущности, связи, статусы, доказательства,
+#     версии, инварианты, пороги доказательности и правила маскирования;
+#   - персональные роли, словарь конкретной организации, перечни лиц,
+#     отраслевые уточнения и пользовательские политики подключаются профилями
+#     (см. core/ontology/profile.schema.json и profiles/);
+#   - локальные пути, аккаунты провайдеров и накопленные данные (runtime
+#     state) в онтологию не входят.
+#
+# Происхождение:
+#   Сведена из двух закрытых референсных онтологий (CFO-онтология v0.4 и
+#   онтология владельца/CEO v1.1.0). Полная таблица переноса каждой сущности,
+#   поля, enum-значения и правила — docs/ONTOLOGY_MIGRATION.md; машинно-
+#   читаемый список — docs/ontology_migration.json; тест отсутствия потерь —
+#   scripts/check_ontology_migration.py.
+#
+# Соглашения:
+#   - идентификаторы, имена полей и enum-значения — английские;
+#     документация и комментарии — русские;
+#   - типы полей записываются как в исходных онтологиях:
+#     string, text, int, float, number, bool, date, datetime, path,
+#     enum(a|b|c), enum(<имя из enums>), ref(Entity), list(...), object,
+#     string_or_null, date_or_null, datetime_or_null, list_of_EvidenceRef;
+#   - legacy_aliases фиксируют прежние имена из исходных онтологий, чтобы
+#     миграция накопленных данных и тест отсутствия потерь были проверяемы.
+
+meta:
+  name: "negotiation-analysis core ontology"
+  version: "1.0.0"
+  language: "ru"
+  identifiers_language: "en"
+  evidence_first: true
+  last_updated: "2026-10-18"
+  # Значения, которыми помечается неизвестное. Неизвестное никогда не
+  # превращается в факт и не заполняется правдоподобным значением.
+  unknown_values: [unknown, not_stated, requires_confirmation]
+  # Контракты, которым онтология не должна противоречить (зафиксированы).
+  contracts:
+    meeting_analysis: "core/contracts/contracts.schema.json"          # x-contract-version 1.0.0, 11 артефактов
+    executive_objects: "core/contracts/executive_contracts.schema.json"
+    knowledge_event: "core/contracts/knowledge_event.schema.json"      # event_version 1.0.0
+  profile_schema: "core/ontology/profile.schema.json"
+  # Что определяется профилями, а не ядром (см. profile_extension_points).
+  profile_layers: [role, organization, policy]
+
+# ============================================================
+# EVIDENCE CLASSES — классы утверждений
+# ============================================================
+# Каждое утверждение системы машинно относится к одному классу. Факт,
+# наблюдение, интерпретация, гипотеза, рекомендация и решение пользователя
+# никогда не смешиваются в одной записи.
+
+evidence_classes:
+  confirmed_fact:
+    description: "Прямо следует из первичного источника или явного подтверждения пользователя."
+  observation:
+    description: "Проверяемое описание поведения или события без объяснения мотива."
+  interpretation:
+    description: "Аналитическое прочтение одного или нескольких фактов."
+  working_hypothesis:
+    description: "Возможное объяснение; обязательны альтернативы и confidence."
+  recommendation:
+    description: "Предлагаемое действие; не является принятым решением."
+  user_confirmed_decision:
+    description: "Решение, явно подтверждённое пользователем или уполномоченным лицом."
+
+# ============================================================
+# CONFIDENCE — шкалы уверенности
+# ============================================================
+# В системе две зафиксированные контрактами шкалы. Обе сохраняются; значение
+# всегда хранится в «родной» шкале слоя, а проекция между шкалами — только
+# для отображения и сводных представлений.
+
+confidence_scales:
+  # Шкала слоя анализа встречи (contracts.schema.json, 11 артефактов).
+  confidence_level:
+    values:
+      - certain                       # явно сказано в источнике
+      - probable                      # сильный подтекст, косвенные признаки
+      - possible                      # слабый сигнал, требует проверки
+      - speculative                   # интерпретация, не факт
+    used_by: [TacticObservation, ManipulationObservation, Commitment, Risk, Topic, Person, Organization, DecisionAuthorityMap, ArgumentMap, MeetingEffectiveness]
+  # Шкала EvidenceRef и управленческого реестра (executive_contracts.schema.json).
+  evidence_confidence:
+    values:
+      - high
+      - medium
+      - low
+      - not_assessed
+    used_by: [EvidenceRef, Decision, Assignment, Initiative, Opportunity, StakeholderPosition, Observation, Hypothesis, Strategy, StrategyOutcome]
+  # Проекция confidence_level -> evidence_confidence (однонаправленная, с потерей
+  # различия possible/speculative; обратная проекция не определена).
+  projection_confidence_level_to_evidence_confidence:
+    certain: high
+    probable: medium
+    possible: low
+    speculative: low
+    null: not_assessed
+
+# Обратная совместимость: в исходных онтологиях ключи назывались так.
+confidence_levels: [high, medium, low, not_assessed]   # = confidence_scales.evidence_confidence
+
+# ============================================================
+# SOURCE PROVIDERS — откуда приходит материал
+# ============================================================
+source_providers:
+  - plaud                             # внешний подключаемый коннектор; аккаунт пользователя
+  - wonderscribe                      # REST API; ключ только из переменной окружения
+  - local_file
+  - uploaded_transcript
+  - document
+  - spreadsheet
+  - correspondence
+  - user_confirmation                 # явное подтверждение пользователя как источник
+  - other
+
+# ============================================================
+# ENUMS — контролируемые словари
+# ============================================================
+# Enum-ы задают закрытые списки допустимых значений. LLM не может придумывать
+# новые — только выбирать из списка или помечать other и объяснять.
+# Профиль организации может добавлять подкатегории поверх значений ядра, но не
+# может изменять значения, зафиксированные контрактами.
+
+enums:
+
+  # Роли участников (объединение обоих источников; совпадает с contracts.schema.json).
+  role:
+    - owner
+    - founder
+    - owner_founder
+    - CEO
+    - board_chair
+    - board_member
+    - CFO
+    - COO
+    - CTO_CIO
+    - CSO
+    - business_unit_head
+    - functional_head
+    - treasury_head
+    - budgeting_head
+    - accounting_head
+    - procurement_head
+    - legal_head
+    - sales_director
+    - key_account_manager
+    - project_manager
+    - government_customer_representative
+    - government_official
+    - regulator_representative
+    - lawyer
+    - engineer
+    - external_advisor
+    - other
+
+  # Формат встречи — определяет, какие сущности релевантны в анализе.
+  meeting_type:
+    - contract_negotiation
+    - price_negotiation
+    - kickoff
+    - status_review
+    - escalation
+    - dispute_resolution
+    - investment_pitch
+    - budget_review
+    - vendor_selection
+    - due_diligence
+    - internal_alignment
+    - board_prep
+    - regulatory
+    - other
+
+  # Управленческая ситуация — вторая, независимая классификация встречи.
+  # Словарь закрытый; новая категория добавляется только после явного
+  # подтверждения пользователя (profile.organization.situation_type_extensions).
+  management_situation_type:
+    - board_and_owner_matters
+    - strategy_and_group_development
+    - management_performance_review
+    - government_customer_negotiation
+    - government_and_regulator_relations
+    - key_external_counterparties
+    - budget_investment_and_major_deals
+    - executive_people_decisions
+    - crisis_incident_and_escalation
+    - legal_compliance_and_reputation
+    - ma_new_business_and_reorganization
+    - executive_one_on_one
+    - other_requires_confirmation
+
+  # Категория темы. Значения зафиксированы contracts.schema.json.
+  # integration_1c, integration_bitrix и security_specific — отраслевые
+  # значения, сохранённые для совместимости с контрактом; пример отраслевого
+  # расширения в профиле организации: подкатегории поверх security_specific.
+  topic_category:
+    - commercial_terms
+    - payment_terms
+    - delivery_terms
+    - scope
+    - quality_sla
+    - warranty
+    - liability_penalties
+    - ip_rights
+    - confidentiality
+    - compliance
+    - budget_allocation
+    - kpi_targets
+    - resource_allocation
+    - risks
+    - timeline
+    - integration_1c
+    - integration_bitrix
+    - security_specific
+    - other
+
+  # Статус темы и обязательства в слое анализа встречи (contracts.schema.json).
+  status:
+    - open
+    - in_progress
+    - blocked
+    - agreed
+    - formalized
+    - done
+    - cancelled
+    - overdue
+
+  confidence_level: [certain, probable, possible, speculative]
+  evidence_confidence: [high, medium, low, not_assessed]
+
+  # Чувствительность материала. Объединённая шкала сохранена для совместимости
+  # с контрактами; рекомендуется раздельно заполнять business_confidentiality
+  # и personal_data_class. regulated эквивалентно
+  # personal_data_class in (special_category, biometric_or_voice_data).
+  sensitivity:
+    - public
+    - internal
+    - confidential
+    - strict_confidential
+    - regulated
+
+  business_confidentiality:
+    - public
+    - internal
+    - confidential
+    - strict_confidential
+
+  personal_data_class:
+    - none
+    - personal_data
+    - special_category
+    - biometric_or_voice_data
+    - unknown_requires_review
+
+  masking_mode:
+    - none                            # допускается только после явного выбора пользователя
+    - names_only
+    - external_participants
+    - full_deidentification
+    - custom
+
+  # Сервисы и способы обработки, которые пользователь может разрешить для источника.
+  processing_service:
+    - plaud
+    - wonderscribe
+    - chatgpt                         # хост ChatGPT/Codex
+    - claude_code                     # хост Claude Code (целевая среда продукта)
+    - local_only
+    - custom
+
+  # Маршрут обработки материала strict_confidential, special_category и голосовых данных.
+  processing_route:
+    - explicit_external_service
+    - deidentified_derivative
+    - local_only
+    - defer_processing
+
+  # Статус обработки SourceArtifact до прохождения шлюза. Состояния после
+  # прохождения шлюза фиксируются контрактом SourcePacket (этап Evidence).
+  processing_status:
+    - blocked_until_user_confirmation
+    - blocked_awaiting_route_decision
+    - blocked_awaiting_explicit_route
+    - deferred
+
+  retention_decision: [retain, archive, delete]
+
+  deletion_location:
+    - local_source_file
+    - local_derived_files
+    - project_snapshots_and_backups
+    - plaud_provider_copy
+    - wonderscribe_provider_copy
+    - other_connected_source_copy
+
+  source_type:
+    - audio
+    - video
+    - transcript
+    - provider_note_or_summary
+    - document
+    - spreadsheet
+    - correspondence
+    - user_confirmation
+    - other
+
+  channel:
+    - in_person
+    - zoom
+    - teams
+    - phone
+    - call_office
+    - plaud_device
+
+  meeting_outcome: [agreed, partial, deferred, failed, no_decision]
+
+  identity_source: [transcript, user_confirmed, user_confirmation, existing_knowledge]
+
+  # Каталог тактик (Chris Voss, «Never Split the Difference»).
+  voss_tactic:
+    - mirroring
+    - labeling
+    - tactical_empathy
+    - accusation_audit
+    - calibrated_question
+    - thats_right
+    - late_night_dj
+    - no_oriented_question
+    - anchoring_extreme
+    - loss_aversion
+    - other
+
+  # Каталог принципов влияния (Cialdini).
+  cialdini_principle:
+    - reciprocity
+    - commitment_consistency
+    - social_proof
+    - authority
+    - liking
+    - scarcity
+    - unity
+
+  tactic_family: [voss, cialdini]
+
+  # Каталог манипуляций (deceptive tactics).
+  manipulation_type:
+    - false_urgency
+    - false_scarcity
+    - anchoring_deceptive
+    - false_dilemma
+    - salami_slicing
+    - gaslighting
+    - false_consensus
+    - bait_and_switch
+    - moving_goalposts
+    - foot_in_the_door
+    - door_in_the_face
+    - guilt_tripping
+    - fait_accompli
+    - reference_pressure
+    - other
+
+  tactic_effect: [worked, partial, failed, neutral, unclear]
+  manipulation_effect: [worked, neutralized, failed, unclear]
+  severity: [low, medium, high]
+
+  risk_type:
+    - financial
+    - contractual
+    - operational
+    - reputational
+    - compliance_legal
+    - counterparty
+    - technology
+    - security_physical
+    - security_information
+    - human_capital
+    - other
+
+  likelihood: [low, medium, high]                       # слой анализа встречи
+  impact_qualitative: [low, medium, high]               # слой анализа встречи
+  probability: [high, medium, low, unknown]             # реестр
+  impact: [critical, high, medium, low, unknown]        # реестр
+
+  commitment_type:
+    - deliver_document
+    - make_payment
+    - approve_decision
+    - conduct_action
+    - provide_information
+    - sign_contract
+    - deliver_goods_services
+    - schedule_meeting
+    - other
+
+  # Статусы реестра (executive_contracts.schema.json).
+  commitment_register_status: [proposed, accepted, in_progress, fulfilled, overdue, disputed, cancelled]
+  risk_register_status: [candidate, active, monitoring, materialized, mitigated, closed, accepted]
+  risk_analysis_status: [open, mitigating, closed, realized]     # contracts.schema.json
+  decision_status: [proposed, confirmed, rejected, deferred, superseded, cancelled]
+  assignment_status: [draft, assigned, accepted, in_progress, blocked, overdue, submitted_for_review, done, cancelled]
+  initiative_status: [idea, assessment, approved, active, paused, completed, cancelled]
+  opportunity_status: [candidate, assessing, active, realized, declined, expired, closed]
+  open_item_type: [question, dependency, blocker, contradiction, missing_evidence, escalation]
+  open_item_status: [open, in_review, resolved, accepted_unknown, closed]
+  influence: [high, medium, low, unknown]
+  support_level: [supports, neutral, opposes, mixed, unknown]
+  pattern_status: [single_episode, repeated, contradicted, retired]
+  hypothesis_status: [draft, working, strengthened, weakened, retired]
+  reversibility: [reversible, partly_reversible, irreversible, unknown]
+  strategy_status: [draft, awaiting_confirmation, approved, rejected, retired]
+  reuse_status: [not_saved, archive_only, approved_for_reuse, retired]
+  exact_message_status: [not_requested, requested_not_drafted, draft_not_sent]
+  strategy_outcome_status: [reported, reviewed, confirmed, disputed]
+  update_strategy_reuse: [keep, strengthen, weaken, retire, requires_confirmation]
+  transcript_status: [not_received, received, reviewed, approved]
+  review_status: [draft, awaiting_confirmation, approved]
+  delivery_status: [draft_not_sent]                     # единственное допустимое значение внутри системы
+
+  # Методические модули стратегии. Разные provenance и лицензии; общий интерфейс Strategy.
+  advisory_module:
+    - dialogue_contour                # независимый модуль «Контур диалога»
+    - negociar_ru                     # русская адаптация, CC BY-NC-SA 4.0, отдельная лицензионная зона
+    - negociar_upstream               # исходный upstream-корпус, отдельная лицензионная зона
+
+  review_item_status: [open, resolved, dismissed, deferred]
+  review_priority: [critical, high, normal, low]
+  review_item_source: [derived_from_canonical_data, user_confirmation]
+  pipeline_stage_status: [pending, completed]
+  run_overall_status: [ready, awaiting_work]
+  knowledge_event_entity_type: [commitment, risk]       # knowledge_event.schema.json v1.0.0
+  knowledge_target_view: [open, active, closed]
+  knowledge_event_type: [canonical_snapshot_recorded]
+  knowledge_event_source_type: [canonical_jsonl_snapshot]
+
+  decision_power: [none, influencer, approver, final_decision]
+  organization_status: [active, potential, paused, blacklisted, former]
+  relation_type: [customer, supplier, partner, competitor, regulator, internal]
+  dd_status: [not_done, in_progress, passed, failed]
+  deal_outcome: [won, lost, dropped, ongoing]
+  # Отрасль контрагента — универсальные сектора; профиль организации может
+  # добавлять уточнения через industry_vocabulary.
+  industry: [construction, it_integrator, security_systems, equipment_vendor, consulting, legal, logistics, government, other]
+
+  sentiment_overall: [collaborative, neutral, tense, hostile]
+  dominant_emotion: [neutral, satisfaction, interest, tension, stress, frustration, anger, amusement, other]
+  sentiment_source: [text_only, audio, both]
+  authority_map_status: [fully_defined, partially_defined, undefined]
+  statement_source: [transcript, user_confirmation]
+  argument_resolution: [resolved, partially_resolved, not_resolved]
+  effectiveness_dimension: [agenda_coverage, decision_closure, actionability, role_clarity, evidence_quality, participation_balance]
+  effectiveness_classification: [effective, partial_effectiveness, low_effectiveness]
+
+# ============================================================
+# ENTITIES — сущности
+# ============================================================
+# Соглашения записи:
+#   required        — обязательные поля записи;
+#   fields          — поля и их типы;
+#   statuses        — закрытый словарь статусов сущности;
+#   layers          — к какому контракту привязано представление и как
+#                     отображаются поля между слоями (анализ встречи / реестр);
+#   legacy_aliases  — прежние имена сущностей и полей в исходных онтологиях.
+
+entities:
+
+  # ------- SourceArtifact -------------------------------------
+  SourceArtifact:
+    description: "Канонический неизменяемый источник: запись, транскрипт, заметка провайдера, документ, таблица, переписка или подтверждение пользователя."
+    identifier: "id"
+    required: [id, provider, source_type, captured_at_or_document_date, ingested_at, sensitivity, processing_status]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/sourceArtifact"
+    fields:
+      id: string
+      provider: enum(source_provider)
+      source_type: enum(source_type)
+      external_id_or_local_path: string_or_null   # идентификатор у провайдера или путь в рабочем каталоге пользователя
+      captured_at_or_document_date: datetime_or_null
+      ingested_at: datetime
+      content_sha256: string_or_null
+      canonical_source_id: string_or_null         # на какой канонический источник ссылается производное
+      duplicate_of: string_or_null                # дедупликация по хешу, времени и метаданным
+      sensitivity: enum(sensitivity)
+      business_confidentiality: enum(business_confidentiality)
+      personal_data_class: enum(personal_data_class)
+      masking_mode: enum(masking_mode)|null       # null = не выбран, обработка заблокирована
+      consent_reference: string_or_null
+      processing_status: enum(processing_status)|string
+      # Решение шлюза нового источника. Принимается отдельно для каждого
+      # SourceArtifact и не наследуется следующей записью.
+      privacy_gate_decision:
+        lawful_processing_confirmation: bool|null
+        business_confidentiality: enum(business_confidentiality)
+        personal_data_class: enum(personal_data_class)
+        masking_mode: enum(masking_mode)
+        allowed_processing_routes: list(enum(processing_service))
+        selected_route: enum(processing_route)|null
+        allowed_services: list(enum(processing_service))
+        decided_by: string
+        decided_at: datetime
+        decision_basis_note: text
+      # Решение о хранении исходника после валидации транскрипта.
+      retention_decision:
+        retention_decision: enum(retention_decision)|null
+        review_or_delete_date_if_set: date_or_null
+        decided_by: string
+        decided_at: datetime
+      # Запись об удалении: сохраняется без содержимого.
+      deletion_record:
+        source_id: string
+        content_sha256_if_previously_available: string_or_null
+        deleted_locations: list(enum(deletion_location))
+        requested_by: string
+        confirmed_at: datetime
+        verification_reference: string_or_null
+    legacy_aliases:
+      source_id: id
+      consent_and_processing_status: "processing_status + consent_reference"
+      plaud_source_id: "external_id_or_local_path при provider=plaud"
+
+  # ------- EvidenceRef ----------------------------------------
+  EvidenceRef:
+    description: "Неизменяемая ссылка на доказательство: источник, цитата, таймкод или страница, класс утверждения и уверенность."
+    identifier: "source_id + quote/timestamp"
+    required: [source_id, evidence_class]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/evidenceRef"
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/evidence"
+        note: "В артефактах анализа встречи доказательство записывается в сокращённой форме {quote, timestamp[, meeting_id]}; source_id выводится из Meeting.source_ids."
+    fields:
+      source_id: ref(SourceArtifact)
+      meeting_id: ref(Meeting)|null
+      evidence_class: enum(evidence_class)
+      quote: string_or_null                       # дословная цитата; должна буквально присутствовать в источнике
+      timestamp: string_or_null                   # mm:ss или hh:mm:ss
+      page_or_cell: string_or_null
+      context: string_or_null
+      confidence: enum(evidence_confidence)
+
+  # ------- Person ---------------------------------------------
+  Person:
+    description: "Физическое лицо — участник встречи, руководитель, контрагент или иной стейкхолдер."
+    identifier: "full_name + company_id (анализ) / id (реестр)"
+    required: [id, display_name, status]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/extraction/properties/participants/items"
+    fields:
+      id: string                                  # slug
+      display_name: string                        # как показывать (с учётом masking_mode)
+      full_name: string_or_null
+      short_name: string_or_null
+      role: enum(role)                            # основная роль в контексте встречи
+      roles: list(enum(role))                     # все подтверждённые роли
+      role_freeform: string_or_null               # должность словами
+      company_id: ref(Organization)               # основная организация (имя поля зафиксировано контрактом)
+      organizations: list(ref(Organization))
+      is_our_side: bool                           # своя сторона (определяется профилем организации: our_side_rules)
+      identity_source: enum(identity_source)
+      identity_confidence: enum(evidence_confidence)
+      status: string                              # словарь жизненного цикла записи не зафиксирован в источниках
+      contacts:
+        email: string_or_null
+        phone: string_or_null
+        telegram: string_or_null
+      style_markers:                              # накапливается по встречам, только с Observation
+        speaking_pace: enum(slow|medium|fast)
+        formality: enum(informal|neutral|formal)
+        directness: enum(indirect|balanced|direct)
+        preferred_lang: enum(ru|en|mixed)
+        notes: text
+      negotiation_patterns:                       # накапливается из TacticObservation/ManipulationObservation
+        - tactic_type: string                     # значение из voss_tactic, cialdini_principle или manipulation_type
+          frequency: int
+          effectiveness: enum(low|medium|high)
+          last_seen_meeting_id: ref(Meeting)
+      decision_power: enum(decision_power)
+      known_since: date_or_null
+      last_met: date_or_null
+      meetings_count: int
+      flags: list(string)                         # открытый словарь пометок; примеры ниже
+      flag_examples: [watch_for_false_urgency, reliable_on_commitments, has_final_authority_on_price]
+      evidence: list_of_EvidenceRef
+      manual_notes: list_preserve_marker_m        # ручные пометки (m) не перезаписываются автоматически
+
+  # ------- Organization ---------------------------------------
+  Organization:
+    description: "Юридическое лицо или структура: контрагент, своя компания группы, орган власти."
+    identifier: "inn OR name+slug (анализ) / id (реестр)"
+    required: [id, display_name, status]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/extraction/properties/companies/items"
+    legacy_aliases:
+      Company: Organization
+    fields:
+      id: string
+      display_name: string
+      legal_name: string_or_null
+      short_name: string_or_null
+      inn: string_or_null                         # налоговый идентификатор (имя поля зафиксировано контрактом)
+      kpp: string_or_null                         # дополнительный реквизит; пример локального реквизита, задаётся профилем организации
+      organization_type: string_or_null           # словарь задаёт профиль организации
+      parent_id: ref(Organization)|null           # иерархия группы: company_group -> legal_entity -> business_unit
+      industry: enum(industry)
+      is_our_side: bool                           # своя сторона (определяется профилем организации: our_side_rules)
+      relation_type: enum(relation_type)
+      status: enum(organization_status)
+      dd_status: enum(dd_status)
+      dd_findings: text
+      key_people: list(ref(Person))
+      deals_history:
+        - deal_id: string
+          topic: ref(Topic)
+          value_rub: number                       # сумма в валюте по умолчанию профиля организации
+          outcome: enum(deal_outcome)
+          duration_days: int
+      red_flags:
+        - description: text
+          discovered_meeting_id: ref(Meeting)
+          severity: enum(severity)
+      notes: text
+      first_contact: date_or_null
+      last_contact: date_or_null
+      evidence: list_of_EvidenceRef
+
+  # ------- GovernanceBody -------------------------------------
+  GovernanceBody:
+    description: "Орган управления (совет директоров, правление, комитет). Перечень реальных органов задаёт профиль организации."
+    identifier: "id"
+    required: [id, display_name, status]
+    fields:
+      id: string
+      display_name: string
+      status: string
+      organization_id: ref(Organization)|null
+      body_type: string_or_null                   # словарь задаёт профиль организации
+      members: list(ref(Person))
+      authority_scope: list(string)
+      evidence: list_of_EvidenceRef
+
+  # ------- Meeting --------------------------------------------
+  Meeting:
+    description: "Одна встреча, звонок или серия обсуждений. Привязана к каноническим источникам."
+    identifier: "date + slug"
+    required: [id, title, status, source_ids]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/extraction"
+    legacy_aliases:
+      datetime: date
+      note_plaud: provider_note
+      plaud_source_id: "SourceArtifact.external_id_or_local_path"
+    fields:
+      id: string
+      title: string
+      date: datetime_or_null
+      duration_min: int
+      meeting_type: enum(meeting_type)
+      situation_type: enum(management_situation_type)
+      channel: enum(channel)
+      location: string_or_null
+      participants: list(ref(Person))
+      our_side: list(ref(Person))
+      counterparty_side: list(ref(Person))
+      topics: list(ref(Topic))
+      purpose: text
+      outcome: enum(meeting_outcome)
+      outcome_summary: text
+      source_ids: list(ref(SourceArtifact))
+      artifacts:                                  # ссылки на канонические артефакты встречи (SourceArtifact.id или путь в рабочем каталоге)
+        transcript: ref(SourceArtifact)|path
+        audio: ref(SourceArtifact)|path
+        provider_note: ref(SourceArtifact)|path   # заметка или саммари провайдера; не заменяет первичный материал
+        report: path
+        analysis: path                            # каталог с 11 JSON-артефактами
+      sensitivity: enum(sensitivity)
+      masking_mode: enum(masking_mode)
+      transcript_status: enum(transcript_status)
+      scope_start: string_or_null                 # граница анализируемого фрагмента (таймкод)
+      scope_end: string_or_null
+      excluded_source_range: object|null          # исключённый фрагмент записи сохраняет свою границу
+      review_status: enum(review_status)
+      status: string                              # готовность обработки см. RunManifest.overall_status
+      commitments: list(ref(Commitment))
+      decisions: list(ref(Decision))
+      assignments: list(ref(Assignment))
+      tactics_observed: list(ref(TacticObservation))
+      manipulations_observed: list(ref(ManipulationObservation))
+      risks_identified: list(ref(Risk))
+      power_dynamics_snapshot: ref(PowerDynamics)
+      sentiment_summary:
+        overall: enum(sentiment_overall)
+        peaks: text
+      next_meeting_planned: date_or_null
+      follow_up_needed: bool
+
+  # ------- Topic ----------------------------------------------
+  Topic:
+    description: "Сквозная тема, которая может обсуждаться на нескольких встречах."
+    identifier: "slug"
+    required: [id, title, category, status]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/extraction/properties/topics/items"
+    legacy_aliases:
+      question: "OpenItem.statement"
+      who_owns: "OpenItem.owner"
+      deadline: "OpenItem.due_date"
+    fields:
+      id: string
+      title: string
+      category: enum(topic_category)
+      status: enum(status)
+      first_seen_meeting_id: ref(Meeting)
+      last_seen_meeting_id: ref(Meeting)
+      first_seen_date: date
+      last_seen_date: date
+      involved_companies: list(ref(Organization))
+      involved_people: list(ref(Person))
+      related_commitments: list(ref(Commitment))
+      related_risks: list(ref(Risk))
+      value_rub: number                           # опц.; валюта по умолчанию — из профиля организации
+      decision_maker: ref(Person)
+      open_questions: list(ref(OpenItem))         # item_type=question; прежняя inline-форма {question, who_owns, deadline}
+      history:
+        - date: date
+          meeting_id: ref(Meeting)
+          change: text
+      notes: text
+      source_quote: text
+      source_timestamp: string
+      confidence: enum(confidence_level)
+
+  # ------- Commitment -----------------------------------------
+  Commitment:
+    description: "Обязательство одной стороны сделать что-то. Извлекается из встречи (слой анализа) и затем живёт в накопительном реестре (слой реестра)."
+    identifier: "meeting_id + idx (анализ) / id (реестр)"
+    required: [id, statement, from_party, to_party, status, evidence]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/commitment_item"
+        file_envelope: "{meeting_id, commitments[], open_questions[]} — open_questions становятся OpenItem(item_type=question)"
+        status_vocabulary: status
+        required: [id, meeting_id, type, who, to_whom, what, deadline, deadline_verbatim, status, value_rub, source_quote, source_timestamp, confidence, linked_topic, follow_up]
+      register:
+        contract: "executive_contracts.schema.json#/$defs/commitment"
+        status_vocabulary: commitment_register_status
+        field_mapping:                            # поле анализа -> поле реестра
+          what: statement
+          who: from_party
+          to_whom: to_party
+          value_rub: value
+          status: register_status
+    legacy_aliases:
+      ExternalCommitment: Commitment
+    fields:
+      id: string
+      meeting_id: ref(Meeting)
+      type: enum(commitment_type)
+      who: ref(Person)                            # кто взял обязательство (реестр: from_party)
+      to_whom: ref(Person)|null                   # перед кем (реестр: to_party)
+      what: text                                  # суть (реестр: statement)
+      from_party: string                          # сторона-должник в реестре (Person или Organization)
+      to_party: string
+      statement: text
+      deadline: date_or_null
+      deadline_verbatim: string_or_null           # как прозвучало («до конца недели»)
+      status: enum(status)                        # слой анализа встречи
+      register_status: enum(commitment_register_status)
+      value_rub: number|null
+      value: string_or_null                       # реестр: сумма словами с валютой
+      source_quote: text
+      source_timestamp: string
+      confidence: enum(confidence_level)
+      linked_topic: ref(Topic)
+      follow_up:
+        reminder_date: date_or_null               # контрольная дата; не заменяет deadline
+        reminder_sent: bool
+        actual_completion_date: date_or_null
+        completion_notes: string_or_null
+      fulfillment_evidence: list_of_EvidenceRef
+      evidence: list_of_EvidenceRef
+    # Проекция статуса анализа -> статус реестра при первичном внесении.
+    # Исходный статус анализа не перезаписывается; дальнейшие переходы в
+    # реестре выполняются только по подтверждению пользователя.
+    status_mapping_analysis_to_register:
+      open: accepted
+      in_progress: in_progress
+      blocked: accepted                           # блокировка фиксируется как OpenItem(item_type=blocker)
+      agreed: accepted
+      formalized: accepted                        # формализация подтверждается fulfillment_evidence/документом
+      done: fulfilled
+      cancelled: cancelled
+      overdue: overdue
+    register_only_statuses: [proposed, disputed]
+
+  # ------- Decision -------------------------------------------
+  Decision:
+    description: "Управленческое решение: предложено, подтверждено, отклонено, отложено, заменено или отменено. Мотивы, варианты и особые мнения хранятся отдельно от самого решения."
+    identifier: "id"
+    required: [id, statement, status, decision_owner, decided_at, evidence]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/decision"
+    legacy_aliases:
+      ExecutiveDecision: Decision
+    fields:
+      id: string
+      statement: text
+      status: enum(decision_status)
+      decision_owner: string                      # Person или GovernanceBody
+      decided_at: datetime_or_null
+      scope: string_or_null
+      rationale: list(text)
+      dissent: list(text)
+      conditions: list(text)
+      review_date: date_or_null
+      supersedes: list(ref(Decision))
+      superseded_by: ref(Decision)|null
+      options: list(ref(DecisionOption))
+      meeting_id: ref(Meeting)|null
+      decision_type: string_or_null               # словарь задаёт профиль организации (decision_types)
+      evidence: list_of_EvidenceRef
+    statuses: [proposed, confirmed, rejected, deferred, superseded, cancelled]
+
+  # ------- DecisionOption -------------------------------------
+  DecisionOption:
+    description: "Вариант решения по вопросу: выгоды, затраты, риски, допущения, обратимость."
+    identifier: "id"
+    required: [id, question, option, status, evidence]
+    fields:
+      id: string
+      decision_id: ref(Decision)|null
+      question: text
+      option: text
+      status: string                              # словарь не зафиксирован в источниках
+      benefits: list(text)
+      costs: list(text)
+      risks: list(text)
+      assumptions: list(text)
+      reversibility: enum(reversibility)
+      evidence: list_of_EvidenceRef
+
+  # ------- Assignment -----------------------------------------
+  Assignment:
+    description: "Поручение с исполнителем, контролёром, сроком, ожидаемым результатом и критерием приёмки."
+    identifier: "id"
+    required: [id, statement, assignee, status, evidence]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/assignment"
+    fields:
+      id: string
+      statement: text
+      assignee: ref(Person)
+      controller: ref(Person)|null
+      status: enum(assignment_status)
+      deadline: date_or_null
+      expected_result: string_or_null
+      acceptance_criteria: list(text)
+      execution_evidence: list_of_EvidenceRef
+      linked_decision_ids: list(ref(Decision))
+      linked_initiative_ids: list(ref(Initiative))
+      evidence: list_of_EvidenceRef
+    statuses: [draft, assigned, accepted, in_progress, blocked, overdue, submitted_for_review, done, cancelled]
+    done_rule: "Статус done требует execution_evidence или явного подтверждения пользователя."
+
+  # ------- Initiative -----------------------------------------
+  Initiative:
+    description: "Стратегическая инициатива: цель, KPI, бюджет, этапы, зависимости; связывает решения, поручения, риски, возможности и результаты."
+    identifier: "id"
+    required: [id, title, owner, status, evidence]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/initiative"
+    legacy_aliases:
+      StrategicInitiative: Initiative
+    fields:
+      id: string
+      title: string
+      owner: ref(Person)
+      status: enum(initiative_status)
+      objective: string_or_null
+      kpis: list(text)
+      budget: string_or_null
+      milestones: list(object)
+      dependencies: list(string)
+      linked_risk_ids: list(ref(Risk))
+      evidence: list_of_EvidenceRef
+    statuses: [idea, assessment, approved, active, paused, completed, cancelled]
+
+  # ------- Risk -----------------------------------------------
+  Risk:
+    description: "Идентифицированный риск (в конкретной встрече или сквозной). Слой анализа и слой реестра используют разные контрактные словари."
+    identifier: "slug"
+    required: [id, statement, status, owner, evidence]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/risk_item"
+        status_vocabulary: risk_analysis_status
+      register:
+        contract: "executive_contracts.schema.json#/$defs/risk"
+        status_vocabulary: risk_register_status
+        field_mapping:
+          description: statement
+          likelihood: probability
+          impact_qualitative: impact
+          status: register_status
+    fields:
+      id: string
+      type: enum(risk_type)
+      description: text                           # реестр: statement
+      statement: text
+      owner: ref(Person)|null
+      first_seen_meeting_id: ref(Meeting)
+      last_seen_meeting_id: ref(Meeting)
+      involved_companies: list(ref(Organization))
+      involved_people: list(ref(Person))
+      linked_topic: ref(Topic)
+      linked_entities: list(string)
+      likelihood: enum(likelihood)                # анализ
+      probability: enum(probability)              # реестр
+      impact_rub: number|null                     # оценка в валюте по умолчанию профиля организации
+      impact_qualitative: enum(impact_qualitative)   # анализ
+      impact: enum(impact)                        # реестр; critical присваивается только по подтверждению пользователя
+      severity: enum(severity)                    # свёртка likelihood x impact_qualitative по risk_matrix
+      horizon: string_or_null
+      triggers: list(text)
+      mitigation:
+        planned_actions: text
+        owner: ref(Person)|null
+        deadline: date_or_null
+      mitigations: list(text)
+      status: enum(risk_analysis_status)          # анализ
+      register_status: enum(risk_register_status)
+      evidence: list_of_EvidenceRef               # анализ: {quote, meeting_id, timestamp}
+      confidence: enum(confidence_level)
+    status_mapping_analysis_to_register:
+      open: active
+      mitigating: monitoring
+      realized: materialized
+      closed: closed
+    register_only_statuses: [candidate, mitigated, accepted]
+
+  # ------- Opportunity ----------------------------------------
+  Opportunity:
+    description: "Возможность или потенциальная выгода с владельцем, вероятностью и окном."
+    identifier: "id"
+    required: [id, statement, status, owner, evidence]
+    layers:
+      register:
+        contract: "executive_contracts.schema.json#/$defs/opportunity"
+    fields:
+      id: string
+      statement: text
+      status: enum(opportunity_status)
+      owner: ref(Person)
+      potential_value: string_or_null
+      probability: enum(probability)
+      window: string_or_null
+      next_step: string_or_null
+      evidence: list_of_EvidenceRef
+    statuses: [candidate, assessing, active, realized, declined, expired, closed]
+
+  # ------- StakeholderPosition --------------------------------
+  StakeholderPosition:
+    description: "Позиция, влияние и интерес ключевого участника по предмету."
+    identifier: "id"
+    required: [id, stakeholder_id, subject, status, evidence]
+    fields:
+      id: string
+      stakeholder_id: ref(Person)
+      subject: string
+      status: string
+      stated_position: string_or_null             # confirmed_fact / observation
+      inferred_interest: string_or_null           # interpretation
+      influence: enum(influence)
+      support_level: enum(support_level)
+      last_confirmed_at: date_or_null
+      evidence: list_of_EvidenceRef
+
+  # ------- OpenItem -------------------------------------------
+  OpenItem:
+    description: "Открытый вопрос, зависимость, блокер, противоречие, пробел доказательств или эскалация в предметной области (не вопрос пользователю — для этого ReviewItem)."
+    identifier: "id"
+    required: [id, item_type, statement, status, evidence]
+    fields:
+      id: string
+      item_type: enum(open_item_type)
+      statement: text
+      status: enum(open_item_status)
+      owner: ref(Person)|null
+      due_date: date_or_null
+      blocking: bool
+      linked_entities: list(string)
+      linked_topic: ref(Topic)|null
+      evidence: list_of_EvidenceRef
+    item_types: [question, dependency, blocker, contradiction, missing_evidence, escalation]
+    statuses: [open, in_review, resolved, accepted_unknown, closed]
+
+  # ------- Observation ----------------------------------------
+  Observation:
+    description: "Наблюдаемое поведение человека с источником и без объяснения мотива. Единственный допустимый вход для накопления style_markers и поведенческих профилей."
+    identifier: "id"
+    required: [id, person_id, observation, evidence]
+    legacy_aliases:
+      BehaviorObservation: Observation
+    fields:
+      id: string
+      person_id: ref(Person)
+      meeting_id: ref(Meeting)|null
+      observation: text
+      context: string_or_null
+      dimension: string_or_null                   # измерение поведенческого профиля; словарь задаёт ролевой профиль
+      pattern_status: enum(pattern_status)
+      evidence_class: observation
+      evidence: list_of_EvidenceRef
+
+  # ------- Hypothesis -----------------------------------------
+  Hypothesis:
+    description: "Рабочая проверяемая гипотеза о человеке (психологическая или поведенческая). Не диагноз; пересматривается при новых данных."
+    identifier: "id"
+    required: [id, person_id, hypothesis, confidence, evidence_for, evidence_against, alternatives, practical_use]
+    legacy_aliases:
+      PsychologicalHypothesis: Hypothesis
+      alternative_explanations: alternatives
+    fields:
+      id: string
+      person_id: ref(Person)
+      hypothesis: text
+      dimension: string_or_null                   # допустимые измерения задаёт policy.psychological_analysis.allowed_dimensions
+      confidence: enum(evidence_confidence)
+      evidence_for: list_of_EvidenceRef
+      evidence_against: list_of_EvidenceRef
+      alternatives: list(text)
+      practical_use: text                         # практический способ взаимодействия
+      status: enum(hypothesis_status)
+      last_reviewed: date_or_null
+      review_date: date_or_null                   # дата пересмотра
+      evidence_class: working_hypothesis
+      clinical_claim: forbidden_unless_verified_document
+
+  # ------- Strategy -------------------------------------------
+  Strategy:
+    description: "Накопительная карточка стратегии сложного разговора. Связывает подтверждённые факты ситуации с интерпретациями, принципами выбранного методического модуля, вариантами хода и разрешением пользователя на повторное использование. Не является источником фактов."
+    identifier: "id"
+    required: [id, title, status, created_at, advisory_module, factual_basis, method_basis, strategy_steps, reuse_status]
+    legacy_aliases:
+      NegotiationStrategy: Strategy
+      canon_basis: method_basis
+      canon_files: method_files
+    fields:
+      id: string
+      title: string
+      status: enum(strategy_status)
+      created_at: datetime
+      advisory_module: enum(advisory_module)
+      related_meeting_ids: list(ref(Meeting))
+      related_person_ids: list(ref(Person))
+      related_organization_ids: list(ref(Organization))
+      related_topic_ids: list(ref(Topic))
+      factual_basis: list_of_EvidenceRef
+      situation_reading:
+        - statement: string
+          evidence_class: enum(interpretation|working_hypothesis)
+          confidence: enum(evidence_confidence)
+          evidence_refs: list_of_EvidenceRef
+          alternatives: list(text)
+      blind_spots:
+        - statement: string
+          evidence_class: enum(interpretation|working_hypothesis)
+          confidence: enum(evidence_confidence)
+          evidence_refs: list_of_EvidenceRef
+      method_basis:                               # методическая основа; provenance и лицензия модуля
+        module: enum(advisory_module)
+        skill_name: string
+        skill_version_or_hash: string
+        method_files: list(string)
+        principle_summaries: list(text)
+        case_ids_internal: list(string)
+      strategy_steps:
+        - order: int
+          objective: string
+          question_or_action: string
+          rationale: string
+          likely_responses: list(text)
+          response_options: list(text)
+      worst_case:
+        trigger: string_or_null
+        reversible_business_move: string_or_null
+        reversibility: enum(reversibility)
+      exact_message_status: enum(exact_message_status)
+      reuse_status: enum(reuse_status)
+      save_confirmation_ref: string_or_null
+      supersedes: list(ref(Strategy))
+      superseded_by: ref(Strategy)|null
+    statuses: [draft, awaiting_confirmation, approved, rejected, retired]
+
+  # ------- StrategyOutcome ------------------------------------
+  StrategyOutcome:
+    description: "Подтверждённый пользователем результат применения стратегии; накапливает собственную практику пользователя раздельно от исходного плана."
+    identifier: "id"
+    required: [id, strategy_id, status, reported_at, evidence]
+    fields:
+      id: string
+      strategy_id: ref(Strategy)
+      status: enum(strategy_outcome_status)
+      reported_at: datetime
+      actual_actions: list(text)
+      other_side_response: list(text)
+      result_summary: string_or_null
+      worked: list(text)
+      did_not_work: list(text)
+      unexpected_events: list(text)
+      lessons_for_reuse: list(text)
+      confidence: enum(evidence_confidence)
+      evidence: list_of_EvidenceRef
+      update_strategy_reuse: enum(update_strategy_reuse)
+    statuses: [reported, reviewed, confirmed, disputed]
+
+  # ------- ReviewItem -----------------------------------------
+  ReviewItem:
+    description: "Вопрос единой очереди, который нельзя закрыть без подтверждения пользователя."
+    identifier: "id"
+    required: [id, question, status, created_at]
+    legacy_aliases:
+      item_id: id
+      answered: resolved
+      no_longer_relevant: dismissed
+    fields:
+      id: string
+      meeting_id: ref(Meeting)|null
+      category: string
+      priority: enum(review_priority)
+      status: enum(review_item_status)
+      question: text
+      created_at: datetime
+      source: enum(review_item_source)
+      source_path: path
+      source_ref: string
+      related_entities: list(string)
+      available_options: list(string)
+      evidence: object|null
+      answer: text|null
+      resolved_at: datetime_or_null
+    statuses: [open, resolved, dismissed, deferred]
+
+  # ------- KnowledgeEvent -------------------------------------
+  KnowledgeEvent:
+    description: "Неизменяемый снимок канонической записи обязательства или риска в append-only журнале. v1.0.0 контракта события покрывает только commitment и risk; расширение на другие сущности требует новой event_version."
+    identifier: "event_id"
+    required: [event_id, event_version, recorded_at, entity_type, entity_id, event_type, target_view, record_sha256, source, payload]
+    layers:
+      event_ledger:
+        contract: "knowledge_event.schema.json"
+    fields:
+      event_id: string                            # evt-<24 hex>
+      event_version: "1.0.0"
+      recorded_at: datetime
+      entity_type: enum(knowledge_event_entity_type)
+      entity_id: string
+      event_type: enum(knowledge_event_type)
+      target_view: enum(knowledge_target_view)
+      record_sha256: string
+      source:
+        source_type: enum(knowledge_event_source_type)
+        path: path
+        line: int
+      payload: object
+
+  # ------- TacticObservation ----------------------------------
+  TacticObservation:
+    description: "Замеченная применённая тактика (Voss, Cialdini)."
+    identifier: "meeting_id + idx"
+    required: [id, meeting_id, tactic_family, tactic_type, used_by, source_quote, source_timestamp, effect, confidence]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/tactics"
+        file_envelope: "{meeting_id, cialdini[], voss[], debug_possible[]} — слабые сигналы (confidence=possible) попадают в debug_possible, а не в отчёт"
+    fields:
+      id: string
+      meeting_id: ref(Meeting)
+      tactic_family: enum(tactic_family)
+      tactic_type: string                         # значение из voss_tactic или cialdini_principle
+      used_by: ref(Person)
+      target: ref(Person)
+      source_quote: text
+      source_timestamp: string
+      effect: enum(tactic_effect)
+      counter_move: text                          # как ответила своя сторона
+      explanation: text                           # почему классифицировано именно так (контракт)
+      confidence: enum(confidence_level)
+
+  # ------- ManipulationObservation ----------------------------
+  ManipulationObservation:
+    description: "Замеченная манипуляция (deceptive tactic). Фиксируется факт применения, а не свойство человека."
+    identifier: "meeting_id + idx"
+    required: [id, meeting_id, type, used_by, source_quote, source_timestamp, how_recognized, effect, confidence, severity]
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/manipulation_item"
+        file_envelope: "{meeting_id, manipulations[], conclusion}"
+    fields:
+      id: string
+      meeting_id: ref(Meeting)
+      type: enum(manipulation_type)
+      used_by: ref(Person)
+      target: ref(Person)
+      source_quote: text
+      source_timestamp: string
+      how_recognized: text                        # по каким признакам классифицировано
+      response_by_us: text                        # как отреагировала своя сторона
+      effect: enum(manipulation_effect)
+      confidence: enum(confidence_level)
+      severity: enum(severity)
+
+  # ------- Argument -------------------------------------------
+  Argument:
+    description: "Аргументация стороны по теме (упрощённая модель Тулмина)."
+    identifier: "meeting_id + idx"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/argument_item"
+    fields:
+      id: string
+      meeting_id: ref(Meeting)
+      speaker: ref(Person)
+      topic: ref(Topic)
+      claim: text
+      evidence: text
+      warrant: text
+      backing: string_or_null                     # подкрепление обоснования (контракт)
+      counter_argument: text
+      strength: int                               # 1-5
+      source_quotes: list(text)
+      confidence: enum(confidence_level)
+
+  # ------- PowerDynamics --------------------------------------
+  PowerDynamics:
+    description: "Динамика влияния в переговорах (одна запись на встречу). Только наблюдаемые величины."
+    identifier: "meeting_id"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/power"
+        field_mapping:
+          moments_of_yield: concessions
+          shift_moments: framing_moments
+          question_asker: "производное от question_marks_in_transcript"
+    fields:
+      meeting_id: ref(Meeting)
+      dominant_speaker: ref(Person)|null
+      talk_time_share:
+        - person_id: ref(Person)
+          share_pct: number
+      question_marks_in_transcript:
+        - person_id: ref(Person)
+          count: int
+      interruptions:
+        - who: ref(Person)
+          whom: ref(Person)
+          count: int
+      framing_control: ref(Person)|null
+      question_asker: ref(Person)|null
+      moments_of_yield:                           # контракт: concessions
+        - who: ref(Person)
+          on_topic: ref(Topic)
+          timestamp: string
+          quote: text
+          prior_position_quote: text
+          prior_position_timestamp: string
+      concessions: list(object)                   # контрактное имя списка moments_of_yield
+      shift_moments:                              # контракт: framing_moments
+        - speaker: ref(Person)
+          timestamp: string
+          quote: text
+          description: text
+      framing_moments: list(object)               # контрактное имя списка shift_moments
+      evidence_note: text
+
+  # ------- SentimentPoint -------------------------------------
+  SentimentPoint:
+    description: "Точка эмоциональной кривой (по репликам или окнам). Аудиометрики — только описательные величины."
+    identifier: "meeting_id + timestamp"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/emotions"
+    fields:
+      meeting_id: ref(Meeting)
+      timestamp_start: string
+      timestamp_end: string
+      speaker: ref(Person)
+      valence: float                              # -1..1
+      arousal: float                              # 0..1
+      dominant_emotion: enum(dominant_emotion)
+      stress_markers:                             # только если есть аудио-анализ; в контракте — список строк
+        speaking_rate_z: float
+        pitch_variance_z: float
+        pause_ratio: float
+      trigger_topic: ref(Topic)|null
+      source: enum(sentiment_source)
+      quote: text
+      limitations: text
+
+  # ------- DecisionAuthorityMap (производное представление) ---
+  DecisionAuthorityMap:
+    description: "Карта решений, ЛПР, советующих и блокирующих ролей по встрече. Кандидаты в Decision создаются из decision_areas только после подтверждения пользователя."
+    identifier: "meeting_id"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/decision_authority"
+    fields:
+      meeting_id: ref(Meeting)
+      view_type: decision_authority_map           # const в контракте
+      status: enum(authority_map_status)
+      decision_areas:
+        - topic: ref(Topic)
+          decision: text
+          options: list(text)
+          current_state: text
+          final_decision_maker: ref(Person)|null
+          advisory_participants: list(ref(Person))
+          blocking_rights: text
+          proposal_owner: ref(Person)|null
+          proposal_owner_source: enum(statement_source)|null
+          deadline: date_or_null
+          deadline_source: enum(statement_source)|null
+          evidence: list_of_EvidenceRef
+          confidence: enum(confidence_level)
+      authority_observations:
+        - person_id: ref(Person)
+          observed_role: text
+          formal_authority_in_decision: text
+          evidence: list_of_EvidenceRef
+          confidence: enum(confidence_level)
+      unresolved: list(text)
+
+  # ------- ArgumentMap (производное представление) ------------
+  ArgumentMap:
+    description: "Связи между аргументами, позициями и пробелами доказательств."
+    identifier: "meeting_id"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/argument_map"
+    fields:
+      meeting_id: ref(Meeting)
+      view_type: argument_map                     # const в контракте
+      argument_clusters:
+        - topic: ref(Topic)
+          question: text
+          positions:
+            - argument_id: ref(Argument)
+              speaker: ref(Person)
+              position: text
+              supports: list(ref(Argument))
+              opposes: list(ref(Argument))
+              strength: int
+              missing_evidence: text
+              evidence: list_of_EvidenceRef
+              confidence: enum(confidence_level)
+          resolution: enum(argument_resolution)
+          resolution_note: text
+
+  # ------- MeetingEffectiveness (производное представление) ---
+  MeetingEffectiveness:
+    description: "Прозрачная рабочая диагностика результативности встречи, не стандартизированный тест."
+    identifier: "meeting_id"
+    layers:
+      meeting_analysis:
+        contract: "contracts.schema.json#/$defs/meeting_effectiveness"
+    fields:
+      meeting_id: ref(Meeting)
+      view_type: meeting_effectiveness            # const в контракте
+      method: text
+      dimensions:
+        - dimension: enum(effectiveness_dimension)
+          score_0_5: float
+          basis: text
+          evidence_refs: list(path)
+      overall_score_0_5: float
+      calculation: text
+      classification: enum(effectiveness_classification)
+      strengths: list(text)
+      losses: list(text)
+      next_meeting_protocol: list(text)
+      confidence: enum(confidence_level)
+
+  # ------- RunManifest (технический контракт запуска) ---------
+  RunManifest:
+    description: "Проверяемый манифест обработки одной встречи и точка безопасного продолжения."
+    identifier: "meeting_id"
+    fields:
+      run_manifest_version: string
+      meeting_id: ref(Meeting)
+      overall_status: enum(run_overall_status)
+      resume_from: string|null
+      generated_at: datetime
+      contracts:
+        ontology_version: string
+        analysis_schema_version: string
+        workflow_sha256: string
+      pipeline_input_digest: string
+      source_fingerprints: list(object)
+      artifact_fingerprints: list(object)
+      stages:
+        - id: string
+          status: enum(pipeline_stage_status)
+          blocking: bool
+          details: text
+
+  # ------- FollowUpPackage (производный пакет) ----------------
+  FollowUpPackage:
+    description: "Проверяемый проект протокола и сообщения после встречи. Внешняя отправка системой запрещена."
+    identifier: "meeting_id"
+    fields:
+      follow_up_version: string
+      generated_at: datetime
+      delivery_status: enum(delivery_status)      # всегда draft_not_sent
+      meeting_id: ref(Meeting)
+      participants: list(object)
+      decision_areas: list(object)
+      commitments: list(object)
+      decisions: list(object)
+      assignments: list(object)
+      risks: list(object)
+      review_items: list(ref(ReviewItem))
+
+# ============================================================
+# RELATIONS — связи между сущностями
+# ============================================================
+relations:
+  - Person belongs_to Organization
+  - Person member_of GovernanceBody[]
+  - Organization employs Person[]
+  - Organization parent_of Organization[]
+  - Meeting has_participants Person[]                (required, cardinality: 2..*)
+  - Meeting discusses Topic[]                        (cardinality: 1..*)
+  - Meeting based_on SourceArtifact[]                (required, cardinality: 1..*)
+  - Meeting produces Commitment[]                    (cardinality: 0..*)
+  - Meeting produces Decision[]                      (cardinality: 0..*)
+  - Meeting produces Assignment[]                    (cardinality: 0..*)
+  - Meeting exhibits TacticObservation[]
+  - Meeting exhibits ManipulationObservation[]
+  - Meeting identifies Risk[]
+  - Meeting identifies Opportunity[]
+  - Meeting has PowerDynamics                        (cardinality: 0..1)
+  - Meeting has DecisionAuthorityMap                 (cardinality: 0..1)
+  - Meeting has ArgumentMap                          (cardinality: 0..1)
+  - Meeting has MeetingEffectiveness                 (cardinality: 0..1)
+  - Meeting has RunManifest                          (cardinality: 0..1)
+  - Meeting has ReviewItem[]                         (cardinality: 0..*)
+  - Meeting has FollowUpPackage                      (cardinality: 0..1)
+  - Commitment made_by Person → to Person
+  - Commitment relates_to Topic
+  - Decision generates Assignment[]                  # поручение не доказывает исполнение решения
+  - Decision supersedes Decision                     # новое решение не перезаписывает прежнее
+  - Decision has_options DecisionOption[]
+  - Assignment linked_to Decision|Initiative|Risk|Commitment
+  - Initiative links Decision[]|Assignment[]|Risk[]|Opportunity[]|StrategyOutcome[]
+  - TacticObservation used_by Person → against Person
+  - ManipulationObservation used_by Person → against Person
+  - Topic evolves_across Meeting[]                   # ключевая связь для памяти
+  - Topic has_open_items OpenItem[]
+  - Risk first_identified_in Meeting                 # ключевая связь для памяти
+  - Person exhibits_repeatedly TacticObservation[]   # накопление паттернов
+  - Observation describes Person
+  - Hypothesis about Person
+  - Hypothesis supported_by EvidenceRef[] → contradicted_by EvidenceRef[]
+  - StakeholderPosition held_by Person
+  - Strategy grounded_in EvidenceRef[]
+  - Strategy supersedes Strategy
+  - StrategyOutcome reports_on Strategy              (cardinality: 1..1)
+  - KnowledgeEvent snapshots Commitment|Risk
+  - ReviewItem resolved_by user_confirmation
+  - EvidenceRef points_to SourceArtifact             (required)
+
+# ============================================================
+# LIFECYCLE — статусы и переходы
+# ============================================================
+lifecycle_rules:
+  # Закрывающие статусы: переход в них выполняется только событием
+  # с источником user_confirmation. Система не закрывает ничего по догадке.
+  closing_requires_user_confirmation:
+    Commitment: [done, fulfilled, cancelled]
+    Risk: [closed, mitigated, accepted, realized, materialized]
+    Decision: [confirmed, rejected, cancelled]
+    Assignment: [done, cancelled]
+    Initiative: [completed, cancelled]
+    Opportunity: [realized, declined, closed]
+    OpenItem: [resolved, accepted_unknown, closed]
+    ReviewItem: [resolved, dismissed]
+    Strategy: [approved, rejected, retired]
+    StrategyOutcome: [confirmed]
+    Hypothesis: [retired]
+  # Производные статусы: вычисляются из срока, но не закрывают запись.
+  derived_statuses:
+    overdue: "deadline < today и запись не закрыта; контрольная дата (follow_up.reminder_date) не влияет"
+  # Замена вместо перезаписи: новая версия связывается с прежней через supersedes.
+  supersede_instead_of_overwrite: [Decision, Strategy]
+  # Исполнение подтверждается отдельным результатом и доказательством, а не только сменой статуса.
+  execution_requires_evidence:
+    Assignment: "done требует execution_evidence или явного подтверждения пользователя"
+    Commitment: "fulfilled требует fulfillment_evidence или явного подтверждения пользователя"
+    Initiative: "completed требует подтверждённых результатов по milestones"
+  # Повторное использование стратегии.
+  strategy_reuse:
+    reusable_only_when: "reuse_status=approved_for_reuse"
+    save_gate: "После каждого разбора спросить пользователя, сохранить ли полный разбор, выбранные выводы, архивный черновик или ничего. Без подтверждения ничего не сохраняется."
+    future_read_rule: "Перед новым стратегическим разбором, брифингом или подготовкой к встрече читать карточки approved_for_reuse по связанным людям, организациям и темам и отделять прошлую стратегию от новых фактов."
+    outcome_rule: "Неудача не удаляет прежнюю стратегию, а создаёт связанный StrategyOutcome; усиление, ослабление или прекращение повторного использования требует подтверждения пользователя."
+  # Follow-up и проекты сообщений.
+  follow_up:
+    initial_status: draft_not_sent
+    automatic_sending: false
+  # Журнал событий и проекции.
+  knowledge_event:
+    append_only: true
+    target_view_exclusive: true                   # один id не может быть одновременно в активном и закрытом представлении
+    projection_rebuildable: true
+  # Готовность встречи.
+  meeting_readiness:
+    blocking: [schema_error, missing_quote, missing_entity_reference, projection_error]
+    non_blocking: [information_gap, open_review_item, open_retention_question]
+
+# ============================================================
+# INVARIANTS — обязательные инварианты
+# ============================================================
+invariants:
+  - id: 1
+    rule: "Сырые источники (SourceArtifact) не изменяются после фиксации границ анализа; исправления создают новую версию нормализованного представления."
+  - id: 2
+    rule: "Любой поведенческий вывод содержит цитату, таймкод (или страницу/ячейку) и confidence."
+  - id: 3
+    rule: "Подтверждение пользователя не выдаётся за фразу из источника: identity_source, proposal_owner_source, deadline_source и ReviewItem.source различают transcript и user_confirmation."
+  - id: 4
+    rule: "Производное представление можно удалить и полностью пересобрать из канонических записей; оно не является самостоятельным источником фактов."
+  - id: 5
+    rule: "Один идентификатор обязательства или риска не может одновременно находиться в активном и закрытом состоянии."
+  - id: 6
+    rule: "Ручные пометки (m) не перезаписываются автоматически."
+  - id: 7
+    rule: "Ошибка схемы, цитаты, проекции или ссылка на отсутствующую сущность блокирует статус ready; информационный пробел не блокирует."
+  - id: 8
+    rule: "Открытый вопрос и незавершённый анализ — разные состояния."
+  - id: 9
+    rule: "Аудиометрики не используются как детектор лжи, намерений или манипуляций и не заявляют смысловые или клинические выводы сами по себе."
+  - id: 10
+    rule: "Контрольная дата не заменяет исходный срок обязательства."
+
+# Правила связей и доказательности (из онтологии владельца/CEO, обобщены).
+relationship_rules:
+  - "Каждый извлечённый объект связан минимум с одним EvidenceRef или явным подтверждением пользователя."
+  - "Решение может порождать поручения; поручение не доказывает исполнение решения."
+  - "Новое решение связывается с прежним через supersedes, а не перезаписывает его."
+  - "Инициатива связывает решения, поручения, риски, возможности и результаты."
+  - "Противоречащие источники сохраняются параллельно до разрешения ReviewItem."
+  - "Психологическая гипотеза не может становиться клиническим фактом по повторяемости поведения."
+  - "Strategy опирается на факты через EvidenceRef, но её стратегические выводы не являются подтверждёнными фактами."
+  - "Strategy используется в будущих задачах только при reuse_status=approved_for_reuse."
+  - "StrategyOutcome связывается с одной Strategy и подтверждается пользователем или первичным источником."
+  - "Новая версия стратегии связывается с прежней через supersedes, а не перезаписывает её."
+  - "Мотив решения, альтернативы и особые мнения хранятся отдельно от самого решения."
+  - "Задержка или неисполнение может открыть OpenItem, Risk или эскалацию, но не меняет статус исходной записи автоматически."
+  - "Провайдерское саммари не считается подтверждённым фактом без проверки по первичному тексту или документу."
+
+# ============================================================
+# EXTRACTION RULES — правила извлечения
+# ============================================================
+extraction_rules:
+
+  general:
+    - "Любое утверждение о факте (обязательство, тактика, риск, решение, поручение) обязательно с прямой цитатой из источника и таймкодом или страницей."
+    - "Никогда не выдумывай ФИО, должности, суммы, даты. Если не сказано — оставь null и confidence=possible."
+    - "Если сущность (Person, Organization, Topic) уже есть в базе — используй существующий id, не создавай дубль."
+    - "При неуверенности confidence=possible и пометка requires_confirmation; вопрос попадает в ReviewItem."
+
+  person:
+    - "Speaker N → Person: ищи самопредставления и обращения по имени."
+    - "Если имя не установлено — оставь Speaker N, но заполни role по контексту."
+    - "При сопоставлении с существующей базой: full_name (нормализованное) + организация. Если совпадает — используй существующий id."
+    - "is_our_side определяется правилами профиля организации (our_side_rules), а не догадкой по контексту."
+
+  commitment:
+    - "Обязательство фиксируем только если сказано явно («я пришлю», «мы согласуем», «до пятницы сделаем»)."
+    - "Deadline: «до конца недели» — ближайшая пятница, «на следующей неделе» — понедельник + 7 дней. deadline_verbatim сохраняется дословно."
+    - "«Подумаем» / «посмотрим» — это НЕ обязательство, это OpenItem(item_type=question) для Topic."
+
+  decision:
+    - "Decision создаётся из decision_areas DecisionAuthorityMap только после подтверждения пользователя; до этого запись имеет status=proposed."
+    - "Подтверждённое, отклонённое, отложенное или отменённое решение фиксируется только по явному подтверждению пользователя."
+
+  tactic:
+    - "Тактику фиксируем только при confidence ≥ probable. Слабые сигналы (possible) не попадают в отчёт, но пишутся в отдельный debug-лог."
+    - "Обязательно указать effect: изменилось ли поведение оппонента."
+    - "Если тактика повторяется у одного и того же человека — обновляем Person.negotiation_patterns через Observation."
+
+  manipulation:
+    - "Манипуляции — только с confidence ≥ probable и severity ≥ medium. Иначе не показываем в основном отчёте."
+    - "Обязательно how_recognized — по каким признакам классифицировали."
+    - "Никогда не называем человека манипулятором — только называем конкретный факт применения тактики."
+
+  risk:
+    - "Риск открываем в базе только если явно вербализован или следует из фактов встречи."
+    - "Если риск уже есть в базе (тот же type + linked_topic) — обновляем last_seen_meeting_id, не создаём новый."
+    - "severity = свёртка likelihood × impact_qualitative по risk_matrix."
+
+  privacy:
+    - "sensitivity встречи по умолчанию confidential. Повышается до strict_confidential при обсуждении условий действующих сделок или сумм выше порога, заданного политикой профиля (strict_confidential_amount_threshold)."
+    - "Если участник не относится к своей стороне (is_our_side=false) и нет подтверждённого согласия на запись — personal_data_class требует проверки, sensitivity=regulated, в отчёте применяется masking_mode не слабее names_only."
+
+# ============================================================
+# THRESHOLDS — пороги и параметры
+# ============================================================
+# profile_may_override: raise_only — профиль может только ужесточить порог
+# доказательности; none — не переопределяется; any — настраивается.
+thresholds:
+  tactic_min_confidence:
+    value: probable
+    profile_may_override: raise_only
+  manipulation_min_confidence:
+    value: probable
+    profile_may_override: raise_only
+  manipulation_min_severity:
+    value: medium
+    profile_may_override: raise_only
+  hypothesis_requires_evidence_for_and_against:
+    value: true
+    profile_may_override: none
+  stale_commitments_days:
+    value: 14
+    profile_may_override: any
+  topics_stuck_days:
+    value: 60
+    profile_may_override: any
+  recent_meetings_window_days:
+    value: 180
+    profile_may_override: any
+  cross_meeting_minimum_meetings:
+    value: 2
+    profile_may_override: none
+    rule: "При одной встрече сохранять baseline, но не формулировать вывод о динамике."
+  stable_pattern_minimum_episodes:
+    value: 3
+    profile_may_override: raise_only
+    rule: "Устойчивый поведенческий паттерн не объявляется по меньшему числу эпизодов; pattern_status=repeated требует как минимум этого числа."
+  default_sensitivity:
+    value: confidential
+    profile_may_override: raise_only
+  strict_confidential_amount_threshold:
+    value: null
+    profile_may_override: any
+    rule: "Сумма и валюта задаются политикой профиля; при null правило повышения по сумме не применяется."
+
+# Свёртка likelihood × impact_qualitative → severity.
+risk_matrix:
+  low_low: low
+  low_medium: low
+  low_high: medium
+  medium_low: low
+  medium_medium: medium
+  medium_high: high
+  high_low: medium
+  high_medium: high
+  high_high: high
+
+# ============================================================
+# CONFIDENCE AND NULL RULES — уверенность и неизвестное
+# ============================================================
+confidence_rules:
+  - "Каждый существенный вывод имеет источник; цитата существует в источнике и сохраняет таймкод."
+  - "Неизвестное не превращается в факт: отсутствующее значение записывается как null или одно из unknown_values."
+  - "Низкая уверенность (possible, speculative, low, not_assessed) явно показывается в любом представлении."
+  - "speculative и working_hypothesis никогда не отображаются как confirmed_fact."
+  - "Отсутствие опровергающих данных не считается подтверждением гипотезы."
+  - "Значение confidence хранится в родной шкале слоя; проекция между шкалами однонаправленная и используется только для отображения."
+  - "Факт, наблюдение, интерпретация, гипотеза, рекомендация и решение пользователя различимы машинно через evidence_class."
+
+null_rules:
+  - "null допустим для любого необязательного поля; обязательные поля без значения блокируют запись и порождают ReviewItem."
+  - "Для закрытого словаря неизвестное значение — other или other_requires_confirmation с пояснением, а не новое значение."
+  - "Дата, срок или сумма не вычисляются из контекста, если не прозвучали; исключение — явные правила интерпретации deadline_verbatim."
+
+# ============================================================
+# MASKING RULES — маскирование персональных данных
+# ============================================================
+masking_rules:
+  mode_selection: explicit_per_source
+  inherited_from_previous_source: false
+  default_before_confirmation: blocked
+  modes:
+    none:
+      description: "Без маскирования. Допускается только после явного выбора пользователя."
+    names_only:
+      description: "ФИО заменяются сокращением: только первая буква фамилии; должности и организации сохраняются."
+    external_participants:
+      description: "Маскируются участники, не относящиеся к своей стороне (is_our_side=false); своя сторона отображается полностью."
+    full_deidentification:
+      description: "Все персональные данные (ФИО, контакты, голосовые образцы, идентифицирующие детали) заменяются устойчивыми псевдонимами."
+    custom:
+      description: "Правила заданы пользователем для конкретного источника и записаны в privacy_gate_decision."
+  rules:
+    - "Решение о маскировании относится только к указанному SourceArtifact и не наследуется новой записью."
+    - "Маскирование применяется к отображению и производным представлениям; канонический источник хранится неизменным в разрешённом контуре."
+    - "Псевдонимы устойчивы внутри одной базы, чтобы накопление по человеку сохранялось."
+    - "Отправка содержимого внешнему сервису возможна только по разрешённому маршруту (privacy_gate_decision.selected_route)."
+
+# ============================================================
+# PSYCHOLOGICAL LAYER — границы психологического анализа
+# ============================================================
+psychological_layer:
+  levels:
+    - id: behavior_observation                    # сущность Observation
+      required_fields: [person_id, situation_id, observed_behavior, source_type, source_reference]
+    - id: working_psychological_hypothesis        # сущность Hypothesis
+      required_fields: [person_id, hypothesis, evidence_for, evidence_against, alternative_explanations, confidence, status, last_reviewed]
+    - id: verified_clinical_fact                  # система не выводит самостоятельно
+      required_fields: [source_reference, verification_status, business_necessity, legal_basis_reference, access_classification]
+  allowed:
+    - "наблюдаемое поведение с источником"
+    - "рабочая проверяемая гипотеза"
+    - "данные за и против"
+    - "альтернативные объяснения"
+    - "confidence и дата пересмотра"
+    - "практический способ взаимодействия"
+  prohibited:
+    - "диагноз по аудио, тексту или деловому поведению"
+    - "клинический ярлык как характеристика человека"
+    - "кадровое решение только на основе гипотезы"
+    - "превращение отсутствия опровержений в доказательство"
+    - "представление рабочей гипотезы как установленного свойства личности"
+  mandatory_separation:
+    - "Наблюдение не записывается как интерпретация."
+    - "Интерпретация не записывается как диагноз."
+    - "Гипотеза всегда содержит подтверждающие и опровергающие данные."
+  verified_clinical_fact_rule: "Подтверждённый клинический факт может храниться только из надлежащего проверяемого источника, при деловой необходимости, правовом основании и ограниченном доступе. Система не выводит его сама."
+
+# ============================================================
+# VIEWS — универсальные производные представления
+# ============================================================
+# Не сущности, а запросы и экраны поверх канонической базы. Все представления
+# строятся из одной базы и не являются источниками фактов. Ролевой профиль
+# выбирает приоритетные представления (priority_views), но не меняет их смысл.
+views:
+  control_center:
+    title: "Контрольный центр"
+    purpose: "Состояние базы и ключевые отклонения на одном экране."
+    legacy_aliases: [project_control_center, owner_control_center]
+    inputs: [meetings, knowledge, ontology]
+    outputs: [meetings_pipeline_status, open_commitments_and_overdue, active_risks_and_high_severity, unresolved_review_items, effectiveness_sequence, participation_by_meeting, data_integrity_issues]
+    rule: "Производное представление пересобирается из канонических записей и не является самостоятельным источником фактов."
+  decision_required_today:
+    title: "Что требует моего решения сегодня?"
+    purpose: "Решения, эскалации и просрочки, требующие внимания пользователя."
+  review_queue:
+    title: "Очередь вопросов пользователю"
+    purpose: "Вопросы, которые система не может закрыть без явного подтверждения."
+    legacy_aliases: [owner_review_queue]
+    inputs: [review_yaml, low_confidence_findings, unidentified_speakers, review_decisions]
+    outputs: [open_items, resolved_items, priorities, source_references]
+    rule: "Пункт закрывается только событием с source=user_confirmation; очередь является производной."
+  person_dossier:
+    title: "Досье участника"
+    purpose: "Person, история встреч, типовые тактики, открытые обязательства от него и перед ним."
+    inputs: [person_id]
+    outputs: [total_meetings, last_met, typical_tactics, open_from_them, open_to_them]
+  organization_dossier:
+    title: "Досье организации"
+    purpose: "Organization, недавние встречи, открытые темы, активные риски, агрегированные красные флаги."
+    legacy_aliases: [company_dossier]
+    inputs: [company_id]
+    outputs: [recent_meetings, open_topics, active_risks, red_flags_aggregated]
+  pre_meeting_brief:
+    title: "Одностраничный брифинг перед встречей"
+    purpose: "Цели, история, позиции, обязательства, ожидаемые тактики, риски и рекомендуемые ходы."
+    legacy_aliases: [meeting_prep_brief, pre_meeting_one_page_brief]
+    inputs: [meeting_type, participants, topics]
+    outputs: [participant_dossiers, relationship_history, open_commitments, expected_tactics, active_risks, recommended_moves, red_flags]
+  post_meeting_analysis_and_protocol:
+    title: "Разбор встречи и проект протокола"
+    purpose: "Факты, решения, поручения, риски, анализ взаимодействия и follow-up без отправки."
+  follow_up_package:
+    title: "Follow-up пакет"
+    purpose: "Проект протокола и сообщения после встречи."
+    inputs: [meeting_analysis, knowledge, review_queue]
+    outputs: [follow_up_json, protocol_markdown, message_markdown]
+    rule: "Всегда delivery_status=draft_not_sent; автоматическая отправка запрещена."
+  strategic_initiative_portfolio:
+    title: "Портфель стратегических инициатив"
+    purpose: "Цели, KPI, владельцы, этапы, зависимости и отклонения."
+  decision_and_assignment_register:
+    title: "Реестр решений и поручений"
+    purpose: "Кто, что, к какому сроку и каким результатом подтвердил исполнение."
+  risk_and_opportunity_map:
+    title: "Карта рисков и возможностей"
+    purpose: "Приоритетные угрозы, возможности, владельцы и меры реагирования."
+  key_stakeholder_map:
+    title: "Карта ключевых участников"
+    purpose: "Влияние, интересы, позиции и рабочие гипотезы с источниками."
+  board_pack:
+    title: "Пакет к органу управления"
+    purpose: "Вопросы, варианты, аргументы, решения, условия и особые мнения."
+  periodic_review:
+    title: "Еженедельный и месячный обзор"
+    purpose: "Динамика решений, инициатив, исполнения, рисков и повторяющихся паттернов."
+    legacy_aliases: [monthly_patterns, weekly_and_monthly_review]
+    periods: [weekly, monthly]
+    outputs: [top_5_by_manipulation_observations, stale_commitments, topics_stuck, risks_escalating, our_effectiveness_by_counterparty]
+    output_legacy_aliases:
+      top_5_manipulators: top_5_by_manipulation_observations   # переименовано: человек не называется манипулятором
+  cross_meeting_comparison:
+    title: "Сравнение серии встреч"
+    purpose: "Дельты результативности, обязательств, открытых вопросов, рисков, тактик и манипуляций."
+    inputs: [meeting_ids]
+    minimum_meetings: 2
+    outputs: [effectiveness_score_delta, commitments_count_delta, open_questions_count_delta, risks_count_delta, tactics_count_delta, manipulations_count_delta, talk_time_share_by_person]
+    rule: "При одной встрече сохранять baseline, но не формулировать вывод о динамике."
+  evidence_search:
+    title: "Поиск по базе"
+    purpose: "Люди, решения, поручения, документы, темы и точные цитаты с источниками."
+    legacy_aliases: [full_text_search]
+    inputs: [meetings, knowledge]
+    filters: [kind, meeting_id, person_id, topic_id]
+    rule: "Индекс является пересоздаваемым; найденный фрагмент всегда сохраняет путь к каноническому источнику."
+  event_projection:
+    title: "Проекция журнала событий"
+    purpose: "Сверка производных реестров с append-only журналом."
+    inputs: [knowledge_event_ledger]
+    outputs: [commitments_open, commitments_closed, risks_active, risks_closed]
+    rule: "Проекция служит для сверки и не заменяет канонические записи до отдельной подтверждённой миграции."
+  pipeline_run_status:
+    title: "Состояние конвейера"
+    purpose: "Готовность встреч, точки продолжения и повторно используемые результаты."
+    inputs: [meeting_run_manifests]
+    outputs: [ready, needs_attention, resume_from, reusable]
+  conversation_strategy:
+    title: "Стратегия сложного разговора"
+    purpose: "Отдельный разбор реальной борьбы интересов, слепой зоны, применимого принципа метода, последовательности вопросов, ответов другой стороны и худшего сценария."
+    legacy_aliases: [negociar_strategy]
+    requires_advisory_module: true
+
+view_consistency_rules:
+  - "Все представления строятся из одной канонической базы и не являются отдельными источниками фактов."
+  - "Изменение статуса выполняется в канонической сущности и затем отражается во всех представлениях."
+  - "Открытый вопрос не блокирует готовность остальных подтверждённых частей анализа."
+  - "Каждая карточка позволяет перейти к источнику, доказательству или подтверждению пользователя."
+  - "Проекты протоколов и сообщений не отправляются автоматически."
+
+# ============================================================
+# PROFILE EXTENSION POINTS — что определяют профили
+# ============================================================
+profile_extension_points:
+  role:
+    - "user_role и дополнительные роли пользователя (из enums.role)"
+    - "priority_views (из views), default_depth, periodic_reviews"
+    - "tracked_object_types и tracked_behavior_dimensions"
+    - "enabled_modules"
+  organization:
+    - "группа, юридические лица, органы управления, подразделения (экземпляры Organization/GovernanceBody)"
+    - "our_side_rules — как вычисляется is_our_side"
+    - "role_vocabulary — локальные названия должностей → enums.role"
+    - "decision_types, industry_vocabulary, topic_subcategories (поверх значений ядра, без изменения контрактных enum)"
+    - "default_currency, situation_type_extensions (только с подтверждением пользователя)"
+  policy:
+    - "privacy: шлюз источника, маршруты, согласие по умолчанию"
+    - "masking: режим по умолчанию после явного выбора"
+    - "retention: хранение и удаление"
+    - "psychological_analysis: глубина, допустимые измерения"
+    - "sources: включённые провайдеры и ожидаемые артефакты"
+    - "interface: формат ответа и раскрытие деталей"
+    - "advisory: разрешённые методические модули и шлюзы сохранения"
+    - "self_critique, decision_authority, memory"
+  non_overridable_by_profiles:
+    - "evidence_classes и требование EvidenceRef для каждого извлечённого объекта"
+    - "thresholds с profile_may_override: none или raise_only (ослабление запрещено)"
+    - "invariants 1-10"
+    - "psychological_layer.prohibited"
+    - "lifecycle_rules.closing_requires_user_confirmation и follow_up.automatic_sending=false"
+    - "masking_rules.inherited_from_previous_source=false и default_before_confirmation=blocked"
+    - "лицензионные ограничения методических модулей (negociar_ru, negociar_upstream: CC BY-NC-SA 4.0)"
+  priority_order:
+    - "1. Непересматриваемые ограничения безопасности и лицензии."
+    - "2. Явное решение пользователя для конкретного источника или действия."
+    - "3. Приватная политика организации."
+    - "4. Ролевой профиль."
+    - "5. Универсальные значения по умолчанию."
+
+# ============================================================
+# VERSIONING & CHANGE LOG
+# ============================================================
+changelog:
+  - version: "1.0.0"
+    date: "2026-10-18"
+    author: "negotiation-analysis core"
+    changes: "Первая универсальная core-онтология: сведены CFO-онтология v0.4 и онтология владельца/CEO v1.1.0; персональные, организационные и политические элементы вынесены в подключаемые профили (profile.schema.json). Полная таблица переноса — docs/ONTOLOGY_MIGRATION.md."
+    triggers: "Этап 2 «Универсальная модель» последовательности разработки."

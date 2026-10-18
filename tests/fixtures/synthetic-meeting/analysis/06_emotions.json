@@ -1,0 +1,45 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "source": "text_only",
+  "sentiment_points": [
+    {
+      "timestamp_start": "00:03:36",
+      "timestamp_end": "00:03:47",
+      "speaker": "p-zaytseva-polaris",
+      "valence": -0.3,
+      "arousal": 0.5,
+      "dominant_emotion": "tension",
+      "stress_markers": [
+        "оценочное слово «серьёзный»"
+      ],
+      "quote": "Это серьёзный сдвиг. Кто в таком случае несёт расходы на восстановление документации?"
+    },
+    {
+      "timestamp_start": "00:06:37",
+      "timestamp_end": "00:06:49",
+      "speaker": "p-zaytseva-polaris",
+      "valence": -0.2,
+      "arousal": 0.4,
+      "dominant_emotion": "tension",
+      "stress_markers": [],
+      "quote": "Пятьдесят процентов аванса для нас слишком много при текущей неопределённости по интеграции."
+    },
+    {
+      "timestamp_start": "00:12:16",
+      "timestamp_end": "00:12:22",
+      "speaker": "p-krylova-polaris",
+      "valence": 0.4,
+      "arousal": 0.2,
+      "dominant_emotion": "satisfaction",
+      "stress_markers": [],
+      "quote": "Согласна. Спасибо всем, на этом заканчиваем."
+    }
+  ],
+  "overall_summary": {
+    "overall": "collaborative",
+    "most_negative_timestamp": "00:03:36",
+    "most_tense_timestamp": "00:06:37",
+    "general_trend": "Деловой тон с кратким напряжением вокруг ответственности за документацию и размера аванса; к концу встречи тон нейтрально-позитивный."
+  },
+  "limitations": "Оценка выполнена только по тексту транскрипта; интонация, паузы и громкость не анализировались."
+}

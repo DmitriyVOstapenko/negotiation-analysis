@@ -1,0 +1,193 @@
+# profiles/examples/cfo-example/organization.yaml
+# СИНТЕТИЧЕСКИЙ пример профиля организации для CFO-профиля.
+# Вымышленная группа «Пример-Холдинг»: сервисная группа, обслуживающая
+# объекты заказчиков. Показывает, куда ушла отраслевая специфика исходной
+# CFO-онтологии v0.4: словарь ролей, подкатегории тем поверх контрактных
+# значений integration_1c / security_specific, валюта, правила своей стороны.
+# Все названия, реквизиты и люди вымышлены.
+
+meta:
+  profile_kind: organization
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: example_synthetic
+  confirmed_on: null
+  confirmation_source: synthetic_example
+  description: "Пример отраслевого расширения в профиле организации: сервисная группа с ERP-интеграцией и объектами заказчиков."
+  synthetic: true
+
+group:
+  id: primer-holding
+  display_name: "Группа «Пример-Холдинг»"
+  legal_name: "ООО «Пример-Холдинг»"
+  domain: "Финансовые и подрядные переговоры сервисной группы, обслуживающей объекты заказчиков (пример отраслевого расширения)."
+
+hierarchy:
+  - company_group
+  - legal_entity
+  - business_unit
+  - person_or_governance_body
+
+legal_entities:
+  - id: primer-holding
+    display_name: "Пример-Холдинг"
+    legal_name: "ООО «Пример-Холдинг»"
+    inn: "0000000001"
+    kpp: null
+    organization_type: head_company
+    parent_id: null
+    is_our_side: true
+  - id: primer-service
+    display_name: "Пример-Сервис"
+    legal_name: "ООО «Пример-Сервис»"
+    inn: "0000000002"
+    kpp: null
+    organization_type: operating_company
+    parent_id: primer-holding
+    is_our_side: true
+  - id: primer-tech
+    display_name: "Пример-Технологии"
+    legal_name: "ООО «Пример-Технологии»"
+    inn: "0000000003"
+    kpp: null
+    organization_type: operating_company
+    parent_id: primer-holding
+    is_our_side: true
+
+governance_bodies:
+  - id: primer-management-board
+    display_name: "Правление «Пример-Холдинг»"
+    organization_id: primer-holding
+    body_type: management_board
+    members: [testov-timofey, maketova-marina]
+    authority_scope: ["утверждение бюджета", "утверждение условий сделок выше лимита CFO"]
+    level_in_group: company_group
+
+departments:
+  - id: finance
+    title: "Финансовый блок"
+    organization_id: primer-holding
+    parent_id: null
+  - id: treasury
+    title: "Казначейство"
+    organization_id: primer-holding
+    parent_id: finance
+  - id: budgeting
+    title: "Бюджетирование"
+    organization_id: primer-holding
+    parent_id: finance
+  - id: accounting
+    title: "Бухгалтерия"
+    organization_id: primer-holding
+    parent_id: finance
+  - id: procurement
+    title: "Закупки"
+    organization_id: primer-service
+    parent_id: null
+  - id: legal
+    title: "Юридический отдел"
+    organization_id: primer-holding
+    parent_id: null
+
+role_vocabulary:
+  - local_title: "Финансовый директор"
+    maps_to_role: CFO
+    department_id: finance
+  - local_title: "Руководитель казначейства"
+    maps_to_role: treasury_head
+    department_id: treasury
+  - local_title: "Руководитель бюджетирования"
+    maps_to_role: budgeting_head
+    department_id: budgeting
+  - local_title: "Главный бухгалтер"
+    maps_to_role: accounting_head
+    department_id: accounting
+  - local_title: "Директор по закупкам"
+    maps_to_role: procurement_head
+    department_id: procurement
+  - local_title: "Юридический директор"
+    maps_to_role: legal_head
+    department_id: legal
+  - local_title: "Коммерческий директор (контрагент)"
+    maps_to_role: sales_director
+    department_id: null
+  - local_title: "Менеджер по ключевым клиентам (контрагент)"
+    maps_to_role: key_account_manager
+    department_id: null
+  - local_title: "Инженер по системам объекта"
+    maps_to_role: engineer
+    department_id: null
+
+decision_types:
+  - id: payment_terms_approval
+    title: "Согласование условий оплаты и отсрочки"
+    decision_owner_body_id: null
+    requires_governance_body: false
+  - id: budget_approval
+    title: "Утверждение бюджета"
+    decision_owner_body_id: primer-management-board
+    requires_governance_body: true
+  - id: vendor_selection
+    title: "Выбор поставщика"
+    decision_owner_body_id: null
+    requires_governance_body: false
+  - id: investment_business_case
+    title: "Инвестиционный business case"
+    decision_owner_body_id: primer-management-board
+    requires_governance_body: true
+
+our_side_rules:
+  organization_ids: [primer-holding, primer-service, primer-tech]
+  relation_types_considered_own: [internal]
+  default_for_unknown: false
+  note: "Своя сторона — все юридические лица группы «Пример-Холдинг»."
+
+scope:
+  architecture_scope: whole_group
+  initial_data_scope: "финансовый блок и контрагенты по действующим договорам"
+  expansion_rule: confirmed_sources_only
+  memory_scope_groups: [finance_block, key_contractors, key_customers]
+
+default_currency: RUB
+
+industry_vocabulary:
+  - id: site_maintenance_contractor
+    title: "Подрядчик по обслуживанию объектов"
+    maps_to_industry: security_systems
+  - id: erp_integrator
+    title: "Интегратор ERP"
+    maps_to_industry: it_integrator
+
+# Подкатегории тем поверх контрактных значений ядра (enum не меняется).
+topic_subcategories:
+  - id: erp_finance_module_integration
+    title: "Интеграция финансового модуля ERP"
+    maps_to_category: integration_1c
+  - id: crm_integration
+    title: "Интеграция CRM"
+    maps_to_category: integration_bitrix
+  - id: site_staffing_and_shifts
+    title: "Посты, смены и укомплектование объектов"
+    maps_to_category: security_specific
+  - id: access_control_equipment
+    title: "Оборудование контроля доступа на объектах"
+    maps_to_category: security_specific
+  - id: treasury_limits
+    title: "Казначейские лимиты и графики платежей"
+    maps_to_category: payment_terms
+
+risk_subtypes:
+  - id: cash_gap
+    title: "Кассовый разрыв"
+    maps_to_risk_type: financial
+  - id: erp_incompatibility
+    title: "Несовместимость с ERP"
+    maps_to_risk_type: technology
+  - id: site_security_incident
+    title: "Инцидент на объекте заказчика"
+    maps_to_risk_type: security_physical
+
+situation_type_extensions: []
+
+pending_scope_decisions: []
+not_confirmed: []

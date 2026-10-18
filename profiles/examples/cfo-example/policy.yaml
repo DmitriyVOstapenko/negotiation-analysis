@@ -1,0 +1,270 @@
+# profiles/examples/cfo-example/policy.yaml
+# СИНТЕТИЧЕСКИЙ пример пользовательской политики для CFO-профиля.
+# Отличия от profiles/base/policy.yaml (куда ушла CFO-специфика v0.4):
+#   - порог повышения до strict_confidential по сумме: 5 000 000 RUB
+#     (правило extraction_rules.privacy исходной онтологии);
+#   - маскирование внешних участников без согласия: names_only, первая буква фамилии;
+#   - психологический анализ только на уровне наблюдений (style_markers,
+#     negotiation_patterns); рабочие психологические гипотезы выключены;
+#   - источник PLAUD включён как внешний коннектор; WonderScribe выключен;
+#   - формат ответа по умолчанию — полный отчёт по встрече;
+#   - разрешены оба методических модуля при подтверждённом некоммерческом использовании.
+# Поля из x-non-overridable совпадают с базовыми (ослабление невозможно).
+
+meta:
+  profile_kind: policy
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: example_synthetic
+  confirmed_on: null
+  confirmation_source: synthetic_example
+  description: "Пример политики CFO: порог суммы для strict_confidential, маскирование внешних участников, наблюдения без психологических гипотез."
+  synthetic: true
+
+privacy:
+  per_source_decision_gate:
+    enabled: true
+    inherit_previous_decision: false
+    default_processing_status: blocked_until_user_confirmation
+    applies_to: [audio, video, transcript, correspondence, document_with_personal_or_confidential_data, provider_note_or_summary]
+    required_confirmations: [lawful_processing_confirmation, business_confidentiality, personal_data_class, masking_mode, allowed_processing_routes]
+  strict_confidential_routing:
+    policy: explicit_route_required
+    automatic_external_processing: false
+    default_status: blocked_awaiting_route_decision
+    permitted_user_choices: [explicit_external_service, deidentified_derivative, local_only, defer_processing]
+    special_and_voice_data_default_status: blocked_awaiting_explicit_route
+  defaults:
+    business_confidentiality: confidential
+    consent_required_for_external_participants: true
+    strict_confidential_amount_threshold: 5000000
+    strict_confidential_amount_currency: RUB
+    strict_confidential_triggers:
+      - "условия действующих сделок"
+      - "финансовые показатели группы"
+  behavior_rules:
+    - "Не читать содержимое и не отправлять его во внешний сервис до прохождения обязательного шлюза."
+    - "Согласие и режим предыдущей записи автоматически не применяются к новой записи."
+    - "Если участник не относится к своей стороне и нет подтверждённого согласия на запись — sensitivity=regulated и маскирование ФИО в отчёте."
+
+masking:
+  mode_selection: explicit_per_source
+  inherited_from_previous_source: false
+  default_before_confirmation: blocked
+  suggested_mode_for_external_participants: names_only
+  names_only_format: first_letter_of_surname
+
+retention:
+  automatic_deletion: false
+  deletion_requires_explicit_user_confirmation: true
+  source_audio_and_video:
+    review_trigger: after_transcript_validation
+    available_decisions: [retain, archive, delete]
+    default_without_decision: retain_and_keep_review_item_open
+  transcripts_decisions_and_evidence:
+    default: retain_until_explicit_decision_or_corporate_policy
+    automatic_expiration: false
+  strict_confidential:
+    retention_mode: explicit_per_source
+    required_fields: [retention_decision, review_or_delete_date_if_set, decided_by, decided_at]
+  deletion_scope:
+    independently_tracked_locations: [local_source_file, local_derived_files, project_snapshots_and_backups, plaud_provider_copy, other_connected_source_copy]
+    rule: "Удаление в одном контуре не считается удалением в остальных."
+  deletion_record:
+    preserve_without_content: [source_id, content_sha256_if_previously_available, deleted_locations, requested_by, confirmed_at, verification_reference]
+    prohibited: "Сохранять удалённое содержимое внутри записи об удалении."
+  workflow_rules:
+    - "После валидации транскрипта создать отдельный вопрос о судьбе исходного аудио."
+    - "Резервные снимки проекта создаются без аудио по умолчанию."
+
+psychological_analysis:
+  depth: observations_only
+  enabled_levels: [behavior_observation]
+  allowed_dimensions: []
+  allowed_outputs: [observed_behavior_with_source, practical_interaction_approach]
+  prohibited_outputs:
+    - diagnosis_from_audio_text_or_business_behavior
+    - clinical_label_as_personal_trait
+    - hr_decision_based_only_on_hypothesis
+    - absence_of_refutation_treated_as_proof
+    - hypothesis_presented_as_established_trait
+  verified_clinical_fact_storage: disabled
+  confidence_scale: evidence_confidence
+  mandatory_separation:
+    - "Наблюдение не записывается как интерпретация."
+    - "Никогда не называем человека манипулятором — только конкретный факт применения тактики."
+  output_rule: "Показывать накопленные style_markers и negotiation_patterns только со ссылкой на наблюдения с цитатой и таймкодом."
+
+sources:
+  providers:
+    plaud:
+      enabled: true
+      integration_mode: mcp_connector
+      user_has_separate_account: true
+      expected_artifacts: [recording_metadata, transcript, note, audio_when_explicitly_requested_and_allowed]
+    wonderscribe:
+      enabled: false
+      integration_mode: not_available
+      secret_reference: "environment:WONDERSCRIBE_API_KEY"
+      expected_artifacts: [task_metadata, full_text, speaker_segments_with_timestamps, summary]
+      secret_rules:
+        - "Ключ читается только из локальной переменной WONDERSCRIBE_API_KEY."
+    uploaded_audio_or_video:
+      enabled: true
+      integration_mode: manual_file
+    uploaded_transcript:
+      enabled: true
+      integration_mode: manual_file
+    management_document:
+      enabled: true
+      formats: [contract, memo, report, presentation, other_document]
+    spreadsheet_or_management_report:
+      enabled: true
+      integration_mode: manual_file
+    correspondence:
+      enabled: false
+      integration_mode: manual_export
+      automatic_access: false
+    direct_user_confirmation:
+      enabled: true
+      authority: user_confirmation
+  normalization:
+    canonical_source_entity: SourceArtifact
+    required_fields: [id, provider, source_type, external_id_or_local_path, captured_at_or_document_date, ingested_at, content_sha256, sensitivity, processing_status]
+    rules:
+      - "Заметка провайдера не заменяет транскрипт; цитаты сверяются буквально по транскрипту."
+      - "Одинаковая запись выявляется по хешу, времени и метаданным, а не создаётся дважды."
+
+interface:
+  language: ru
+  response_format:
+    default: full_report
+    default_sections:
+      - "Главный вывод"
+      - "Обязательства и сроки"
+      - "Риски"
+      - "Тактики и манипуляции"
+      - "Баланс влияния"
+      - "Открытые вопросы к подтверждению"
+      - "Следующий шаг"
+    detail_disclosure:
+      proactive_offer_required: true
+      trigger: material_unshown_detail_exists
+      available_detail_types:
+        - "Полные цитаты и таймкоды"
+        - "Карта аргументов"
+        - "Эмоциональная кривая и акустические показатели"
+        - "Сравнение с предыдущими встречами"
+      question_template: "Доступны подробности: {available_details}. Раскрыть?"
+    disclosure_rules:
+      - "Критический риск или просроченное обязательство показывать сразу."
+  view_consistency_rules:
+    - "Все представления строятся из одной канонической базы и не являются отдельными источниками фактов."
+
+advisory:
+  modules_allowed: [dialogue_contour, negociar_ru]
+  default_module: dialogue_contour
+  routing_rule: explicit_user_choice
+  trigger_scope: [negotiation_strategy, conflict_strategy, how_to_respond, difficult_conversation]
+  evidence_boundary:
+    factual_sources: [knowledge, sources, meetings, explicit_user_confirmation]
+    rules:
+      - "Факты и цитаты берутся из материалов базы; принципы модуля используются только для интерпретации и стратегии."
+  response_contract:
+    executive_screen_first: true
+    full_response_same_turn: true
+    required_blocks:
+      - "Реальная ситуация и возможная слепая зона"
+      - "Что здесь происходит и какой принцип метода применим"
+      - "Последовательность вопросов и действий с вариантами ответов"
+      - "Развилки из-за недостающих данных"
+    required_elements: ["Худший сценарий", "Жёсткий, деловой и обратимый ход"]
+    style: plain_language_soft_form_hard_content
+  exact_message_gate:
+    write_exact_text_only_on_explicit_request: true
+    questions_before_drafting:
+      - "Что уже было сказано контрагенту?"
+      - "Какие условия нельзя раскрывать?"
+    output_status: draft_not_sent
+    automatic_sending: false
+  storage:
+    automatic_knowledge_write: false
+    default_output: chat_only
+    knowledge_promotion_rule: "Только фактические утверждения с EvidenceRef — через diff и подтверждение."
+  save_and_reuse_gate:
+    proactive_question_required: true
+    question: "Сохранить разбор: полностью, выбранные выводы, архив или не сохранять?"
+    allowed_choices: [save_full, save_selected, archive_only, do_not_save]
+    reusable_status: approved_for_reuse
+    future_preflight:
+      required: true
+      lookup_keys: [related_organization_ids, related_topic_ids]
+      rule: "Перед брифингом по контрагенту прочитать карточки approved_for_reuse по организации и теме."
+  outcome_learning:
+    proactive_followup_question: "Зафиксировать результат применения стратегии?"
+    entity: StrategyOutcome
+    rules:
+      - "Фактический результат подтверждается пользователем или источником."
+  safety:
+    prohibited:
+      - "Автоматическая запись стратегии в каноническую базу."
+      - "Автоматическая отправка текста третьей стороне."
+  license_terms:
+    negociar_ru:
+      license: CC-BY-NC-SA-4.0
+      commercial_use_allowed: false
+      attribution_required: true
+      share_alike_required: true
+      separate_license_zone: true
+      non_commercial_use_confirmed_by_user: true
+    negociar_upstream:
+      license: CC-BY-NC-SA-4.0
+      commercial_use_allowed: false
+      attribution_required: true
+      share_alike_required: true
+      separate_license_zone: true
+      non_commercial_use_confirmed_by_user: false
+    dialogue_contour:
+      license: not_yet_granted
+      note: "Публичная лицензия не предоставлена."
+
+evidence:
+  require_evidence_ref_for_every_extracted_object: true
+  thresholds:
+    tactic_min_confidence: probable
+    manipulation_min_confidence: probable
+    manipulation_min_severity: medium
+    stale_commitments_days: 14
+    topics_stuck_days: 60
+    recent_meetings_window_days: 180
+    stable_pattern_minimum_episodes: 3
+
+self_critique:
+  enabled: true
+  allowed_analysis:
+    - "Невыполненные собственные обязательства"
+    - "Переговорные ошибки своей стороны (уступки без встречных условий)"
+  mandatory_structure:
+    - "Наблюдаемый факт"
+    - "Источник и цитата"
+    - "Интерпретация"
+    - "Confidence"
+    - "Варианты действий"
+  behavior_rules:
+    - "Применять к своей стороне те же требования доказательности, что и к контрагенту."
+
+decision_authority:
+  final_authority_remains_with_user: true
+  system_may: ["Оспорить аргумент", "Показать противоречие", "Предложить альтернативу", "Запросить подтверждение"]
+  system_may_not:
+    - decide_on_behalf_of_user
+    - close_item_without_confirmation
+    - issue_assignment_on_behalf_of_user
+    - send_message_or_document_without_separate_command
+
+memory:
+  proposed_diff_before_persist: true
+  confirmation_required_before_persist: true
+  preserve_manual_marker: "(m)"
+  original_conclusion_and_actual_result_stored_separately: true
+  hypothesis_version_history_preserved: true

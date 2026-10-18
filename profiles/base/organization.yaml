@@ -1,0 +1,61 @@
+# profiles/base/organization.yaml
+# Универсальный профиль организации по умолчанию.
+# Не содержит реальных организаций, лиц, органов управления или отраслевой
+# специфики. Приватный профиль конкретной группы устанавливается отдельно и
+# не входит в дистрибутив.
+# Валидируется по core/ontology/profile.schema.json ($defs/organization_profile).
+
+meta:
+  profile_kind: organization
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: confirmed
+  confirmed_on: null
+  confirmation_source: universal_default
+  description: "Пустая универсальная конфигурация организации; все перечни заполняются приватным профилем."
+  synthetic: false
+
+group:
+  id: null
+  display_name: null
+  legal_name: null
+  domain: null
+
+hierarchy:
+  - company_group
+  - legal_entity
+  - business_unit
+  - person_or_governance_body
+
+legal_entities: []
+governance_bodies: []
+departments: []
+role_vocabulary: []
+decision_types: []
+
+# Своя сторона вычисляется только по явному перечню организаций и
+# relation_type=internal; при неизвестности — не своя сторона.
+our_side_rules:
+  organization_ids: []
+  relation_types_considered_own: [internal]
+  default_for_unknown: false
+  note: "Перечень своих организаций задаётся приватным профилем организации."
+
+scope:
+  architecture_scope: whole_group
+  initial_data_scope: null
+  expansion_rule: confirmed_sources_only
+  memory_scope_groups: []
+
+default_currency: null
+
+industry_vocabulary: []
+topic_subcategories: []
+risk_subtypes: []
+situation_type_extensions: []
+
+pending_scope_decisions:
+  - "Перечень юридических лиц, бизнес-направлений и органов управления"
+  - "Круг лиц, по которым ведётся накопительная память"
+
+not_confirmed: []

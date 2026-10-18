@@ -1,0 +1,60 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "cialdini": [
+    {
+      "id": "t-01",
+      "tactic_family": "cialdini",
+      "tactic_type": "reciprocity",
+      "used_by": "p-danilov-nordtech",
+      "target": "p-krylova-polaris",
+      "source_quote": "Со своей стороны мы готовы заранее подготовить список вопросов к прежнему подрядчику, чтобы ускорить поиск.",
+      "source_timestamp": "00:04:51",
+      "effect": "worked",
+      "counter_move": null,
+      "confidence": "probable",
+      "explanation": "Предложение помощи сразу после закрепления риска за заказчиком создаёт ощущение взаимности и смягчает позицию по ответственности за документацию."
+    }
+  ],
+  "voss": [
+    {
+      "id": "t-02",
+      "tactic_family": "voss",
+      "tactic_type": "loss_aversion",
+      "used_by": "p-danilov-nordtech",
+      "target": "p-zaytseva-polaris",
+      "source_quote": "Мы закладываем запас, потому что доплата за лицензии после запуска обычно дороже, чем в составе проекта.",
+      "source_timestamp": "00:09:14",
+      "effect": "failed",
+      "counter_move": "Отказ платить за запас лицензий; закупка отдельно при необходимости.",
+      "confidence": "possible",
+      "explanation": "Апелляция к будущей дороговизне доплаты — аргумент через потери; эффект не достигнут, заказчик оставил только фактическое число пользователей."
+    },
+    {
+      "id": "t-03",
+      "tactic_family": "voss",
+      "tactic_type": "labeling",
+      "used_by": "p-danilov-nordtech",
+      "target": "p-zaytseva-polaris",
+      "source_quote": "Понимаю вашу осторожность. Но аванс нужен нам на закупку оборудования, терминалы мы покупаем у поставщика по предоплате.",
+      "source_timestamp": "00:06:49",
+      "effect": "partial",
+      "counter_move": null,
+      "confidence": "probable",
+      "explanation": "Маркировка эмоции собеседника перед обоснованием собственной позиции по авансу."
+    },
+    {
+      "id": "t-04",
+      "tactic_family": "voss",
+      "tactic_type": "calibrated_question",
+      "used_by": "p-krylova-polaris",
+      "target": "p-danilov-nordtech",
+      "source_quote": "Какая доля сметы приходится на оборудование?",
+      "source_timestamp": "00:07:03",
+      "effect": "worked",
+      "counter_move": null,
+      "confidence": "certain",
+      "explanation": "Открытый вопрос вскрыл структуру сметы и позволил привязать схему оплаты к закупке оборудования."
+    }
+  ],
+  "debug_possible": []
+}

@@ -1,0 +1,120 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "generated_at": "2026-10-28T16:40:00+03:00",
+  "contract_version": "1.0.0",
+  "files": [
+    {
+      "path": "knowledge/people/p-krylova-polaris.md",
+      "action": "update",
+      "content": "---\nid: \"p-krylova-polaris\"\ndisplay_name: \"Анна Крылова\"\nfull_name: \"Анна Крылова\"\nstatus: \"confirmed\"\nidentity_confidence: \"user_confirmed\"\nroles: [\"директор по закупкам\"]\norganizations: [\"org-polaris\"]\n---\n\n# Анна Крылова\n\n## Подтверждённая идентичность и роли\n\n| Утверждение | Дата актуальности | Источник |\n|---|---|---|\n| Директор по закупкам ООО «Полярис» | 2026-10-28 | подтверждение пользователя |\n\n## Полномочия и влияние\n\n- Принимает окончательное решение по схеме оплаты проекта складского учёта (источник: [[2026-10-28-polaris-nordtech-wms-terms]] `00:07:47`).\n\n## История встреч и решений\n\n| Дата | Событие | Роль человека | Итог | Источник |\n|---|---|---|---|---|\n| 2026-10-28 | Переговоры по условиям внедрения складского учёта | ведущая переговоров | решение по оплате отложено до сметы | [[2026-10-28-polaris-nordtech-wms-terms]] |\n\n## Ручные заметки\n\n- (m) Предпочитает получать смету до внутреннего бюджетного комитета.\n"
+    },
+    {
+      "path": "knowledge/people/p-danilov-nordtech.md",
+      "action": "create",
+      "content": "---\nid: \"p-danilov-nordtech\"\ndisplay_name: \"Олег Данилов\"\nfull_name: \"Олег Данилов\"\nstatus: \"confirmed\"\nidentity_confidence: \"user_confirmed\"\nroles: [\"руководитель проектов\"]\norganizations: [\"org-nordtech\"]\n---\n\n# Олег Данилов\n\n## Подтверждённая идентичность и роли\n\n| Утверждение | Дата актуальности | Источник |\n|---|---|---|\n| Руководитель проектов ООО «Нордтех» | 2026-10-28 | подтверждение пользователя |\n\n## Позиции и интересы\n\n| Тема | Тип | Содержание | Confidence | Источник |\n|---|---|---|---|---|\n| Схема оплаты | заявленная позиция | аванс 50% для закупки оборудования; готов обсуждать 30/40/30 при платеже после обследования | certain | [[2026-10-28-polaris-nordtech-wms-terms]] `00:06:26`, `00:07:35` |\n\n## Надёжность исполнения\n\n| Обязательство/поручение | Результат | Доказательство | Вывод |\n|---|---|---|---|\n| Уточнённая смета по трём складам до 2026-11-05 | ожидается | — | — |\n\n## Наблюдаемое поведение\n\n| Эпизод | Наблюдение без объяснения мотива | Источник | Статус паттерна |\n|---|---|---|---|\n| 2026-10-28 | Предложил помощь (список вопросов подрядчику) сразу после закрепления риска за заказчиком | `00:04:51` | единичное наблюдение |\n\n## Ручные заметки\n\n<!-- (m) Такие заметки имеют приоритет и не перезаписываются автоматически. -->\n"
+    },
+    {
+      "path": "knowledge/organizations/org-nordtech.md",
+      "action": "create",
+      "content": "---\nid: \"org-nordtech\"\ndisplay_name: \"Нордтех\"\nlegal_name: \"ООО «Нордтех»\"\norganization_type: \"supplier\"\nstatus: \"confirmed\"\n---\n\n# Нордтех\n\n## Подтверждённые сведения\n\n- Юридическое наименование: ООО «Нордтех» (подтверждение пользователя)\n- Роль во взаимодействии: исполнитель внедрения складского учёта\n\n## Люди и органы управления\n\n| Ссылка | Подтверждённая роль | Полномочия | Источник |\n|---|---|---|---|\n| [[p-danilov-nordtech]] | руководитель проектов | ведёт проект | [[2026-10-28-polaris-nordtech-wms-terms]] |\n\n## История взаимодействия\n\n| Дата | Событие | Итог | Источник |\n|---|---|---|---|\n| 2026-10-28 | Переговоры по составу работ, срокам и оплате | частичная договорённость | [[2026-10-28-polaris-nordtech-wms-terms]] |\n\n## Решения, обязательства и поручения\n\n- c-2026-10-28-nordtech-estimate — уточнённая смета по трём складам до 2026-11-05.\n\n## Активные риски и возможности\n\n- r-2026-10-28-api-documentation — сдвиг интеграции без документации по API.\n\n## Ручные заметки\n\n<!-- Пометки с маркером (m) не перезаписываются автоматически. -->\n"
+    },
+    {
+      "path": "knowledge/topics/wms-three-warehouses.md",
+      "action": "create",
+      "content": "---\nid: \"wms-three-warehouses\"\ntitle: \"Внедрение складского учёта на три склада\"\nstatus: \"in_progress\"\nowner: \"p-krylova-polaris\"\n---\n\n# Внедрение складского учёта на три склада\n\n## Главный вопрос\n\nСогласовать состав работ, срок (17 недель) и схему оплаты с исполнителем Нордтех.\n\n## Подтверждённые факты\n\n| Дата | Факт | Источник |\n|---|---|---|\n| 2026-10-28 | Срок проекта 17 недель при наличии документации по API | `00:05:38` |\n| 2026-10-28 | Около 40% сметы — оборудование | `00:07:10` |\n| 2026-10-28 | Лицензии пересчитываются на 24 пользователя | `00:09:38` |\n\n## Решения и варианты\n\n| ID | Тип | Формулировка | Статус | Источник |\n|---|---|---|---|---|\n| d-2026-10-28-payment-scheme | решение | схема оплаты по этапам | deferred | `00:08:41` |\n\n## Поручения и обязательства\n\n| ID | Кто | Что | Срок | Статус | Доказательство результата |\n|---|---|---|---|---|---|\n| c-2026-10-28-nordtech-estimate | [[p-danilov-nordtech]] | уточнённая смета по трём складам | 2026-11-05 | open | — |\n\n## Риски, возможности и зависимости\n\n| ID | Тип | Формулировка | Владелец | Статус | Источник |\n|---|---|---|---|---|---|\n| r-2026-10-28-api-documentation | риск | сдвиг интеграции на 4–6 недель без документации по API | [[p-krylova-polaris]] | open | `00:04:26` |\n\n## Противоречия и открытые вопросы\n\n- Условия гарантии на оборудование (перенесено на следующую встречу).\n\n## Ручные заметки\n\n<!-- (m) Не перезаписывать автоматически. -->\n"
+    }
+  ],
+  "records": [
+    {
+      "registry": "knowledge/commitments/open.jsonl",
+      "action": "append",
+      "id": "c-2026-10-28-nordtech-estimate",
+      "record": {
+        "id": "c-2026-10-28-nordtech-estimate",
+        "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+        "type": "deliver_document",
+        "who": "p-danilov-nordtech",
+        "to_whom": "p-krylova-polaris",
+        "what": "прислать уточнённую смету по трём складам",
+        "deadline": "2026-11-05",
+        "deadline_verbatim": "до пятого ноября",
+        "status": "open",
+        "value_rub": null,
+        "source_quote": "Я пришлю уточнённую смету по трём складам до пятого ноября, при условии что схему зонирования мы получим на этой неделе.",
+        "source_timestamp": "00:08:18",
+        "confidence": "certain",
+        "linked_topic": "wms-three-warehouses",
+        "follow_up": {
+          "reminder_date": "2026-11-03",
+          "reminder_sent": false,
+          "actual_completion_date": null,
+          "completion_notes": null
+        }
+      }
+    },
+    {
+      "registry": "knowledge/risks/active.jsonl",
+      "action": "append",
+      "id": "r-2026-10-28-api-documentation",
+      "record": {
+        "id": "r-2026-10-28-api-documentation",
+        "type": "technology",
+        "description": "Срок интеграции с учётной системой может сдвинуться на 4–6 недель из-за отсутствия документации по API.",
+        "first_seen_meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+        "last_seen_meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+        "involved_companies": [
+          "org-polaris",
+          "org-nordtech"
+        ],
+        "involved_people": [
+          "p-krylova-polaris",
+          "p-danilov-nordtech"
+        ],
+        "linked_topic": "wms-api-integration",
+        "likelihood": "medium",
+        "impact_rub": null,
+        "impact_qualitative": "high",
+        "severity": "high",
+        "mitigation": {
+          "planned_actions": "Запросить у прежнего подрядчика сохранившуюся документацию; исполнитель готовит список вопросов для ускорения поиска.",
+          "owner": "p-krylova-polaris",
+          "deadline": null
+        },
+        "status": "open",
+        "evidence": [
+          {
+            "quote": "Давайте тогда прямо запишем это как риск: без документации по API срок интеграции сдвигается на четыре-шесть недель.",
+            "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+            "timestamp": "00:04:26"
+          }
+        ],
+        "confidence": "certain"
+      }
+    },
+    {
+      "registry": "knowledge/decisions/register.jsonl",
+      "action": "append",
+      "id": "d-2026-10-28-payment-scheme",
+      "record": {
+        "id": "d-2026-10-28-payment-scheme",
+        "statement": "Схема оплаты по этапам проекта: решение отложено до получения уточнённой сметы (срок решения 2026-11-10)",
+        "status": "deferred",
+        "decision_owner": "p-krylova-polaris",
+        "decided_at": null,
+        "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+        "review_date": "2026-11-10",
+        "supersedes": [],
+        "superseded_by": null,
+        "evidence": [
+          {
+            "source_id": "2026-10-28-polaris-nordtech-wms-terms",
+            "evidence_class": "confirmed_fact",
+            "quote": "Решение по схеме оплаты, соответственно, примем до десятого ноября, после сметы.",
+            "timestamp": "00:08:41",
+            "confidence": "high"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "view_type": "decision_authority_map",
+  "status": "partially_defined",
+  "decision_areas": [
+    {
+      "topic": "wms-payment-terms",
+      "decision": "Схема оплаты по этапам проекта",
+      "options": [
+        "30/40/30 с привязкой к приёмке этапов, первый платёж после обследования",
+        "50/50: половина при старте, половина после запуска"
+      ],
+      "current_state": "отложено до получения уточнённой сметы",
+      "final_decision_maker": "p-krylova-polaris",
+      "advisory_participants": [
+        "p-zaytseva-polaris"
+      ],
+      "blocking_rights": null,
+      "proposal_owner": "p-zaytseva-polaris",
+      "proposal_owner_source": "transcript",
+      "deadline": "2026-11-10",
+      "deadline_source": "transcript",
+      "evidence": [
+        {
+          "quote": "Мы готовы рассмотреть это, но окончательное решение по схеме оплаты я приму после получения уточнённой сметы.",
+          "timestamp": "00:07:47"
+        },
+        {
+          "quote": "Решение по схеме оплаты, соответственно, примем до десятого ноября, после сметы.",
+          "timestamp": "00:08:41"
+        }
+      ],
+      "confidence": "certain"
+    }
+  ],
+  "authority_observations": [
+    {
+      "person_id": "p-krylova-polaris",
+      "observed_role": "принимает окончательное решение по схеме оплаты",
+      "formal_authority_in_decision": null,
+      "evidence": [
+        {
+          "quote": "окончательное решение по схеме оплаты я приму после получения уточнённой сметы",
+          "timestamp": "00:07:47"
+        }
+      ],
+      "confidence": "certain"
+    }
+  ],
+  "unresolved": [
+    "Условия гарантии на оборудование не обсуждены."
+  ]
+}

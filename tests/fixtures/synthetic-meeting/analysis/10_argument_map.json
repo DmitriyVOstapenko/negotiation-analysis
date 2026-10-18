@@ -1,0 +1,50 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "view_type": "argument_map",
+  "argument_clusters": [
+    {
+      "topic": "wms-payment-terms",
+      "question": "Какая схема оплаты приемлема для обеих сторон?",
+      "positions": [
+        {
+          "argument_id": "a-01",
+          "speaker": "p-danilov-nordtech",
+          "position": "Нужен аванс 50% для закупки оборудования.",
+          "supports": [],
+          "opposes": [
+            "a-02"
+          ],
+          "strength": 3,
+          "missing_evidence": "Фактические условия предоплаты поставщика терминалов.",
+          "evidence": [
+            {
+              "quote": "Но аванс нужен нам на закупку оборудования, терминалы мы покупаем у поставщика по предоплате.",
+              "timestamp": "00:06:49"
+            }
+          ],
+          "confidence": "probable"
+        },
+        {
+          "argument_id": "a-02",
+          "speaker": "p-zaytseva-polaris",
+          "position": "Схема 30/40/30 с платежом после обследования покрывает закупку оборудования.",
+          "supports": [],
+          "opposes": [
+            "a-01"
+          ],
+          "strength": 4,
+          "missing_evidence": "Уточнённая смета с долей оборудования по каждому складу.",
+          "evidence": [
+            {
+              "quote": "Тогда схема тридцать, сорок, тридцать в целом покрывает закупку оборудования, если первый платёж идёт после обследования.",
+              "timestamp": "00:07:21"
+            }
+          ],
+          "confidence": "certain"
+        }
+      ],
+      "resolution": "partially_resolved",
+      "resolution_note": "Исполнитель готов обсуждать 30/40/30 при первом платеже после обследования; окончательное решение отложено до сметы."
+    }
+  ]
+}

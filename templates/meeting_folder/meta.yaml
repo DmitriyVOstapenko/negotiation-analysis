@@ -1,0 +1,34 @@
+# meta.yaml — метаданные встречи. Создаётся движком (na.py source create);
+# поля meeting.* заполняются вручную или по подтверждению пользователя.
+meeting:
+  id: "[YYYY-MM-DD-short-title]"
+  title: "[название встречи]"
+  date: null                       # ISO 8601, например 2026-10-28T15:00:00+03:00
+  timezone: null
+  duration_min: null
+  meeting_type: null               # kickoff | negotiation | internal_alignment | board | other
+  channel: null                    # in_person | video_call | phone | recorder_device | other
+  sensitivity: "unknown"           # public | internal | confidential | regulated (после шлюза)
+  our_side: []                     # [{person_id, role_in_meeting}]
+  counterparty_side: []            # [{person_id, role_in_meeting}]
+  purpose: null
+  expected_topics: []
+  outcome: null                    # agreed | partial | deferred | failed | no_decision
+  outcome_summary: null
+  next_meeting_planned: null
+source:
+  source_id: "[src-...]"
+  provider: "[manual|plaud|wonderscribe|local_file|uploaded_transcript|document]"
+  source_type: "[transcript|document]"
+  external_id_or_local_path: null
+  captured_at: null
+  ingested_at: null
+  content_sha256: null
+  canonical_source_id: null
+  duplicate_of: null
+artifacts:
+  source_packet: "source_packet.json"
+  transcript: "transcript.txt"
+  provider_note: null
+  report: "report.md"
+  knowledge_diff: "knowledge_diff.md"

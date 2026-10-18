@@ -1,0 +1,29 @@
+# рабочие данные пользователя никогда не попадают в репозиторий
+/na-workspace/
+/negotiations/
+/knowledge/
+/system/
+/profile/
+/advice/
+/comparisons/
+*.sqlite
+*.mp3
+*.wav
+*.m4a
+*.mp4
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+# секреты
+.env
+*.env
+!*.env.example
+# ос и редакторы
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+# сборка
+*.plugin
+dist/

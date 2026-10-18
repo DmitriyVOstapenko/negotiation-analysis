@@ -1,0 +1,22 @@
+{
+  "name": "negotiation-analysis",
+  "version": "0.1.0",
+  "description": "Накопительная система анализа деловых переговоров и управленческих коммуникаций: доказательный разбор встречи по 11 контрактным артефактам с проверкой цитат, накопительная база людей, организаций, тем, обязательств и рисков с подтверждением перед записью, контрольный центр и очередь решений, брифинг перед встречей, черновики follow-up без отправки. Стратегический слой — через отдельно устанавливаемые модули. Отвечает по-русски.",
+  "author": {
+    "name": "Dmitriy Ostapenko"
+  },
+  "homepage": "https://github.com/DmitriyVOstapenko/negotiation-analysis",
+  "repository": "https://github.com/DmitriyVOstapenko/negotiation-analysis",
+  "license": "MIT (code) / CC-BY-NC-SA-4.0 (methodology, prompts, ontology, docs)",
+  "keywords": [
+    "negotiation",
+    "meeting-analysis",
+    "executive",
+    "evidence-first",
+    "knowledge-base",
+    "commitments",
+    "risks",
+    "briefing",
+    "russian"
+  ]
+}

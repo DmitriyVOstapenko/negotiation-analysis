@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DmitriyVOstapenko/negotiation-analysis/schemas/knowledge-event.schema.json",
+  "title": "Событие снимка обязательства или риска",
+  "type": "object",
+  "required": ["event_id", "event_version", "recorded_at", "entity_type", "entity_id", "event_type", "target_view", "record_sha256", "source", "payload"],
+  "properties": {
+    "event_id": {"type": "string", "pattern": "^evt-[0-9a-f]{24}$"},
+    "event_version": {"const": "1.0.0"},
+    "recorded_at": {"type": "string", "minLength": 20},
+    "entity_type": {"type": "string", "enum": ["commitment", "risk"]},
+    "entity_id": {"type": "string", "minLength": 1},
+    "event_type": {"const": "canonical_snapshot_recorded"},
+    "target_view": {"type": "string", "enum": ["open", "active", "closed"]},
+    "record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source": {
+      "type": "object",
+      "required": ["source_type", "path", "line"],
+      "properties": {
+        "source_type": {"const": "canonical_jsonl_snapshot"},
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": false
+}

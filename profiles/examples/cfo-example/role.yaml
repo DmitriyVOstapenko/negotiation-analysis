@@ -1,0 +1,98 @@
+# profiles/examples/cfo-example/role.yaml
+# СИНТЕТИЧЕСКИЙ пример ролевого профиля: финансовый директор группы компаний.
+# Показывает, куда ушла CFO-специфика исходной онтологии v0.4: приоритет
+# обязательств, рисков, тактик и манипуляций, полный отчёт по встрече,
+# месячный обзор. Вымышленная организация «Пример-Холдинг»; реальных лиц нет.
+
+meta:
+  profile_kind: role
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: example_synthetic
+  confirmed_on: null
+  confirmation_source: synthetic_example
+  description: "Пример: CFO, ведущий финансовые, подрядные и инвестиционные переговоры и внутренние согласования."
+  synthetic: true
+
+user_role: CFO
+additional_roles: [board_member]
+role_title_freeform: "Финансовый директор группы (пример)"
+
+# Область применения CFO-онтологии v0.4 (meta.domain) переведена в области ответственности роли.
+confirmed_responsibility_areas:
+  - id: financial_negotiations
+    title: "Финансовые переговоры: условия оплаты, отсрочки, скидки"
+  - id: contractor_negotiations
+    title: "Подрядные переговоры: закупка оборудования и услуг"
+  - id: investment_discussions
+    title: "Инвестиционные обсуждения: business case новых проектов"
+  - id: internal_alignment
+    title: "Внутренние согласования: бюджет, KPI, распределение ресурсов"
+
+scope:
+  verbatim: "Финансовые и подрядные переговоры группы компаний."
+  status: confirmed
+
+priority_views:
+  - control_center
+  - review_queue
+  - pre_meeting_brief
+  - post_meeting_analysis_and_protocol
+  - organization_dossier
+  - person_dossier
+  - periodic_review
+  - cross_meeting_comparison
+  - evidence_search
+  - follow_up_package
+
+# CFO-система работала с полным 11-артефактным отчётом по встрече.
+default_depth: full_report
+
+periodic_reviews:
+  - monthly
+
+enabled_modules:
+  - meeting_and_negotiation_analysis
+  - audio_analysis
+  - risk_management
+  - execution_control
+  - strategic_advisory
+
+tracked_object_types:
+  - fact_and_evidence
+  - external_commitment
+  - risk_issue_incident_escalation
+  - open_question_dependency_blocker
+  - execution_result_and_evidence
+  - next_action_and_meeting_material
+  - negotiation_strategy_draft
+
+tracked_behavior_dimensions:
+  - commitment_reliability
+  - typical_positions_and_objections
+  - repeated_negotiation_and_management_patterns
+
+analysis_focus:
+  primary_entities:
+    - Commitment
+    - Risk
+    - TacticObservation
+    - ManipulationObservation
+    - PowerDynamics
+    - DecisionAuthorityMap
+    - MeetingEffectiveness
+  primary_topic_categories:
+    - commercial_terms
+    - payment_terms
+    - budget_allocation
+    - kpi_targets
+    - liability_penalties
+    - resource_allocation
+  primary_risk_types:
+    - financial
+    - contractual
+    - counterparty
+    - compliance_legal
+    - technology
+
+not_confirmed: []

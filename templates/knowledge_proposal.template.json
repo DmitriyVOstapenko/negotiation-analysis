@@ -1,0 +1,37 @@
+{
+  "meeting_id": "[meeting-id]",
+  "generated_at": "[ISO-8601]",
+  "contract_version": "1.0.0",
+  "files": [
+    {
+      "path": "knowledge/people/[person-id].md",
+      "action": "create",
+      "content": "[полное содержимое файла по templates/person.template.md]"
+    },
+    {
+      "path": "knowledge/topics/[topic-id].md",
+      "action": "update",
+      "content": "[полное новое содержимое; все строки с пометкой (m) из текущего файла обязаны сохраниться]"
+    }
+  ],
+  "records": [
+    {
+      "registry": "knowledge/commitments/open.jsonl",
+      "action": "append",
+      "id": "[commitment-id]",
+      "record": {"id": "[commitment-id]", "meeting_id": "[meeting-id]", "type": "deliver_document", "who": "[person-id]", "to_whom": null, "what": "[что]", "deadline": null, "deadline_verbatim": null, "status": "open", "value_rub": null, "source_quote": "[буквальная цитата]", "source_timestamp": "00:00:00", "confidence": "certain", "linked_topic": "[topic-id]", "follow_up": {"reminder_date": null, "reminder_sent": false, "actual_completion_date": null, "completion_notes": null}}
+    },
+    {
+      "registry": "knowledge/risks/active.jsonl",
+      "action": "update",
+      "id": "[risk-id]",
+      "record": {"last_seen_meeting_id": "[meeting-id]"}
+    },
+    {
+      "registry": "knowledge/commitments/open.jsonl",
+      "action": "close",
+      "id": "[commitment-id]",
+      "record": {"status": "done", "follow_up": {"reminder_date": null, "reminder_sent": false, "actual_completion_date": "[YYYY-MM-DD]", "completion_notes": "[доказательство результата]"}}
+    }
+  ]
+}

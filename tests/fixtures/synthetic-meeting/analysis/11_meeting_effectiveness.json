@@ -1,0 +1,72 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "view_type": "meeting_effectiveness",
+  "method": "Рабочая диагностическая шкала 0–5; не является стандартизированным психологическим или организационным тестом",
+  "dimensions": [
+    {
+      "dimension": "agenda_coverage",
+      "score_0_5": 4,
+      "basis": "Все три пункта повестки обсуждены; гарантия на оборудование перенесена на следующую встречу.",
+      "evidence_refs": [
+        "01_extraction.json#topics"
+      ]
+    },
+    {
+      "dimension": "decision_closure",
+      "score_0_5": 2,
+      "basis": "Единственное решение — по схеме оплаты — отложено до получения сметы.",
+      "evidence_refs": [
+        "09_decision_authority.json#decision_areas[0]"
+      ]
+    },
+    {
+      "dimension": "actionability",
+      "score_0_5": 4,
+      "basis": "Обязательство по смете имеет срок, условие и ответственного.",
+      "evidence_refs": [
+        "07_commitments.json#commitments[0]"
+      ]
+    },
+    {
+      "dimension": "role_clarity",
+      "score_0_5": 4,
+      "basis": "ЛПР по схеме оплаты и владелец риска названы явно.",
+      "evidence_refs": [
+        "09_decision_authority.json#authority_observations"
+      ]
+    },
+    {
+      "dimension": "evidence_quality",
+      "score_0_5": 3,
+      "basis": "Структура сметы названа приблизительно, без документа.",
+      "evidence_refs": [
+        "04_arguments.json#arguments"
+      ]
+    },
+    {
+      "dimension": "participation_balance",
+      "score_0_5": 3,
+      "basis": "Исполнитель говорил больше, но все стороны участвовали в каждом пункте.",
+      "evidence_refs": [
+        "05_power.json#talk_time_share"
+      ]
+    }
+  ],
+  "overall_score_0_5": 3.3,
+  "calculation": "Среднее арифметическое шести измерений: (4+2+4+4+3+3)/6 = 3.3",
+  "classification": "partial_effectiveness",
+  "strengths": [
+    "Чёткая повестка и подведение итогов в конце встречи",
+    "Риск по интеграции назван и закреплён за владельцем"
+  ],
+  "losses": [
+    "Решение по схеме оплаты не принято",
+    "Гарантия на оборудование не обсуждена"
+  ],
+  "next_meeting_protocol": [
+    "Получить уточнённую смету до 2026-11-05 и подготовить решение по схеме оплаты к 2026-11-10",
+    "Проверить результат запроса документации по API у прежнего подрядчика",
+    "Включить условия гарантии на оборудование в повестку следующей встречи"
+  ],
+  "confidence": "probable"
+}

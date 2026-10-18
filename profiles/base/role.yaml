@@ -1,0 +1,69 @@
+# profiles/base/role.yaml
+# Универсальный ролевой профиль по умолчанию.
+# Не делает предположений о роли пользователя: user_role=other до подтверждения.
+# Приоритетные представления — общие для любой роли. Смысл сущностей ядра не меняется.
+# Валидируется по core/ontology/profile.schema.json ($defs/role_profile).
+
+meta:
+  profile_kind: role
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: confirmed
+  confirmed_on: null
+  confirmation_source: universal_default
+  description: "Универсальные значения по умолчанию; переопределяются ролевым профилем пользователя."
+  synthetic: false
+
+user_role: other
+additional_roles: []
+role_title_freeform: null
+
+confirmed_responsibility_areas: []
+
+scope:
+  verbatim: null
+  status: not_confirmed
+
+priority_views:
+  - control_center
+  - decision_required_today
+  - review_queue
+  - pre_meeting_brief
+  - post_meeting_analysis_and_protocol
+  - evidence_search
+
+default_depth: executive_one_screen
+
+periodic_reviews:
+  - weekly
+  - monthly
+
+enabled_modules:
+  - meeting_and_negotiation_analysis
+  - audio_analysis
+  - risk_management
+  - execution_control
+
+tracked_object_types:
+  - fact_and_evidence
+  - executive_decision
+  - management_assignment
+  - external_commitment
+  - risk_issue_incident_escalation
+  - open_question_dependency_blocker
+  - execution_result_and_evidence
+  - next_action_and_meeting_material
+
+tracked_behavior_dimensions:
+  - commitment_reliability
+  - typical_positions_and_objections
+  - repeated_negotiation_and_management_patterns
+
+analysis_focus:
+  primary_entities: [Commitment, Decision, Assignment, Risk, OpenItem]
+  primary_topic_categories: []
+  primary_risk_types: []
+
+not_confirmed:
+  - "Роль и полномочия пользователя"
+  - "Приоритетные направления работы"

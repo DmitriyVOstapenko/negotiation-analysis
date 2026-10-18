@@ -1,0 +1,58 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "talk_time_share": [
+    {
+      "person_id": "p-krylova-polaris",
+      "share_pct": 36
+    },
+    {
+      "person_id": "p-danilov-nordtech",
+      "share_pct": 42
+    },
+    {
+      "person_id": "p-zaytseva-polaris",
+      "share_pct": 22
+    }
+  ],
+  "question_marks_in_transcript": [
+    {
+      "person_id": "p-krylova-polaris",
+      "count": 5
+    },
+    {
+      "person_id": "p-danilov-nordtech",
+      "count": 2
+    },
+    {
+      "person_id": "p-zaytseva-polaris",
+      "count": 4
+    }
+  ],
+  "interruptions": [],
+  "dominant_speaker": "p-danilov-nordtech",
+  "framing_control": "p-krylova-polaris",
+  "framing_moments": [
+    {
+      "speaker": "p-krylova-polaris",
+      "quote": "Повестка: состав работ по складскому учёту на три склада, сроки и схема оплаты.",
+      "timestamp": "00:00:04",
+      "description": "Задала повестку и порядок обсуждения."
+    },
+    {
+      "speaker": "p-krylova-polaris",
+      "quote": "Хорошо. Давайте подведём итог. Что у нас зафиксировано?",
+      "timestamp": "00:10:33",
+      "description": "Инициировала фиксацию договорённостей в конце встречи."
+    }
+  ],
+  "concessions": [
+    {
+      "speaker": "p-danilov-nordtech",
+      "quote": "Если первый платёж идёт сразу после обследования, а не после внедрения, мы готовы обсуждать такую схему.",
+      "timestamp": "00:07:35",
+      "prior_position_quote": "Мы обычно работаем по схеме пятьдесят на пятьдесят: половина при старте, половина после запуска.",
+      "prior_position_timestamp": "00:06:26"
+    }
+  ],
+  "evidence_note": "Доли речи оценены по числу и длине реплик в транскрипте; инструментальные измерения длительности не проводились."
+}

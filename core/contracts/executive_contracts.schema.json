@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DmitriyVOstapenko/negotiation-analysis/schemas/executive-contracts.schema.json",
+  "title": "Управленческие объекты",
+  "type": "object",
+  "required": ["object_type", "data"],
+  "properties": {
+    "object_type": {
+      "enum": [
+        "decision",
+        "assignment",
+        "initiative",
+        "commitment",
+        "risk",
+        "opportunity",
+        "stakeholder_position",
+        "behavior_observation",
+        "psychological_hypothesis",
+        "review_item",
+        "source_artifact"
+      ]
+    },
+    "data": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"object_type": {"const": "decision"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/decision"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "assignment"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/assignment"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "initiative"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/initiative"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "commitment"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/commitment"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "risk"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/risk"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "opportunity"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/opportunity"}}}
+    },
+    {
+      "if": {"properties": {"object_type": {"const": "source_artifact"}}},
+      "then": {"properties": {"data": {"$ref": "#/$defs/sourceArtifact"}}}
+    }
+  ],
+  "$defs": {
+    "evidenceRef": {
+      "type": "object",
+      "required": ["source_id", "evidence_class"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "evidence_class": {
+          "enum": [
+            "confirmed_fact",
+            "observation",
+            "interpretation",
+            "working_hypothesis",
+            "recommendation",
+            "user_confirmed_decision"
+          ]
+        },
+        "quote": {"type": ["string", "null"]},
+        "timestamp": {"type": ["string", "null"]},
+        "page_or_cell": {"type": ["string", "null"]},
+        "context": {"type": ["string", "null"]},
+        "confidence": {"enum": ["high", "medium", "low", "not_assessed"]}
+      },
+      "additionalProperties": true
+    },
+    "evidenceArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/evidenceRef"}
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "statement", "status", "decision_owner", "decided_at", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "status": {"enum": ["proposed", "confirmed", "rejected", "deferred", "superseded", "cancelled"]},
+        "decision_owner": {"type": "string", "minLength": 1},
+        "decided_at": {"type": ["string", "null"]},
+        "supersedes": {"type": "array", "items": {"type": "string"}},
+        "superseded_by": {"type": ["string", "null"]},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "assignment": {
+      "type": "object",
+      "required": ["id", "statement", "assignee", "status", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "assignee": {"type": "string", "minLength": 1},
+        "status": {"enum": ["draft", "assigned", "accepted", "in_progress", "blocked", "overdue", "submitted_for_review", "done", "cancelled"]},
+        "deadline": {"type": ["string", "null"]},
+        "execution_evidence": {"type": "array"},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "initiative": {
+      "type": "object",
+      "required": ["id", "title", "owner", "status", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "owner": {"type": "string", "minLength": 1},
+        "status": {"enum": ["idea", "assessment", "approved", "active", "paused", "completed", "cancelled"]},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "commitment": {
+      "type": "object",
+      "required": ["id", "statement", "from_party", "to_party", "status", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "from_party": {"type": "string", "minLength": 1},
+        "to_party": {"type": "string", "minLength": 1},
+        "status": {"enum": ["proposed", "accepted", "in_progress", "fulfilled", "overdue", "disputed", "cancelled"]},
+        "fulfillment_evidence": {"type": "array"},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "risk": {
+      "type": "object",
+      "required": ["id", "statement", "status", "owner", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "owner": {"type": "string", "minLength": 1},
+        "status": {"enum": ["candidate", "active", "monitoring", "materialized", "mitigated", "closed", "accepted"]},
+        "probability": {"enum": ["high", "medium", "low", "unknown"]},
+        "impact": {"enum": ["critical", "high", "medium", "low", "unknown"]},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "opportunity": {
+      "type": "object",
+      "required": ["id", "statement", "status", "owner", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "owner": {"type": "string", "minLength": 1},
+        "status": {"enum": ["candidate", "assessing", "active", "realized", "declined", "expired", "closed"]},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      },
+      "additionalProperties": true
+    },
+    "sourceArtifact": {
+      "type": "object",
+      "required": ["id", "provider", "source_type", "captured_at_or_document_date", "ingested_at", "sensitivity", "processing_status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "source_type": {"type": "string", "minLength": 1},
+        "captured_at_or_document_date": {"type": ["string", "null"]},
+        "ingested_at": {"type": "string", "minLength": 1},
+        "content_sha256": {"type": ["string", "null"]},
+        "sensitivity": {"type": "string", "minLength": 1},
+        "processing_status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  }
+}

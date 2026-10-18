@@ -1,0 +1,119 @@
+{
+  "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+  "participants": [
+    {
+      "person_id": "p-krylova-polaris",
+      "full_name": "Анна Крылова",
+      "role": "procurement_head",
+      "role_freeform": "директор по закупкам",
+      "company_id": "org-polaris",
+      "is_our_side": true,
+      "identity_source": "user_confirmed",
+      "confidence": "certain"
+    },
+    {
+      "person_id": "p-danilov-nordtech",
+      "full_name": "Олег Данилов",
+      "role": "project_manager",
+      "role_freeform": "руководитель проектов",
+      "company_id": "org-nordtech",
+      "is_our_side": false,
+      "identity_source": "user_confirmed",
+      "confidence": "certain"
+    },
+    {
+      "person_id": "p-zaytseva-polaris",
+      "full_name": "Марина Зайцева",
+      "role": "functional_head",
+      "role_freeform": "финансовый контролёр",
+      "company_id": "org-polaris",
+      "is_our_side": true,
+      "identity_source": "user_confirmed",
+      "confidence": "certain"
+    }
+  ],
+  "companies": [
+    {
+      "id": "org-polaris",
+      "legal_name": "ООО «Полярис»",
+      "short_name": "Полярис",
+      "inn": null,
+      "is_our_side": true,
+      "relation_type": "internal",
+      "confidence": "certain"
+    },
+    {
+      "id": "org-nordtech",
+      "legal_name": "ООО «Нордтех»",
+      "short_name": "Нордтех",
+      "inn": null,
+      "is_our_side": false,
+      "relation_type": "supplier",
+      "confidence": "certain"
+    }
+  ],
+  "topics": [
+    {
+      "id": "wms-three-warehouses",
+      "title": "Внедрение складского учёта на три склада",
+      "category": "scope",
+      "status": "in_progress",
+      "source_quote": "Повестка: состав работ по складскому учёту на три склада, сроки и схема оплаты.",
+      "source_timestamp": "00:00:04",
+      "confidence": "certain"
+    },
+    {
+      "id": "wms-payment-terms",
+      "title": "Схема оплаты по этапам",
+      "category": "payment_terms",
+      "status": "open",
+      "source_quote": "Мы предлагаем схему тридцать, сорок и тридцать процентов с привязкой к приёмке каждого этапа.",
+      "source_timestamp": "00:06:12",
+      "confidence": "certain"
+    },
+    {
+      "id": "wms-api-integration",
+      "title": "Интеграция с учётной системой заказчика",
+      "category": "other",
+      "status": "blocked",
+      "source_quote": "Здесь нам нужна документация по API вашей учётной системы. Без неё мы не можем подтвердить срок интеграции.",
+      "source_timestamp": "00:02:52",
+      "confidence": "certain"
+    }
+  ],
+  "key_facts": [
+    {
+      "fact": "Уточнение сметы по распределительному складу изменит общую смету не более чем на 5% и только в сторону уменьшения.",
+      "quote": "Общая смета изменится не более чем на пять процентов, и только в сторону уменьшения.",
+      "timestamp": "00:02:27",
+      "confidence": "certain"
+    },
+    {
+      "fact": "Документации по API учётной системы заказчика нет.",
+      "quote": "Документации по API у нас нет, система дорабатывалась подрядчиком несколько лет назад.",
+      "timestamp": "00:03:06",
+      "confidence": "certain"
+    },
+    {
+      "fact": "Срок проекта — 17 недель при наличии документации по API.",
+      "quote": "Если документация будет, семнадцать недель — реалистичный срок.",
+      "timestamp": "00:05:38",
+      "confidence": "certain"
+    },
+    {
+      "fact": "Около 40% сметы приходится на оборудование.",
+      "quote": "Примерно сорок процентов сметы — это оборудование, остальное — работы и лицензии.",
+      "timestamp": "00:07:10",
+      "confidence": "probable"
+    },
+    {
+      "fact": "Лицензии будут пересчитаны на 24 пользователя, запас вынесен в отдельную опцию.",
+      "quote": "Тогда в уточнённой смете поставим двадцать четыре лицензии, а запас вынесем в отдельную опцию.",
+      "timestamp": "00:09:38",
+      "confidence": "certain"
+    }
+  ],
+  "outcome": "partial",
+  "outcome_summary": "Состав работ по трём складам в основном согласован; смета будет уточнена после передачи схемы зонирования; решение по схеме оплаты отложено до получения уточнённой сметы; зафиксирован риск сдвига интеграции из-за отсутствия документации по API.",
+  "excluded_source_range": null
+}

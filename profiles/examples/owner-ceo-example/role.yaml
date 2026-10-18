@@ -1,0 +1,119 @@
+# profiles/examples/owner-ceo-example/role.yaml
+# СИНТЕТИЧЕСКИЙ пример ролевого профиля: владелец, учредитель, генеральный
+# директор и председатель совета директоров вымышленной группы «Демо-Групп».
+# Показывает, куда ушла owner/CEO/board-специфика исходной онтологии v1.1.0:
+# управленческие представления, решения и поручения, портфель инициатив,
+# board pack, недельный и месячный обзор, краткий управленческий экран.
+# Реальных лиц нет.
+
+meta:
+  profile_kind: role
+  profile_version: "1.0.0"
+  ontology_version: "1.0.0"
+  status: example_synthetic
+  confirmed_on: null
+  confirmation_source: synthetic_example
+  description: "Пример: собственник и генеральный директор группы компаний, председатель совета директоров."
+  synthetic: true
+
+user_role: owner
+additional_roles: [founder, CEO, board_chair]
+role_title_freeform: "Владелец и генеральный директор группы (пример)"
+
+confirmed_responsibility_areas:
+  - id: strategy
+    title: "Стратегия"
+  - id: government_customer_relations
+    title: "Взаимодействие с государственными заказчиками"
+  - id: board_relations
+    title: "Взаимодействие с советом директоров"
+  - id: management_relations
+    title: "Взаимодействие с менеджментом компании"
+
+scope:
+  verbatim: "Все остальные вопросы, которыми занимаются собственники компаний и генеральные директора."
+  status: confirmed_high_level_expand_from_sources
+
+priority_views:
+  - decision_required_today
+  - control_center
+  - strategic_initiative_portfolio
+  - decision_and_assignment_register
+  - risk_and_opportunity_map
+  - key_stakeholder_map
+  - pre_meeting_brief
+  - post_meeting_analysis_and_protocol
+  - board_pack
+  - periodic_review
+  - evidence_search
+  - review_queue
+  - conversation_strategy
+
+default_depth: executive_one_screen
+
+periodic_reviews:
+  - weekly
+  - monthly
+
+enabled_modules:
+  - meeting_and_negotiation_analysis
+  - audio_analysis
+  - strategic_decisions
+  - strategic_initiatives
+  - management_assignments
+  - board_governance
+  - government_customer_relations
+  - risk_management
+  - execution_control
+  - strategic_advisory
+
+tracked_object_types:
+  - fact_and_evidence
+  - decision_option
+  - executive_decision
+  - decision_rationale_and_dissent
+  - management_assignment
+  - strategic_initiative
+  - external_commitment
+  - risk_issue_incident_escalation
+  - opportunity
+  - stakeholder_position_influence_interest
+  - open_question_dependency_blocker
+  - execution_result_and_evidence
+  - next_action_and_meeting_material
+  - negotiation_strategy_draft
+
+tracked_behavior_dimensions:
+  - commitment_reliability
+  - preparation_and_argument_quality
+  - decision_influence
+  - typical_positions_and_objections
+  - acceleration_delay_and_blocking_patterns
+  - conflict_and_pressure_response
+  - repeated_negotiation_and_management_patterns
+
+analysis_focus:
+  primary_entities:
+    - Decision
+    - Assignment
+    - Initiative
+    - Risk
+    - Opportunity
+    - StakeholderPosition
+    - OpenItem
+  primary_topic_categories:
+    - budget_allocation
+    - kpi_targets
+    - compliance
+    - risks
+    - timeline
+  primary_risk_types:
+    - reputational
+    - compliance_legal
+    - human_capital
+    - financial
+    - counterparty
+
+not_confirmed:
+  - "К какому юридическому лицу или уровню группы относится каждый конкретный орган управления"
+  - "Полный перечень юридических лиц, бизнес-направлений и руководителей группы"
