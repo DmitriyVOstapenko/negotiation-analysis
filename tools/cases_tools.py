@@ -248,7 +248,10 @@ def cmd_pack(args: argparse.Namespace) -> int:
     print(f"{name}: собрано {len(got)}/{len(want)}; не хватает: {missing[:8]}")
     if missing:
         return 1
-    return cmd_import(argparse.Namespace(file=str(out)))
+    rc = cmd_import(argparse.Namespace(file=str(out)))
+    if rc == 0:
+        out.unlink(missing_ok=True)  # каноническая копия — в accepted/
+    return rc
 
 
 def main() -> int:
