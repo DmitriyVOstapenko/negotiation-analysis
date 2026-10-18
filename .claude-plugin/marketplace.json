@@ -1,0 +1,14 @@
+{
+  "name": "negociar-ru-marketplace",
+  "owner": {
+    "name": "Dmitriy Ostapenko"
+  },
+  "plugins": [
+    {
+      "name": "negociar-ru",
+      "source": ".",
+      "description": "Русская адаптация Negociar (Тарасов / Арти Галиев): канон 275 принципов + 1019 реальных разборов, по-русски. CC BY-NC-SA 4.0, оригинал © Artur Galiev.",
+      "version": "0.1.0"
+    }
+  ]
+}

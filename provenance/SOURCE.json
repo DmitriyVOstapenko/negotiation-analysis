@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "snapshot_created_on": "2026-08-25",
+  "source": {
+    "repository": "https://github.com/arturgaliev3099-ux/realmanagement",
+    "branch_at_verification": "main",
+    "commit": "d94df3bbb00e02e9389a7fa45f54d4907d318743",
+    "commit_date": "2026-08-17T19:30:15+02:00",
+    "commit_subject": "Merge pull request #2 from arturgaliev3099-ux/fix/h1-h2-h4-h5",
+    "declared_version": "1.0.8",
+    "main_verified_on": "2026-08-25",
+    "main_verification_method": "git ls-remote",
+    "main_commit_at_verification": "d94df3bbb00e02e9389a7fa45f54d4907d318743"
+  },
+  "snapshot": {
+    "path": "source-frozen/realmanagement-d94df3bbb00e02e9389a7fa45f54d4907d318743",
+    "tracked_files": 31,
+    "total_bytes": 6353545,
+    "git_metadata_included": false,
+    "upstream_remote_configured": false
+  },
+  "corpus": {
+    "principles": 275,
+    "principle_domains": 10,
+    "cases": 1019,
+    "unique_case_id_n_pairs": 1019,
+    "unique_recording_ids": 144,
+    "spheres": {
+      "laboral": 830,
+      "pareja": 72,
+      "familia": 38,
+      "social": 79
+    },
+    "tiers_observed_in_json": {
+      "A": 854,
+      "B": 162,
+      "C": 3
+    },
+    "source_documentation_discrepancy": "README states A=920, B=96, C=3; casos.json contains A=854, B=162, C=3. The frozen source is not modified."
+  },
+  "license_from_upstream_file": {
+    "content": "CC BY-NC-SA 4.0",
+    "content_paths": [
+      "skills/negociar/data/",
+      "skills/negociar/SKILL.md",
+      "skills/negociar/EJEMPLO-NOVATO.md",
+      "README.md"
+    ],
+    "code": "MIT",
+    "code_paths_explicitly_listed": [
+      "skills/negociar/scripts/",
+      ".claude-plugin/"
+    ],
+    "copyright": "Copyright (c) 2026 Artur Galiev",
+    "attribution_url": "https://instagram.com/arti_galiev",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  }
+}

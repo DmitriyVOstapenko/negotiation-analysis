@@ -1,0 +1,12 @@
+{
+  "name": "negociar-ru",
+  "version": "0.1.0",
+  "description": "Русская адаптация Negociar — советника по коммуникации, управлению людьми, продажам и переговорам в традиции Владимира Тарасова по занятиям Арти Галиева: канон из 275 принципов и библиотека из 1019 реальных разборов, переведённые на русский. Восстанавливает реальную ситуацию, тактично показывает слепую зону, называет применимый закон и строит многоходовую стратегию с возражениями другой стороны и ответами на них. Стратег, а не копирайтер: дословный текст — только по прямой просьбе. Адаптация CC BY-NC-SA 4.0; оригинал © Artur Galiev.",
+  "author": {
+    "name": "Dmitriy Ostapenko (русская адаптация); оригинал — Artur Galiev"
+  },
+  "homepage": "https://github.com/DmitriyVOstapenko/negociar-ru",
+  "repository": "https://github.com/DmitriyVOstapenko/negociar-ru",
+  "license": "CC-BY-NC-SA-4.0 (content, adaptation of arturgaliev3099-ux/realmanagement) / MIT (code)",
+  "keywords": ["negotiation", "communication", "people-management", "sales", "conflict", "tarasov", "russian", "negociar"]
+}
