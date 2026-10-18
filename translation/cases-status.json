@@ -1,11 +1,16 @@
 {
  "total": 1019,
- "translated": 0,
- "remaining": 1019,
- "by_tier": {},
- "by_sphere": {},
- "words_translated": 0,
+ "translated": 25,
+ "remaining": 994,
+ "by_tier": {
+  "A": 23,
+  "B": 2
+ },
+ "by_sphere": {
+  "laboral": 25
+ },
+ "words_translated": 19620,
  "words_total": 862962,
  "titles_translated": 0,
- "corpus_status": "not_started"
+ "corpus_status": "machine_draft"
 }
