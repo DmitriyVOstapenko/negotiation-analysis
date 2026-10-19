@@ -11,7 +11,7 @@ description: >
   Galiev, Russian adaptation) to build the strategy; message drafts are never written
   unprompted and never sent.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
   license: "CC BY-NC-SA 4.0"
 ---
 

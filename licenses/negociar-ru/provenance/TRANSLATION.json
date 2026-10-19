@@ -18,7 +18,7 @@
   "started": "2026-10-19",
   "method": "llm_builtin (Claude, batched, glossary-driven)",
   "glossary": "translation-negociar-ru/glossary.md",
-  "glossary_version": "draft-4",
+  "glossary_version": "draft-5",
   "status_files": [
    "translation-negociar-ru/canon-status.json",
    "translation-negociar-ru/cases-status.json"
@@ -34,7 +34,30 @@
    "translation-negociar-ru/alignment-report-draft4-C.md",
    "translation-negociar-ru/alignment-report-draft4-D.md"
   ],
-  "human_review": "not yet performed"
+  "human_review": "not yet performed",
+  "localization": {
+   "target": "Russia",
+   "decided_by": "Dmitriy Ostapenko",
+   "date": "2026-10-19",
+   "rules": "translation-negociar-ru/glossary.md (Локализация под Россию, draft-5)",
+   "map": "translation-negociar-ru/localization-map.json",
+   "currency_rates_rub": {
+    "USD": 90,
+    "EUR": 100,
+    "GBP": 115,
+    "MXN": 5,
+    "COP": 0.02,
+    "ARS": 0.1,
+    "CLP": 0.1,
+    "PEN": 25
+   },
+   "not_localized": [
+    "host Arti Galiev and his biography",
+    "public figures",
+    "global services and brands",
+    "percentages and ratios"
+   ]
+  }
  },
  "changes": [
   "full Russian translation of canon (275 principles), case library (1019 cases) and SKILL.md",
@@ -46,6 +69,7 @@
   "case 00438891:400 (same bribery story as excluded principle) excluded from the Russian adaptation, 2026-10-19",
   "search script buscar.mjs ported to Python (skills/negociar-ru/scripts/buscar.py, MIT) with Russian word-form matching; results match the original on the same data",
   "adaptation merged into the plugin repository DmitriyVOstapenko/negotiation-analysis (skills/negociar-ru/, translation-negociar-ru/, licenses/negociar-ru/), 2026-10-19",
-  "terminology alignment passes (glossary draft-2, draft-3, draft-4); Spanish institutions and taxes are not replaced with Russian ones"
+  "terminology alignment passes (glossary draft-2, draft-3, draft-4); Spanish institutions and taxes are not replaced with Russian ones",
+  "localization to Russia (forms of address, institutions, taxes, documents, holidays; amounts converted to rubles at fixed rates; names of people other than the host and public figures, cities and local companies replaced by Russian ones), decided by the adaptation author 2026-10-19"
  ]
 }

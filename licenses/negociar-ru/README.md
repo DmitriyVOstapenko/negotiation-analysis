@@ -30,7 +30,8 @@
 `translation-negociar-ru/cases-status.json`; в каждом случае есть поле `translation_status`
 (`machine_draft` → `terminology_checked` → `reviewed` → `approved`). Переведено всё; после
 выравнивания терминов (словарь draft-4) статус корпуса — `terminology_checked`; проверки
-человеком (`reviewed`) ещё не было. Сомнительные
+человеком (`reviewed`) ещё не было. Действие перенесено в российские условия (обращения,
+учреждения, налоги, рубли, имена, города, компании) — см. `NOTICE.md`, раздел «Локализация под Россию». Сомнительные
 места — `translation-negociar-ru/translation-review.jsonl`. Словарь терминов —
 `translation-negociar-ru/glossary.md` (статус `draft` до утверждения).
 
