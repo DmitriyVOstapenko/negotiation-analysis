@@ -96,3 +96,15 @@
 - Labeling / Mirroring (Восс) → навешивание ярлыка (labeling) / отзеркаливание (mirroring); golpear la intención → бить по намерению
 - elevación al absurdo → доведение до абсурда; exceso de fuerza → избыток силы; duelos de gestión → управленческие поединки
 - заголовок 00438978:908: tiendas autónomas — «Автономные магазины» (не «независимые» = несетевые)
+
+## batch-023
+- compromiso → вовлечённость; propiedad de la empresa → сопричастность к компании; bonos por desempeño → премии за результаты
+- áreas de oportunidad → зоны роста; mapeo de procesos → карты процессов; lenguaje de fuerza → язык силы
+- recursos humanos (метка) → Отдел кадров; trabajador → работник; supervisor → супервайзер; обращение «jefe» сотрудника → «шеф»
+- director de teatro → режиссёр; productor → продюсер; Señor director → господин директор; tipo chill → расслабленный (chill) тип
+- despido improcedente → необоснованное увольнение; derecho a la ignorancia / derecho de olvidarlo → право на незнание / право на забывание
+- tener/ponerse la camiseta → носить / надеть футболку компании (буквально — цепочка «футболка → рубашка → пиджак» в 846)
+
+## Расхождения волны 019–026 для выравнивания
+- ponerse la camiseta: «играть за команду» (batch-026) / «надеть футболку компании» (batch-023, буквально из-за образа)
+- responsable / Jefe de Contabilidad / recursos humanos: «ответственный за кадры» / «Отдел кадров» / «директор по персоналу» — согласовать ряд HR
