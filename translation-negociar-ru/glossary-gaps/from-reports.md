@@ -392,3 +392,12 @@
 - refuerzo positivo → положительное подкрепление; incentivo y castigo → поощрение и наказание; seductores → пикаперы; casero → арендодатель
 - círculo interno → ближний круг; prepotente → высокомерный; altanero → заносчивый; sesgo → предвзятость; mentor → наставник; los cinco porqués → приём «пять почему»
 - colectivo → коллектив; no ceder terreno → не сдавать позиций; cambio de imagen → смена имиджа
+
+## batch-058 (draft-3)
+- gerente de producción (cultural) → руководитель производства (культурных мероприятий) — сверить с 237 («руководитель продакшена»?)
+- gerente de administración → административный руководитель (в 052: «руководитель административной службы» — выровнять); responsable de sistemas → ответственный за информационные системы (в 052: «специалист по…» — выровнять по responsable → специалист)
+- gerente de IT → руководитель ИТ-отдела; jefe de tecnología → технический руководитель; jefe regional de ventas → региональный руководитель продаж
+- ejecutivo/a de cuentas (clave) → менеджер по работе с (ключевыми) клиентами; Marketing Manager → менеджер по маркетингу
+- Redactor (газета) → журналист; Redactor creativo → креативный копирайтер; Editor jefe → главный редактор; Técnico audiovisual → аудиовизуальный техник
+- encargado de contabilidad → ответственный за бухгалтерию; Contable → Бухгалтер; compromisos (обещания клиенту) → обязательства
+- stock → остатки / запасы; manual de marca → брендбук; brainstorm → мозговой штурм; señor jefe → шеф
