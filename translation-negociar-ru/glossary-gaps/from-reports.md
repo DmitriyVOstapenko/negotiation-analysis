@@ -172,3 +172,19 @@
 - Trabajador (метка) → Работник; Huésped → Постоялец; Empresario → Предприниматель; hombre de negocios → бизнесмен
 - Vendedora senior → Старший продавец; Inversionista principal → Главный инвестор; Gerente General → Генеральный директор
 - transferir la lucha al futuro → перенести борьбу в будущее
+
+## batch-028 (draft-2)
+- autoridad (регулятор: «si llega la autoridad») → надзорный орган (не авторитет/власть)
+- gerente de distrito → районный управляющий; visitador médico → медицинский представитель; subdirector → заместитель директора
+- gerente de programadores → руководитель программистов; auxiliar contable → помощник бухгалтера; propietario (ТЦ) → собственник; trabajador → работник
+- frustrado / frustración (разбор на их различии, 337) → фрустрированный / фрустрация; compromiso con la empresa → приверженность компании (в 023: «вовлечённость» — выровнять); stock → запасы
+- метка «Gerente» как сокращение «Gerente financiero» → «Финансовый менеджер» полностью
+- брань: ¿qué coño es esto? → что это, нахрен, такое?; me jodieron → меня поимели
+
+## batch-030 (draft-2)
+- supervisor → «руководитель», «супервайзер» — если в случае есть и gerente (расходится с draft-3: всегда «супервайзер» — привести)
+- resistencia psicológica → психологическая устойчивость; experiencia del cliente → клиентский опыт; jefe regional → региональный руководитель
+- buscarse la vida → крутиться самим; argumento sólido → твёрдый аргумент; junior / mid → джуниор / мидл; Padre (роль) → Родитель
+- técnicas de atención al cliente → методики обслуживания клиентов (не «приёмы»: не название приёма)
+- участники с именем Arthur/Artur (223, 226, 243) — латиницей; ведущий — «Артур» / «Арти»
+- брань: hijos de puta → сукины дети; cabrón → сволочь; Joder → Бля (в 022 — «Твою мать»); Hostia → Твою мать (в 020/021 — «чёрт») — выровнять по draft-3
