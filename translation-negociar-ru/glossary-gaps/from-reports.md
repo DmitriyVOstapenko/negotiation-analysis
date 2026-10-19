@@ -328,3 +328,9 @@
 - Analista Junior → Младший аналитик; Líder → Лидер; Portavoz → Представитель; Persona 1/2 → Человек 1/2; Inversora → Инвестор; gerente regional → региональный руководитель
 - montar un pollo → скандал; comodín → джокер; fallos lógicos → логические нестыковки; empleado piedra / roca → сотрудник-камень / сотрудник-скала; interpretación (ролевая) → актёрская игра
 - брань: ¿estás puto tonto? → ты что, бля, тупой?; hostia → чёрт
+
+## batch-051 (draft-3)
+- Ingeniero Senior → Старший инженер; Técnico → Техник; Estudiante → Студент (≠ Alumno → Ученик); Maestro → Учитель; Exjefe → Бывший руководитель
+- Hombre / Mujer (метки) → Мужчина / Женщина; Jefe Administrativo → Административный руководитель; Artista/Pintor → Художник/Живописец; Cliente indeciso → Нерешительный клиент
+- Ponente (como X) → Ведущий (в роли X); presencialidad → очный формат / работа в офисе; tickets → тикеты; servicio de referidos → реферальная услуга; elaboración de perfil → составление профиля
+- tío (разг.) → мужик; брань: puta → долбаный; mierda → дерьмо
