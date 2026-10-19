@@ -70,6 +70,7 @@
   "search script buscar.mjs ported to Python (skills/negociar-ru/scripts/buscar.py, MIT) with Russian word-form matching; results match the original on the same data",
   "adaptation merged into the plugin repository DmitriyVOstapenko/negotiation-analysis (skills/negociar-ru/, translation-negociar-ru/, licenses/negociar-ru/), 2026-10-19",
   "terminology alignment passes (glossary draft-2, draft-3, draft-4); Spanish institutions and taxes are not replaced with Russian ones",
-  "localization to Russia (forms of address, institutions, taxes, documents, holidays; amounts converted to rubles at fixed rates; names of people other than the host and public figures, cities and local companies replaced by Russian ones), decided by the adaptation author 2026-10-19"
+  "localization to Russia (forms of address, institutions, taxes, documents, holidays; amounts converted to rubles at fixed rates; names of people other than the host and public figures, cities and local companies replaced by Russian ones), decided by the adaptation author 2026-10-19",
+  "exclusion of principle 05-ventas-complejas #8 and case 00438891:400 reverted by the adaptation author 2026-10-19: both restored in full (translated and localized like the rest), with an added 'adaptation note' that bribery of officials is a crime; the advisor skill does not recommend bribery"
  ]
 }

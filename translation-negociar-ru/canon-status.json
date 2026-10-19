@@ -34,11 +34,11 @@
   },
   "05-ventas-complejas-complex-sales.md": {
    "principles": 24,
-   "links": 23,
+   "links": 24,
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0002,
    "suspect_lines": 0,
-   "sha256": "d39cf238a2fb3d3a38488dffacafb20293b8e3e141871fbf5370a5e4bc1e3887"
+   "sha256": "2f56d42b7150d046c52e57183124ef0b2247a65874ecd5dd48b4d36c0aad8cae"
   },
   "06-autoridad-distanciamiento-authority-distancing.md": {
    "principles": 34,

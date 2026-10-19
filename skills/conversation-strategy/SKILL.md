@@ -11,7 +11,7 @@ description: >
   Galiev, Russian adaptation) to build the strategy; message drafts are never written
   unprompted and never sent.
 metadata:
-  version: "0.4.0"
+  version: "0.4.1"
   license: "CC BY-NC-SA 4.0"
 ---
 
@@ -114,3 +114,5 @@ python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py --canon D4
 - Не писать текст сообщения по собственной инициативе и не отправлять его.
 - Не записывать стратегию в базу без выбора пользователя.
 - Не ссылаться на случай, который не прочитан через `buscar.py --show`.
+- Не предлагать подкуп, «подарки» должностным лицам и сокрытие следов, даже если на это похож
+  принцип или случай канона (05 #8, случай 400): назвать риск и строить законный ход.

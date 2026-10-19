@@ -426,14 +426,19 @@ class NegociarRuTests(unittest.TestCase):
         self.assertEqual(canon.returncode, 0)
         self.assertTrue(canon.stdout.strip().endswith("08-gestion-conflicto-conflict-management.md"))
 
-    def test_excluded_material_not_distributed(self) -> None:
+    def test_restored_material_with_adaptation_note(self) -> None:
+        # изъятие 05 #8 и случая 400 отменено автором адаптации; текст полный, с примечанием адаптации,
+        # а правила навыка запрещают советнику рекомендовать подкуп
         canon05 = (self.SKILL / "data" / "canon" / "05-ventas-complejas-complex-sales.md").read_text(encoding="utf-8")
-        self.assertIn("изъят из русской адаптации", canon05)
+        self.assertNotIn("изъят из русской адаптации", canon05)
+        self.assertIn("квадроцикл", canon05)
+        self.assertIn("Примечание адаптации", canon05)
         casos = json.loads((self.SKILL / "data" / "casos.json").read_text(encoding="utf-8"))
-        c400 = casos[399]
-        self.assertEqual(c400["translation_status"], "excluded")
-        self.assertNotIn("cuadriciclo", c400["body"])
-        self.assertNotIn("квадроцикл", canon05)
+        c400 = next(c for c in casos if c["n"] == 400)
+        self.assertNotEqual(c400["translation_status"], "excluded")
+        self.assertIn("квадроцикл", c400["body"])
+        skill = (self.SKILL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("не рекомендуй подкуп", skill)
 
     def test_attribution_present(self) -> None:
         notice = (REPO / "licenses" / "negociar-ru" / "NOTICE.md").read_text(encoding="utf-8")
