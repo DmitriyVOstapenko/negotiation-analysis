@@ -208,3 +208,11 @@
 - deslizante (о сопернике) → скользкий; ir a por todas → идти ва-банк; colado → перебор
 - «como gerente, como jefe» в речи ведущего → «как управленец, как руководитель» (034: «управляющие, руководители» — выровнять пару gerente/jefe рядом)
 - a nivel de técnica → на уровне приёмов
+
+## batch-037 (draft-3)
+- leads → лиды; interceptar el manejo → перехватить управление; estar en el mismo barco → в одной лодке; llegar al exacto → дойти до «точно»
+- el pecado y no el pecador → называть грех, а не грешника; «frase de framing» → «фраза, задающая фрейм» (речь ведущего)
+- Analista de selección → аналитик по подбору персонала; Director de área → директор направления; Asistente → ассистент; ingeniera de procesos → инженер-технолог
+- «mi director» в обращении → господин директор; Participante A (como X) → Участник A (в роли X)
+- gerente de producción cultural (237) → «руководитель производства в сфере культуры» по словарю; по смыслу — «руководитель продакшена»: решить при проходе (и заголовок)
+- la técnica = технические навыки (437) → «технике», не «приёму» — допустимое исключение
