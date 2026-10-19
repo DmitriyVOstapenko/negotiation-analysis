@@ -83,6 +83,14 @@ def cmd_export(args: argparse.Namespace) -> int:
             for c in json.loads(p.read_text(encoding="utf-8")):
                 queued.add(key(c))
     pending = [c for c in pending if key(c) not in queued]
+    if getattr(args, "order", "source") == "priority":
+        # сначала уровень A с самым развёрнутым разбором (peso), затем B, C
+        tier_rank = {"A": 0, "B": 1, "C": 2}
+        pending.sort(key=lambda c: (tier_rank.get(c.get("tier"), 3), -(c.get("peso") or 0)))
+    exc_path = ROOT / "translation" / "exclusions.json"
+    if exc_path.exists():
+        ex = {f"{e['id']}:{e['n']}" for e in json.loads(exc_path.read_text(encoding="utf-8")).get("cases", [])}
+        pending = [c for c in pending if key(c) not in ex]
     size = args.size
     made = 0
     for i in range(0, len(pending), size):
@@ -286,7 +294,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     pk = sub.add_parser("pack"); pk.add_argument("batch"); pk.set_defaults(fn=cmd_pack)
-    e = sub.add_parser("export"); e.add_argument("--size", type=int, default=40); e.add_argument("--max-batches", type=int, default=0); e.set_defaults(fn=cmd_export)
+    e = sub.add_parser("export"); e.add_argument("--size", type=int, default=40); e.add_argument("--max-batches", type=int, default=0); e.add_argument("--order", choices=["source", "priority"], default="source"); e.set_defaults(fn=cmd_export)
     i = sub.add_parser("import"); i.add_argument("file"); i.set_defaults(fn=cmd_import)
     sub.add_parser("status").set_defaults(fn=cmd_status)
     sub.add_parser("assemble").set_defaults(fn=cmd_assemble)
