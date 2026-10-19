@@ -231,3 +231,9 @@
 - azafata → стюардесса; administrador → администратор; «Socio afectado» → «Пострадавший компаньон»; hoja de reclamación → бланк жалобы; señorita → сеньорита
 - «Cambio de roles» как метка блока → «**Смена ролей:**»; Doctor (метка) → Доктор
 - пара Jefe/Gerente de Ventas применена в 596 до pack
+
+## batch-036 (draft-3)
+- auditoría → аудит; compliance / cumplimiento normativo → комплаенс / соблюдение нормативных требований; Especialista en compliance → Специалист по комплаенсу
+- fiscal → прокурор; falta de compromiso → недостаток вовлечённости; imagen (профессиональная) → имидж (не «картина мира»)
+- micro gestión / micromanagement → микроменеджмент; deadline → дедлайн; recargo → наценка; alcance (проекта) → объём работ; HR → HR
+- метки: Comprador → Покупатель; Evaluador → Оценивающий; Técnico de laboratorio → Лаборант; Director médico → Медицинский директор; Visitante → Посетитель; Secretaria → Секретарь; Diseñador → Дизайнер; Proveedor → Поставщик; Señorito → Молодой человек
