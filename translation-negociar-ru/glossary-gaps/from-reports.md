@@ -80,3 +80,11 @@
 - Новые должности и обороты — в отчётах переводчиков; к следующему выравниванию собрать: supervisor → супервайзер; recepcionista → сотрудница ресепшена; agente/operario → оператор; ejecutivo de ventas → менеджер по продажам; becario → стажёр; despacho de abogados → юридическая фирма; manejo de objeciones → работа с возражениями; comprador oculto → тайный покупатель
 - Брань ведущего передаётся в том же регистре (решение: не смягчать)
 
+
+## batch-026
+- responsable de recursos humanos → ответственный за кадры; supervisor de planta → супервайзер цеха; Nueva gerente (роль) → новая руководительница (метка «Руководитель»)
+- dejar a medias → бросить на полпути; ponerse la camiseta → играть за команду; posición de fuerza → позиция силы; desahogo emocional → эмоциональный выплеск
+- cotización / presupuesto → коммерческое предложение / смета; herramienta «repítelo por favor» → инструмент «повтори, пожалуйста»
+- luchar por tu ignorancia → бороться за своё незнание (связь с «правом на незнание»)
+- Opinión del dato → «Мнение о данных» (буквально; проверить, не «данные против мнений»)
+- английское managers в речи участника → «менеджеров» (не gerente — правило «руководитель» не применялось); имя участника Arthur в 00438852:226 оставлено латиницей (это не ведущий)
