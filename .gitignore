@@ -27,3 +27,6 @@ Thumbs.db
 # сборка
 *.plugin
 dist/
+# рабочие части переводчиков Negociar-RU — в репозиторий идут собранные единицы и принятые пакеты
+translation-negociar-ru/canon-units/*.ru.parts/
+translation-negociar-ru/cases/work/
