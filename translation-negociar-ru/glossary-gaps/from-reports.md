@@ -108,3 +108,10 @@
 ## Расхождения волны 019–026 для выравнивания
 - ponerse la camiseta: «играть за команду» (batch-026) / «надеть футболку компании» (batch-023, буквально из-за образа)
 - responsable / Jefe de Contabilidad / recursos humanos: «ответственный за кадры» / «Отдел кадров» / «директор по персоналу» — согласовать ряд HR
+
+## batch-021
+- verdad legal / técnica / ética / económica → юридическая / техническая / этическая / экономическая правда; golpear lo inesperado → ударить по неожиданному
+- director de operaciones / director general → операционный директор / генеральный директор; jefe de departamento administrativo → руководитель административного отдела
+- retroalimentación personal (ведущий участнику) → личный разбор; escalar / escalación → эскалировать / эскалация; condescendencia → снисходительность
+- ajustes (требований) → правки; Editor / Anunciante → Издатель / Рекламодатель; árbitro → судья; onboarding → онбординг
+- брань: hostia → чёрт; tocarle las pelotas → задолбать; cabrón → сволочь; a la mierda → в жопу (сверить регистр с 025: «долбаный мудак», «обосрётесь»)
