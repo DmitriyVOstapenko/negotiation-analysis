@@ -1,0 +1,38 @@
+{
+ "schema_version": "1.0",
+ "adaptation": "negociar-ru",
+ "adaptation_author": "Dmitriy Ostapenko",
+ "adaptation_license": "CC-BY-NC-SA-4.0",
+ "source": {
+  "repository": "https://github.com/arturgaliev3099-ux/realmanagement",
+  "commit": "d94df3bbb00e02e9389a7fa45f54d4907d318743",
+  "commit_date": "2026-08-17T19:30:15+02:00",
+  "declared_version": "1.0.8",
+  "content_license": "CC-BY-NC-SA-4.0",
+  "code_license": "MIT",
+  "copyright": "Copyright (c) 2026 Artur Galiev",
+  "attribution": "Arti Galiev, https://instagram.com/arti_galiev",
+  "endorsement": "none claimed"
+ },
+ "translation": {
+  "started": "2026-10-19",
+  "method": "llm_builtin (Claude, batched, glossary-driven)",
+  "glossary": "translation/glossary.md",
+  "glossary_version": "draft-1",
+  "status_files": [
+   "translation/canon-status.json",
+   "translation/cases-status.json"
+  ],
+  "review_notes": "translation/translation-review.jsonl",
+  "corpus_status": "machine_draft"
+ },
+ "changes": [
+  "full Russian translation of canon (275 principles), case library (1019 cases) and SKILL.md",
+  "Russian as default answer language",
+  "search script messages translated (MIT code, modified)",
+  "skill directory renamed negociar -> negociar-ru to coexist with upstream",
+  "new tools/ for translation, verification and assembly (MIT)",
+  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation/exclusions.json and NOTICE.md",
+  "case 00438891:400 (same bribery story as excluded principle) excluded from the Russian adaptation, 2026-10-19"
+ ]
+}

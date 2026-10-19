@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438847",
+  "n": 201,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Analista junior vs. Gerente de innovación",
+  "title_ru": "Младший аналитик против руководителя по инновациям"
+ },
+ {
+  "id": "00438847",
+  "n": 202,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Analista junior vs. Gerente de innovación (Roles invertidos)",
+  "title_ru": "Младший аналитик против руководителя по инновациям (смена ролей)"
+ },
+ {
+  "id": "00438847",
+  "n": 203,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Técnico de soporte vs. Jefe de sistemas",
+  "title_ru": "Техник поддержки против руководителя ИТ-отдела"
+ },
+ {
+  "id": "00438847",
+  "n": 204,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Técnico de soporte vs. Jefe de sistemas (Roles invertidos)",
+  "title_ru": "Техник поддержки против руководителя ИТ-отдела (смена ролей)"
+ },
+ {
+  "id": "00438848",
+  "n": 205,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Especialista en ventas digitales contra responsable de tecnología",
+  "title_ru": "Специалист по цифровым продажам против ответственного за технологии"
+ },
+ {
+  "id": "00438849",
+  "n": 206,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Ingeniero de mantenimiento contra coordinador de producción",
+  "title_ru": "Инженер по техобслуживанию против координатора производства"
+ },
+ {
+  "id": "00438849",
+  "n": 207,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Responsable de caja contra jefe de sucursal bancaria",
+  "title_ru": "Ответственный за кассу против руководителя банковского отделения"
+ },
+ {
+  "id": "00438849",
+  "n": 208,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Diseñador gráfico contra coordinador de marca",
+  "title_ru": "Графический дизайнер против координатора бренда"
+ },
+ {
+  "id": "00438849",
+  "n": 209,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Técnico de laboratorio clínico contra director médico",
+  "title_ru": "Лаборант клинической лаборатории против медицинского директора"
+ },
+ {
+  "id": "00438849",
+  "n": 210,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Auxiliar contable con jefe de administración",
+  "title_ru": "Помощник бухгалтера с руководителем административного отдела"
+ },
+ {
+  "id": "00438851",
+  "n": 211,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El bote vacío en la oficina de correos",
+  "title_ru": "Пустая лодка на почте"
+ },
+ {
+  "id": "00438851",
+  "n": 212,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La provocación del vikingo",
+  "title_ru": "Провокация викинга"
+ },
+ {
+  "id": "00438851",
+  "n": 213,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Retraso en la entrega y penalización contractual",
+  "title_ru": "Задержка поставки и договорный штраф"
+ },
+ {
+  "id": "00438851",
+  "n": 214,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Conflicto por retrasos y penalizaciones contractuales",
+  "title_ru": "Конфликт из-за задержек и договорных штрафов"
+ },
+ {
+  "id": "00438851",
+  "n": 215,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de insumos en enfermería",
+  "title_ru": "Нехватка расходных материалов в сестринской службе"
+ },
+ {
+  "id": "00438851",
+  "n": 216,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Descarte de estrategia de contenidos",
+  "title_ru": "Отказ от контент-стратегии"
+ },
+ {
+  "id": "00438851",
+  "n": 217,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinador de contenidos vs. Director de marketing (Continuación)",
+  "title_ru": "Координатор контента против директора по маркетингу (продолжение)"
+ },
+ {
+  "id": "00438851",
+  "n": 218,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Supervisor de planta contra Responsable de seguridad industrial",
+  "title_ru": "Супервайзер производства против ответственного за промышленную безопасность"
+ },
+ {
+  "id": "00438851",
+  "n": 219,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Promoción interna Team Lead de Exportaciones",
+  "title_ru": "Внутреннее повышение на позицию тимлида по экспорту"
+ },
+ {
+  "id": "00438851",
+  "n": 220,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinador de logística contra Ejecutivo de cuentas clave",
+  "title_ru": "Координатор логистики против менеджера по ключевым клиентам"
+ },
+ {
+  "id": "00438851",
+  "n": 221,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinación entre Ventas y Logística (Continuación)",
+  "title_ru": "Координация между продажами и логистикой (продолжение)"
+ },
+ {
+  "id": "00438851",
+  "n": 222,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Gerente de tienda vs. Jefe regional",
+  "title_ru": "Управляющий магазином против регионального руководителя"
+ },
+ {
+  "id": "00438852",
+  "n": 223,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinadora logística contra Directora de operaciones internacionales",
+  "title_ru": "Координатор логистики против директора по международным операциям"
+ },
+ {
+  "id": "00438852",
+  "n": 224,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Especialista de compliance contra Directora jurídica",
+  "title_ru": "Специалист по комплаенсу против юридического директора"
+ },
+ {
+  "id": "00438852",
+  "n": 225,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Ejecutivo comercial contra el director general de filial",
+  "title_ru": "Коммерческий менеджер против генерального директора филиала"
+ },
+ {
+  "id": "00438852",
+  "n": 226,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinador de mantenimiento contra Gerente de planta industrial",
+  "title_ru": "Координатор по техобслуживанию против управляющего заводом"
+ },
+ {
+  "id": "00438852",
+  "n": 227,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Bibliotecaria digital contra el director académico de la universidad",
+  "title_ru": "Цифровой библиотекарь против академического директора университета"
+ },
+ {
+  "id": "00438852",
+  "n": 228,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Encargado de call center contra Directora de experiencia del cliente",
+  "title_ru": "Заведующий колл-центром против директора по клиентскому опыту"
+ },
+ {
+  "id": "00438852",
+  "n": 229,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Ronda 2) — Coordinadora logística contra Directora de operaciones internacionales",
+  "title_ru": "(Раунд 2) — Координатор логистики против директора по международным операциям"
+ },
+ {
+  "id": "00438852",
+  "n": 230,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Ronda 2) — Ejecutivo comercial contra el director general de filial",
+  "title_ru": "(Раунд 2) — Коммерческий менеджер против генерального директора филиала"
+ },
+ {
+  "id": "00438852",
+  "n": 231,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Ronda 2) — Bibliotecaria digital contra el director académico de la universidad",
+  "title_ru": "(Раунд 2) — Цифровой библиотекарь против академического директора университета"
+ },
+ {
+  "id": "00438852",
+  "n": 232,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Ronda 2) — Coordinador de mantenimiento contra Gerente de planta industrial",
+  "title_ru": "(Раунд 2) — Координатор по техобслуживанию против управляющего заводом"
+ },
+ {
+  "id": "00438853",
+  "n": 233,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El amigo y la fotocopia",
+  "title_ru": "Друг и ксерокопия"
+ },
+ {
+  "id": "00438853",
+  "n": 234,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El amigo y las criptomonedas",
+  "title_ru": "Друг и криптовалюты"
+ },
+ {
+  "id": "00438853",
+  "n": 235,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El chiringuito en España",
+  "title_ru": "Пляжный бар в Испании"
+ },
+ {
+  "id": "00438853",
+  "n": 236,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Técnico audiovisual contra gerente de producción cultural",
+  "title_ru": "Аудиовизуальный техник против руководителя производства культурных мероприятий"
+ },
+ {
+  "id": "00438853",
+  "n": 237,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Técnico audiovisual contra gerente de producción (Alternativa)",
+  "title_ru": "Аудиовизуальный техник против руководителя производства (альтернатива)"
+ },
+ {
+  "id": "00438853",
+  "n": 238,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Agente de seguros contra director comercial regional",
+  "title_ru": "Страховой агент против регионального коммерческого директора"
+ },
+ {
+  "id": "00438853",
+  "n": 239,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Agente de seguros contra director comercial (Alternativa)",
+  "title_ru": "Страховой агент против коммерческого директора (альтернатива)"
+ },
+ {
+  "id": "00438853",
+  "n": 240,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinadora de cuentas por pagar contra gerente financiero",
+  "title_ru": "Координатор кредиторской задолженности против финансового менеджера"
+ },
+ {
+  "id": "00438853",
+  "n": 241,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinadora de cuentas contra gerente financiero (Alternativa)",
+  "title_ru": "Координатор по счетам против финансового менеджера (альтернатива)"
+ },
+ {
+  "id": "00438853",
+  "n": 242,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Especialista de IT contra director de tecnología",
+  "title_ru": "ИТ-специалист против технического директора"
+ },
+ {
+  "id": "00438853",
+  "n": 243,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Especialista de IT contra director de tecnología (Alternativa)",
+  "title_ru": "ИТ-специалист против технического директора (альтернатива)"
+ },
+ {
+  "id": "00438853",
+  "n": 244,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Encargada de tienda contra gerente de zona",
+  "title_ru": "Заведующий магазином против территориального управляющего"
+ },
+ {
+  "id": "00438853",
+  "n": 245,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Encargada de tienda contra gerente de zona (Alternativa)",
+  "title_ru": "Заведующий магазином против территориального управляющего (альтернатива)"
+ },
+ {
+  "id": "00438853",
+  "n": 246,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Supervisor de call center contra directora de operaciones",
+  "title_ru": "Супервайзер колл-центра против операционного директора"
+ },
+ {
+  "id": "00438853",
+  "n": 247,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Supervisor de call center contra directora de operaciones (Alternativa)",
+  "title_ru": "Супервайзер колл-центра против операционного директора (альтернатива)"
+ },
+ {
+  "id": "00438854",
+  "n": 248,
+  "domain": "D9 Productividad y hábitos",
+  "title_es": "El minero de oro",
+  "title_ru": "Золотодобытчик"
+ },
+ {
+  "id": "00438854",
+  "n": 249,
+  "domain": "D9 Productividad y hábitos",
+  "title_es": "El rapero estancado",
+  "title_ru": "Рэпер, который застрял на месте"
+ },
+ {
+  "id": "00438855",
+  "n": 250,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinadora de almacén vs. Directora de cadena de suministro",
+  "title_ru": "Координатор склада против директора по цепочке поставок"
+ },
+ {
+  "id": "00438855",
+  "n": 251,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Ingeniero de mantenimiento vs. Gerente de planta industrial",
+  "title_ru": "Инженер по техобслуживанию против управляющего заводом"
+ },
+ {
+  "id": "00438855",
+  "n": 252,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Supervisor de tienda vs. Responsable de visual merchandising",
+  "title_ru": "Супервайзер магазина против ответственного за визуальный мерчандайзинг"
+ },
+ {
+  "id": "00438855",
+  "n": 253,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinador de proyectos vs. Desarrollador senior",
+  "title_ru": "Координатор проектов против старшего разработчика"
+ },
+ {
+  "id": "00438855",
+  "n": 254,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Especialista legal vs. Responsable de producto",
+  "title_ru": "Юрист против ответственного за продукт"
+ },
+ {
+  "id": "00438856",
+  "n": 255,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Desacuerdo entre Seguridad y Almacén",
+  "title_ru": "Разногласие между службой безопасности и складом"
+ },
+ {
+  "id": "00438856",
+  "n": 256,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Jefa de talento humano versus supervisor de producción",
+  "title_ru": "Руководитель по работе с персоналом против супервайзера производства"
+ },
+ {
+  "id": "00438856",
+  "n": 257,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cambio de roles (Jefa de talento humano versus supervisor de producción)",
+  "title_ru": "Смена ролей (руководитель по работе с персоналом против супервайзера производства)"
+ },
+ {
+  "id": "00438856",
+  "n": 258,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Especialista en IT contra la directora administrativa",
+  "title_ru": "ИТ-специалист против административного директора"
+ },
+ {
+  "id": "00438856",
+  "n": 259,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cambio de roles (Especialista en IT contra la directora administrativa)",
+  "title_ru": "Смена ролей (ИТ-специалист против административного директора)"
+ },
+ {
+  "id": "00438856",
+  "n": 260,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinadora de proyectos culturales contra diseñador freelance",
+  "title_ru": "Координатор культурных проектов против дизайнера-фрилансера"
+ },
+ {
+  "id": "00438856",
+  "n": 261,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cambio de roles (Coordinadora de proyectos culturales contra diseñador freelance)",
+  "title_ru": "Смена ролей (координатор культурных проектов против дизайнера-фрилансера)"
+ },
+ {
+  "id": "00438857",
+  "n": 262,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El portavoz del equipo ante el CEO",
+  "title_ru": "Представитель команды перед CEO"
+ },
+ {
+  "id": "00438857",
+  "n": 263,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cobros duplicados en la clínica",
+  "title_ru": "Двойные списания в клинике"
+ },
+ {
+  "id": "00438857",
+  "n": 264,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Paralización de la obra de construcción",
+  "title_ru": "Остановка стройки"
+ },
+ {
+  "id": "00438857",
+  "n": 265,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El correo no respondido (Ronda 1)",
+  "title_ru": "Письмо без ответа (Раунд 1)"
+ },
+ {
+  "id": "00438857",
+  "n": 266,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El correo no respondido (Ronda 2)",
+  "title_ru": "Письмо без ответа (Раунд 2)"
+ },
+ {
+  "id": "00438858",
+  "n": 267,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El informe financiero desactualizado",
+  "title_ru": "Устаревший финансовый отчёт"
+ },
+ {
+  "id": "00438858",
+  "n": 268,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El error en el plato VIP del restaurante",
+  "title_ru": "Ошибка в блюде для VIP-гостя ресторана"
+ },
+ {
+  "id": "00438858",
+  "n": 269,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Proyecciones financieras infladas",
+  "title_ru": "Завышенные финансовые прогнозы"
+ },
+ {
+  "id": "00438858",
+  "n": 270,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Valores corporativos vs. Realismo en planta",
+  "title_ru": "Корпоративные ценности против реализма на производстве"
+ },
+ {
+  "id": "00438859",
+  "n": 271,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Responsabilidad por errores ajenos",
+  "title_ru": "Ответственность за чужие ошибки"
+ },
+ {
+  "id": "00438859",
+  "n": 272,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de reconocimiento (propuesta presentada sin citar autoría)",
+  "title_ru": "Отсутствие признания (предложение представлено без указания автора)"
+ },
+ {
+  "id": "00438859",
+  "n": 273,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Conflicto de prioridades por jerarquía",
+  "title_ru": "Конфликт приоритетов из-за иерархии"
+ },
+ {
+  "id": "00438860",
+  "n": 274,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El pedido cancelado",
+  "title_ru": "Отменённый заказ"
+ },
+ {
+  "id": "00438860",
+  "n": 275,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Tareas fuera de perfil",
+  "title_ru": "Задачи не по профилю"
+ },
+ {
+  "id": "00438860",
+  "n": 276,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Reuniones innecesarias",
+  "title_ru": "Ненужные совещания"
+ },
+ {
+  "id": "00438860",
+  "n": 277,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Supervisión excesiva",
+  "title_ru": "Избыточный контроль"
+ },
+ {
+  "id": "00438860",
+  "n": 278,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de recursos (coordinadora ante plazo, equipo insuficiente)",
+  "title_ru": "Нехватка ресурсов (координатор перед сроком, команды не хватает)"
+ },
+ {
+  "id": "00438861",
+  "n": 279,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Promesa de aumento incumplida por políticas internas",
+  "title_ru": "Невыполненное обещание повышения из-за внутренних правил"
+ },
+ {
+  "id": "00438861",
+  "n": 280,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Cambio unilateral de horario por el gerente general",
+  "title_ru": "Одностороннее изменение графика генеральным директором"
+ },
+ {
+  "id": "00438861",
+  "n": 281,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Propuesta de innovación vs. Retorno inmediato",
+  "title_ru": "Инновационное предложение против немедленной отдачи"
+ },
+ {
+  "id": "00438861",
+  "n": 282,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Formación de empleados vs. Riesgo de fuga",
+  "title_ru": "Обучение сотрудников против риска их ухода"
+ },
+ {
+  "id": "00438863",
+  "n": 283,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Reconocimiento de ideas",
+  "title_ru": "Признание идей"
+ },
+ {
+  "id": "00438863",
+  "n": 284,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Sobrecarga del trabajo",
+  "title_ru": "Перегрузка работой"
+ },
+ {
+  "id": "00438863",
+  "n": 285,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Comunicación deficiente",
+  "title_ru": "Плохая коммуникация"
+ },
+ {
+  "id": "00438864",
+  "n": 286,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El rol de dueño e invitado en la venta de un negocio",
+  "title_ru": "Роли хозяина и гостя при продаже бизнеса"
+ },
+ {
+  "id": "00438864",
+  "n": 287,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El regateo de un reloj a las tres de la mañana",
+  "title_ru": "Торг за часы в три часа ночи"
+ },
+ {
+  "id": "00438864",
+  "n": 288,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación de sueldo entre empleado y jefe",
+  "title_ru": "Переговоры о зарплате между сотрудником и руководителем"
+ },
+ {
+  "id": "00438864",
+  "n": 289,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación de financiación con inversores",
+  "title_ru": "Переговоры с инвесторами о финансировании"
+ },
+ {
+  "id": "00438865",
+  "n": 290,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El sándwich de retroalimentación bien ejecutado",
+  "title_ru": "Правильно выполненный «сэндвич» обратной связи"
+ },
+ {
+  "id": "00438865",
+  "n": 291,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El despido de la empleada conflictiva",
+  "title_ru": "Увольнение конфликтной сотрудницы"
+ },
+ {
+  "id": "00438865",
+  "n": 292,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Simulación de confrontación en una obra",
+  "title_ru": "Имитация конфронтации на стройке"
+ },
+ {
+  "id": "00438867",
+  "n": 293,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Responsabilidad compartida",
+  "title_ru": "Разделённая ответственность"
+ },
+ {
+  "id": "00438867",
+  "n": 294,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Recursos insuficientes",
+  "title_ru": "Недостаточные ресурсы"
+ },
+ {
+  "id": "00438867",
+  "n": 295,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Diferencias culturales",
+  "title_ru": "Культурные различия"
+ },
+ {
+  "id": "00438868",
+  "n": 296,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El dilema de la reforma y la motivación de los trabajadores",
+  "title_ru": "Дилемма ремонта и мотивация рабочих"
+ },
+ {
+  "id": "00438870",
+  "n": 297,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El uso de excusas para proteger el ego en una relación",
+  "title_ru": "Отговорки для защиты эго в отношениях"
+ },
+ {
+  "id": "00438871",
+  "n": 298,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El caso de la plancha (Simulación de responsabilidad)",
+  "title_ru": "Случай с утюгом (сценка об ответственности)"
+ },
+ {
+  "id": "00438871",
+  "n": 299,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El caso de la plancha con terceros",
+  "title_ru": "Случай с утюгом при третьих лицах"
+ },
+ {
+  "id": "00438871",
+  "n": 300,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El retraso y la política de empresa (Responsabilidad ante un tercero)",
+  "title_ru": "Опоздание и политика компании (ответственность перед третьим лицом)"
+ }
+]

@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438839",
+  "n": 101,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de prácticas con director de carrera",
+  "title_ru": "Координатор практики с директором программы"
+ },
+ {
+  "id": "00438839",
+  "n": 102,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de prácticas con director de carrera (Cambio de roles)",
+  "title_ru": "Координатор практики с директором программы (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 103,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diseñadora gráfica con coordinadora de contenido",
+  "title_ru": "Графический дизайнер с координатором контента"
+ },
+ {
+  "id": "00438839",
+  "n": 104,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diseñadora gráfica con coordinadora de contenido (Cambio de roles)",
+  "title_ru": "Графический дизайнер с координатором контента (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 105,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinador de área técnica con consultora externa",
+  "title_ru": "Координатор технического отдела с внешним консультантом"
+ },
+ {
+  "id": "00438839",
+  "n": 106,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Coordinador de área técnica con consultora externa (Cambio de roles)",
+  "title_ru": "Координатор технического отдела с внешним консультантом (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 107,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Educadora en centro juvenil con coordinador institucional",
+  "title_ru": "Педагог молодёжного центра с координатором учреждения"
+ },
+ {
+  "id": "00438839",
+  "n": 108,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Educadora en centro juvenil con coordinador institucional (Cambio de roles)",
+  "title_ru": "Педагог молодёжного центра с координатором учреждения (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 109,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Ilustrador científico y editora académica",
+  "title_ru": "Научный иллюстратор и академический редактор"
+ },
+ {
+  "id": "00438839",
+  "n": 110,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Ilustrador científico y editora académica (Cambio de roles)",
+  "title_ru": "Научный иллюстратор и академический редактор (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 111,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Coordinadora de recursos humanos con gerente de planta industrial",
+  "title_ru": "Координатор по персоналу с управляющим заводом"
+ },
+ {
+  "id": "00438839",
+  "n": 112,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Coordinadora de recursos humanos con gerente de planta industrial (Cambio de roles)",
+  "title_ru": "Координатор по персоналу с управляющим заводом (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 113,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de innovación educativa con inspector del ministerio",
+  "title_ru": "Координатор образовательных инноваций с инспектором министерства"
+ },
+ {
+  "id": "00438839",
+  "n": 114,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de innovación educativa con inspector del ministerio (Cambio de roles)",
+  "title_ru": "Координатор образовательных инноваций с инспектором министерства (Смена ролей)"
+ },
+ {
+  "id": "00438840",
+  "n": 115,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La petición de aumento de sueldo",
+  "title_ru": "Просьба о повышении зарплаты"
+ },
+ {
+  "id": "00438840",
+  "n": 116,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El vestido de novia",
+  "title_ru": "Свадебное платье"
+ },
+ {
+  "id": "00438840",
+  "n": 117,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El jefe autoritario",
+  "title_ru": "Авторитарный руководитель"
+ },
+ {
+  "id": "00438840",
+  "n": 118,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El general del emperador",
+  "title_ru": "Генерал императора"
+ },
+ {
+  "id": "00438840",
+  "n": 119,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El vaso roto",
+  "title_ru": "Разбитый стакан"
+ },
+ {
+  "id": "00438840",
+  "n": 120,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La clase de matemáticas",
+  "title_ru": "Урок математики"
+ },
+ {
+  "id": "00438840",
+  "n": 121,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación con el jefe sobre recursos prometidos",
+  "title_ru": "Переговоры с руководителем об обещанных ресурсах"
+ },
+ {
+  "id": "00438840",
+  "n": 122,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El termo chino",
+  "title_ru": "Китайский термос"
+ },
+ {
+  "id": "00438840",
+  "n": 123,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinador de mantenimiento descubre fallas en la ventilación",
+  "title_ru": "Координатор по техобслуживанию обнаруживает дефекты вентиляции"
+ },
+ {
+  "id": "00438840",
+  "n": 124,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "N — Líder de soporte técnico con gerente de ventas",
+  "title_ru": "N — Руководитель техподдержки с руководителем отдела продаж"
+ },
+ {
+  "id": "00438840",
+  "n": 125,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "N — Especialista en diversidad con CEO de empresa en expansión",
+  "title_ru": "N — Специалист по разнообразию с CEO расширяющейся компании"
+ },
+ {
+  "id": "00438840",
+  "n": 126,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "N — Ingeniera civil con supervisor de obra",
+  "title_ru": "N — Инженер-строитель с прорабом"
+ },
+ {
+  "id": "00438840",
+  "n": 127,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "N — Capacitadora con jefe de logística",
+  "title_ru": "N — Тренер с руководителем логистики"
+ },
+ {
+  "id": "00438840",
+  "n": 128,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Capacitadora de ventas vs. Jefe de logística (Continuación)",
+  "title_ru": "Тренер по продажам против руководителя логистики (продолжение)"
+ },
+ {
+  "id": "00438840",
+  "n": 129,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Encargado de almacén vs. Jefe comercial",
+  "title_ru": "Заведующий складом против коммерческого директора"
+ },
+ {
+  "id": "00438840",
+  "n": 130,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinador de TI vs. Directora de administración",
+  "title_ru": "Координатор ИТ против административного директора"
+ },
+ {
+  "id": "00438841",
+  "n": 131,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Gestión de personal en clínica privada",
+  "title_ru": "Управление персоналом в частной клинике"
+ },
+ {
+  "id": "00438841",
+  "n": 132,
+  "domain": "D4 Negociación posicional",
+  "title_es": ".2 — Cambio de roles en clínica privada",
+  "title_ru": ".2 — Смена ролей в частной клинике"
+ },
+ {
+  "id": "00438841",
+  "n": 133,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diseño web vs. Impacto visual",
+  "title_ru": "Веб-дизайн против визуального эффекта"
+ },
+ {
+  "id": "00438841",
+  "n": 134,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": ".2 — Cambio de roles en Diseño web vs. Impacto visual",
+  "title_ru": ".2 — Смена ролей в «Веб-дизайн против визуального эффекта»"
+ },
+ {
+  "id": "00438841",
+  "n": 135,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Calidad de venta vs. Volumen de quejas",
+  "title_ru": "Качество продаж против объёма жалоб"
+ },
+ {
+  "id": "00438841",
+  "n": 136,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": ".2 — Cambio de roles en Calidad de venta vs. Volumen de quejas",
+  "title_ru": ".2 — Смена ролей в «Качество продаж против объёма жалоб»"
+ },
+ {
+  "id": "00438841",
+  "n": 137,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Gestión de voluntarios en ONG",
+  "title_ru": "Управление волонтёрами в НКО"
+ },
+ {
+  "id": "00438841",
+  "n": 138,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": ".2 — Cambio de roles en Gestión de voluntarios en ONG",
+  "title_ru": ".2 — Смена ролей в «Управление волонтёрами в НКО»"
+ },
+ {
+  "id": "00438841",
+  "n": 139,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Renovación de menú en restaurante",
+  "title_ru": "Обновление меню в ресторане"
+ },
+ {
+  "id": "00438841",
+  "n": 140,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": ".2 — Cambio de roles en Renovación de menú en restaurante",
+  "title_ru": ".2 — Смена ролей в «Обновление меню в ресторане»"
+ },
+ {
+  "id": "00438841",
+  "n": 141,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Adaptación de horarios en sucursal bancaria",
+  "title_ru": "Адаптация графика работы в банковском отделении"
+ },
+ {
+  "id": "00438841",
+  "n": 142,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": ".2 — Cambio de roles en Adaptación de horarios en sucursal bancaria",
+  "title_ru": ".2 — Смена ролей в «Адаптация графика работы в банковском отделении»"
+ },
+ {
+  "id": "00438842",
+  "n": 143,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Situación 377: Coordinador de flota y jefe de compras",
+  "title_ru": "Ситуация 377: Координатор автопарка и руководитель закупок"
+ },
+ {
+  "id": "00438842",
+  "n": 144,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Enfermera jefe de turno nocturno contra coordinador médico",
+  "title_ru": "Старшая медсестра ночной смены против медицинского координатора"
+ },
+ {
+  "id": "00438842",
+  "n": 145,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El protocolo nocturno desactualizado",
+  "title_ru": "Устаревший ночной протокол"
+ },
+ {
+  "id": "00438842",
+  "n": 146,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Sistema de reciclaje vs. Producción al 110%",
+  "title_ru": "Система переработки против производства на 110 %"
+ },
+ {
+  "id": "00438842",
+  "n": 147,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Sobrecarga de turnos y bajas por estrés",
+  "title_ru": "Перегрузка смен и больничные из-за стресса"
+ },
+ {
+  "id": "00438842",
+  "n": 148,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Retrasos en el despacho de bodega",
+  "title_ru": "Задержки при отгрузке со склада"
+ },
+ {
+  "id": "00438842",
+  "n": 149,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Inversión de roles) — Retrasos en el despacho de bodega",
+  "title_ru": "(Смена ролей) — Задержки при отгрузке со склада"
+ },
+ {
+  "id": "00438842",
+  "n": 150,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Capacitación docente en metodologías activas",
+  "title_ru": "Обучение преподавателей активным методикам"
+ },
+ {
+  "id": "00438842",
+  "n": 151,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Inversión de roles) — Capacitación docente en metodologías activas",
+  "title_ru": "(Смена ролей) — Обучение преподавателей активным методикам"
+ },
+ {
+  "id": "00438842",
+  "n": 152,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Visibilidad de voluntarios en redes sociales",
+  "title_ru": "Видимость волонтёров в соцсетях"
+ },
+ {
+  "id": "00438842",
+  "n": 153,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Inversión de roles) — Visibilidad de voluntarios en redes sociales",
+  "title_ru": "(Смена ролей) — Видимость волонтёров в соцсетях"
+ },
+ {
+  "id": "00438842",
+  "n": 154,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Actualización del software contable",
+  "title_ru": "Обновление бухгалтерской программы"
+ },
+ {
+  "id": "00438842",
+  "n": 155,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Inversión de roles) — Actualización del software contable",
+  "title_ru": "(Смена ролей) — Обновление бухгалтерской программы"
+ },
+ {
+  "id": "00438842",
+  "n": 156,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación de aumento de sueldo y vacaciones",
+  "title_ru": "Переговоры о повышении зарплаты и отпуске"
+ },
+ {
+  "id": "00438842",
+  "n": 157,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Negociación sutil de recursos con el jefe (Las Sillas)",
+  "title_ru": "Тонкие переговоры с руководителем о ресурсах (стулья)"
+ },
+ {
+  "id": "00438843",
+  "n": 158,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Supervisor de call center contra gerente comercial (Situación 392)",
+  "title_ru": "Супервайзер колл-центра против коммерческого директора (ситуация 392)"
+ },
+ {
+  "id": "00438843",
+  "n": 159,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diseñador de producto contra CEO de startup (Situación 394)",
+  "title_ru": "Продуктовый дизайнер против CEO стартапа (ситуация 394)"
+ },
+ {
+  "id": "00438843",
+  "n": 160,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinador logístico contra jefe de transporte",
+  "title_ru": "Координатор логистики против руководителя транспортного отдела"
+ },
+ {
+  "id": "00438843",
+  "n": 161,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Responsable de comunicación interna contra jefe de operaciones (Situación 400)",
+  "title_ru": "Ответственный за внутренние коммуникации против руководителя операционного отдела (ситуация 400)"
+ },
+ {
+  "id": "00438843",
+  "n": 162,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinador de prácticas contra estudiante en prácticas",
+  "title_ru": "Координатор практики против студента-практиканта"
+ },
+ {
+  "id": "00438844",
+  "n": 163,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La recepcionista y el jefe",
+  "title_ru": "Секретарь на ресепшен и руководитель"
+ },
+ {
+  "id": "00438844",
+  "n": 164,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El seguro de vida en la Segunda Guerra Mundial",
+  "title_ru": "Страхование жизни во Второй мировой войне"
+ },
+ {
+  "id": "00438844",
+  "n": 165,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La compra del sofá en Ikea",
+  "title_ru": "Покупка дивана в Ikea"
+ },
+ {
+  "id": "00438844",
+  "n": 166,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El chiste ucraniano de la suegra",
+  "title_ru": "Украинский анекдот про тёщу"
+ },
+ {
+  "id": "00438844",
+  "n": 167,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El emprendedor de muebles (Transferencia al futuro)",
+  "title_ru": "Предприниматель-мебельщик (перенос в будущее)"
+ },
+ {
+  "id": "00438844",
+  "n": 168,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "[Situación 402: Conflicto en el turno nocturno]",
+  "title_ru": "[Ситуация 402: Конфликт в ночную смену]"
+ },
+ {
+  "id": "00438844",
+  "n": 169,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "[Situación 414: Desacuerdo técnico con consultor]",
+  "title_ru": "[Ситуация 414: Техническое разногласие с консультантом]"
+ },
+ {
+  "id": "00438844",
+  "n": 170,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "[Situación: Enfermera jefe contra director del hospital]",
+  "title_ru": "[Ситуация: Старшая медсестра против директора больницы]"
+ },
+ {
+  "id": "00438844",
+  "n": 171,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Presupuesto de hospital: Quirófanos vs. Urgencias pediátricas (Ronda 2)",
+  "title_ru": "Бюджет больницы: операционные против детской неотложки (Раунд 2)"
+ },
+ {
+  "id": "00438844",
+  "n": 172,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Adaptaciones educativas para alumna con dislexia (Ronda 1)",
+  "title_ru": "Адаптация обучения для ученицы с дислексией (Раунд 1)"
+ },
+ {
+  "id": "00438844",
+  "n": 173,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Adaptaciones educativas para alumna con dislexia (Ronda 2)",
+  "title_ru": "Адаптация обучения для ученицы с дислексией (Раунд 2)"
+ },
+ {
+  "id": "00438844",
+  "n": 174,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Calidad de leads: Ventas vs. Marketing (Ronda 1)",
+  "title_ru": "Качество лидов: продажи против маркетинга (Раунд 1)"
+ },
+ {
+  "id": "00438844",
+  "n": 175,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Calidad de leads: Ventas vs. Marketing (Ronda 2)",
+  "title_ru": "Качество лидов: продажи против маркетинга (Раунд 2)"
+ },
+ {
+  "id": "00438845",
+  "n": 176,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La disputa de los hermanos por el ordenador",
+  "title_ru": "Спор братьев из-за компьютера"
+ },
+ {
+  "id": "00438845",
+  "n": 177,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Los dos huéspedes en la habitación de hotel",
+  "title_ru": "Двое постояльцев в гостиничном номере"
+ },
+ {
+  "id": "00438845",
+  "n": 178,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Alternativa de interacción para los huéspedes del hotel",
+  "title_ru": "Альтернативный вариант взаимодействия для постояльцев отеля"
+ },
+ {
+  "id": "00438845",
+  "n": 179,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Coordinadora de comunicación interna contra el director de recursos humanos",
+  "title_ru": "Координатор внутренних коммуникаций против директора по персоналу"
+ },
+ {
+  "id": "00438845",
+  "n": 180,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Coordinador de proyectos contra responsable de TI",
+  "title_ru": "Координатор проектов против ответственного за ИТ"
+ },
+ {
+  "id": "00438845",
+  "n": 181,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La disputa por la silla buena en la oficina",
+  "title_ru": "Спор за хороший стул в офисе"
+ },
+ {
+  "id": "00438846",
+  "n": 182,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La transferencia del beneficio en la negociación salarial",
+  "title_ru": "Перенос выгоды в переговорах о зарплате"
+ },
+ {
+  "id": "00438846",
+  "n": 183,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El uso del presente para desenmascarar una mentira sobre el futuro",
+  "title_ru": "Использовать настоящее, чтобы разоблачить ложь о будущем"
+ },
+ {
+  "id": "00438846",
+  "n": 184,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociar cuando el jefe miente diciendo que la empresa va mal",
+  "title_ru": "Вести переговоры, когда руководитель лжёт, что у компании всё плохо"
+ },
+ {
+  "id": "00438846",
+  "n": 185,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Devaluar el \"no\" al aumento de sueldo fijo",
+  "title_ru": "Обесценить «нет» на повышение оклада"
+ },
+ {
+  "id": "00438846",
+  "n": 186,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación ante un despido inminente",
+  "title_ru": "Переговоры перед неизбежным увольнением"
+ },
+ {
+  "id": "00438846",
+  "n": 187,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Roleplay: Gerente de marketing solicita aumento",
+  "title_ru": "Ролевая игра: менеджер по маркетингу просит повышения"
+ },
+ {
+  "id": "00438846",
+  "n": 188,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El planteamiento del empleado y la reacción defensiva del jefe",
+  "title_ru": "Постановка вопроса сотрудником и защитная реакция руководителя"
+ },
+ {
+  "id": "00438846",
+  "n": 189,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La negociación directa y la propuesta de valor variable",
+  "title_ru": "Прямые переговоры и предложение переменной части дохода"
+ },
+ {
+  "id": "00438846",
+  "n": 190,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación enfocada en el sueldo fijo y el uso de los \"nuncas\"",
+  "title_ru": "Переговоры с упором на оклад и использование «никогда»"
+ },
+ {
+  "id": "00438847",
+  "n": 191,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Coordinador de logística vs. Gerente de operaciones",
+  "title_ru": "Координатор логистики против руководителя операций"
+ },
+ {
+  "id": "00438847",
+  "n": 192,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Coordinador de logística vs. Gerente de operaciones (Roles invertidos)",
+  "title_ru": "Координатор логистики против руководителя операций (смена ролей)"
+ },
+ {
+  "id": "00438847",
+  "n": 193,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Diseñador gráfico senior vs. Director de producto",
+  "title_ru": "Старший графический дизайнер против директора по продукту"
+ },
+ {
+  "id": "00438847",
+  "n": 194,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Diseñador gráfico senior vs. Director de producto (Roles invertidos)",
+  "title_ru": "Старший графический дизайнер против директора по продукту (смена ролей)"
+ },
+ {
+  "id": "00438847",
+  "n": 195,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Especialista en Recursos Humanos vs. Director de Recursos Humanos",
+  "title_ru": "Специалист по персоналу против директора по персоналу"
+ },
+ {
+  "id": "00438847",
+  "n": 196,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Especialista en Recursos Humanos vs. Director de Recursos Humanos (Roles invertidos)",
+  "title_ru": "Специалист по персоналу против директора по персоналу (смена ролей)"
+ },
+ {
+  "id": "00438847",
+  "n": 197,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Asistente contable vs. Jefe de contabilidad",
+  "title_ru": "Помощник бухгалтера против руководителя бухгалтерии"
+ },
+ {
+  "id": "00438847",
+  "n": 198,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Asistente contable vs. Jefe de contabilidad (Roles invertidos)",
+  "title_ru": "Помощник бухгалтера против руководителя бухгалтерии (смена ролей)"
+ },
+ {
+  "id": "00438847",
+  "n": 199,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Ejecutivo de ventas vs. Gerente comercial",
+  "title_ru": "Менеджер по продажам против коммерческого директора"
+ },
+ {
+  "id": "00438847",
+  "n": 200,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Ejecutivo de ventas vs. Gerente comercial (Roles invertidos)",
+  "title_ru": "Менеджер по продажам против коммерческого директора (смена ролей)"
+ }
+]

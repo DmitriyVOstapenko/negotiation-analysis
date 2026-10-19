@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438871",
+  "n": 301,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El envío del invoice (Hechos vs. Opiniones)",
+  "title_ru": "Отправка счёта (факты против мнений)"
+ },
+ {
+  "id": "00438871",
+  "n": 302,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El informe clave y el reconocimiento injusto",
+  "title_ru": "Ключевой отчёт и несправедливое признание"
+ },
+ {
+  "id": "00438871",
+  "n": 303,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Sobrecarga de trabajo y presión",
+  "title_ru": "Перегрузка работой и давление"
+ },
+ {
+  "id": "00438871",
+  "n": 304,
+  "domain": "D2 Imagen del mundo",
+  "title_es": ".1 — Reinicio de Sobrecarga de trabajo y presión",
+  "title_ru": ".1 — Перезапуск «Перегрузка работой и давление»"
+ },
+ {
+  "id": "00438871",
+  "n": 305,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Cambios de reglas sin explicación",
+  "title_ru": "Изменение правил без объяснений"
+ },
+ {
+  "id": "00438871",
+  "n": 306,
+  "domain": "D2 Imagen del mundo",
+  "title_es": ".1 — Reinicio de Cambios de reglas sin explicación",
+  "title_ru": ".1 — Перезапуск «Изменение правил без объяснений»"
+ },
+ {
+  "id": "00438871",
+  "n": 307,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Respeto al tiempo libre",
+  "title_ru": "Уважение к свободному времени"
+ },
+ {
+  "id": "00438871",
+  "n": 308,
+  "domain": "D2 Imagen del mundo",
+  "title_es": ".1 — Reinicio de Respeto al tiempo libre",
+  "title_ru": ".1 — Перезапуск «Уважение к свободному времени»"
+ },
+ {
+  "id": "00438871",
+  "n": 309,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Rumores de traslado de personal",
+  "title_ru": "Слухи о переводе сотрудников"
+ },
+ {
+  "id": "00438871",
+  "n": 310,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Incumplimiento de plazos y falta de apoyo",
+  "title_ru": "Срыв сроков и отсутствие поддержки"
+ },
+ {
+  "id": "00438871",
+  "n": 311,
+  "domain": "D2 Imagen del mundo",
+  "title_es": ".1 — Reinicio de Incumplimiento de plazos y falta de apoyo",
+  "title_ru": ".1 — Перезапуск «Срыв сроков и отсутствие поддержки»"
+ },
+ {
+  "id": "00438871",
+  "n": 312,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Confianza en el criterio personal",
+  "title_ru": "Доверие к собственному суждению"
+ },
+ {
+  "id": "00438871",
+  "n": 313,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La propuesta no valorada (Continuación)",
+  "title_ru": "Недооценённое предложение (продолжение)"
+ },
+ {
+  "id": "00438871",
+  "n": 314,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El trato injusto en el departamento de finanzas",
+  "title_ru": "Несправедливое отношение в финансовом отделе"
+ },
+ {
+  "id": "00438872",
+  "n": 315,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Desánimo por falta de meritocracia",
+  "title_ru": "Упадок духа из-за отсутствия меритократии"
+ },
+ {
+  "id": "00438872",
+  "n": 316,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Frustración por nuevo software (Intento 1)",
+  "title_ru": "Раздражение из-за новой программы (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 317,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Frustración por nuevo software (Intento 2)",
+  "title_ru": "Раздражение из-за новой программы (Попытка 2)"
+ },
+ {
+  "id": "00438872",
+  "n": 318,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Injusticia en la distribución de tareas (Intento 1)",
+  "title_ru": "Несправедливое распределение задач (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 319,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Injusticia en la distribución de tareas (Intento 2)",
+  "title_ru": "Несправедливое распределение задач (Попытка 2)"
+ },
+ {
+  "id": "00438872",
+  "n": 320,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Vendedores con métricas cambiantes (Intento 1)",
+  "title_ru": "Продавцы с меняющимися метриками (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 321,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Vendedores con métricas cambiantes (Intento 2)",
+  "title_ru": "Продавцы с меняющимися метриками (Попытка 2)"
+ },
+ {
+  "id": "00438872",
+  "n": 322,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Interrupciones en reuniones (Intento 1)",
+  "title_ru": "Перебивания на совещаниях (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 323,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Interrupciones en reuniones (Intento 2)",
+  "title_ru": "Перебивания на совещаниях (Попытка 2)"
+ },
+ {
+  "id": "00438872",
+  "n": 324,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Apoyo emocional ante crisis familiar (Intento 1)",
+  "title_ru": "Эмоциональная поддержка при семейном кризисе (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 325,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Apoyo emocional ante crisis familiar (Intento 2)",
+  "title_ru": "Эмоциональная поддержка при семейном кризисе (Попытка 2)"
+ },
+ {
+  "id": "00438872",
+  "n": 326,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Invasión del tiempo libre (Intento 1)",
+  "title_ru": "Вторжение в свободное время (Попытка 1)"
+ },
+ {
+  "id": "00438872",
+  "n": 327,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Invasión del tiempo libre (Intento 2)",
+  "title_ru": "Вторжение в свободное время (Попытка 2)"
+ },
+ {
+  "id": "00438873",
+  "n": 328,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El caso de Participante A y la sobrecarga de trabajo",
+  "title_ru": "Случай Участника A и перегрузка работой"
+ },
+ {
+  "id": "00438873",
+  "n": 329,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Conflicto de responsabilidades en el equipo de desarrollo",
+  "title_ru": "Конфликт ответственности в команде разработки"
+ },
+ {
+  "id": "00438873",
+  "n": 330,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de reconocimiento e iniciativa",
+  "title_ru": "Потребность в признании и инициативе"
+ },
+ {
+  "id": "00438873",
+  "n": 331,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El caso de Participante A",
+  "title_ru": "Случай Участника A"
+ },
+ {
+  "id": "00438873",
+  "n": 332,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Situación 111: Necesidad de trato justo en evaluaciones",
+  "title_ru": "Ситуация 111: Потребность в справедливой оценке"
+ },
+ {
+  "id": "00438873",
+  "n": 333,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Situación 112: Necesidad de estabilidad emocional en el ambiente laboral",
+  "title_ru": "Ситуация 112: Потребность в эмоциональной стабильности на работе"
+ },
+ {
+  "id": "00438873",
+  "n": 334,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Situación 113: Toma de decisiones sin consultar",
+  "title_ru": "Ситуация 113: Решения без согласования"
+ },
+ {
+  "id": "00438873",
+  "n": 335,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Situación 115: Valoración de conocimientos internos vs. externos",
+  "title_ru": "Ситуация 115: Оценка внутренних знаний против внешних"
+ },
+ {
+  "id": "00438873",
+  "n": 336,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El ejemplo del niño con los zapatos sucios",
+  "title_ru": "Пример с ребёнком в грязной обуви"
+ },
+ {
+  "id": "00438873",
+  "n": 337,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Participante A quiere crecer en la empresa",
+  "title_ru": "Участник A хочет расти в компании"
+ },
+ {
+  "id": "00438873",
+  "n": 338,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de apoyo ante un error",
+  "title_ru": "Потребность в поддержке после ошибки"
+ },
+ {
+  "id": "00438873",
+  "n": 339,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Falta de sentido en el trabajo",
+  "title_ru": "Отсутствие смысла в работе"
+ },
+ {
+  "id": "00438874",
+  "n": 340,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Oportunidades justas de desarrollo",
+  "title_ru": "Справедливые возможности развития"
+ },
+ {
+  "id": "00438874",
+  "n": 341,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de claridad sobre expectativas de desempeño",
+  "title_ru": "Потребность в ясности ожиданий по результатам работы"
+ },
+ {
+  "id": "00438874",
+  "n": 342,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de confianza en su criterio profesional",
+  "title_ru": "Потребность в доверии к его профессиональному суждению"
+ },
+ {
+  "id": "00438874",
+  "n": 343,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Falta de reconocimiento al esfuerzo del equipo",
+  "title_ru": "Отсутствие признания усилий команды"
+ },
+ {
+  "id": "00438875",
+  "n": 344,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El jefe que no quiere ser molestado",
+  "title_ru": "Руководитель, который не хочет, чтобы его беспокоили"
+ },
+ {
+  "id": "00438875",
+  "n": 345,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El conflicto de custodia del amigo",
+  "title_ru": "Спор друга об опеке над ребёнком"
+ },
+ {
+  "id": "00438875",
+  "n": 346,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La reunión grupal con monólogo de desgaste",
+  "title_ru": "Групповое совещание с изматывающим монологом"
+ },
+ {
+  "id": "00438876",
+  "n": 347,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El software de gestión de flotas corporativas",
+  "title_ru": "ПО для управления корпоративным автопарком"
+ },
+ {
+  "id": "00438877",
+  "n": 348,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El vendedor de software frente al dueño y al usuario final",
+  "title_ru": "Продавец ПО перед владельцем и конечным пользователем"
+ },
+ {
+  "id": "00438877",
+  "n": 349,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "La venta a empresas sin ánimo de lucro (Greenpeace)",
+  "title_ru": "Продажа некоммерческим организациям (Greenpeace)"
+ },
+ {
+  "id": "00438877",
+  "n": 350,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El pitch de venta adaptado para Donald Trump",
+  "title_ru": "Продающий питч для Дональда Трампа"
+ },
+ {
+  "id": "00438877",
+  "n": 351,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "La propuesta de valor para un artista/pintor",
+  "title_ru": "Ценностное предложение для художника"
+ },
+ {
+  "id": "00438878",
+  "n": 352,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Validación y reconocimiento del impacto del trabajo",
+  "title_ru": "Подтверждение и признание значимости работы"
+ },
+ {
+  "id": "00438878",
+  "n": 353,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de confianza para tomar decisiones",
+  "title_ru": "Потребность в доверии при принятии решений"
+ },
+ {
+  "id": "00438878",
+  "n": 354,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Necesidad de oportunidades justas de desarrollo",
+  "title_ru": "Потребность в справедливых возможностях развития"
+ },
+ {
+  "id": "00438879",
+  "n": 355,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "La venta de las 48 leyes del poder a Putin",
+  "title_ru": "Продажа «48 законов власти» Путину"
+ },
+ {
+  "id": "00438880",
+  "n": 356,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de aspiradora premium a cliente escéptico (Ronda 1)",
+  "title_ru": "Продажа премиального пылесоса скептичному клиенту (Раунд 1)"
+ },
+ {
+  "id": "00438880",
+  "n": 357,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de aspiradora premium a cliente escéptico (Ronda 2)",
+  "title_ru": "Продажа премиального пылесоса скептичному клиенту (Раунд 2)"
+ },
+ {
+  "id": "00438881",
+  "n": 358,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de teléfono con presupuesto limitado",
+  "title_ru": "Продажа телефона при ограниченном бюджете"
+ },
+ {
+  "id": "00438881",
+  "n": 359,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de teléfono para diseño gráfico",
+  "title_ru": "Продажа телефона для графического дизайна"
+ },
+ {
+  "id": "00438882",
+  "n": 360,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El conflicto de responsabilidad por los datos",
+  "title_ru": "Конфликт об ответственности за данные"
+ },
+ {
+  "id": "00438882",
+  "n": 361,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "La validación de la startup de gestión de flotas",
+  "title_ru": "Проверка стартапа по управлению автопарками"
+ },
+ {
+  "id": "00438882",
+  "n": 362,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de Laptop para Diseño 3D (Participante A y Participante B)",
+  "title_ru": "Продажа ноутбука для 3D-дизайна (Участник A и Участник B)"
+ },
+ {
+  "id": "00438882",
+  "n": 363,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Continuación de la simulación de venta (Ponente y Participante A)",
+  "title_ru": "Продолжение симуляции продажи (Ведущий и Участник A)"
+ },
+ {
+  "id": "00438882",
+  "n": 364,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de Auto Deportivo",
+  "title_ru": "Продажа спортивного автомобиля"
+ },
+ {
+  "id": "00438883",
+  "n": 365,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Confrontación preventiva ante amenazas de autolesión",
+  "title_ru": "Упреждающее противостояние при угрозах самоповреждения"
+ },
+ {
+  "id": "00438883",
+  "n": 366,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El acosador de cuarto de primaria y el juego \"Bolt\"",
+  "title_ru": "Задира из четвёртого класса и игра «Bolt»"
+ },
+ {
+  "id": "00438883",
+  "n": 367,
+  "domain": "D9 Productividad y hábitos",
+  "title_es": "El diálogo interno contra la evasión de responsabilidades",
+  "title_ru": "Внутренний диалог против уклонения от ответственности"
+ },
+ {
+  "id": "00438883",
+  "n": 368,
+  "domain": "D9 Productividad y hábitos",
+  "title_es": "El autoexamen sobre la procrastinación",
+  "title_ru": "Самопроверка насчёт прокрастинации"
+ },
+ {
+  "id": "00438884",
+  "n": 369,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El rol de mujer en la vía de tránsito",
+  "title_ru": "Роль женщины на дороге"
+ },
+ {
+  "id": "00438884",
+  "n": 370,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Delimitación de roles en una lección",
+  "title_ru": "Разграничение ролей на уроке"
+ },
+ {
+  "id": "00438884",
+  "n": 371,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La culpa por no avisar de un partido",
+  "title_ru": "Вина за то, что не предупредил о матче"
+ },
+ {
+  "id": "00438884",
+  "n": 372,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Colaboración para elegir una película",
+  "title_ru": "Сотрудничество при выборе фильма"
+ },
+ {
+  "id": "00438884",
+  "n": 373,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Negociación proactiva por los platos sucios",
+  "title_ru": "Упреждающие переговоры о грязной посуде"
+ },
+ {
+  "id": "00438884",
+  "n": 374,
+  "domain": "D11 Capital social",
+  "title_es": "Presentación rápida en un evento de networking",
+  "title_ru": "Быстрая самопрезентация на нетворкинг-мероприятии"
+ },
+ {
+  "id": "00438884",
+  "n": 375,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Negociación del precio de un vaso",
+  "title_ru": "Торг о цене стакана"
+ },
+ {
+  "id": "00438884",
+  "n": 376,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El engaño piadoso del médico con la vacuna",
+  "title_ru": "Святая ложь врача о прививке"
+ },
+ {
+  "id": "00438884",
+  "n": 377,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El encuentro accidental en la ducha",
+  "title_ru": "Случайная встреча в душе"
+ },
+ {
+  "id": "00438885",
+  "n": 378,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El caso del compañero sin habilidades técnicas",
+  "title_ru": "Случай с коллегой без технических навыков"
+ },
+ {
+  "id": "00438885",
+  "n": 379,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El sabotaje telefónico del pedido de 900.000 dólares",
+  "title_ru": "Телефонный саботаж заказа на 900 000 долларов"
+ },
+ {
+  "id": "00438885",
+  "n": 380,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La entrevista de trabajo de Artur",
+  "title_ru": "Собеседование Артура"
+ },
+ {
+  "id": "00438885",
+  "n": 381,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El ofrecimiento de curación al cliente de 550.000 euros",
+  "title_ru": "Предложение исцеления клиенту на 550 000 евро"
+ },
+ {
+  "id": "00438885",
+  "n": 382,
+  "domain": "D11 Capital social",
+  "title_es": "La queja del contable",
+  "title_ru": "Жалоба бухгалтера"
+ },
+ {
+  "id": "00438885",
+  "n": 383,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El cliente desesperado",
+  "title_ru": "Отчаявшийся клиент"
+ },
+ {
+  "id": "00438886",
+  "n": 384,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La paradoja de los dos peluqueros",
+  "title_ru": "Парадокс двух парикмахеров"
+ },
+ {
+  "id": "00438888",
+  "n": 385,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El cambio de turno y la máquina detenida",
+  "title_ru": "Пересменка и остановленный станок"
+ },
+ {
+  "id": "00438888",
+  "n": 386,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La máquina manipulada y el protocolo",
+  "title_ru": "Станок, в который вмешались, и протокол"
+ },
+ {
+  "id": "00438888",
+  "n": 387,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Choque de estilos de liderazgo (Ronda 1)",
+  "title_ru": "Столкновение стилей лидерства (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 388,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Choque de estilos de liderazgo (Ronda 2)",
+  "title_ru": "Столкновение стилей лидерства (Раунд 2)"
+ },
+ {
+  "id": "00438888",
+  "n": 389,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Diferencias generacionales (Ronda 1)",
+  "title_ru": "Разница поколений (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 390,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Diferencias generacionales (Ronda 2)",
+  "title_ru": "Разница поколений (Раунд 2)"
+ },
+ {
+  "id": "00438888",
+  "n": 391,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de empatía ante problemas personales (Ronda 1)",
+  "title_ru": "Недостаток эмпатии к личным проблемам (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 392,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de empatía ante problemas personales (Ronda 2)",
+  "title_ru": "Недостаток эмпатии к личным проблемам (Раунд 2)"
+ },
+ {
+  "id": "00438888",
+  "n": 393,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Competencia desleal en ventas (Ronda 1)",
+  "title_ru": "Нечестная конкуренция в продажах (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 394,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Competencia desleal en ventas (Ronda 2)",
+  "title_ru": "Нечестная конкуренция в продажах (Раунд 2)"
+ },
+ {
+  "id": "00438888",
+  "n": 395,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Sobrecarga constante de trabajo (Ronda 1)",
+  "title_ru": "Постоянная перегрузка работой (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 396,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Sobrecarga constante de trabajo (Ronda 2)",
+  "title_ru": "Постоянная перегрузка работой (Раунд 2)"
+ },
+ {
+  "id": "00438888",
+  "n": 397,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Evaluación de desempeño subjetiva (Ronda 1)",
+  "title_ru": "Субъективная оценка результатов работы (Раунд 1)"
+ },
+ {
+  "id": "00438888",
+  "n": 398,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Evaluación de desempeño subjetiva (Ronda 2)",
+  "title_ru": "Субъективная оценка результатов работы (Раунд 2)"
+ },
+ {
+  "id": "00438890",
+  "n": 399,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El cierre de ventas de fin de año",
+  "title_ru": "Закрытие продаж в конце года"
+ },
+ {
+  "id": "00438891",
+  "n": 400,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El cumpleaños del hijo del manager gubernamental",
+  "title_ru": "День рождения сына руководителя из госструктуры"
+ }
+]

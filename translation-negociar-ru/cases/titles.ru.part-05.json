@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438893",
+  "n": 401,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Simulación de presión social: El hombre con sobrepeso que sale a correr",
+  "title_ru": "Симуляция социального давления: мужчина с лишним весом выходит на пробежку"
+ },
+ {
+  "id": "00438893",
+  "n": 402,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Simulación de presión social: El amigo que decide dejar de beber",
+  "title_ru": "Симуляция социального давления: друг решает бросить пить"
+ },
+ {
+  "id": "00438893",
+  "n": 403,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Tareas urgentes y sin contexto",
+  "title_ru": "Срочные задачи без контекста"
+ },
+ {
+  "id": "00438893",
+  "n": 404,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Control excesivo de horarios",
+  "title_ru": "Чрезмерный контроль рабочего времени"
+ },
+ {
+  "id": "00438893",
+  "n": 405,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de coherencia en las prioridades",
+  "title_ru": "Непоследовательность в приоритетах"
+ },
+ {
+  "id": "00438895",
+  "n": 406,
+  "domain": "D11 Capital social",
+  "title_es": "La partida de Dota con dueños de agencias",
+  "title_ru": "Партия в Dota с владельцами агентств"
+ },
+ {
+  "id": "00438896",
+  "n": 407,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El malentendido de nombres con el dueño del presupuesto",
+  "title_ru": "Недоразумение с именами в разговоре с владельцем бюджета"
+ },
+ {
+  "id": "00438898",
+  "n": 408,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de empatía ante problemas personales",
+  "title_ru": "Недостаток эмпатии к личным проблемам"
+ },
+ {
+  "id": "00438898",
+  "n": 409,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Diferencias generacionales",
+  "title_ru": "Разница поколений"
+ },
+ {
+  "id": "00438898",
+  "n": 410,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Control disfrazado de acompañamiento",
+  "title_ru": "Контроль под видом поддержки"
+ },
+ {
+  "id": "00438899",
+  "n": 411,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Situación 144: Expectativas no explicitadas al inicio del trimestre",
+  "title_ru": "Ситуация 144: Ожидания, не озвученные в начале квартала"
+ },
+ {
+  "id": "00438899",
+  "n": 412,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Reconocimiento condicionado",
+  "title_ru": "Признание с условиями"
+ },
+ {
+  "id": "00438900",
+  "n": 413,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Choque de estilos de liderazgo",
+  "title_ru": "Столкновение стилей лидерства"
+ },
+ {
+  "id": "00438900",
+  "n": 414,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Carga emocional ignorada",
+  "title_ru": "Проигнорированная эмоциональная нагрузка"
+ },
+ {
+  "id": "00438900",
+  "n": 415,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El negocio es dinámico",
+  "title_ru": "Бизнес динамичен"
+ },
+ {
+  "id": "00438902",
+  "n": 416,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El escudo de rol ambiguo",
+  "title_ru": "Размытый ролевой щит"
+ },
+ {
+  "id": "00438902",
+  "n": 417,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Cobrar una deuda a través del jefe",
+  "title_ru": "Взыскать долг через руководителя"
+ },
+ {
+  "id": "00438903",
+  "n": 418,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Autonomía cuestionada",
+  "title_ru": "Поставленная под сомнение самостоятельность"
+ },
+ {
+  "id": "00438903",
+  "n": 419,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Ronda 2) — Autonomía cuestionada",
+  "title_ru": "(Раунд 2) — Поставленная под сомнение самостоятельность"
+ },
+ {
+  "id": "00438903",
+  "n": 420,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Propuesta en quien comina",
+  "title_ru": "Предложение «en quien comina»"
+ },
+ {
+  "id": "00438903",
+  "n": 421,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "(Ronda 2) — Propuesta en quien comina",
+  "title_ru": "(Раунд 2) — Предложение «en quien comina»"
+ },
+ {
+  "id": "00438903",
+  "n": 422,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Críticas en público",
+  "title_ru": "Публичная критика"
+ },
+ {
+  "id": "00438903",
+  "n": 423,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "(Ronda 2) — Críticas en público",
+  "title_ru": "(Раунд 2) — Публичная критика"
+ },
+ {
+  "id": "00438903",
+  "n": 424,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El equipo de recursos humanos",
+  "title_ru": "Команда отдела персонала"
+ },
+ {
+  "id": "00438903",
+  "n": 425,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Ronda 2) — El equipo de recursos humanos",
+  "title_ru": "(Раунд 2) — Команда отдела персонала"
+ },
+ {
+  "id": "00438903",
+  "n": 426,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La idea robada en brainstorming",
+  "title_ru": "Украденная идея на мозговом штурме"
+ },
+ {
+  "id": "00438904",
+  "n": 427,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "La filtración del email de despidos",
+  "title_ru": "Утечка письма об увольнениях"
+ },
+ {
+  "id": "00438904",
+  "n": 428,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Exigir la verdad en el pasillo",
+  "title_ru": "Требовать правды в коридоре"
+ },
+ {
+  "id": "00438904",
+  "n": 429,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La vendedora que rechazó hacer llamadas",
+  "title_ru": "Продавщица, которая отказалась делать звонки"
+ },
+ {
+  "id": "00438905",
+  "n": 430,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Error expuesto",
+  "title_ru": "Публично раскрытая ошибка"
+ },
+ {
+  "id": "00438905",
+  "n": 431,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Disponibilidad asumida",
+  "title_ru": "Подразумеваемая доступность"
+ },
+ {
+  "id": "00438906",
+  "n": 432,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El logo importante",
+  "title_ru": "Важный логотип"
+ },
+ {
+  "id": "00438906",
+  "n": 433,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Deuda técnica y go-live",
+  "title_ru": "Технический долг и запуск"
+ },
+ {
+  "id": "00438906",
+  "n": 434,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La frontera invisible",
+  "title_ru": "Невидимая граница"
+ },
+ {
+  "id": "00438907",
+  "n": 435,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El costo de la calidad",
+  "title_ru": "Цена качества"
+ },
+ {
+  "id": "00438907",
+  "n": 436,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El peso de la cuota",
+  "title_ru": "Груз плана продаж"
+ },
+ {
+  "id": "00438907",
+  "n": 437,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Lealtad contra el talento",
+  "title_ru": "Лояльность против таланта"
+ },
+ {
+  "id": "00438907",
+  "n": 438,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Parada de mantenimiento vs. Producción",
+  "title_ru": "Остановка на техобслуживание против производства"
+ },
+ {
+  "id": "00438907",
+  "n": 439,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La verdad no genera clics",
+  "title_ru": "Правда не приносит кликов"
+ },
+ {
+  "id": "00438907",
+  "n": 440,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El debate sobre el titular y los clics",
+  "title_ru": "Спор о заголовке и кликах"
+ },
+ {
+  "id": "00438908",
+  "n": 441,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El boletín de calificaciones",
+  "title_ru": "Табель успеваемости"
+ },
+ {
+  "id": "00438908",
+  "n": 442,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Efectos secundarios en marketing farmacéutico",
+  "title_ru": "Побочные эффекты в фармацевтическом маркетинге"
+ },
+ {
+  "id": "00438908",
+  "n": 443,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Datos de crecimiento artificiales",
+  "title_ru": "Искусственные данные о росте"
+ },
+ {
+  "id": "00438908",
+  "n": 444,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Exceso de aforo en festival",
+  "title_ru": "Превышение вместимости на фестивале"
+ },
+ {
+  "id": "00438909",
+  "n": 445,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El subordinado de 45 años que grita al jefe joven",
+  "title_ru": "45-летний подчинённый, который кричит на молодого руководителя"
+ },
+ {
+  "id": "00438909",
+  "n": 446,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El software de monitoreo de actividad",
+  "title_ru": "Программа мониторинга активности"
+ },
+ {
+  "id": "00438909",
+  "n": 447,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El software de monitoreo (Continuación)",
+  "title_ru": "Программа мониторинга (продолжение)"
+ },
+ {
+  "id": "00438909",
+  "n": 448,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El alma del algoritmo",
+  "title_ru": "Душа алгоритма"
+ },
+ {
+  "id": "00438909",
+  "n": 449,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Maquillaje verde",
+  "title_ru": "Зелёный макияж"
+ },
+ {
+  "id": "00438909",
+  "n": 450,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Disponibilidad absoluta",
+  "title_ru": "Абсолютная доступность"
+ },
+ {
+  "id": "00438910",
+  "n": 451,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Conflicto de autoría creativa",
+  "title_ru": "Конфликт творческого авторства"
+ },
+ {
+  "id": "00438910",
+  "n": 452,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La familia en crisis",
+  "title_ru": "Семья в кризисе"
+ },
+ {
+  "id": "00438911",
+  "n": 453,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Vende el futuro",
+  "title_ru": "Продай будущее"
+ },
+ {
+  "id": "00438911",
+  "n": 454,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El cursor inactivo",
+  "title_ru": "Неактивный курсор"
+ },
+ {
+  "id": "00438912",
+  "n": 455,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Reconocimiento tardío",
+  "title_ru": "Запоздалое признание"
+ },
+ {
+  "id": "00438912",
+  "n": 456,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Evaluación de Participante A",
+  "title_ru": "Оценка Участника A"
+ },
+ {
+  "id": "00438913",
+  "n": 457,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Renegociación con proveedores en construcción",
+  "title_ru": "Пересмотр условий с поставщиками в строительстве"
+ },
+ {
+  "id": "00438913",
+  "n": 458,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Límites difusos en marketing",
+  "title_ru": "Размытые границы в маркетинге"
+ },
+ {
+  "id": "00438914",
+  "n": 459,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Error heredado atribuido al que lo recibe",
+  "title_ru": "Унаследованная ошибка, приписанная тому, кто её получил"
+ },
+ {
+  "id": "00438914",
+  "n": 460,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Promesa de formación pospuesta",
+  "title_ru": "Отложенное обещание обучения"
+ },
+ {
+  "id": "00438916",
+  "n": 461,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Urgencia mal planificada convertida en culpa ajena",
+  "title_ru": "Плохо спланированная срочность, превращённая в чужую вину"
+ },
+ {
+  "id": "00438916",
+  "n": 462,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "(Ronda 2) — Urgencia mal planificada convertida en culpa ajena",
+  "title_ru": "(Раунд 2) — Плохо спланированная срочность, превращённая в чужую вину"
+ },
+ {
+  "id": "00438916",
+  "n": 463,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "(Ronda 3) — Urgencia mal planificada convertida en culpa ajena",
+  "title_ru": "(Раунд 3) — Плохо спланированная срочность, превращённая в чужую вину"
+ },
+ {
+  "id": "00438916",
+  "n": 464,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La actitud y la energía de una becaria en su revisión de desempeño",
+  "title_ru": "Отношение и энергия стажёрки на оценке её работы"
+ },
+ {
+  "id": "00438916",
+  "n": 465,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "(Ronda 2) — La actitud y la energía de una becaria en su revisión de desempeño",
+  "title_ru": "(Раунд 2) — Отношение и энергия стажёрки на оценке её работы"
+ },
+ {
+  "id": "00438917",
+  "n": 466,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Reuniones necesarias",
+  "title_ru": "Необходимые совещания"
+ },
+ {
+  "id": "00438917",
+  "n": 467,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Cambio de roles — reuniones necesarias (marketing vs dueño de agencia)",
+  "title_ru": "Смена ролей — необходимые совещания (маркетинг против владельца агентства)"
+ },
+ {
+  "id": "00438917",
+  "n": 468,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Procedimientos y negocio",
+  "title_ru": "Процедуры и бизнес"
+ },
+ {
+  "id": "00438917",
+  "n": 469,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Cambio de roles — logística y procedimientos (comercial vs encargado)",
+  "title_ru": "Смена ролей — логистика и процедуры (продавец против заведующего)"
+ },
+ {
+  "id": "00438918",
+  "n": 470,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Ayuda interpretada como debilidad",
+  "title_ru": "Помощь, воспринятая как слабость"
+ },
+ {
+  "id": "00438918",
+  "n": 471,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Información retenida",
+  "title_ru": "Утаённая информация"
+ },
+ {
+  "id": "00438919",
+  "n": 472,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Negociación de tiempos y expectativas con el jefe",
+  "title_ru": "Переговоры с руководителем о сроках и ожиданиях"
+ },
+ {
+  "id": "00438919",
+  "n": 473,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Corrección sin contexto",
+  "title_ru": "Исправление без контекста"
+ },
+ {
+  "id": "00438920",
+  "n": 474,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La responsabilidad difusa",
+  "title_ru": "Размытая ответственность"
+ },
+ {
+  "id": "00438920",
+  "n": 475,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Disponibilidad como compromiso",
+  "title_ru": "Доступность как обязательство"
+ },
+ {
+  "id": "00438921",
+  "n": 476,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El caso de la factura de gas y luz",
+  "title_ru": "Случай со счётом за газ и электричество"
+ },
+ {
+  "id": "00438921",
+  "n": 477,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Despido en Margin Call",
+  "title_ru": "Увольнение в «Margin Call»"
+ },
+ {
+  "id": "00438921",
+  "n": 478,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La cita médica sin agendar",
+  "title_ru": "Незаписанный приём у врача"
+ },
+ {
+  "id": "00438921",
+  "n": 479,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Carga desigual",
+  "title_ru": "Неравная нагрузка"
+ },
+ {
+  "id": "00438921",
+  "n": 480,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El proceso que nadie revisa",
+  "title_ru": "Процесс, который никто не проверяет"
+ },
+ {
+  "id": "00438922",
+  "n": 481,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El concepto del restaurante enfocado a extranjeros",
+  "title_ru": "Концепция ресторана для иностранцев"
+ },
+ {
+  "id": "00438923",
+  "n": 482,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El funcionamiento y la visión de la app Participante A",
+  "title_ru": "Работа и видение приложения Участника A"
+ },
+ {
+  "id": "00438923",
+  "n": 483,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El problema de rendimiento en el departamento de reservaciones",
+  "title_ru": "Проблема производительности в отделе бронирования"
+ },
+ {
+  "id": "00438923",
+  "n": 484,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Conflicto de métricas en el Call Center (Ronda 1)",
+  "title_ru": "Конфликт метрик в колл-центре (Раунд 1)"
+ },
+ {
+  "id": "00438923",
+  "n": 485,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Conflicto de métricas en el Call Center (Ronda 2 con cambio de enfoque)",
+  "title_ru": "Конфликт метрик в колл-центре (Раунд 2 со сменой подхода)"
+ },
+ {
+  "id": "00438923",
+  "n": 486,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El error repetido en una empresa de distribución",
+  "title_ru": "Повторяющаяся ошибка в дистрибьюторской компании"
+ },
+ {
+  "id": "00438924",
+  "n": 487,
+  "domain": "D11 Capital social",
+  "title_es": "El rol de inversor en el seminario de Tarasov",
+  "title_ru": "Роль инвестора на семинаре Тарасова"
+ },
+ {
+  "id": "00438925",
+  "n": 488,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El consejero del trabajo (Pan negro) - Ronda 1",
+  "title_ru": "Советчик на работе (чёрный хлеб) — Раунд 1"
+ },
+ {
+  "id": "00438925",
+  "n": 489,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El consejero del trabajo (Pan negro) - Ronda 2",
+  "title_ru": "Советчик на работе (чёрный хлеб) — Раунд 2"
+ },
+ {
+  "id": "00438925",
+  "n": 490,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El visitante autoritario y la secretaria - Ronda 1",
+  "title_ru": "Властный посетитель и секретарь — Раунд 1"
+ },
+ {
+  "id": "00438925",
+  "n": 491,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El visitante autoritario y la secretaria - Ronda 2",
+  "title_ru": "Властный посетитель и секретарь — Раунд 2"
+ },
+ {
+  "id": "00438925",
+  "n": 492,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El líder fundador y el consultor - Ronda 1",
+  "title_ru": "Лидер-основатель и консультант — Раунд 1"
+ },
+ {
+  "id": "00438925",
+  "n": 493,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El líder fundador y el consultor - Ronda 2",
+  "title_ru": "Лидер-основатель и консультант — Раунд 2"
+ },
+ {
+  "id": "00438925",
+  "n": 494,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Abuso de caja - Ronda 1",
+  "title_ru": "Злоупотребление кассой — Раунд 1"
+ },
+ {
+  "id": "00438925",
+  "n": 495,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Abuso de caja - Ronda 2",
+  "title_ru": "Злоупотребление кассой — Раунд 2"
+ },
+ {
+  "id": "00438925",
+  "n": 496,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Abuso de caja - Ronda 3",
+  "title_ru": "Злоупотребление кассой — Раунд 3"
+ },
+ {
+  "id": "00438926",
+  "n": 497,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Contable",
+  "title_ru": "Бухгалтер"
+ },
+ {
+  "id": "00438926",
+  "n": 498,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Contable (Cambio de roles)",
+  "title_ru": "Бухгалтер (смена ролей)"
+ },
+ {
+  "id": "00438926",
+  "n": 499,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El invierno",
+  "title_ru": "Зима"
+ },
+ {
+  "id": "00438926",
+  "n": 500,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El invierno (Cambio de roles)",
+  "title_ru": "Зима (смена ролей)"
+ }
+]

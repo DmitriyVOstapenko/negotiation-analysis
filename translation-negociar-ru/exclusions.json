@@ -1,0 +1,24 @@
+{
+ "_comment": "Единицы исходника, сознательно изъятые из русской адаптации по решению автора перевода. Исходный текст остаётся в замороженной копии источника (translation/canon-src/) и в оригинальном репозитории; изъятие отражено в NOTICE.md.",
+ "canon": [
+  {
+   "file": "05-ventas-complejas-complex-sales.md",
+   "index": 8,
+   "title_es": "El factor humano irreemplazable: la excepción de la corrupción en ventas gubernamentales",
+   "title_en": "The Irreplaceable Human Factor: The Corruption Exception in Government Sales",
+   "decided_by": "Дмитрий Остапенко",
+   "decided_on": "2026-10-19",
+   "reason": "Принцип описывает подкуп должностного лица (подарок ребёнку чиновника ради госконтракта) как рабочий приём продаж. Автор адаптации не распространяет такое содержание под своим именем."
+  }
+ ],
+ "cases": [
+  {
+   "id": "00438891",
+   "n": 400,
+   "title_es": "El cumpleaños del hijo del manager gubernamental",
+   "decided_by": "Дмитрий Остапенко",
+   "decided_on": "2026-10-19",
+   "reason": "Тот же сюжет, что в изъятом принципе 05 #8: подарок ребёнку представителя госзаказчика ради сделки подан как способ закрывать сделки с государством. Автор адаптации не распространяет такое содержание под своим именем."
+  }
+ ]
+}

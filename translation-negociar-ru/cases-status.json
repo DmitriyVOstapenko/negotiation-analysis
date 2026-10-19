@@ -1,0 +1,19 @@
+{
+ "total": 1019,
+ "translated": 294,
+ "remaining": 725,
+ "by_tier": {
+  "A": 281,
+  "B": 13
+ },
+ "by_sphere": {
+  "laboral": 283,
+  "pareja": 6,
+  "familia": 3,
+  "social": 2
+ },
+ "words_translated": 369381,
+ "words_total": 862962,
+ "titles_translated": 1019,
+ "corpus_status": "untranslated"
+}

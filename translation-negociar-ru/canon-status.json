@@ -1,0 +1,86 @@
+{
+ "files": {
+  "01-fundamentos-lucha-fundamentals-management-fight.md": {
+   "principles": 44,
+   "links": 51,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0001,
+   "suspect_lines": 0,
+   "sha256": "22c8443c3b9211fbd4927043ab34c1a9b3329c626faf038bb5af0e32a84958f4"
+  },
+  "02-imagen-mundo-picture-world.md": {
+   "principles": 14,
+   "links": 17,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "0031318f6af258a37abe7e00828648d8df2202cc8b842196c2b975f8337c385d"
+  },
+  "03-dinamica-roles-role-dynamics.md": {
+   "principles": 26,
+   "links": 41,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "29cc7ec63b40ff08b71527751686a2f4e00fac4e2bcbc54515b49df05760d755"
+  },
+  "04-negociacion-posicional-positional-negotiation.md": {
+   "principles": 25,
+   "links": 39,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "0d75a7e41e66e9e76d30f2ae664a7bda3ac0836476d5859af076ea734193a19e"
+  },
+  "05-ventas-complejas-complex-sales.md": {
+   "principles": 24,
+   "links": 23,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0002,
+   "suspect_lines": 0,
+   "sha256": "559e8e5f91563b048f7b06c4b7d42a689e0c7fd78781fe2a99d159610c752e08"
+  },
+  "06-autoridad-distanciamiento-authority-distancing.md": {
+   "principles": 34,
+   "links": 56,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "e4dd27dbbc21388d35fe75118cd009d43d932e35a7b35010d4352a152ffd07dd"
+  },
+  "07-tecnologia-social-social-technology.md": {
+   "principles": 23,
+   "links": 34,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "539fd688b9a47241544daf9c405b1d590ff39d031dd19d5302b783f1da82f775"
+  },
+  "08-gestion-conflicto-conflict-management.md": {
+   "principles": 27,
+   "links": 36,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0002,
+   "suspect_lines": 0,
+   "sha256": "3bcb55ee76d489cfac43dfccb120c950482f28d37d375feda40e4c5473691ce6"
+  },
+  "09-productividad-habitos-productivity-habits.md": {
+   "principles": 28,
+   "links": 42,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "d8ef52484476345964506038767b4f398b267e110d0a49d0b2fe07de1732b40e"
+  },
+  "11-capital-social-social-capital.md": {
+   "principles": 30,
+   "links": 35,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "688a781c96b58a709017033672b27f8b899dedfe14728594a88cca347392aac8"
+  }
+ },
+ "principles": 275,
+ "problems": []
+}
