@@ -49,6 +49,23 @@ def sha(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def split_title(raw: str) -> tuple[str, str]:
+    """Заголовок или текст ссылки → (испанская часть, английская часть).
+    Форматы источника: «ES / EN», «[ES — EN]» (файл 01), «ES»."""
+    s = raw.strip()
+    if s.startswith("[") and s.endswith("]"):
+        s = s[1:-1].strip()
+    for sep in (" / ", " — "):
+        if sep in s:
+            es, _, en = s.partition(sep)
+            return es.strip(), en.strip()
+    return s, ""
+
+
+def norm_key(s: str) -> str:
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
 def split_file(name: str) -> dict:
     text = (SRC / name).read_text(encoding="utf-8")
     parts = re.split(r"(?m)^(?=### )", text)
@@ -57,7 +74,7 @@ def split_file(name: str) -> dict:
     for i, block in enumerate(parts[1:], start=1):
         first, _, body = block.partition("\n")
         heading = first[4:].strip()
-        title_es, _, title_en = heading.partition(" / ")
+        title_es, title_en = split_title(heading)
         units.append(
             {
                 "index": i,
@@ -87,17 +104,24 @@ def cmd_split(_: argparse.Namespace) -> int:
     return 0 if total == EXPECTED_PRINCIPLES else 1
 
 
-def load_title_map() -> dict[str, str]:
+def load_title_map() -> dict[str, tuple[str, str]]:
+    """Нормализованная испанская часть заголовка → (русский заголовок, английская часть)."""
     path = ROOT / "translation" / "titles.ru.json"
     if not path.exists():
         raise SystemExit("нет translation/titles.ru.json — сначала перевод заголовков")
     items = json.loads(path.read_text(encoding="utf-8"))
-    m = {}
+    m: dict[str, tuple[str, str]] = {}
     for it in items:
         if not it.get("title_ru"):
             raise SystemExit(f"пустой title_ru: {it}")
-        m[it["title_es"]] = it["title_ru"].strip()
+        es, en = split_title(it["title_es"])
+        en = it.get("title_en") or en
+        m[norm_key(es)] = (it["title_ru"].strip(), en.strip())
     return m
+
+
+def full_heading(ru: str, en: str) -> str:
+    return f"{ru} / {en}" if en else ru
 
 
 LINK_RE = re.compile(r"\[\[([^\]|]+)(\|[^\]]*)?\]\]")
@@ -119,16 +143,18 @@ def relink(text: str, tmap: dict[str, str], unresolved: list[str]) -> str:
     if LINK_ALIASES is None:
         LINK_ALIASES = load_link_aliases()
 
+    full_ru = {full_heading(ru, en) for ru, en in tmap.values()}
+
     def rep(m: re.Match) -> str:
-        key = m.group(1).strip()
-        key = LINK_ALIASES.get(key, key)
-        # допускаем ссылку на испанский или английский заголовок
-        if key in tmap:
-            return f"[[{tmap[key]}]]"
-        for es, ru in tmap.items():
-            if key == ru:
-                return f"[[{ru}]]"
-        unresolved.append(key)
+        raw = m.group(1).strip()
+        raw = LINK_ALIASES.get(raw, raw)
+        if raw in full_ru:  # уже русская ссылка
+            return f"[[{raw}]]"
+        es, _ = split_title(raw)
+        hit = tmap.get(norm_key(LINK_ALIASES.get(es, es)))
+        if hit:
+            return f"[[{full_heading(*hit)}]]"
+        unresolved.append(raw)
         return m.group(0)
 
     return LINK_RE.sub(rep, text)
@@ -154,8 +180,9 @@ def cmd_assemble(args: argparse.Namespace) -> int:
                 print(f"  [ошибка] {name} #{u['index']}: нет body_ru")
                 problems += 1
                 continue
-            title_ru = tmap.get(u["title_es"]) or r.get("title_ru")
-            heading = f"### {title_ru} / {u['title_en']}" if u["title_en"] else f"### {title_ru}"
+            hit = tmap.get(norm_key(u["title_es"]))
+            title_ru, title_en = hit if hit else (r.get("title_ru"), u["title_en"])
+            heading = "### " + full_heading(title_ru, title_en or u["title_en"])
             lines.append(heading)
             lines.append(relink(r["body_ru"].rstrip("\n"), tmap, unresolved))
             lines.append("")
@@ -177,7 +204,7 @@ def spanish_ratio(text: str) -> float:
 
 def cmd_check(_: argparse.Namespace) -> int:
     tmap = load_title_map()
-    all_titles_ru = set(tmap.values())
+    all_titles_ru = {full_heading(ru, en) for ru, en in tmap.values()}
     status = {"files": {}, "principles": 0, "problems": []}
     for name in DOMAIN_FILES:
         path = OUT / name

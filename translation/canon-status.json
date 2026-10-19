@@ -1,0 +1,67 @@
+{
+ "files": {
+  "01-fundamentos-lucha-fundamentals-management-fight.md": {
+   "principles": 44,
+   "links": 51,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0001,
+   "suspect_lines": 0,
+   "sha256": "6feaf43cf79a9b48ca44f2f86581f5d4459389dd7d0dbc2e9e78b2612b0ee081"
+  },
+  "05-ventas-complejas-complex-sales.md": {
+   "principles": 24,
+   "links": 24,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0002,
+   "suspect_lines": 0,
+   "sha256": "f87ba4007637445ebd6ab0f95926767f74de6d70bf3990dc4e67658939d74b73"
+  },
+  "06-autoridad-distanciamiento-authority-distancing.md": {
+   "principles": 34,
+   "links": 56,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "4443a04c96c8816a49fb185933bf109fe7d0de9207b22b29d9646b4be13dfed8"
+  },
+  "07-tecnologia-social-social-technology.md": {
+   "principles": 23,
+   "links": 34,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "caf8cac18127057a7ee90cf52f044c60bef33073515fb742a3dfe6c968fbe3e8"
+  },
+  "08-gestion-conflicto-conflict-management.md": {
+   "principles": 27,
+   "links": 36,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0002,
+   "suspect_lines": 0,
+   "sha256": "ad188826888e6852cd480c0d611d918dca14232a4af1f84cc561a0beda8b89e8"
+  },
+  "09-productividad-habitos-productivity-habits.md": {
+   "principles": 28,
+   "links": 42,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "d8ef52484476345964506038767b4f398b267e110d0a49d0b2fe07de1732b40e"
+  },
+  "11-capital-social-social-capital.md": {
+   "principles": 30,
+   "links": 35,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "515825f328cb7c199e31a5258e599a054d75025fbaced11e3a485b82a130802b"
+  }
+ },
+ "principles": 210,
+ "problems": [
+  "02-imagen-mundo-picture-world.md: не собран",
+  "03-dinamica-roles-role-dynamics.md: не собран",
+  "04-negociacion-posicional-positional-negotiation.md: не собран",
+  "принципов 210 вместо 275"
+ ]
+}
