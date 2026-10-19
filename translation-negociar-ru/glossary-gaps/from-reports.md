@@ -166,3 +166,9 @@
 - пара gerente de ventas / jefe de ventas в одном случае (693): «руководитель отдела продаж» / «руководитель продаж» звучит путано — решить при проходе
 - заголовок 00438953:694 → «Опоздания» (не «Задержки»)
 - брань: estás muy jodido → ты в полной жопе; hostia → чёрт; dar una hostia → дать по морде
+
+## batch-031 (draft-2)
+- colocación (en una posición ventajosa) → постановка в (выгодную) позицию — предлагается в словарь
+- Trabajador (метка) → Работник; Huésped → Постоялец; Empresario → Предприниматель; hombre de negocios → бизнесмен
+- Vendedora senior → Старший продавец; Inversionista principal → Главный инвестор; Gerente General → Генеральный директор
+- transferir la lucha al futuro → перенести борьбу в будущее
