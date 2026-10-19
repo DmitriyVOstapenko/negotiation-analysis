@@ -8,6 +8,14 @@
    "suspect_lines": 0,
    "sha256": "6feaf43cf79a9b48ca44f2f86581f5d4459389dd7d0dbc2e9e78b2612b0ee081"
   },
+  "02-imagen-mundo-picture-world.md": {
+   "principles": 14,
+   "links": 17,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "58d9ff45012f3ad0025a02f550c945d039c5c416f2d2be9725e382cb5781e787"
+  },
   "03-dinamica-roles-role-dynamics.md": {
    "principles": 26,
    "links": 41,
@@ -73,9 +81,6 @@
    "sha256": "515825f328cb7c199e31a5258e599a054d75025fbaced11e3a485b82a130802b"
   }
  },
- "principles": 261,
- "problems": [
-  "02-imagen-mundo-picture-world.md: не собран",
-  "принципов 261 вместо 275"
- ]
+ "principles": 275,
+ "problems": []
 }
