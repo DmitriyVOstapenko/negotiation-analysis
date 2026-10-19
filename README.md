@@ -80,9 +80,16 @@
 ### Стратегический модуль (опционально)
 
 Negociar — советник по переговорам в традиции Владимира Тарасова (автор Арти Галиев) — в этот
-репозиторий **не входит**. Установите его отдельно по инструкции
-https://github.com/arturgaliev3099-ux/realmanagement; навык `conversation-strategy` найдёт
-его сам.
+репозиторий **не входит**. Русская адаптация (канон на русском, русский поиск по случаям):
+https://github.com/DmitriyVOstapenko/negociar-ru —
+
+```
+/plugin marketplace add DmitriyVOstapenko/negociar-ru
+/plugin install negociar-ru@negociar-ru-marketplace
+```
+
+Оригинал на испанском: https://github.com/arturgaliev3099-ux/realmanagement. Навык
+`conversation-strategy` найдёт любой из них сам, русскую версию — в первую очередь.
 
 ## Как пользоваться
 

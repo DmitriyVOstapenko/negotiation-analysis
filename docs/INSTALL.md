@@ -76,12 +76,14 @@ Claude Code: `/plugin update negotiation-analysis@negotiation-analysis-marketpla
 
 ## Стратегический модуль Negociar (по желанию)
 
-Отдельный продукт Арти Галиева: https://github.com/arturgaliev3099-ux/realmanagement.
-Claude Code:
+Отдельный продукт Арти Галиева. Русская адаптация (CC BY-NC-SA 4.0):
+https://github.com/DmitriyVOstapenko/negociar-ru. Claude Code:
 
 ```
-/plugin marketplace add arturgaliev3099-ux/realmanagement
-/plugin install negociar@negociar-marketplace
+/plugin marketplace add DmitriyVOstapenko/negociar-ru
+/plugin install negociar-ru@negociar-ru-marketplace
 ```
+
+Оригинал на испанском: `arturgaliev3099-ux/realmanagement` (`negociar@negociar-marketplace`).
 
 Нужен Node.js (`node` в `PATH`). Навык `conversation-strategy` обнаружит модуль сам.
