@@ -103,9 +103,25 @@ def load_title_map() -> dict[str, str]:
 LINK_RE = re.compile(r"\[\[([^\]|]+)(\|[^\]]*)?\]\]")
 
 
+def load_link_aliases() -> dict[str, str]:
+    """Сокращённые или неточные ссылки источника → точный испанский заголовок (translation/link-aliases.json)."""
+    path = ROOT / "translation" / "link-aliases.json"
+    if not path.exists():
+        return {}
+    return {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if not k.startswith("_")}
+
+
+LINK_ALIASES: dict[str, str] | None = None
+
+
 def relink(text: str, tmap: dict[str, str], unresolved: list[str]) -> str:
+    global LINK_ALIASES
+    if LINK_ALIASES is None:
+        LINK_ALIASES = load_link_aliases()
+
     def rep(m: re.Match) -> str:
         key = m.group(1).strip()
+        key = LINK_ALIASES.get(key, key)
         # допускаем ссылку на испанский или английский заголовок
         if key in tmap:
             return f"[[{tmap[key]}]]"
