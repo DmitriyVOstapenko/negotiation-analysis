@@ -224,3 +224,10 @@
 - Jefe de Finanzas → руководитель финансового отдела; Project Manager → руководитель проекта (Project Manager); Productor(a) de campo → продюсер на площадке
 - frustrada / frustración → фрустрирована / фрустрация (разбор обсуждает само слово)
 - брань: coño → херня; puta mierda → полное, бля, дерьмо; hostia → ни хрена себе (в других пакетах «чёрт»); joder → чёрт
+
+## batch-038 (draft-3)
+- Gerente de innovación → руководитель по инновациям; gerente del restaurante → управляющий рестораном (метка «Управляющий»); mesera → официантка
+- subgerente de ventas → заместитель руководителя отдела продаж; gerente de proyecto → руководитель проекта; gerentes de calidad → менеджеры по качеству (проверить: gerente → руководитель?)
+- azafata → стюардесса; administrador → администратор; «Socio afectado» → «Пострадавший компаньон»; hoja de reclamación → бланк жалобы; señorita → сеньорита
+- «Cambio de roles» как метка блока → «**Смена ролей:**»; Doctor (метка) → Доктор
+- пара Jefe/Gerente de Ventas применена в 596 до pack
