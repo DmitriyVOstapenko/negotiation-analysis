@@ -16,8 +16,8 @@
 перевод, не пересказ и не сокращение.
 
 ## Обязательное чтение
-1. `translation/glossary.md` — словарь терминов (строго и единообразно).
-2. `translation/cases/<batch>.src.json` — список случаев: `id`, `n`, `domain`, `tier`, `sphere`,
+1. `translation-negociar-ru/glossary.md` — словарь терминов (строго и единообразно).
+2. `translation-negociar-ru/cases/<batch>.src.json` — список случаев: `id`, `n`, `domain`, `tier`, `sphere`,
    `title`, `body`, `sha256_src`.
 
 ## Правила перевода
@@ -39,16 +39,16 @@
   (`domain` на русский переведёт инструмент).
 
 ## Формат выхода (по одному файлу на случай — чтобы не терять работу)
-`translation/cases/work/<batch>/<id>-<n>.json`:
+`translation-negociar-ru/cases/work/<batch>/<id>-<n>.json`:
 ```json
 {"id": "00438946", "n": 660, "title_ru": "…", "body_ru": "<перевод тела, Markdown>", "sha256_src": "<из источника>", "status": "machine_draft"}
 ```
-После последнего случая выполнить `python3 tools/cases_tools.py pack <batch>` — он соберёт пакет,
+После последнего случая выполнить `python3 translation-negociar-ru/tools/cases_tools.py pack <batch>` — он соберёт пакет,
 проверит id, непустые поля, длину (не короче 40 % исходника), остатки испанского и примет его.
 Ошибки — исправить и повторить `pack`.
 
 ## Заметки проверки
-Сомнительное место — строкой в `translation/translation-review.jsonl`:
+Сомнительное место — строкой в `translation-negociar-ru/translation-review.jsonl`:
 `{"case": "<id>:<n>", "quote_es": "<цитата>", "issue": "<в чём сомнение>", "proposed": "<предложение>", "status": "open"}`.
 
 ## Отчёт в конце

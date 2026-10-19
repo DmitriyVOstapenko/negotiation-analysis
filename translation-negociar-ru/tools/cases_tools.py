@@ -21,13 +21,15 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "translation" / "cases" / "casos.src.json"
-BATCHES = ROOT / "translation" / "cases"
+TR = Path(__file__).resolve().parents[1]      # translation-negociar-ru/
+REPO = Path(__file__).resolve().parents[2]    # корень плагина
+ROOT = TR
+SRC = TR / "cases" / "casos.src.json"
+BATCHES = TR / "cases"
 ACCEPTED = BATCHES / "accepted"
-OUT = ROOT / "skills" / "negociar-ru" / "data" / "casos.json"
-STATUS = ROOT / "translation" / "cases-status.json"
-TITLES_RU = ROOT / "translation" / "cases" / "titles.ru.json"
+OUT = REPO / "skills" / "negociar-ru" / "data" / "casos.json"
+STATUS = TR / "cases-status.json"
+TITLES_RU = TR / "cases" / "titles.ru.json"
 DOMAIN_RU = {
     "D1": "D1 Основы управленческой борьбы",
     "D2": "D2 Картина мира",
@@ -87,7 +89,7 @@ def cmd_export(args: argparse.Namespace) -> int:
         # сначала уровень A с самым развёрнутым разбором (peso), затем B, C
         tier_rank = {"A": 0, "B": 1, "C": 2}
         pending.sort(key=lambda c: (tier_rank.get(c.get("tier"), 3), -(c.get("peso") or 0)))
-    exc_path = ROOT / "translation" / "exclusions.json"
+    exc_path = TR / "exclusions.json"
     if exc_path.exists():
         ex = {f"{e['id']}:{e['n']}" for e in json.loads(exc_path.read_text(encoding="utf-8")).get("cases", [])}
         pending = [c for c in pending if key(c) not in ex]
@@ -200,7 +202,7 @@ def cmd_assemble(_: argparse.Namespace) -> int:
     titles = {}
     if TITLES_RU.exists():
         titles = {f"{t['id']}:{t['n']}": t["title_ru"] for t in json.loads(TITLES_RU.read_text(encoding="utf-8")) if t.get("title_ru")}
-    exc_path = ROOT / "translation" / "exclusions.json"
+    exc_path = TR / "exclusions.json"
     excluded = {}
     if exc_path.exists():
         excluded = {f"{e['id']}:{e['n']}": e for e in json.loads(exc_path.read_text(encoding="utf-8")).get("cases", [])}

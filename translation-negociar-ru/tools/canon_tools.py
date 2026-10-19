@@ -19,10 +19,12 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "translation" / "canon-src"
-UNITS = ROOT / "translation" / "canon-units"
-OUT = ROOT / "skills" / "negociar-ru" / "data" / "canon"
+TR = Path(__file__).resolve().parents[1]      # translation-negociar-ru/
+REPO = Path(__file__).resolve().parents[2]    # корень плагина
+ROOT = TR
+SRC = TR / "canon-src"
+UNITS = TR / "canon-units"
+OUT = REPO / "skills" / "negociar-ru" / "data" / "canon"
 DOMAIN_FILES = [
     "01-fundamentos-lucha-fundamentals-management-fight.md",
     "02-imagen-mundo-picture-world.md",
@@ -99,14 +101,14 @@ def cmd_split(_: argparse.Namespace) -> int:
             titles.append({"file": name, "index": u["index"], "title_es": u["title_es"], "title_en": u["title_en"]})
         total += len(data["units"])
         print(f"{name}: {len(data['units'])} принципов")
-    (ROOT / "translation" / "titles.src.json").write_text(json.dumps(titles, ensure_ascii=False, indent=1), encoding="utf-8")
+    (TR / "titles.src.json").write_text(json.dumps(titles, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"Всего принципов: {total} (ожидается {EXPECTED_PRINCIPLES})")
     return 0 if total == EXPECTED_PRINCIPLES else 1
 
 
 def load_title_map() -> dict[str, tuple[str, str]]:
     """Нормализованная испанская часть заголовка → (русский заголовок, английская часть)."""
-    path = ROOT / "translation" / "titles.ru.json"
+    path = TR / "titles.ru.json"
     if not path.exists():
         raise SystemExit("нет translation/titles.ru.json — сначала перевод заголовков")
     items = json.loads(path.read_text(encoding="utf-8"))
@@ -129,7 +131,7 @@ LINK_RE = re.compile(r"\[\[([^\]|]+)(\|[^\]]*)?\]\]")
 
 def load_link_aliases() -> dict[str, str]:
     """Сокращённые или неточные ссылки источника → точный испанский заголовок (translation/link-aliases.json)."""
-    path = ROOT / "translation" / "link-aliases.json"
+    path = TR / "link-aliases.json"
     if not path.exists():
         return {}
     return {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if not k.startswith("_")}
@@ -161,7 +163,7 @@ def relink(text: str, tmap: dict[str, str], unresolved: list[str]) -> str:
 
 
 def load_exclusions() -> dict[tuple[str, int], dict]:
-    path = ROOT / "translation" / "exclusions.json"
+    path = TR / "exclusions.json"
     if not path.exists():
         return {}
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -258,7 +260,7 @@ def cmd_check(_: argparse.Namespace) -> int:
                 print(f"  [испанский?] {name}: {l}")
     if status["principles"] != EXPECTED_PRINCIPLES:
         status["problems"].append(f"принципов {status['principles']} вместо {EXPECTED_PRINCIPLES}")
-    (ROOT / "translation" / "canon-status.json").write_text(json.dumps(status, ensure_ascii=False, indent=1), encoding="utf-8")
+    (TR / "canon-status.json").write_text(json.dumps(status, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"Принципов: {status['principles']}/{EXPECTED_PRINCIPLES}; файлов: {len(status['files'])}; проблем: {len(status['problems'])}")
     for p in status["problems"]:
         print("  -", p)

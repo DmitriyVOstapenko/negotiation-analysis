@@ -9,8 +9,8 @@
 
 # Отчёт выравнивающего прохода по терминам (словарь draft-2)
 
-Проход по `translation/glossary.md` (раздел «Решения выравнивающего прохода (draft-2)» и корневые
-принципы) и `translation/README.md` («Выравнивающий проход»). Меняются только термины; смысл,
+Проход по `translation-negociar-ru/glossary.md` (раздел «Решения выравнивающего прохода (draft-2)» и корневые
+принципы) и `translation-negociar-ru/README.md` («Выравнивающий проход»). Меняются только термины; смысл,
 ссылки `[[…]]` и номера занятий не трогались.
 
 ## Метод
@@ -19,10 +19,10 @@
   `scan --out hits.json` и `table --hits hits.json`. Поиск — регулярные выражения по основам слов
   (все падежи), без учёта регистра; совпадения внутри ссылок `[[…]]` и в английской половине
   двуязычных заголовков (`## Русский / English`) не считаются.
-- Корпус: `translation/canon-units/*.ru.json` (`preamble_ru`, `units[].title_ru`, `units[].body_ru`;
-  изъятая единица 05 #8 пропущена), `translation/titles.ru.json`, `translation/cases/accepted/batch-00{1..6}.ru.json`
+- Корпус: `translation-negociar-ru/canon-units/*.ru.json` (`preamble_ru`, `units[].title_ru`, `units[].body_ru`;
+  изъятая единица 05 #8 пропущена), `translation-negociar-ru/titles.ru.json`, `translation-negociar-ru/cases/accepted/batch-00{1..6}.ru.json`
   (`title_ru`, `body_ru`; изъятый случай 00438891:400 в принятых пакетах отсутствует),
-  `translation/cases/titles.ru.json`, `skills/negociar-ru/data/canon/{README,SKILL-SPEC,RECONCILIACION,EVALS}.md`,
+  `translation-negociar-ru/cases/titles.ru.json`, `skills/negociar-ru/data/canon/{README,SKILL-SPEC,RECONCILIACION,EVALS}.md`,
   `skills/negociar-ru/SKILL.md`.
 - Тип варианта: **запрещён** — форма из колонки «Не использовать» словаря (или корневого раздела);
   **проверить** — форма, которая бывает и термином, и обычным словом (например «шеф» — обращение
@@ -40,153 +40,153 @@
 | Термин | Вариант | Тип | Файл | Вхождений |
 |---|---|---|---|---:|
 | jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `skills/negociar-ru/SKILL.md` | 2 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 4 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 9 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 8 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 16 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 5 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 2 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/cases/accepted/batch-002.ru.json` | 14 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/cases/accepted/batch-003.ru.json` | 2 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/cases/accepted/batch-004.ru.json` | 3 |
-| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation/titles.ru.json` | 1 |
-| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation/cases/accepted/batch-002.ru.json` | 32 |
-| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation/cases/accepted/batch-004.ru.json` | 11 |
-| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation/cases/titles.ru.json` | 1 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 4 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 9 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 8 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 16 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 5 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 2 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 14 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 2 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 3 |
+| jefe → руководитель (повествование, роль, метка) | начальник (кроме «начальник производства») | запрещён | `translation-negociar-ru/titles.ru.json` | 1 |
+| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 32 |
+| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 11 |
+| jefe → руководитель (повествование, роль, метка) | начальник производства (только jefe de planta) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 1 |
 | jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `skills/negociar-ru/data/canon/EVALS.md` | 2 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 10 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 2 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 8 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 6 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 4 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 2 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/cases/accepted/batch-002.ru.json` | 25 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/cases/accepted/batch-003.ru.json` | 8 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/cases/accepted/batch-004.ru.json` | 15 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/cases/accepted/batch-006.ru.json` | 6 |
-| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation/cases/titles.ru.json` | 2 |
-| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation/cases/accepted/batch-001.ru.json` | 6 |
-| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation/cases/accepted/batch-002.ru.json` | 1 |
-| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation/cases/accepted/batch-003.ru.json` | 3 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 2 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 6 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 4 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 6 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/09-productividad-habitos-productivity-habits.md.ru.json` | 1 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-001.ru.json` | 23 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-002.ru.json` | 72 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-003.ru.json` | 62 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-004.ru.json` | 13 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-005.ru.json` | 2 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/accepted/batch-006.ru.json` | 1 |
-| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation/cases/titles.ru.json` | 18 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 10 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 2 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 8 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 6 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 4 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 2 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 25 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 8 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 15 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 6 |
+| jefe → руководитель (повествование, роль, метка) | шеф (вне обращения) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 2 |
+| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation-negociar-ru/cases/accepted/batch-001.ru.json` | 6 |
+| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 1 |
+| jefe (обращение) → шеф | «…, руководитель» в обращении | запрещён | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 3 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 2 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 6 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 4 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 6 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/09-productividad-habitos-productivity-habits.md.ru.json` | 1 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-001.ru.json` | 23 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 72 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 62 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 13 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 2 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 1 |
+| gerente (без уточнения) → руководитель | менеджер (проверить исходник: gerente?) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 18 |
 | gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `skills/negociar-ru/SKILL.md` | 1 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/accepted/batch-002.ru.json` | 1 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/accepted/batch-003.ru.json` | 12 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/accepted/batch-004.ru.json` | 26 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/accepted/batch-005.ru.json` | 4 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/accepted/batch-006.ru.json` | 7 |
-| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation/cases/titles.ru.json` | 7 |
-| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | начальник (отдела) продаж | запрещён | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
-| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | начальник (отдела) продаж | запрещён | `translation/cases/accepted/batch-002.ru.json` | 3 |
-| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation/cases/accepted/batch-002.ru.json` | 18 |
-| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation/cases/accepted/batch-003.ru.json` | 2 |
-| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation/cases/titles.ru.json` | 4 |
-| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 1 |
-| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation/cases/accepted/batch-002.ru.json` | 19 |
-| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation/cases/titles.ru.json` | 2 |
-| gerente/director de planta → директор завода | управляющий заводом | запрещён | `translation/cases/accepted/batch-005.ru.json` | 7 |
-| gerente/director de planta → директор завода | управляющий заводом | запрещён | `translation/cases/titles.ru.json` | 5 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 1 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 12 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 26 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 4 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 7 |
+| gerente (без уточнения) → руководитель | управляющий (кроме «…заводом»; проверить исходник) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 7 |
+| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | начальник (отдела) продаж | запрещён | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
+| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | начальник (отдела) продаж | запрещён | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 3 |
+| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 18 |
+| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 2 |
+| gerente/jefe de ventas → руководитель отдела продаж / руководитель продаж | менеджер по продажам (проверить исходник) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 4 |
+| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 1 |
+| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 19 |
+| gerente/director comercial → коммерческий директор | коммерческий менеджер | запрещён | `translation-negociar-ru/cases/titles.ru.json` | 2 |
+| gerente/director de planta → директор завода | управляющий заводом | запрещён | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 7 |
+| gerente/director de planta → директор завода | управляющий заводом | запрещён | `translation-negociar-ru/cases/titles.ru.json` | 5 |
 | comercial (человек) → продажник | — | — | — | 0 |
-| decisor → лицо, принимающее решение (ЛПР) | лицо, принимающее решения (мн. ч.) | проверить | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
-| decisor → лицо, принимающее решение (ЛПР) | лицо, принимающее решения (мн. ч.) | проверить | `translation/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
+| decisor → лицо, принимающее решение (ЛПР) | лицо, принимающее решения (мн. ч.) | проверить | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
+| decisor → лицо, принимающее решение (ЛПР) | лицо, принимающее решения (мн. ч.) | проверить | `translation-negociar-ru/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
 | autoridad (уважение, домен 6) → авторитет | власть (домен 6: проверить исходник autoridad/poder) | проверить (D6) | `skills/negociar-ru/data/canon/EVALS.md` | 1 |
-| autoridad (уважение, домен 6) → авторитет | власть (домен 6: проверить исходник autoridad/poder) | проверить (D6) | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 16 |
-| autoridad (уважение, домен 6) → авторитет | власть (домен 6: проверить исходник autoridad/poder) | проверить (D6) | `translation/cases/accepted/batch-002.ru.json` | 10 |
-| garra → напор (захват — только agarre) | захват при «garra» в исходнике | проверить (garra) | `translation/cases/accepted/batch-003.ru.json` | 4 |
-| dejarse agarrar → дать себя захватить | взять (себя) в захват | запрещён | `translation/cases/accepted/batch-003.ru.json` | 2 |
-| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейминг | запрещён | `translation/cases/accepted/batch-006.ru.json` | 15 |
-| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейминг | запрещён | `translation/titles.ru.json` | 1 |
-| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейм (только в речи ведущего) | проверить | `translation/cases/accepted/batch-006.ru.json` | 9 |
-| reencuadrar → сменить рамку / смена рамки | переставить рамку | запрещён | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 2 |
-| retroalimentación (разбор ведущего, метка в случаях) → разбор | Ретроориентация | проверить | `translation/cases/accepted/batch-006.ru.json` | 1 |
-| lucha (раунд упражнения) → борьба | поединок | запрещён | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 2 |
-| lucha (раунд упражнения) → борьба | поединок | запрещён | `translation/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
+| autoridad (уважение, домен 6) → авторитет | власть (домен 6: проверить исходник autoridad/poder) | проверить (D6) | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 16 |
+| autoridad (уважение, домен 6) → авторитет | власть (домен 6: проверить исходник autoridad/poder) | проверить (D6) | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 10 |
+| garra → напор (захват — только agarre) | захват при «garra» в исходнике | проверить (garra) | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 4 |
+| dejarse agarrar → дать себя захватить | взять (себя) в захват | запрещён | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 2 |
+| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейминг | запрещён | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 15 |
+| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейминг | запрещён | `translation-negociar-ru/titles.ru.json` | 1 |
+| framing / encuadre / marco → рамка (в речи ведущего допустимо «фрейм») | фрейм (только в речи ведущего) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 9 |
+| reencuadrar → сменить рамку / смена рамки | переставить рамку | запрещён | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 2 |
+| retroalimentación (разбор ведущего, метка в случаях) → разбор | Ретроориентация | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 1 |
+| lucha (раунд упражнения) → борьба | поединок | запрещён | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 2 |
+| lucha (раунд упражнения) → борьба | поединок | запрещён | `translation-negociar-ru/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
 | clase (в «Источник») → занятие | — | — | — | 0 |
 | directos → прямые эфиры | — | — | — | 0 |
 | derecho a la costumbre → право привычки | право обычая | запрещён | `skills/negociar-ru/data/canon/EVALS.md` | 1 |
-| derecho a la costumbre → право привычки | право обычая | запрещён | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
-| derecho al olvido → право на забывание | право забыть | запрещён | `translation/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 2 |
+| derecho a la costumbre → право привычки | право обычая | запрещён | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
+| derecho al olvido → право на забывание | право забыть | запрещён | `translation-negociar-ru/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 2 |
 | derecho al olvido → право на забывание | «…и на забвение» / забвение (проверить) | проверить | `skills/negociar-ru/data/canon/RECONCILIACION.md` | 1 |
-| derecho al olvido → право на забывание | «…и на забвение» / забвение (проверить) | проверить | `translation/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
+| derecho al olvido → право на забывание | «…и на забвение» / забвение (проверить) | проверить | `translation-negociar-ru/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
 | captura de valor → присвоение ценности | — | — | — | 0 |
-| puente de plata / de oro → золотой мост | серебряный мост | запрещён | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 1 |
-| Terreno Muerto → местность смерти | мёртвая земля | запрещён | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
-| salida honrosa / digna → достойный выход | почётный выход | запрещён | `translation/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
+| puente de plata / de oro → золотой мост | серебряный мост | запрещён | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 1 |
+| Terreno Muerto → местность смерти | мёртвая земля | запрещён | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
+| salida honrosa / digna → достойный выход | почётный выход | запрещён | `translation-negociar-ru/canon-units/08-gestion-conflicto-conflict-management.md.ru.json` | 1 |
 | excusa honorable → почётный повод | — | — | — | 0 |
-| validación (эмоциональная) → признание | валидация | запрещён | `translation/cases/accepted/batch-006.ru.json` | 2 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 8 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 1 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 2 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 4 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/canon-units/09-productividad-habitos-productivity-habits.md.ru.json` | 2 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/cases/accepted/batch-003.ru.json` | 14 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/cases/accepted/batch-004.ru.json` | 5 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/cases/accepted/batch-005.ru.json` | 1 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/cases/accepted/batch-006.ru.json` | 3 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/cases/titles.ru.json` | 5 |
-| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation/titles.ru.json` | 1 |
-| Cambio / Inversión de roles → смена ролей | перевёрнутые роли / обмен ролями / роли наоборот | проверить | `translation/cases/accepted/batch-002.ru.json` | 8 |
-| Cambio / Inversión de roles → смена ролей | перевёрнутые роли / обмен ролями / роли наоборот | проверить | `translation/cases/accepted/batch-006.ru.json` | 4 |
-| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation/cases/accepted/batch-004.ru.json` | 4 |
-| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation/cases/accepted/batch-006.ru.json` | 6 |
-| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation/cases/titles.ru.json` | 1 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 1 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/cases/accepted/batch-003.ru.json` | 1 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/cases/accepted/batch-004.ru.json` | 9 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/cases/accepted/batch-005.ru.json` | 16 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/cases/accepted/batch-006.ru.json` | 1 |
-| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation/cases/titles.ru.json` | 1 |
-| Vendedor / Cliente (метки) → Продавец / Клиент | метка Покупатель/Заказчик/Торговец | проверить | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 1 |
+| validación (эмоциональная) → признание | валидация | запрещён | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 2 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 8 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 1 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 2 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 4 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/canon-units/09-productividad-habitos-productivity-habits.md.ru.json` | 2 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 14 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 5 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 1 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 3 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 5 |
+| técnica (название приёма) → приём | техника (проверить: название приёма?) | проверить | `translation-negociar-ru/titles.ru.json` | 1 |
+| Cambio / Inversión de roles → смена ролей | перевёрнутые роли / обмен ролями / роли наоборот | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 8 |
+| Cambio / Inversión de roles → смена ролей | перевёрнутые роли / обмен ролями / роли наоборот | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 4 |
+| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 4 |
+| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 6 |
+| Cambio / Inversión de roles → смена ролей | обратные роли | запрещён | `translation-negociar-ru/cases/titles.ru.json` | 1 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 1 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 1 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 9 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 16 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 1 |
+| Alumno (метка) → Ученик | Студент (метка/роль) | проверить | `translation-negociar-ru/cases/titles.ru.json` | 1 |
+| Vendedor / Cliente (метки) → Продавец / Клиент | метка Покупатель/Заказчик/Торговец | проверить | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 1 |
 | lucha gerencial → управленческая борьба | — | — | — | 0 |
-| sólido y hueco → твёрдое и пустое | прочное (проверить: sólido?) | проверить | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 2 |
-| sólido y hueco → твёрдое и пустое | прочное (проверить: sólido?) | проверить | `translation/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
+| sólido y hueco → твёрдое и пустое | прочное (проверить: sólido?) | проверить | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 2 |
+| sólido y hueco → твёрдое и пустое | прочное (проверить: sólido?) | проверить | `translation-negociar-ru/canon-units/11-capital-social-social-capital.md.ru.json` | 1 |
 | imagen del mundo → картина мира | — | — | — | 0 |
 | unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `skills/negociar-ru/SKILL.md` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 2 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/cases/accepted/batch-001.ru.json` | 1 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/cases/accepted/batch-003.ru.json` | 11 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/cases/accepted/batch-004.ru.json` | 2 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/cases/accepted/batch-005.ru.json` | 8 |
-| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation/cases/accepted/batch-006.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 2 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/canon-units/05-ventas-complejas-complex-sales.md.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/cases/accepted/batch-001.ru.json` | 1 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 11 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 2 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 8 |
+| unirse a la imagen del mundo → присоединиться к картине мира | подстроиться | запрещён | `translation-negociar-ru/cases/accepted/batch-006.ru.json` | 1 |
 | acercarse al ciervo / reno → приблизиться к оленю | — | — | — | 0 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | хватка | запрещён | `translation/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | хватка | запрещён | `translation-negociar-ru/canon-units/02-imagen-mundo-picture-world.md.ru.json` | 1 |
 | захват — бросок — фиксация (agarre / derribo / fijación) | зацеп | запрещён | `skills/negociar-ru/SKILL.md` | 2 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | зацеп | запрещён | `translation/cases/accepted/batch-002.ru.json` | 2 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | зацеп | запрещён | `translation/cases/accepted/batch-003.ru.json` | 1 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation/cases/accepted/batch-001.ru.json` | 1 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation/cases/accepted/batch-004.ru.json` | 1 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 3 |
-| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | зацеп | запрещён | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 2 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | зацеп | запрещён | `translation-negociar-ru/cases/accepted/batch-003.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation-negociar-ru/canon-units/03-dinamica-roles-role-dynamics.md.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation-negociar-ru/cases/accepted/batch-001.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | свержение / сваливание | запрещён | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 1 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation-negociar-ru/canon-units/04-negociacion-posicional-positional-negotiation.md.ru.json` | 3 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation-negociar-ru/canon-units/06-autoridad-distanciamiento-authority-distancing.md.ru.json` | 3 |
+| захват — бросок — фиксация (agarre / derribo / fijación) | удержание (как термин fijación?) | проверить | `translation-negociar-ru/canon-units/07-tecnologia-social-social-technology.md.ru.json` | 1 |
 | suave en la forma, duro en el fondo → мягко по форме, твёрдо по сути | жёстко/твёрдо по содержанию / жёстко по сути | проверить | `skills/negociar-ru/SKILL.md` | 2 |
-| suave en la forma, duro en el fondo → мягко по форме, твёрдо по сути | мягко в форме | проверить | `translation/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
+| suave en la forma, duro en el fondo → мягко по форме, твёрдо по сути | мягко в форме | проверить | `translation-negociar-ru/canon-units/01-fundamentos-lucha-fundamentals-management-fight.md.ru.json` | 1 |
 | derecho a la ignorancia → право на незнание | право не знать / на неведение / на невежество | проверить | `skills/negociar-ru/data/canon/RECONCILIACION.md` | 1 |
 | camino a la vida → дорога к жизни | — | — | — | 0 |
 | fuerza de la indiferencia → сила безразличия | — | — | — | 0 |
-| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation/cases/accepted/batch-002.ru.json` | 2 |
-| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation/cases/accepted/batch-004.ru.json` | 1 |
-| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation/cases/accepted/batch-005.ru.json` | 3 |
-| golpe en el vacío → удар в пустоту | бить/ударить по пустоте | проверить | `translation/titles.ru.json` | 1 |
+| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation-negociar-ru/cases/accepted/batch-002.ru.json` | 2 |
+| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation-negociar-ru/cases/accepted/batch-004.ru.json` | 1 |
+| el «Exacto» → «Точно» | «Именно так» / «Именно» | проверить | `translation-negociar-ru/cases/accepted/batch-005.ru.json` | 3 |
+| golpe en el vacío → удар в пустоту | бить/ударить по пустоте | проверить | `translation-negociar-ru/titles.ru.json` | 1 |
 
 ## Решения и замены
 
@@ -395,12 +395,12 @@
 
 ## Сборка и статусы
 
-- `python3 tools/canon_tools.py assemble` → 10 файлов собраны; `python3 tools/canon_tools.py check` →
+- `python3 translation-negociar-ru/tools/canon_tools.py assemble` → 10 файлов собраны; `python3 translation-negociar-ru/tools/canon_tools.py check` →
   «Принципов: 275/275; файлов: 10; проблем: 0» (после правок и после повышения статусов).
-- Заголовки канона менялись только в `translation/titles.ru.json` (06 #21, 06 #32, 01 #14); ссылки
+- Заголовки канона менялись только в `translation-negociar-ru/titles.ru.json` (06 #21, 06 #32, 01 #14); ссылки
   `[[…]]` разрешаются сборщиком; заголовки внутри каждого файла канона уникальны (проверено скриптом).
-- `python3 tools/cases_tools.py titles-import translation/cases/titles.ru.json` → «Заголовки приняты: 1019».
-- `python3 tools/cases_tools.py assemble` → «casos.json: записей 1019; полный перевод 150; только
+- `python3 translation-negociar-ru/tools/cases_tools.py titles-import translation-negociar-ru/cases/titles.ru.json` → «Заголовки приняты: 1019».
+- `python3 translation-negociar-ru/tools/cases_tools.py assemble` → «casos.json: записей 1019; полный перевод 150; только
   заголовок 868; изъято 1; без перевода 0»; `translation_status` у 150 принятых случаев — `terminology_checked`.
 - Статусы: 274 единицы канона (кроме изъятой 05 #8) и 150 принятых случаев — `terminology_checked`,
   `glossary_version` = `draft-2` (у канона — на уровне файла).
@@ -422,7 +422,7 @@ Costumbre» («право привычки»), README «названия дом�
 
 - `skills/negociar-ru/data/canon/00-ARQUITECTURA.md` не входил в список файлов: в нём остались
   «почётный выход» (стр. 129) и «Рамка и фрейминг / Framing» (стр. 69).
-- `translation/canon-units/*.ru.parts/` и `translation/cases/work/` содержат текст до прохода
+- `translation-negociar-ru/canon-units/*.ru.parts/` и `translation-negociar-ru/cases/work/` содержат текст до прохода
   (статус `machine_draft`, словарь `draft-1`): повторный `canon_tools.py merge-parts` или
   `cases_tools.py pack` перезапишет выровненные файлы.
 - `cases_tools.py status` пишет `corpus_status: machine_draft` жёстко (не по статусам случаев);
