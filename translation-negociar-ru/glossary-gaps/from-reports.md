@@ -364,3 +364,9 @@
 - Propietario de la obra → Заказчик ремонта; Técnico de mantenimiento → Мастер по обслуживанию; Compañero de piso → Сосед по квартире (в 052 Conviviente — так же)
 - Voz inquisidora / Voz que pone excusas → Допрашивающий голос / Голос, придумывающий отговорки
 - confrontación → противостояние; daño moral → моральный вред; liquidación → расчёт при увольнении; subcontratistas → субподрядчики; mandona → властная
+
+## batch-063 (draft-3, последний пакет)
+- asistente (слушатель занятия) → Слушатель; duro en forma y en contenido → твёрдо и по форме, и по сути; ponerse bruto → становиться грубым; recurso externo → внешний ресурс; tipos marginados → маргиналы
+- creadores de contenido → создатели контента; hater / hate / hatear → хейтер / хейт / хейтить; elogio / halagos / adular → похвала / лесть / льстить; evaluadores / evaluados → оценивающие / оцениваемые
+- imagen del hecho → образ факта (≠ картина мира); comité de vecinos → комитет жильцов; insistir en la victoria → добиваться победы; perder la cara → терять лицо
+- está de paso → здесь проездом; checkpoints → чекпоинты; retro (de la Situación) → разбор
