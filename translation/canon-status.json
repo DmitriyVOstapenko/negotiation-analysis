@@ -8,6 +8,14 @@
    "suspect_lines": 0,
    "sha256": "6feaf43cf79a9b48ca44f2f86581f5d4459389dd7d0dbc2e9e78b2612b0ee081"
   },
+  "03-dinamica-roles-role-dynamics.md": {
+   "principles": 26,
+   "links": 41,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "f65e7f73a76b022d3b02b8b6a09c042cadf047f95f237bd53c84f3b0764b40ef"
+  },
   "05-ventas-complejas-complex-sales.md": {
    "principles": 24,
    "links": 24,
@@ -57,11 +65,10 @@
    "sha256": "515825f328cb7c199e31a5258e599a054d75025fbaced11e3a485b82a130802b"
   }
  },
- "principles": 210,
+ "principles": 236,
  "problems": [
   "02-imagen-mundo-picture-world.md: не собран",
-  "03-dinamica-roles-role-dynamics.md: не собран",
   "04-negociacion-posicional-positional-negotiation.md: не собран",
-  "принципов 210 вместо 275"
+  "принципов 236 вместо 275"
  ]
 }
