@@ -334,3 +334,11 @@
 - Hombre / Mujer (метки) → Мужчина / Женщина; Jefe Administrativo → Административный руководитель; Artista/Pintor → Художник/Живописец; Cliente indeciso → Нерешительный клиент
 - Ponente (como X) → Ведущий (в роли X); presencialidad → очный формат / работа в офисе; tickets → тикеты; servicio de referidos → реферальная услуга; elaboración de perfil → составление профиля
 - tío (разг.) → мужик; брань: puta → долбаный; mierda → дерьмо
+
+## batch-050 (draft-3)
+- capital social: взнос компаньона → уставный капитал; в смысле D11 → социальный капитал
+- socio mayoritario / minoritario → мажоритарный / миноритарный компаньон; paga y señal → задаток (в 039: «предоплата» — выровнять)
+- Hacienda → налоговая; inspector de Hacienda → налоговый инспектор; caja → касса; Procuraduría del Trabajo → Трудовая прокуратура
+- метки: Femme Fatale → Роковая женщина; Emisor / Receptor → Отправитель / Получатель; Asistente Administrativa → Административный ассистент; Dueño de la Pyme → Владелец малого бизнеса; Agente de seguros → Страховой агент
+- slop (ИИ) → мусор (slop); dominado / dominador → доминируемый / доминирующий; gandalla → нагло
+- брань: jodido → чертовски (в других пакетах «хреново» — выровнять по месту)
