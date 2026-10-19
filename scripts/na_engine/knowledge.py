@@ -8,7 +8,11 @@
 - повторный apply того же предложения ничего не дублирует;
 - apply останавливается, если целевой файл или реестр изменился после показа diff
   (другой чат, ручная правка): снимок хешей целей пишется рядом с diff;
-- в ledger попадают снимки обязательств и рисков по knowledge_event.schema.json.
+- в ledger попадают снимки обязательств и рисков по knowledge_event.schema.json;
+- учёт объектов разбора (accounting[]) и решения пользователя по пунктам
+  (knowledge_decisions.jsonl) проверяет и накладывает accounting.py: diff и apply
+  работают с одной и той же эффективной копией предложения, а снимок связывает diff
+  с хешем действующих решений.
 """
 
 from __future__ import annotations
@@ -299,7 +303,7 @@ def plan_changes(root: Path, proposal: dict[str, Any]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def render_diff(meeting_id: str, proposal_sha: str, plan: dict[str, Any], proposal: dict[str, Any]) -> str:
+def render_diff(meeting_id: str, proposal_sha: str, plan: dict[str, Any], proposal: dict[str, Any], accounting: dict[str, Any] | None = None) -> str:
     files = plan["files"]
     records = plan["records"]
     effective_files = [item for item in files if not item["unchanged"]]
@@ -326,6 +330,12 @@ def render_diff(meeting_id: str, proposal_sha: str, plan: dict[str, Any], propos
         lines += ["## Ошибки предусловий (применение заблокировано)", ""]
         lines += [f"- {item}" for item in plan["errors"]]
         lines.append("")
+    if plan.get("warnings"):
+        lines += ["## Предупреждения", ""] + [f"- {item}" for item in plan["warnings"]] + [""]
+    if accounting is not None:
+        from .accounting import render_section  # учёт объектов разбора и решения по пунктам
+
+        lines += render_section(accounting)
     if not effective_files and not effective_records and not plan["errors"]:
         lines += ["## Изменений нет", "", "Предложение не вносит новых фактов в базу знаний.", ""]
 
@@ -359,11 +369,33 @@ def _target_snapshot(root: Path, plan: dict[str, Any]) -> dict[str, str | None]:
 
 
 def run_diff(root: Path, meeting_id: str) -> dict[str, Any]:
+    from .accounting import evaluate, snapshot_fields  # учёт объектов разбора и решения по пунктам
+
     path = meeting_dir(root, meeting_id)
     proposal, proposal_sha = load_proposal(path)
-    plan = plan_changes(root, proposal)
-    write_text(path / DIFF_FILE, render_diff(meeting_id, proposal_sha, plan, proposal))
-    write_json(path / SNAPSHOT_FILE, {"proposal_sha256": proposal_sha, "taken_at": now_iso(), "targets": _target_snapshot(root, plan)})
+    receipt = read_json_or_none(path / RECEIPT_FILE) or {}
+    if proposal_sha in receipt.get("applied_proposals", []):
+        # Уже применённое предложение: diff не пересобирается (иначе показал бы «файл уже существует»
+        # и стёр отметку о применении). Новое изменение — новая версия предложения.
+        return {
+            "valid": True,
+            "meeting_id": meeting_id,
+            "proposal_sha256": proposal_sha,
+            "files": [],
+            "records": [],
+            "errors": [],
+            "warnings": ["Предложение с этим хешем уже применено; diff не пересобирался. Для новых изменений подготовьте новую версию предложения."],
+            "accounting": None,
+            "pending_decisions": [],
+            "diff": DIFF_FILE,
+            "applied": True,
+        }
+    accounting = evaluate(root, path, proposal, proposal_sha)
+    plan = plan_changes(root, accounting["effective_proposal"])
+    plan["errors"] = accounting["errors"] + plan["errors"]
+    plan["warnings"] = accounting["warnings"]
+    write_text(path / DIFF_FILE, render_diff(meeting_id, proposal_sha, plan, proposal, accounting))
+    write_json(path / SNAPSHOT_FILE, {"proposal_sha256": proposal_sha, **snapshot_fields(accounting), "taken_at": now_iso(), "targets": _target_snapshot(root, plan)})
     return {
         "valid": not plan["errors"],
         "meeting_id": meeting_id,
@@ -371,6 +403,9 @@ def run_diff(root: Path, meeting_id: str) -> dict[str, Any]:
         "files": [{"path": item["path"], "action": item["action"], "unchanged": item["unchanged"]} for item in plan["files"]],
         "records": [{"registry": item["registry"], "action": item["action"], "id": item["id"], "unchanged": bool(item.get("unchanged"))} for item in plan["records"]],
         "errors": plan["errors"],
+        "warnings": plan["warnings"],
+        "accounting": accounting["summary"],
+        "pending_decisions": accounting["pending"],
         "diff": DIFF_FILE,
         "applied": False,
     }
@@ -419,7 +454,12 @@ def run_apply(root: Path, meeting_id: str, confirm: bool) -> dict[str, Any]:
             exit_code=1,
         )
 
-    plan = plan_changes(root, proposal)
+    from .accounting import check_ready_for_apply, evaluate, receipt_entry  # учёт и решения по пунктам
+
+    accounting = evaluate(root, path, proposal, proposal_sha)
+    check_ready_for_apply(accounting, snapshot)
+    plan = plan_changes(root, accounting["effective_proposal"])
+    plan["errors"] = accounting["errors"] + plan["errors"]
     if plan["errors"]:
         raise NaError("Применение заблокировано ошибками предусловий:\n" + "\n".join(f"  - {item}" for item in plan["errors"]), exit_code=1)
 
@@ -453,6 +493,7 @@ def run_apply(root: Path, meeting_id: str, confirm: bool) -> dict[str, Any]:
                 "files_written": written_files,
                 "registries_written": touched_registries,
                 "records": record_summary,
+                "accounting": receipt_entry(accounting),
                 "ledger_events_appended": ledger["events_appended"],
                 "ledger_event_ids": ledger["event_ids"],
             },
@@ -462,6 +503,8 @@ def run_apply(root: Path, meeting_id: str, confirm: bool) -> dict[str, Any]:
     diff_text = read_text(path / DIFF_FILE)
     diff_text = diff_text.replace("**Статус:** `proposed` — база знаний НЕ изменена.", f"**Статус:** `applied` — применено {applied_at} по подтверждению пользователя.", 1)
     diff_text += f"\n## Применено\n\n- Время: {applied_at}\n- Подтверждение: user_confirmation\n- Файлов записано: {len(written_files)}\n- Реестров изменено: {len(touched_registries)}\n- Событий журнала добавлено: {ledger['events_appended']}\n"
+    if accounting["present"]:
+        diff_text += f"- Учёт: пунктов {accounting['summary']['items']}, решений пользователя по пунктам {len(accounting['decisions'])}\n"
     write_text(path / DIFF_FILE, diff_text)
     refresh_index(root)
     return {
@@ -472,6 +515,7 @@ def run_apply(root: Path, meeting_id: str, confirm: bool) -> dict[str, Any]:
         "files_written": written_files,
         "registries_written": touched_registries,
         "records": record_summary,
+        "accounting": receipt_entry(accounting),
         "ledger_events_appended": ledger["events_appended"],
     }
 

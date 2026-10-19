@@ -1,0 +1,55 @@
+{
+  "scenario": "01-duplicate-source",
+  "title": "Повторный транскрипт той же встречи",
+  "synthetic": true,
+  "checks": [
+    "duplicate_source: тот же файл, загруженный второй раз под другим именем, не создаёт вторую встречу (na.py source create — код 2 с id существующей)",
+    "recap_not_duplicate: итоги, повторённые в конце встречи, не удваивают обязательства",
+    "pending_approval: уступка по цене без утверждения ЛПР — не решение"
+  ],
+  "meeting_id": "2026-11-03-taiga-kedr-film",
+  "captured_at": "2026-11-03T11:00:00+03:00",
+  "organizations": {"our_side": "ООО «Тайгапромснаб» (вымышленное)", "counterparty": "ООО «Кедровый Двор» (вымышленное)"},
+  "speaker_map": {
+    "status": "confirmed",
+    "confirmed": {
+      "Speaker 1": "Виктор Лаптев (руководитель снабжения, наша сторона)",
+      "Speaker 2": "Светлана Орехова (менеджер по ключевым клиентам, поставщик)",
+      "Speaker 3": "Денис Мальцев (юрист, наша сторона)"
+    },
+    "unconfirmed": {}
+  },
+  "expected_speaker_labels": ["Speaker 1", "Speaker 2", "Speaker 3"],
+  "registration": {
+    "duplicates": [
+      {"file": "transcript_repeat.txt", "expect_exit_code": 2, "note": "побайтовая копия transcript.txt — повторная загрузка того же источника"}
+    ]
+  },
+  "known_limits": "Движок ловит только побайтовый дубль (content_sha256). Та же встреча, расшифрованная другим провайдером, даёт другой хеш — её должен заметить аналитик по дате, участникам и содержанию (шаг 2 навыка meeting-analysis).",
+  "traps": [
+    {
+      "id": "T1",
+      "description": "Повтор итогов записан вторым обязательством (дубль D1)",
+      "mutations": [
+        {"op": "add_commitment", "who": "orekhova", "what": "проект допсоглашения с графиком поставок два раза в месяц", "quote": "Первое: Светлана присылает проект допсоглашения с графиком два раза в месяц до четырнадцатого ноября.", "timestamp": "00:04:35", "deadline": "2026-11-14", "deadline_verbatim": "до четырнадцатого ноября"}
+      ],
+      "expect": {"verdict": "FAIL", "items": {"D1": "FULL"}, "extras_distorted_min": 1}
+    },
+    {
+      "id": "T2",
+      "description": "Индексация 5% записана как согласованная",
+      "mutations": [
+        {"op": "add_key_fact", "fact": "Стороны договорились об индексации пять процентов при объёме от двенадцати тонн.", "quote": "Тогда пять процентов при двенадцати тоннах.", "timestamp": "00:01:44"}
+      ],
+      "expect": {"verdict": "FAIL", "items": {"D5": "DISTORTED"}, "extras_distorted_min": 1}
+    },
+    {
+      "id": "T3",
+      "description": "ЛПР по цене назначен из участников (Орехова)",
+      "mutations": [
+        {"op": "patch", "item": "D6", "set": {"final_decision_maker": "@person:orekhova"}}
+      ],
+      "expect": {"verdict": "FAIL", "items": {"D6": "DISTORTED"}}
+    }
+  ]
+}

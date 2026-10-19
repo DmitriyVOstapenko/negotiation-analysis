@@ -33,5 +33,13 @@
       "id": "[commitment-id]",
       "record": {"status": "done", "follow_up": {"reminder_date": null, "reminder_sent": false, "actual_completion_date": "[YYYY-MM-DD]", "completion_notes": "[доказательство результата]"}}
     }
+  ],
+  "accounting": [
+    {"ref": "participant:[person-id]", "fate": "record", "target": {"file": "knowledge/people/[person-id].md"}, "certainty": "sure"},
+    {"ref": "organization:[organization-id]", "fate": "skip", "reason": "[почему не переносим: например, наша организация, карточка не ведётся]", "certainty": "sure"},
+    {"ref": "commitment:[commitment-id]", "fate": "record", "target": {"registry": "knowledge/commitments/open.jsonl", "id": "[commitment-id]"}, "certainty": "sure"},
+    {"ref": "question:1", "fate": "record", "target": {"file": "knowledge/topics/[topic-id].md", "fragment": "[одна или несколько целых строк из content этой карточки]"}, "certainty": "sure"},
+    {"ref": "risk:[risk-id-из-08]", "fate": "merge", "target": {"registry": "knowledge/risks/active.jsonl", "id": "[risk-id]"}, "reason": "[с чем объединяем и почему это тот же риск]", "certainty": "doubtful", "question": "[вопрос пользователю: это тот же риск или новый?]"},
+    {"ref": "decision:1", "fate": "skip", "reason": "[почему не переносим]", "certainty": "doubtful", "question": "[вопрос пользователю]"}
   ]
 }

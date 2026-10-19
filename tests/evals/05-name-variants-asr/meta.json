@@ -1,0 +1,44 @@
+{
+  "scenario": "05-name-variants-asr",
+  "title": "Варианты имён и ошибки распознавания",
+  "synthetic": true,
+  "checks": [
+    "asr_variants: фамилии искажены распознаванием по-разному (Варошилова, Ворошилава; Сабитоф, Собитов) — это те же люди, отдельных участников нет",
+    "speech_variants: обращение по имени-отчеству (Ксения Андреевна) — тот же человек",
+    "similar_name_other_person: Ворошилин (финансовый директор, не на встрече) — другой человек, не вариант Ворошиловой",
+    "executor_through_variant: исполнитель обязательства определяется верно, хотя в реплике фамилия искажена"
+  ],
+  "meeting_id": "2026-11-05-yasen-granat-reagents",
+  "captured_at": "2026-11-05T14:00:00+03:00",
+  "organizations": {"our_side": "ООО «Ясень Фарма» (вымышленное)", "counterparty": "ООО «Гранат Лаб» (вымышленное)"},
+  "speaker_map": {
+    "status": "confirmed",
+    "confirmed": {
+      "Speaker 1": "Ксения Ворошилова (закупки, наша сторона)",
+      "Speaker 2": "Тимур Сабитов (ключевые клиенты, поставщик)",
+      "Speaker 3": "Артём Лыков (логистика, наша сторона)"
+    },
+    "unconfirmed": {}
+  },
+  "expected_speaker_labels": ["Speaker 1", "Speaker 2", "Speaker 3"],
+  "traps": [
+    {
+      "id": "T1",
+      "description": "Вариант распознавания записан отдельным участником",
+      "mutations": [{"op": "add_participant", "full_name": "Варошилова", "identity_source": "transcript", "confidence": "possible"}],
+      "expect": {"verdict": "FAIL", "items": {"V1": "DISTORTED"}}
+    },
+    {
+      "id": "T2",
+      "description": "Ворошилин слит с Ворошиловой: ЛПР по отсрочке — участница встречи",
+      "mutations": [{"op": "patch", "item": "V6", "set": {"final_decision_maker": "@person:voroshilova"}}],
+      "expect": {"verdict": "FAIL", "items": {"V6": "DISTORTED"}}
+    },
+    {
+      "id": "T3",
+      "description": "Участник записан в искажённом написании вместо подтверждённого",
+      "mutations": [{"op": "patch", "item": "V2", "set": {"full_name": "Тимур Сабитоф"}}],
+      "expect": {"verdict": "FAIL", "items": {"V2": "PARTIAL"}}
+    }
+  ]
+}

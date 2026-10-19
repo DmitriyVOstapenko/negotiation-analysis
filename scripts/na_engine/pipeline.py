@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from . import ENGINE_VERSION
+from .analysis_profile import profile_summary, required_analysis_files
 from .common import (
     ANALYSIS_CONTRACTS_PATH,
     ANALYSIS_FILES,
@@ -105,9 +106,12 @@ def knowledge_state(meeting_path: Path) -> tuple[bool, str]:
 def build_manifest(root: Path, meeting_path: Path) -> dict[str, Any]:
     meeting_id = meeting_path.name
     source_state = {name: (meeting_path / name).is_file() for name in SOURCE_FILES}
-    analysis_state = {name: (meeting_path / "analysis" / name).is_file() for name in ANALYSIS_FILES}
+    profile = profile_summary(meeting_path)
+    analysis_state = {name: (meeting_path / "analysis" / name).is_file() for name in profile["required"]}
     gate = gate_state(meeting_path)
     validation = read_json_or_none(meeting_path / "analysis" / "validation_report.json") or {}
+    levels = validation.get("quote_stats") or {}
+    quote_levels = f" (буквально {levels.get('exact', 0)}, нормализация {levels.get('normalized', 0)}, «…» {levels.get('ellipsis', 0)})" if levels else ""
     report_validation = read_json_or_none(meeting_path / "analysis" / "report_auto_validation.json") or {}
     follow_up = read_json_or_none(meeting_path / "follow_up.json") or {}
     follow_up_ready = all((meeting_path / name).is_file() for name in FOLLOW_UP_FILES) and follow_up.get("delivery_status") == "draft_not_sent"
@@ -119,9 +123,10 @@ def build_manifest(root: Path, meeting_path: Path) -> dict[str, Any]:
         stage("sources_ready", all(source_state.values()), f"исходники: {sum(source_state.values())}/{len(source_state)}"),
         stage("privacy_gate_passed", gate["consent"] == "yes", f"шлюз: consent={gate['consent']}, masking={gate['masking_mode']}, sensitivity={gate['sensitivity']}, routes={gate['allowed_routes']}"),
         stage("speakers_confirmed", speakers.get("status") == "confirmed", "карта спикеров подтверждена" if speakers.get("status") == "confirmed" else "карта спикеров не подтверждена", blocking=False),
-        stage("analysis_complete", all(analysis_state.values()), f"аналитические JSON: {sum(analysis_state.values())}/{len(analysis_state)}"),
+        stage("analysis_complete", all(analysis_state.values()), f"аналитические JSON: {sum(analysis_state.values())}/{len(analysis_state)} (профиль {profile['profile']}"
+              + (f"; не выполняются по профилю: {len(profile['skipped_by_profile'])}" if profile["skipped_by_profile"] else "") + ")"),
         stage("schema_validated", validation.get("schema_valid") is True, f"JSON Schema {validation.get('schema_version') or contract_version()}: {'пройдена' if validation.get('schema_valid') is True else 'не пройдена'}"),
-        stage("quotes_validated", validation.get("valid") is True, f"цитат проверено: {validation.get('checked_quotes', 0)}; ошибок: {len(validation.get('errors', []))}"),
+        stage("quotes_validated", validation.get("valid") is True, f"цитат проверено: {validation.get('checked_quotes', 0)}{quote_levels}; ошибок: {len(validation.get('errors', []))}"),
         stage("auto_report_built", (meeting_path / "report_auto.md").is_file(), "report_auto.md создан" if (meeting_path / "report_auto.md").is_file() else "report_auto.md отсутствует"),
         stage("auto_report_validated", report_validation.get("valid") is True, f"проверка отчёта: {'пройдена' if report_validation.get('valid') is True else 'не пройдена'}"),
         stage("human_report_ready", (meeting_path / "report.md").is_file(), "финальный report.md присутствует" if (meeting_path / "report.md").is_file() else "report.md отсутствует"),
@@ -146,6 +151,7 @@ def build_manifest(root: Path, meeting_path: Path) -> dict[str, Any]:
             "ontology_version": ontology_version(),
         },
         "gate": {key: gate[key] for key in ("consent", "masking_mode", "sensitivity", "allowed_routes", "retention_decision")},
+        "analysis_profile": {key: profile[key] for key in ("profile", "required", "skipped_by_profile")},
         "pipeline_input_digest": combined_digest(inputs),
         "source_fingerprints": inputs,
         "artifact_fingerprints": artifacts,
@@ -179,7 +185,7 @@ def refresh_meeting(root: Path, meeting_path: Path, force: bool = False) -> dict
     if not force and previous and previous.get("pipeline_input_digest") == current_digest and previous.get("overall_status") == "ready" and all(path.is_file() for path in required_outputs):
         return {"meeting_id": meeting_path.name, "status": "reused", "reason": "входные fingerprint не изменились", "overall_status": "ready", "resume_from": None, "failed_actions": 0, "actions": []}
     actions: list[dict[str, Any]] = []
-    if all((meeting_path / "analysis" / name).is_file() for name in ANALYSIS_FILES):
+    if all((meeting_path / "analysis" / name).is_file() for name in required_analysis_files(meeting_path)):
         actions.append(_action("validate", lambda: run_validate(root, meeting_path.name)))
         if actions[-1]["ok"]:
             actions.append(_action("report", lambda: run_report(root, meeting_path.name)))
@@ -226,14 +232,24 @@ def refresh_all(root: Path, force: bool = False) -> dict[str, Any]:
 
 
 def status(root: Path, meeting_id: str | None) -> dict[str, Any]:
+    from .workspace_schema import describe as workspace_state  # версия схемы базы: только чтение
+
     if meeting_id:
-        return build_manifest(root, meeting_dir(root, meeting_id))
+        return {**build_manifest(root, meeting_dir(root, meeting_id)), "workspace": workspace_state(root)}
     rows = []
     for path in meeting_dirs(root):
         manifest = build_manifest(root, path)
-        rows.append({"meeting_id": path.name, "overall_status": manifest["overall_status"], "resume_from": manifest["resume_from"], "gate": manifest["gate"]["consent"]})
+        rows.append({"meeting_id": path.name, "overall_status": manifest["overall_status"], "resume_from": manifest["resume_from"], "gate": manifest["gate"]["consent"], "analysis_profile": manifest["analysis_profile"]["profile"]})
     run = read_json_or_none(root / "system" / "pipeline_run.json") or {}
-    return {"root": str(root), "meetings": rows, "last_refresh_all": {"generated_at": run.get("generated_at"), "valid": run.get("valid")} if run else None}
+    return {"root": str(root), "meetings": rows, "last_refresh_all": {"generated_at": run.get("generated_at"), "valid": run.get("valid")} if run else None, "workspace": workspace_state(root)}
+
+
+def _workspace_line(workspace: dict[str, Any] | None) -> list[str]:
+    if not workspace:
+        return []
+    if workspace.get("state") in {"needs_migration", "newer_than_plugin", "invalid"}:
+        return [f"ВНИМАНИЕ: {workspace['message']}"]
+    return [workspace["message"]]
 
 
 def summary_lines_status(result: dict[str, Any]) -> list[str]:
@@ -242,10 +258,10 @@ def summary_lines_status(result: dict[str, Any]) -> list[str]:
         for item in result["stages"]:
             mark = "+" if item["status"] == "completed" else "-"
             lines.append(f"  [{mark}] {item['id']}: {item['details']}")
-        return lines
-    lines = [f"Рабочий каталог: {result['root']}; встреч: {len(result['meetings'])}"]
+        return lines + _workspace_line(result.get("workspace"))
+    lines = [f"Рабочий каталог: {result['root']}; встреч: {len(result['meetings'])}"] + _workspace_line(result.get("workspace"))
     for row in result["meetings"]:
-        lines.append(f"  {row['meeting_id']}: {row['overall_status']} (шлюз: {row['gate']}; продолжить с: {row['resume_from'] or '—'})")
+        lines.append(f"  {row['meeting_id']}: {row['overall_status']} (шлюз: {row['gate']}; профиль: {row.get('analysis_profile', 'full')}; продолжить с: {row['resume_from'] or '—'})")
     if result.get("last_refresh_all"):
         lines.append(f"Последний refresh-all: {result['last_refresh_all']['generated_at']} valid={result['last_refresh_all']['valid']}")
     return lines

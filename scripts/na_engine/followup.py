@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from .analysis_profile import meeting_profile
 from .common import NaError, meeting_dir, now_iso, read_json, read_json_or_none, relative, write_json, write_text
 from .registries import meeting_commitments, meeting_risks
 from .report import cell, evidence_text, person
@@ -20,13 +21,16 @@ def row(values: list[Any]) -> str:
 def build_bundle(root: Path, meeting_path: Path) -> dict[str, Any]:
     meeting_id = meeting_path.name
     analysis = meeting_path / "analysis"
-    for name in ("01_extraction.json", "07_commitments.json", "09_decision_authority.json", "11_meeting_effectiveness.json"):
+    profile = meeting_profile(meeting_path)
+    # лёгкий разбор: карта решений (09) и протокол следующей встречи (11) не строятся
+    needed = ("01_extraction.json", "07_commitments.json") + (("09_decision_authority.json", "11_meeting_effectiveness.json") if profile == "full" else ())
+    for name in needed:
         if not (analysis / name).is_file():
             raise NaError(f"Нет аналитического файла {name}; follow-up собирается после анализа")
     extraction = read_json(analysis / "01_extraction.json")
-    decisions = read_json(analysis / "09_decision_authority.json")
+    decisions = read_json(analysis / "09_decision_authority.json") if profile == "full" else {}
     commitments_analysis = read_json(analysis / "07_commitments.json")
-    effectiveness = read_json(analysis / "11_meeting_effectiveness.json")
+    effectiveness = read_json(analysis / "11_meeting_effectiveness.json") if profile == "full" else {}
     queue = read_json_or_none(root / "system" / "review_queue.json")
     if queue is None:
         from .review import build_queue
@@ -38,6 +42,7 @@ def build_bundle(root: Path, meeting_path: Path) -> dict[str, Any]:
         "generated_at": now_iso(),
         "delivery_status": DELIVERY_STATUS,
         "meeting_id": meeting_id,
+        "analysis_profile": profile,
         "outcome": extraction.get("outcome"),
         "outcome_summary": extraction.get("outcome_summary"),
         "participants": extraction.get("participants", []),
@@ -74,7 +79,8 @@ def build_protocol(bundle: dict[str, Any]) -> str:
             person(decision.get("proposal_owner"), names), decision.get("deadline"), evidence_text(decision.get("evidence", [])),
         ]))
     if not bundle["decision_areas"]:
-        lines.append(row(["—", "Решения не выделены", "—", "—", "—", "—"]))
+        light = bundle.get("analysis_profile") == "light"
+        lines.append(row(["—", "Карта решений не строилась (лёгкий разбор)" if light else "Решения не выделены", "—", "—", "—", "—"]))
 
     lines += ["", "## Действия", "", "| Статус | Ответственный | Действие | Срок | Источник |", "|---|---|---|---|---|"]
     for commitment in bundle["commitments"]:
@@ -109,6 +115,8 @@ def build_protocol(bundle: dict[str, Any]) -> str:
         lines.append("- Открытых пунктов очереди проверки по этой встрече нет.")
     lines += ["", "## Правило следующей встречи", ""]
     lines.extend(f"{index}. {value}" for index, value in enumerate(bundle["next_meeting_protocol"], 1))
+    if not bundle["next_meeting_protocol"] and bundle.get("analysis_profile") == "light":
+        lines.append("- Не строилось: лёгкий разбор (только обязательства и риски).")
     lines += ["", f"_Документ подготовлен, но никуда не отправлен (`{DELIVERY_STATUS}`)._", ""]
     return "\n".join(lines)
 

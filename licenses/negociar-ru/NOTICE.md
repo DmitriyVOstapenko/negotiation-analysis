@@ -9,6 +9,8 @@
 
 # NOTICE — атрибуция, происхождение, изменения
 
+> **Где подробности.** Папка `translation-negociar-ru/` (замороженный испанский источник, словарь, таблица локализации, отчёты, статусы и заметки проверки) хранится в репозитории https://github.com/DmitriyVOstapenko/negotiation-analysis и **в пакет плагина не входит**; ссылки на неё ниже ведут туда.
+
 **Русская адаптация материала Negociar.** Исходный материал: Copyright (c) 2026
 Artur Galiev; автор и сторона атрибуции — Arti Galiev, https://instagram.com/arti_galiev.
 Источник: https://github.com/arturgaliev3099-ux/realmanagement, commit

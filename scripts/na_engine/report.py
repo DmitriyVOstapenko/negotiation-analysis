@@ -5,17 +5,20 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from .analysis_profile import ARTIFACT_LABELS, PROFILE_LABELS, profile_summary
 from .common import (
-    ANALYSIS_FILES,
     NaError,
     gate_state,
     meeting_dir,
     meeting_meta,
     read_json,
     read_json_or_none,
+    read_text,
+    today_iso,
     write_json,
     write_text,
 )
+from .quote_check import LEVEL_LABELS, plural_ru, transcript_quality
 from .registries import meeting_commitments, meeting_risks
 
 
@@ -61,14 +64,97 @@ OUTCOME_LABELS = {
 SOURCE_LABELS = {"user_confirmed": "подтверждено пользователем", "user_confirmation": "подтверждено пользователем"}
 
 
+LIGHT_HEADINGS = [
+    "## Один экран",
+    "## Результат",
+    "## Участники",
+    "## Ключевые факты",
+    "## Обязательства: актуальное состояние",
+    "## Риски: актуальное состояние",
+    "## Не выполнялось по профилю",
+    "## Контроль качества",
+]
+MAP_STATUS_LABELS = {"confirmed": "подтверждена пользователем", "proposed": "предложена, не подтверждена"}
+
+
 def load_analysis(meeting_path: Path) -> dict[str, dict[str, Any]]:
+    """Артефакты профиля разбора: full — 11 JSON, light — 01, 07, 08 (остальные не читаются)."""
     data: dict[str, dict[str, Any]] = {}
-    for name in ANALYSIS_FILES:
+    required = profile_summary(meeting_path)["required"]
+    for name in required:
         path = meeting_path / "analysis" / name
         if not path.is_file():
-            raise NaError(f"Нет аналитического файла {name}; отчёт собирается только из полного набора 11 JSON")
+            raise NaError(f"Нет аналитического файла {name}; отчёт собирается только из полного набора артефактов профиля ({len(required)} JSON)")
         data[name[:2]] = read_json(path)
     return data
+
+
+def data_line(meeting_path: Path, meta: dict[str, Any], gate: dict[str, Any], validation: dict[str, Any] | None, profile: dict[str, Any]) -> str:
+    """Строка «Данные:»: источник и его разметка, карта спикеров, проверка цитат, профиль, чего нет."""
+    quality = transcript_quality(read_text(meeting_path / "transcript.txt"))
+    provider = (meta.get("source") or {}).get("provider") or "провайдер не указан"
+    labels = quality["speaker_labels"]
+    source = (
+        f"транскрипт ({provider}, реплик {quality['segments']}; таймкоды {'есть' if quality['has_timestamps'] else 'нет'}; "
+        f"разметка говорящих {'есть — ' + plural_ru(len(labels), 'метка', 'метки', 'меток') if labels else 'нет'})"
+    )
+    mapping = gate["review"].get("speaker_mapping") if isinstance(gate["review"].get("speaker_mapping"), dict) else {}
+    speaker_map = f"карта спикеров {MAP_STATUS_LABELS.get(mapping.get('status'), 'не подтверждена')}"
+    stats = (validation or {}).get("quote_stats")
+    if stats:
+        quotes = (
+            f"цитаты: {stats['checked']} проверено — буквально {stats['exact']}, после нормализации {stats['normalized']}, "
+            f"с пропуском «…» {stats['ellipsis']}, предупреждений проверки {len(validation.get('warnings', []))}"
+        )
+    else:
+        quotes = "строгая проверка цитат не выполнялась (na.py validate)"
+    scope = "разбор полный (11 артефактов)" if profile["profile"] == "full" else f"{PROFILE_LABELS['light']}: {', '.join(name[:2] for name in profile['required'])}"
+    missing = []
+    if not quality["has_timestamps"]:
+        missing.append("таймкодов")
+    if not labels:
+        missing.append("разметки говорящих")
+    if not (meeting_path / "analysis" / "audio_acoustic_metrics.json").is_file():
+        missing.append("аудиослоя")
+    if profile["skipped_by_profile"]:
+        missing.append(f"артефактов {', '.join(name[:2] for name in profile['skipped_by_profile'])} (не выполнялись по профилю)")
+    tail = f"; нет: {', '.join(missing)}" if missing else ""
+    return f"**Данные:** {source}, {speaker_map}; {quotes}; {scope}; реестры базы на {today_iso()}{tail}."
+
+
+def source_quality_lines(validation: dict[str, Any] | None) -> list[str]:
+    """Раздел «Качество источника»: разметка, уровни совпадения цитат, атрибуция, таймкоды."""
+    lines = ["", "### Качество источника", ""]
+    stats = (validation or {}).get("quote_stats")
+    quality = (validation or {}).get("source_quality")
+    if not stats or not quality:
+        return lines + ["Строгая проверка цитат не выполнялась: запустите `na.py validate --meeting …`."]
+    labels = ", ".join(quality.get("speaker_labels") or []) or "нет"
+    unmapped = quality.get("unmapped_labels") or []
+    lines += [
+        f"- Запись: реплик {quality['segments']}; с таймкодом {quality['timestamped_segments']}; разметка говорящих: {labels}; "
+        f"карта спикеров: {MAP_STATUS_LABELS.get(quality.get('speaker_map_status'), 'не подтверждена')}"
+        + (f"; без сопоставления: {', '.join(unmapped)}" if unmapped else "") + ".",
+        f"- Цитаты: проверено {stats['checked']} — буквально {stats['exact']}, после нормализации {stats['normalized']}, "
+        f"с пропуском «…» {stats['ellipsis']}; не найдено {stats['not_found']}; склеек реплик разных говорящих {stats['spliced']}.",
+        f"- Атрибуция говорящих: проверено {stats['attribution_checked']} — совпало {stats['attribution_matched']}, "
+        f"расхождений {stats['attribution_mismatched']}, не проверено {stats['attribution_unverified']}.",
+        f"- Таймкоды: допуск ±{validation.get('timestamp_tolerance_sec')} с; расхождений выше допуска {stats['timestamp_drift']}; "
+        f"указывают на другую реплику {stats['timestamp_other_reply']}.",
+    ]
+    loose = [item for item in validation.get("quote_checks", []) if item.get("level") in ("normalized", "ellipsis")]
+    if loose:
+        lines.append("- Цитаты не дословно — сверить с записью:")
+        for item in loose:
+            labels_text = ", ".join(item.get("speaker_labels") or []) or "говорящий не размечен"
+            lines.append(f"  - `{item['file']} {item['path']}` — {LEVEL_LABELS[item['level']]} (`{item.get('timestamp') or '—'}`, {labels_text}).")
+    warnings = validation.get("warnings", [])
+    if warnings:
+        lines.append(f"- Предупреждения проверки ({len(warnings)}):")
+        lines.extend(f"  - {item}" for item in warnings[:20])
+        if len(warnings) > 20:
+            lines.append(f"  - … ещё {len(warnings) - 20} в analysis/validation_report.json")
+    return lines
 
 
 def name_map(extraction: dict[str, Any]) -> dict[str, str]:
@@ -97,16 +183,22 @@ def evidence_text(items: list[dict[str, Any]]) -> str:
 
 def one_screen(data: dict[str, dict[str, Any]], names: dict[str, str], commitments: list[dict[str, Any]], risks: list[dict[str, Any]]) -> list[str]:
     """Первый экран: главный вывод, требуемое решение, ключевые факты, риски, варианты, следующий шаг."""
-    extraction, decisions, effectiveness = data["01"], data["09"], data["11"]
+    # лёгкий разбор: 09 (решения) и 11 (эффективность) не строились — так и пишем, а не «не выделено»
+    light = "09" not in data or "11" not in data
+    extraction, decisions, effectiveness = data["01"], data.get("09") or {}, data.get("11") or {}
     lines = ["## Один экран", ""]
 
     outcome = OUTCOME_LABELS.get(extraction.get("outcome"), extraction.get("outcome") or "не определён")
     classification = EFFECTIVENESS_LABELS.get(effectiveness.get("classification"), effectiveness.get("classification"))
+    score = (
+        "оценка эффективности не выполнялась (лёгкий разбор)" if light
+        else f"рабочая оценка встречи **{effectiveness.get('overall_score_0_5')} из 5** ({classification})"
+    )
     lines += [
         "### Главный вывод",
         "",
         f"{extraction.get('outcome_summary', 'Результат не сформирован.')} "
-        f"Итог: **{outcome}**; рабочая оценка встречи **{effectiveness.get('overall_score_0_5')} из 5** ({classification}).",
+        f"Итог: **{outcome}**; {score}.",
         "",
     ]
     if effectiveness.get("confidence") in {"possible", "speculative"}:
@@ -123,7 +215,11 @@ def one_screen(data: dict[str, dict[str, Any]], names: dict[str, str], commitmen
         lines.append(f"- **{d.get('decision')}** — состояние: {d.get('current_state')}; ЛПР: {maker}; срок: {deadline}; confidence: `{d.get('confidence')}`.")
     for item in decisions.get("unresolved", []):
         lines.append(f"- Не закрыто: {item}")
-    if not decisions.get("decision_areas") and not decisions.get("unresolved"):
+    if light:
+        lines.append("- Карта решений и полномочий не строилась (лёгкий разбор).")
+        for question in data["07"].get("open_questions", []):
+            lines.append(f"- Открытый вопрос: {question.get('question')} (`{question.get('timestamp')}`).")
+    elif not decisions.get("decision_areas") and not decisions.get("unresolved"):
         lines.append("- Решений, требующих вмешательства, по транскрипту не выделено.")
 
     lines += ["", "### Ключевые факты", ""]
@@ -163,7 +259,9 @@ def one_screen(data: dict[str, dict[str, Any]], names: dict[str, str], commitmen
         for option in d.get("options", []) or []:
             options_found = True
             lines.append(f"- {d.get('decision')}: {option}")
-    if not options_found:
+    if light:
+        lines.append("- Варианты решений не выделялись (лёгкий разбор).")
+    elif not options_found:
         lines.append("- Альтернативные варианты в транскрипте не зафиксированы.")
 
     lines += ["", "### Следующий шаг", ""]
@@ -174,6 +272,9 @@ def one_screen(data: dict[str, dict[str, Any]], names: dict[str, str], commitmen
         lines.append(f"{len(protocol) + 1}. Проконтролировать ближайшее обязательство: {person(nearest.get('who'), names)} — {nearest.get('what')} (срок {nearest.get('deadline') or 'не установлен'}).")
     if not protocol and not open_commitments:
         lines.append("1. Следующий шаг не определён; требуется решение пользователя.")
+    if light:
+        number = len(protocol) + (1 if open_commitments else 0) + (0 if protocol or open_commitments else 1) + 1
+        lines.append(f"{number}. Если нужен полный разбор (тактики, аргументация, карта решений, оценка встречи): `na.py profile set --meeting … --profile full` и недостающие артефакты.")
     lines += ["", "_Детали ниже раскрывают каждый пункт первого экрана; критические факты и риски высокой важности показаны здесь и не скрыты._", ""]
     return lines
 
@@ -188,17 +289,22 @@ def build_report(root: Path, meeting_path: Path) -> str:
     commitments = meeting_commitments(root, meeting_path)
     risks = meeting_risks(root, meeting_path)
     sensitivity = gate["sensitivity"] if gate["sensitivity"] != "not_set" else (meta.get("sensitivity") or "не указана")
+    profile = profile_summary(meeting_path)
+    validation = read_json_or_none(meeting_path / "analysis" / "validation_report.json")
 
     lines: list[str] = [
         f"# Автоматический отчёт: {meta['title']}",
+        "",
+        data_line(meeting_path, meta, gate, validation, profile),
         "",
         f"**Meeting ID:** `{meeting_path.name}`  ",
         f"**Дата:** {meta.get('date') or 'не указана'}  ",
         f"**Чувствительность:** `{sensitivity}`  ",
         f"**Шлюз согласия:** `{gate['consent']}`; маскирование: `{gate['masking_mode']}`; маршрут: `{gate['allowed_routes']}`  ",
-        f"**Исключено с:** `{excluded.get('from', '—')}` — {excluded.get('reason', '—')}",
-        "",
     ]
+    if excluded.get("from") or excluded.get("reason"):
+        lines.append(f"**Исключено с:** `{excluded.get('from', '—')}` — {excluded.get('reason', '—')}")
+    lines.append("")
     lines += one_screen(data, names, commitments, risks)
 
     lines += ["## Результат", "", extraction.get("outcome_summary", "Результат не сформирован."), "", "## Участники", "", "| Участник | Роль | Сторона | Источник идентификации | Confidence |", "|---|---|---|---|---|"]
@@ -228,6 +334,9 @@ def build_report(root: Path, meeting_path: Path) -> str:
         lines += ["", "Открытые вопросы из транскрипта:", ""]
         for q in open_questions:
             lines.append(f"- {q['question']} — «{q['quote']}» (`{q['timestamp']}`).")
+
+    if profile["profile"] == "light":
+        return "\n".join(lines + closing_sections(meeting_path, names, risks, None, validation, profile))
 
     tactics = data["02"]
     lines += ["", "## Наблюдённые тактики", ""]
@@ -315,7 +424,12 @@ def build_report(root: Path, meeting_path: Path) -> str:
     if effectiveness.get("losses"):
         lines += ["", "Потери:", ""] + [f"- {item}" for item in effectiveness["losses"]]
 
-    lines += ["", "## Риски: актуальное состояние", "", "| Важность | Статус | Риск | Владелец | Срок | Действие | Источник записи |", "|---|---|---|---|---|---|---|"]
+    return "\n".join(lines + closing_sections(meeting_path, names, risks, effectiveness, validation, profile))
+
+
+def closing_sections(meeting_path: Path, names: dict[str, str], risks: list[dict[str, Any]], effectiveness: dict[str, Any] | None, validation: dict[str, Any] | None, profile: dict[str, Any]) -> list[str]:
+    """Риски, протокол (full) или «не выполнялось по профилю» (light), аудио, контроль качества."""
+    lines = ["", "## Риски: актуальное состояние", "", "| Важность | Статус | Риск | Владелец | Срок | Действие | Источник записи |", "|---|---|---|---|---|---|---|"]
     for r in risks:
         mitigation = r.get("mitigation") or {}
         origin = "база знаний" if r.get("record_origin") == "knowledge" else "анализ (в базу не внесено)"
@@ -323,14 +437,20 @@ def build_report(root: Path, meeting_path: Path) -> str:
     if not risks:
         lines.append(table_row(["—", "—", "Риски не выделены", "—", "—", "—", "—"]))
 
-    lines += ["", "## Протокол следующей встречи", ""]
-    lines.extend(f"{i}. {item}" for i, item in enumerate(effectiveness.get("next_meeting_protocol", []), 1))
+    if effectiveness is not None:
+        lines += ["", "## Протокол следующей встречи", ""]
+        lines.extend(f"{i}. {item}" for i, item in enumerate(effectiveness.get("next_meeting_protocol", []), 1))
+    if profile["skipped_by_profile"]:
+        lines += ["", "## Не выполнялось по профилю", "", f"Профиль разбора: **{PROFILE_LABELS[profile['profile']]}**. Не выполнялись — это не пробел в данных и не ошибка:", ""]
+        for name in profile["skipped_by_profile"]:
+            present = " — файл есть и проверен валидатором, но в отчёт этого профиля не входит" if name in profile["present_outside_profile"] else ""
+            lines.append(f"- `{name}` — {ARTIFACT_LABELS.get(name, name)}{present}.")
+        lines += ["", "Перейти к полному разбору: `na.py profile set --meeting … --profile full`, подготовить недостающие артефакты и повторить `na.py refresh --meeting …`."]
 
     audio_path = meeting_path / "analysis" / "audio_acoustic_metrics.json"
     if audio_path.is_file():
         lines += ["", "## Аудиослой", "", "Инструментальные акустические метрики рассчитаны отдельно (analysis/audio_acoustic_metrics.json). Они не содержат смысловых или клинических выводов и не изменяют текстовый анализ сами по себе."]
 
-    validation = read_json_or_none(meeting_path / "analysis" / "validation_report.json")
     lines += ["", "## Контроль качества", ""]
     if validation:
         lines.append(
@@ -341,9 +461,10 @@ def build_report(root: Path, meeting_path: Path) -> str:
         )
     else:
         lines.append("Валидация не выполнялась: запустите `na.py validate --meeting …`.")
+    lines += source_quality_lines(validation)
 
     lines += ["", "---", "", "_Отчёт собран детерминированно из JSON-артефактов встречи и актуальных реестров knowledge/. Интерпретации остаются предметом человеческой проверки._", ""]
-    return "\n".join(lines)
+    return lines
 
 
 def validate_report(root: Path, meeting_path: Path, report_name: str = "report_auto.md") -> dict[str, Any]:
@@ -352,7 +473,8 @@ def validate_report(root: Path, meeting_path: Path, report_name: str = "report_a
     errors: list[str] = []
     if not report:
         errors.append(f"missing or empty report: {report_name}")
-    errors.extend(f"missing heading: {h}" for h in REQUIRED_HEADINGS if h not in report)
+    headings = LIGHT_HEADINGS if profile_summary(meeting_path)["profile"] == "light" else REQUIRED_HEADINGS
+    errors.extend(f"missing heading: {h}" for h in headings if h not in report)
     extraction = read_json_or_none(meeting_path / "analysis" / "01_extraction.json") or {}
     errors.extend(
         f"participant absent from report: {p['full_name']}"
@@ -367,7 +489,7 @@ def validate_report(root: Path, meeting_path: Path, report_name: str = "report_a
         "meeting_id": meeting_path.name,
         "report": report_name,
         "valid": not errors,
-        "required_headings": len(REQUIRED_HEADINGS),
+        "required_headings": len(headings),
         "participants_checked": len(extraction.get("participants", [])),
         "commitments_checked": len(commitments),
         "risks_checked": len(risks),

@@ -1,0 +1,45 @@
+{
+  "scenario": "04-no-speaker-labels",
+  "title": "Запись без разметки говорящих",
+  "synthetic": true,
+  "checks": [
+    "no_diarization: в транскрипте только таймкоды, меток говорящих нет; личности известны из самопредставлений",
+    "inferred_executor: исполнитель «Да, до пятницы пришлю» выводится по обращению «Павел, сможете…» — уверенность не выше probable",
+    "ambiguous_yes: «Хорошо, сделаем» после двух вопросов разных людей — исполнитель окон разгрузки не определён",
+    "generic_closing: «Договорились. Спасибо, коллеги» в конце — не согласие на отсрочку 45 дней"
+  ],
+  "meeting_id": "2026-11-11-beresta-ladoga-transport",
+  "captured_at": "2026-11-11T12:00:00+03:00",
+  "organizations": {"our_side": "ООО «Береста Ритейл» (вымышленное)", "counterparty": "ООО «Ладожский Тракт» (вымышленное)"},
+  "speaker_map": {
+    "status": "absent",
+    "confirmed": {},
+    "unconfirmed": {},
+    "note": "Меток говорящих нет. Участники по самопредставлению: Наталья Гребнева (коммерческий отдел, наша сторона), Юлия Абрамова (финансы, наша сторона), Павел Широков (перевозки, перевозчик)."
+  },
+  "expected_speaker_labels": [],
+  "traps": [
+    {
+      "id": "T1",
+      "description": "Окна разгрузки приписаны Широкову по «Хорошо, сделаем»",
+      "mutations": [
+        {"op": "add_commitment", "who": "shirokov", "what": "согласовать окна разгрузки с магазинами к началу декабря", "quote": "Хорошо, сделаем.", "timestamp": "00:02:56"}
+      ],
+      "expect": {"verdict": "FAIL", "items": {"N4": "DISTORTED"}, "extras_distorted_min": 1}
+    },
+    {
+      "id": "T2",
+      "description": "Отсрочка 45 дней записана как принятая по финальному «Договорились»",
+      "mutations": [
+        {"op": "add_key_fact", "fact": "Договорились об отсрочке платежа сорок пять дней.", "quote": "Договорились. Спасибо, коллеги.", "timestamp": "00:03:37"}
+      ],
+      "expect": {"verdict": "FAIL", "items": {"N3": "DISTORTED"}, "extras_distorted_min": 1}
+    },
+    {
+      "id": "T3",
+      "description": "Исполнитель тарифной сетки указан с уверенностью certain без разметки",
+      "mutations": [{"op": "patch", "item": "N1", "set": {"confidence": "certain"}}],
+      "expect": {"verdict": "FAIL", "items": {"N1": "PARTIAL"}}
+    }
+  ]
+}

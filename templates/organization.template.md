@@ -2,6 +2,8 @@
 id: "[устойчивый-id, например org-short-name]"
 display_name: "[название]"
 legal_name: null
+speech_variants: []   # как называют в речи
+asr_variants: []      # типовые ошибки распознавания
 description: "[одно предложение: что это за организация и какова её роль во взаимодействии]"
 organization_type: null
 parent_id: null

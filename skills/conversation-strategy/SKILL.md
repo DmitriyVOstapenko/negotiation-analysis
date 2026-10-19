@@ -1,17 +1,14 @@
 ---
 name: conversation-strategy
 description: >
-  This skill should be used when the user asks how to handle a negotiation, conflict,
-  difficult conversation, power relation or people-management situation in the context of
-  their negotiation-analysis knowledge base — phrases like "как на это ответить", "как вести
-  переговоры с", "что ему сказать", "он давит, что делать", "стратегия разговора", "разбери
-  ситуацию с <человек из базы>", "подготовь сценарий переговоров к встрече", "сделай
-  role-play". It gathers confirmed facts from the knowledge base and past meetings, then
-  applies the bundled negociar-ru method (canon of Vladimir Tarasov's tradition by Arti
-  Galiev, Russian adaptation) to build the strategy; message drafts are never written
-  unprompted and never sent.
+  Стратегия сложного разговора или переговоров с людьми и организациями из базы
+  negotiation-analysis: факты — из базы и прошлых встреч, метод — встроенный навык negociar-ru
+  (канон Арти Галиева, традиция В. Тарасова). Использовать, когда пользователь спрашивает, как
+  вести разговор с конкретным человеком или компанией из базы: «как вести переговоры с …»,
+  «разбери ситуацию с …», «сценарий переговоров к встрече», «role-play с контрагентом». Текст
+  сообщения — только по прямой просьбе и только черновиком, без отправки.
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
   license: "CC BY-NC-SA 4.0"
 ---
 

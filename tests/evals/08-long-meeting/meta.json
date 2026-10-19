@@ -1,0 +1,47 @@
+{
+  "scenario": "08-long-meeting",
+  "title": "Длинная встреча (65 минут) с переигранным сроком в конце",
+  "synthetic": true,
+  "long": true,
+  "generated_by": "generate.py",
+  "checks": [
+    "long_meeting: 65 минут, 300+ реплик; несущее рассыпано по началу, середине и концу среди рутинного статуса",
+    "revised_late: срок отчёта, названный на 3-й минуте, переигран на 58-й",
+    "mid_meeting_risk: риск с владельцем на 32-й минуте не теряется",
+    "unanswered_late_proposal: предложение отключить старую систему (45-я минута) без ответа и прямо названо открытым в конце"
+  ],
+  "meeting_id": "2026-11-16-ozerny-kray-erp-steering",
+  "captured_at": "2026-11-16T10:00:00+03:00",
+  "organizations": {"our_side": "ООО «Озёрный Край Дистрибуция» (вымышленное)", "counterparty": "ООО «Белый Клён Софт» (вымышленное)"},
+  "speaker_map": {
+    "status": "confirmed",
+    "confirmed": {
+      "Speaker 1": "Марк Белоусов (директор по ИТ, наша сторона)",
+      "Speaker 2": "Алина Ржевская (руководитель проекта, интегратор)",
+      "Speaker 3": "Степан Ковалёв (ведущий тестировщик, интегратор)",
+      "Speaker 4": "Жанна Острова (финансы, наша сторона)"
+    },
+    "unconfirmed": {}
+  },
+  "expected_speaker_labels": ["Speaker 1", "Speaker 2", "Speaker 3", "Speaker 4"],
+  "traps": [
+    {
+      "id": "T1",
+      "description": "Срок отчёта взят из начала встречи (2 декабря)",
+      "mutations": [{"op": "patch", "item": "L1", "set": {"deadline": "2026-12-02", "deadline_verbatim": "до второго декабря", "source_quote": "Отчёт по нагрузочному тестированию пришлю до второго декабря.", "source_timestamp": "00:02:46"}}],
+      "expect": {"verdict": "FAIL", "items": {"L1": "DISTORTED"}}
+    },
+    {
+      "id": "T2",
+      "description": "Риск из середины встречи потерян",
+      "mutations": [{"op": "remove", "item": "L2"}],
+      "expect": {"verdict": "FAIL", "items": {"L2": "MISSING"}}
+    },
+    {
+      "id": "T3",
+      "description": "Отключение старой системы в январе записано решением",
+      "mutations": [{"op": "add_key_fact", "fact": "Решено отключить старую систему в январе без параллельной работы.", "quote": "Может, отключим старую систему сразу в январе, без параллельной работы?", "timestamp": "00:45:08"}],
+      "expect": {"verdict": "FAIL", "items": {"L3": "DISTORTED"}, "extras_distorted_min": 1}
+    }
+  ]
+}

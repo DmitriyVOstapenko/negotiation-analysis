@@ -1,0 +1,18 @@
+{
+  "description": "negotiation-analysis: защита базы знаний и исходных материалов встречи от прямой записи (инструменты правки файлов, команды оболочки, apply_patch) и проверка ответа владельца перед командами na.py, фиксирующими его решение",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Bash|PowerShell|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard_writes.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

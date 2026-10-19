@@ -80,9 +80,22 @@ def load_config(root: Path) -> dict[str, Any]:
     return data
 
 
+IGNORE_TEXT = "# ключ бота и ожидающие показы не попадают в git, даже если папка под git\nsecrets/\npending/\n"
+
+
+def ensure_ignore(root: Path) -> None:
+    """delivery/.gitignore — чтобы ключ бота не ушёл в репозиторий, если рабочая папка под git."""
+    path = root / DELIVERY_DIR / ".gitignore"
+    if path.is_file():
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(IGNORE_TEXT, encoding="utf-8")
+
+
 def _save_config(root: Path, config: dict[str, Any]) -> None:
     config["updated_at"] = now_iso()
     write_json(_config_path(root), config)
+    ensure_ignore(root)
 
 
 def _token_source(root: Path) -> tuple[str | None, str]:
@@ -132,6 +145,7 @@ def setup(root: Path, email: str | None, token_stdin: str | None, forget_telegra
             raise NaError("Ключ бота не похож на ключ от @BotFather (вид «123456:ABC…»); ничего не записано")
         path = root / TOKEN_FILE
         path.parent.mkdir(parents=True, exist_ok=True)
+        ensure_ignore(root)
         path.write_text(token + "\n", encoding="utf-8")
         try:
             os.chmod(path, 0o600)
@@ -142,8 +156,10 @@ def setup(root: Path, email: str | None, token_stdin: str | None, forget_telegra
         config["telegram"] = None
         path = root / TOKEN_FILE
         if path.exists():
-            path.write_text("", encoding="utf-8")
-        changes.append("личный чат Telegram отвязан, файл ключа в рабочей папке очищен")
+            path.unlink()
+            changes.append("личный чат Telegram отвязан, файл ключа в рабочей папке удалён")
+        else:
+            changes.append("личный чат Telegram отвязан; файла ключа в рабочей папке не было")
     _save_config(root, config)
     return {"config": _public_config(root, config), "changes": changes}
 
@@ -521,6 +537,7 @@ def preview(root: Path, file_arg: str, channel: str, mode: str = "auto") -> dict
         "notes": notes,
     }
     write_json(_pending_path(root, sha, channel), record)
+    ensure_ignore(root)
     return record
 
 
@@ -680,6 +697,8 @@ def journal(root: Path, limit: int = 20) -> list[dict[str, Any]]:
 
 def status(root: Path) -> dict[str, Any]:
     config = load_config(root)
+    if (root / DELIVERY_DIR).is_dir():
+        ensure_ignore(root)
     pending_dir = root / PENDING_DIR
     pending = sorted(p.name for p in pending_dir.glob("*.json")) if pending_dir.is_dir() else []
     return {"config": _public_config(root, config), "pending": pending, "recent": journal(root, 5)}

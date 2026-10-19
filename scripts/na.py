@@ -32,7 +32,7 @@ def build_parser() -> argparse.ArgumentParser:
     root_parent.add_argument("--json", dest="json_output", action="store_true", default=argparse.SUPPRESS, help="Печатать результат в JSON")
 
     parser = argparse.ArgumentParser(prog="na.py", description="Движок накопительной системы анализа переговоров", parents=[root_parent])
-    parser.add_argument("--version", action="version", version=f"na.py {ENGINE_VERSION}")
+    parser.add_argument("--version", action="version", version=f"na.py {ENGINE_VERSION} (плагин negotiation-analysis {_plugin_version()})")
     sub = parser.add_subparsers(dest="command", required=True)
 
     # source
@@ -63,12 +63,12 @@ def build_parser() -> argparse.ArgumentParser:
     speakers_set.add_argument("--map", required=True, help='"Speaker 1=Имя (роль);Speaker 2=Имя"')
 
     # validate / report / followup / manifest
-    for name, help_text in (("validate", "Проверить 11 JSON, цитаты и meeting_id"), ("report", "Собрать report_auto.md с блоком «Один экран»"), ("followup", "Собрать follow-up пакет (draft_not_sent)"), ("manifest", "Записать run_manifest.json")):
+    for name, help_text in (("validate", "Проверить артефакты разбора (11 JSON, в лёгком профиле — 3), цитаты и meeting_id"), ("report", "Собрать report_auto.md с блоком «Один экран»"), ("followup", "Собрать follow-up пакет (draft_not_sent)"), ("manifest", "Записать run_manifest.json")):
         item = sub.add_parser(name, help=help_text, parents=[root_parent])
         item.add_argument("--meeting", required=True)
 
     # knowledge
-    knowledge = sub.add_parser("knowledge", help="База знаний: diff, apply", parents=[root_parent])
+    knowledge = sub.add_parser("knowledge", help="База знаний: diff, decide, apply", parents=[root_parent])
     knowledge_sub = knowledge.add_subparsers(dest="subcommand", required=True)
     kdiff = knowledge_sub.add_parser("diff", help="Показать diff предложения, ничего не применяя", parents=[root_parent])
     kdiff.add_argument("--meeting", required=True)
@@ -125,6 +125,13 @@ def build_parser() -> argparse.ArgumentParser:
     for extension in _cli_extensions():
         extension.register(sub, root_parent)
     return parser
+
+
+def _plugin_version() -> str:
+    try:
+        return json.loads((Path(__file__).resolve().parents[1] / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8")).get("version") or "?"
+    except (OSError, ValueError):
+        return "?"
 
 
 def _cli_extensions() -> list:
@@ -200,12 +207,18 @@ def dispatch(args: argparse.Namespace, root: Path) -> tuple[dict, list[str], int
         from na_engine.knowledge import run_diff
 
         result = run_diff(root, args.meeting)
+        if result.get("applied"):
+            return result, [result["warnings"][0]], 0
         changed_files = [item for item in result["files"] if not item["unchanged"]]
         changed_records = [item for item in result["records"] if not item["unchanged"]]
         lines = [f"Diff записан в negotiations/{args.meeting}/knowledge_diff.md; база НЕ изменена.", f"Файлов к изменению: {len(changed_files)}; записей реестров: {len(changed_records)}; ошибок предусловий: {len(result['errors'])}."]
         lines += [f"  ошибка: {item}" for item in result["errors"]]
-        if result["valid"]:
-            lines.append("Применить после проверки diff: na.py knowledge apply --meeting … --confirm")
+        lines += [f"  предупреждение: {item}" for item in result.get("warnings") or []]
+        pending = result.get("pending_decisions") or []
+        if result["valid"] and pending:
+            lines.append(f"Сомнительных пунктов без ответа пользователя: {len(pending)} — вопросы одним блоком в knowledge_diff.md; ответы: na.py knowledge decide …, затем новый diff.")
+        elif result["valid"]:
+            lines.append("Применить после проверки diff и «применить» пользователя: na.py knowledge apply --meeting … --confirm")
         return result, lines, 0 if result["valid"] else 1
     if command == "knowledge" and args.subcommand == "apply":
         from na_engine.knowledge import run_apply

@@ -1,0 +1,45 @@
+name: Проблема или ошибка
+description: Что-то работает не так, как описано. Без данных ваших встреч.
+title: "[проблема] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Не прикладывайте** транскрипты, отчёты, карточки людей и организаций, реестры, ключи и токены —
+        репозиторий открытый. Опишите проблему словами или на синтетическом примере (как в `tests/fixtures/`).
+  - type: input
+    id: version
+    attributes:
+      label: Версия плагина
+      description: Из `na.py doctor` (первая строка) или `.claude-plugin/plugin.json`.
+    validations:
+      required: true
+  - type: dropdown
+    id: host
+    attributes:
+      label: Где работаете
+      options:
+        - Приложение Claude, задача с папкой (Cowork)
+        - Claude Code
+        - Проект claude.ai, обычный чат
+        - Другое
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Вывод `na.py doctor --probe`
+      description: Без путей к личным папкам, если не хотите их показывать.
+      render: text
+  - type: textarea
+    id: what
+    attributes:
+      label: Что делали и что получилось
+      description: Команда или просьба, ожидаемый результат, фактический результат. Без цитат из реальных встреч.
+    validations:
+      required: true
+  - type: textarea
+    id: checked
+    attributes:
+      label: Чем проверено
+      description: Повторяется ли на синтетической встрече (`python3 tests/run_tests.py`)? Новая сессия помогла?

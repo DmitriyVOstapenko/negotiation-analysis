@@ -1,4 +1,9 @@
-"""Проверка 11 артефактов встречи: схемы, буквальные цитаты, meeting_id, таймкоды."""
+"""Проверка артефактов встречи: схемы, цитаты (уровень совпадения, склейки, атрибуция, таймкоды), meeting_id.
+
+Состав обязательных артефактов задаёт профиль разбора (analysis_profile.py): full — все 11,
+light — 01, 07, 08; артефакт вне профиля, если его нет, — не ошибка. Строгая проверка цитат —
+quote_check.py.
+"""
 
 from __future__ import annotations
 
@@ -17,17 +22,13 @@ from .common import (
     walk,
     write_json,
 )
+from .analysis_profile import profile_error, profile_summary
+from .quote_check import QUOTE_KEYS as QUOTE_FIELDS
+from .quote_check import check_quotes, collect_quotes
 from .schema_runtime import load_registry, validate_contract
 
 
-QUOTE_KEYS = {
-    "quote",
-    "source_quote",
-    "related_quote",
-    "prior_position_quote",
-    "reaction_quote",
-    "evidence_quote",
-}
+QUOTE_KEYS = set(QUOTE_FIELDS)  # поля-цитаты; проверка — quote_check.check_quotes
 TIMESTAMP_KEYS = {"timestamp", "source_timestamp", "caught_timestamp", "timestamp_start", "timestamp_end", "prior_position_timestamp"}
 TIMESTAMP_RE = re.compile(r"^(?:\d{2}:)?\d{2}:\d{2}$")
 
@@ -43,7 +44,8 @@ def contract_version(registry: dict[str, Any] | None = None) -> str | None:
     return registry.get("x-contract-version")
 
 
-def validate_schemas(meeting_path: Path, registry: dict[str, Any] | None = None) -> dict[str, Any]:
+def validate_schemas(meeting_path: Path, registry: dict[str, Any] | None = None, required: set[str] | None = None) -> dict[str, Any]:
+    """required — обязательные по профилю файлы; отсутствующий файл вне профиля пропускается."""
     registry = registry or load_contracts()
     contracts = registry["x-file-contracts"]
     errors: list[dict[str, str]] = []
@@ -51,6 +53,8 @@ def validate_schemas(meeting_path: Path, registry: dict[str, Any] | None = None)
     for filename, contract_ref in contracts.items():
         path = meeting_path / "analysis" / filename
         if not path.is_file():
+            if required is not None and filename not in required:
+                continue
             errors.append({"file": filename, "path": "$", "keyword": "required_file", "message": "файл отсутствует"})
             continue
         try:
@@ -77,10 +81,15 @@ def validate_meeting(meeting_path: Path, registry: dict[str, Any] | None = None)
     transcript_path = meeting_path / "transcript.txt"
     errors: list[str] = []
     warnings: list[str] = []
-    checked_quotes = 0
     parsed_files = 0
+    profile = profile_summary(meeting_path)
+    required_files = set(profile["required"])
+    quote_items: list[dict[str, Any]] = []
+    participants: list[Any] = []
+    if profile_error(meeting_path):
+        errors.append(profile_error(meeting_path))
 
-    schema_report = validate_schemas(meeting_path, registry)
+    schema_report = validate_schemas(meeting_path, registry, required_files)
     for item in schema_report["errors"]:
         errors.append(f"schema violation: {item['file']} {item['path']} [{item['keyword']}] {item['message']}")
 
@@ -97,11 +106,12 @@ def validate_meeting(meeting_path: Path, registry: dict[str, Any] | None = None)
     for filename in ANALYSIS_FILES:
         path = analysis_dir / filename
         if not path.is_file():
-            errors.append(f"missing analysis file: {filename}")
+            if filename in required_files:
+                errors.append(f"missing analysis file: {filename}")
             continue
         try:
             data = json.loads(path.read_text(encoding="utf-8-sig"))
-            parsed_files += 1
+            parsed_files += 1 if filename in required_files else 0
         except json.JSONDecodeError as exc:
             errors.append(f"invalid JSON {filename}: {exc}")
             continue
@@ -110,11 +120,10 @@ def validate_meeting(meeting_path: Path, registry: dict[str, Any] | None = None)
             continue
         if data.get("meeting_id") != meeting_id:
             errors.append(f"meeting_id mismatch in {filename}: {data.get('meeting_id')!r}")
+        if filename == "01_extraction.json" and isinstance(data.get("participants"), list):
+            participants = data["participants"]
+        quote_items.extend(collect_quotes(filename, data))
         for key, value, json_path in walk(data):
-            if key in QUOTE_KEYS and isinstance(value, str) and value:
-                checked_quotes += 1
-                if value not in transcript:
-                    errors.append(f"quote not found in transcript: {filename} {json_path}")
             if key in TIMESTAMP_KEYS and value is not None:
                 if not isinstance(value, str) or not TIMESTAMP_RE.match(value):
                     errors.append(f"invalid timestamp: {filename} {json_path}={value!r}")
@@ -123,25 +132,35 @@ def validate_meeting(meeting_path: Path, registry: dict[str, Any] | None = None)
                 pass
 
     gate = gate_state(meeting_path)
+    quotes = check_quotes(transcript, quote_items, gate["review"], participants)
+    errors.extend(quotes["errors"])
     if gate["consent"] != "yes":
         warnings.append("шлюз согласия не пройден: consent != yes (processing_status остаётся blocked_by_gate)")
     if gate["review_status"] == "pending":
-        warnings.append("human review is pending")
+        warnings.append("ручная проверка встречи ещё не проведена (review_status: pending)")
     speakers = gate["review"].get("speaker_mapping") if isinstance(gate["review"].get("speaker_mapping"), dict) else {}
     if speakers.get("status") != "confirmed":
         warnings.append("карта спикеров не подтверждена пользователем")
+    warnings.extend(quotes["warnings"])
 
     return {
         "meeting_id": meeting_id,
         "valid": not errors,
-        "required_analysis_files": len(ANALYSIS_FILES),
+        "analysis_profile": profile["profile"],
+        "required_analysis_files": len(profile["required"]),
+        "skipped_by_profile": [name for name in profile["skipped_by_profile"] if name not in profile["present_outside_profile"]],
+        "present_outside_profile": profile["present_outside_profile"],
         "parsed_analysis_files": parsed_files,
         "schema_version": schema_report["schema_version"],
         "schema_valid": schema_report["valid"],
-        "checked_quotes": checked_quotes,
+        "checked_quotes": quotes["stats"]["checked"],
+        "quote_stats": quotes["stats"],
+        "source_quality": quotes["source_quality"],
+        "timestamp_tolerance_sec": quotes["timestamp_tolerance_sec"],
         "gate_consent": gate["consent"],
         "errors": errors,
         "warnings": warnings,
+        "quote_checks": quotes["quote_checks"],
     }
 
 
@@ -160,6 +179,23 @@ def summary_lines(report: dict[str, Any]) -> list[str]:
         f"цитат проверено: {report['checked_quotes']}; ошибок: {len(report['errors'])}; "
         f"предупреждений: {len(report['warnings'])}."
     ]
+    stats = report.get("quote_stats") or {}
+    quality = report.get("source_quality") or {}
+    if stats:
+        lines.append(
+            f"  цитаты: буквально {stats['exact']}, после нормализации {stats['normalized']}, с пропуском «…» {stats['ellipsis']}; "
+            f"не найдено {stats['not_found']}, склеек {stats['spliced']}; атрибуция: совпала {stats['attribution_matched']} из {stats['attribution_checked']}, "
+            f"расхождений {stats['attribution_mismatched']}, не проверено {stats['attribution_unverified']}; "
+            f"таймкоды (допуск ±{report.get('timestamp_tolerance_sec')} с): дрейф {stats['timestamp_drift']}, на другую реплику {stats['timestamp_other_reply']}."
+        )
+    if quality:
+        lines.append(
+            f"  источник: таймкоды {'есть' if quality.get('has_timestamps') else 'нет'}; разметка говорящих "
+            f"{'есть (' + ', '.join(quality.get('speaker_labels', [])) + ')' if quality.get('has_speaker_labels') else 'нет'}; "
+            f"карта спикеров: {quality.get('speaker_map_status')}; профиль разбора: {report.get('analysis_profile', 'full')}"
+            + (f" (не выполнялись по профилю: {', '.join(report['skipped_by_profile'])})" if report.get("skipped_by_profile") else "")
+            + "."
+        )
     lines.extend(f"  ошибка: {item}" for item in report["errors"][:50])
     if len(report["errors"]) > 50:
         lines.append(f"  … ещё {len(report['errors']) - 50} ошибок в analysis/validation_report.json")

@@ -4,7 +4,7 @@
 | Статус | active |
 | Owner | Дмитрий Остапенко |
 | Создан | 2026-10-18 |
-| Обновлён | 2026-10-18 |
+| Обновлён | 2026-10-19 |
 | Назначение | Инструкция для навыков: как определить, где живёт накопительная память (папка, проект claude.ai или только разговор), как читать и записывать её без потерь. Читать при первом обращении к базе в разговоре. |
 
 # Адаптер хранилища
@@ -18,12 +18,14 @@
                       analysis/01..11_*.json, analysis/validation_report.json,
                       report_auto.md, report.md, follow_up.json, follow_up_protocol.md,
                       follow_up_message.md, knowledge_proposal.json, knowledge_diff.md,
-                      run_manifest.json, analysis_bundle.json
+                      knowledge_decisions.jsonl, run_manifest.json, analysis_bundle.json
   knowledge/          people/*.md, organizations/*.md, topics/*.md, tactics_observed/*.md,
                       commitments/{open,closed}.jsonl, risks/{active,closed}.jsonl,
                       decisions/register.jsonl, assignments/register.jsonl,
-                      review_decisions.jsonl, events/ledger.jsonl, index.md
-  system/             производное: control_center.{md,json}, review_queue.{md,json}, search.sqlite …
+                      review_decisions.jsonl, events/ledger.jsonl, index.md,
+                      workspace.json (версия схемы базы — см. «Версия схемы»)
+  system/             производное: control_center.{md,json}, review_queue.{md,json}, search.sqlite,
+                      counterparty/<org>.{md,json} …
 ```
 
 `meeting_id` = `YYYY-MM-DD-<slug-латиницей>`, например `2026-10-20-supplier-contract-renewal`.
@@ -33,12 +35,16 @@
 1. **Папка.** Если в текущем рабочем каталоге (или в подключённой папке пользователя) есть
    `knowledge/` или `negotiations/` или файл `.na-workspace` → `root` = этот каталог.
    Если пользователь назвал папку — использовать её. Если папка пуста, но пользователь хочет
-   вести базу в ней → создать `.na-workspace` и структуру командой `na.py --root <root> status`.
+   вести базу в ней → создать `.na-workspace` и зафиксировать версию схемы командой
+   `na.py --root <root> migrate --confirm` (`status` только читает; каталоги и реестры
+   создаются при первой записи).
 2. **Проект claude.ai.** Если папки нет, но доступны инструменты документов проекта
    (`project_info`, `project_read`, `project_write`) → режим проекта:
    - `root` = локальный каталог `./na-workspace/` (создать);
    - вызвать `project_info`, взять список документов с путями, начинающимися на
      `knowledge/`, `negotiations/`, `profile/`;
+   - **первым** загрузить `knowledge/workspace.json`, если такой документ есть (версия схемы —
+     раздел «Версия схемы» ниже); без него локальная копия с данными выглядит как старая база;
    - **читать лениво**: загрузить в `root` только то, что нужно текущей операции
      (для контрольного центра — все `knowledge/*.jsonl` и `review_decisions.jsonl`, карточки
      людей/организаций по необходимости; для анализа встречи — карточки упомянутых людей,
@@ -60,13 +66,48 @@
   каждый изменённый канонический файл тем же путём через `project_write`
   (`local_path` = файл в `root`). Для встречи: `na.py bundle pack --meeting <id>` и записать
   `negotiations/<id>/analysis_bundle.json`, `report.md`, `review.yaml`, `meta.yaml`,
-  `knowledge_diff.md`, `follow_up_*.md`; `transcript.txt` — только если шлюз источника
+  `knowledge_diff.md`, `knowledge_decisions.jsonl` (ответы пользователя по пунктам учёта —
+  записывать сразу после ответа, не дожидаясь apply), `follow_up_*.md`; `transcript.txt` — только если шлюз источника
   разрешил хранение исходника (`retain_source: yes`), иначе в проект не записывать и сказать
   об этом. Изменённые `knowledge/**` записать все. Не записывать `system/`.
 - Перед `project_write` существующего документа — убедиться, что локальная копия была
   загружена из проекта в этом разговоре (иначе перечитать и слить, чтобы не затереть чужие
   изменения).
 - После записи перечислить пользователю, какие документы проекта обновлены.
+
+## Версия схемы
+
+`knowledge/workspace.json` — версия схемы рабочей папки: `schema_version` (целое; текущая — 2),
+`origin` (`new_workspace` или `legacy_folder`), `created_at` (для папки до 0.6.0 — `null`: дата
+неизвестна), `plugin_versions` (какими версиями плагина писали в базу), `migrations_applied`
+(какие миграции, когда, какие файлы). Файл канонический, лежит в `knowledge/`, потому что
+`system/` в проект не попадает. Пишет его только движок; вручную не править, проектом изменений
+базы он не меняется (там допустимы только `.md`-карточки и `.jsonl`-реестры).
+
+- **Новая папка** — файл создаётся сам при первой записи в базу (`source create`,
+  `knowledge apply`, `refresh-all`) со схемой 2. Когда в базу впервые пишет новая версия
+  плагина, она дописывается в `plugin_versions`.
+- **Папка до 0.6.0** (данные есть, файла нет) — `na.py status` и контрольный центр предупреждают
+  «нужна миграция». Порядок как с базой: `na.py --root <root> migrate` — план (что создаётся, какие
+  карточки получат какие строки; ничего не меняется) → показать пользователю → после явного «да»
+  `na.py --root <root> migrate --confirm`. Повторный запуск ничего не меняет.
+- **Миграции 0.6.0:** `0001` фиксирует версию (создаёт файл, `origin: legacy_folder`); `0002`
+  добавляет во frontmatter карточек людей и организаций пустые `speech_variants: []` и
+  `asr_variants: []`, если их нет. Строки `(m)` и содержание карточек не меняются; карточка без
+  frontmatter пропускается и попадает в список пропусков. Реестры, журнал событий и встречи
+  миграции не трогают.
+- **Схема новее плагина** — обновить плагин; этой версией в базу не писать. **Файл повреждён** —
+  восстановить из копии; миграции остановлены.
+- **Проект claude.ai:** после `migrate --confirm` записать в проект `knowledge/workspace.json` и
+  изменённые карточки (`project_write`). Если в проекте нет `knowledge/workspace.json`, а документы
+  `knowledge/` есть — это старая база: сначала план миграции, а не автоматически созданный
+  локально «новый» файл. Локально созданный файл новой папки никогда не записывать поверх
+  существующего документа проекта.
+- **Без скриптов:** прочитать документ `knowledge/workspace.json`. Нет его, но есть документы
+  `knowledge/` — сказать пользователю, что база старой схемы, показать план (новый документ
+  `knowledge/workspace.json` со `schema_version: 2`, `origin: legacy_folder`, `created_at: null`,
+  `migrations_applied` с обеими миграциями и сегодняшней датой; две строки в frontmatter каждой
+  карточки людей и организаций без этих полей) и только после «да» записать документы.
 
 ## Профиль
 

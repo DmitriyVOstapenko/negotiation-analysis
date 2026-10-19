@@ -1,0 +1,46 @@
+{
+  "scenario": "02-partial-speaker-map",
+  "title": "Частично подтверждённая карта спикеров",
+  "synthetic": true,
+  "checks": [
+    "partial_speaker_map: подтверждены только Speaker 1 и Speaker 2; Speaker 3 опознан по обращению «Игорь» (вероятно), Speaker 4 не назван",
+    "unconfirmed_identity: неподтверждённая личность не подаётся как подтверждённая пользователем",
+    "unknown_executor: обязательство неназванного участника не приписывается известному человеку",
+    "authority_named: ЛПР по продлению назван в разговоре; продление не решено"
+  ],
+  "meeting_id": "2026-11-09-svetloyar-kvarts-q3",
+  "captured_at": "2026-11-09T15:00:00+03:00",
+  "organizations": {"our_side": "ООО «Светлояр Технологии» (вымышленное)", "counterparty": "АО «Кварцевый Берег» (вымышленное)"},
+  "speaker_map": {
+    "status": "partial",
+    "confirmed": {
+      "Speaker 1": "Елена Брагина (директор по продажам, наша сторона)",
+      "Speaker 2": "Роман Кузьмин (ИТ-директор, клиент)"
+    },
+    "unconfirmed": {
+      "Speaker 3": "Игорь? — обращение по имени в 00:00:52, пользователь не подтвердил",
+      "Speaker 4": "не установлен — по контексту бухгалтерия клиента, имени в записи нет"
+    }
+  },
+  "expected_speaker_labels": ["Speaker 1", "Speaker 2", "Speaker 3", "Speaker 4"],
+  "traps": [
+    {
+      "id": "T1",
+      "description": "Акт сверки Speaker 4 приписан Кузьмину",
+      "mutations": [{"op": "patch", "item": "P3", "set": {"who": "@person:kuzmin"}}],
+      "expect": {"verdict": "FAIL", "items": {"P3": "DISTORTED"}}
+    },
+    {
+      "id": "T2",
+      "description": "Игорь показан подтверждённым пользователем",
+      "mutations": [{"op": "patch", "item": "P1", "set": {"identity_source": "user_confirmation", "confidence": "certain"}}],
+      "expect": {"verdict": "FAIL", "items": {"P1": "DISTORTED"}}
+    },
+    {
+      "id": "T3",
+      "description": "Продление записано как согласованное",
+      "mutations": [{"op": "add_commitment", "who": "kuzmin", "what": "продлить договор сопровождения на год", "quote": "Мы предлагаем продлить на год на тех же условиях и добавить ночное дежурство инженера.", "timestamp": "00:03:01", "status": "agreed"}],
+      "expect": {"verdict": "FAIL", "items": {"P9": "DISTORTED"}, "extras_distorted_min": 1}
+    }
+  ]
+}

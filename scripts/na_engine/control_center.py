@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 from .common import (
-    ANALYSIS_FILES,
     PLUGIN_ROOT,
     NaError,
     gate_state,
@@ -26,6 +25,7 @@ from .common import (
     write_text,
     yaml_scalar,
 )
+from .analysis_profile import meeting_profile, required_analysis_files
 from .registries import organization_dirs, people_names
 from .review import build_queue
 
@@ -171,7 +171,8 @@ def build_project_state(root: Path, as_of: date) -> dict[str, Any]:
         gate = gate_state(meeting_path)
         analysis_dir = meeting_path / "analysis"
         missing_base = [name for name in ("meta.yaml", "transcript.txt", "review.yaml") if not (meeting_path / name).is_file()]
-        missing_analysis = [name for name in ANALYSIS_FILES if not (analysis_dir / name).is_file()]
+        required_analysis = required_analysis_files(meeting_path)  # профиль разбора: full — 11, light — 01/07/08
+        missing_analysis = [name for name in required_analysis if not (analysis_dir / name).is_file()]
         extraction = read_json_or_none(analysis_dir / "01_extraction.json") or {}
         effectiveness = read_json_or_none(analysis_dir / "11_meeting_effectiveness.json") or {}
         power = read_json_or_none(analysis_dir / "05_power.json") or {}
@@ -206,8 +207,9 @@ def build_project_state(root: Path, as_of: date) -> dict[str, Any]:
             "effectiveness_score": effectiveness.get("overall_score_0_5"),
             "effectiveness_classification": effectiveness.get("classification"),
             "participants_count": len(extraction.get("participants", [])),
-            "analysis_files": len(ANALYSIS_FILES) - len(missing_analysis),
-            "analysis_files_required": len(ANALYSIS_FILES),
+            "analysis_files": len(required_analysis) - len(missing_analysis),
+            "analysis_files_required": len(required_analysis),
+            "analysis_profile": meeting_profile(meeting_path),
             "quotes_checked": validation.get("checked_quotes", 0),
             "validation_valid": validation_valid,
             "report_valid": report_valid,
@@ -303,6 +305,12 @@ def build_project_state(root: Path, as_of: date) -> dict[str, Any]:
         {"id": "full_text_search", "status": "ready" if (root / "system/search.sqlite").is_file() else "attention", "detail": f"документов: {search_manifest.get('documents', 0)}"},
         {"id": "follow_up_generator", "status": "ready" if followup_ready == len(meetings) else "attention", "detail": f"черновиков draft_not_sent: {followup_ready}/{len(meetings)}"},
     ]
+    stalled = stalled_state(root, as_of, issues)
+    workspace = workspace_state(root)
+    if workspace["state"] in {"needs_migration", "newer_than_plugin"}:
+        add_issue(issues, "warning", f"workspace_{workspace['state']}", workspace["message"], path=workspace["file"])
+    elif workspace["state"] == "invalid":
+        add_issue(issues, "error", "workspace_version_invalid", workspace["message"], path=workspace["file"])
     issue_counts = {severity: sum(1 for issue in issues if issue["severity"] == severity) for severity in ("error", "warning", "info")}
     scores = [row["effectiveness_score"] for row in meetings if isinstance(row.get("effectiveness_score"), (int, float))]
     latest_score = scores[-1] if scores else None
@@ -335,6 +343,12 @@ def build_project_state(root: Path, as_of: date) -> dict[str, Any]:
             "topic_profiles": len(topic_ids),
             "latest_effectiveness_score": latest_score,
             "effectiveness_score_delta": score_delta,
+            "stalled_items": stalled["counts"]["total"],
+            "stalled_topics": stalled["counts"]["topics"],
+            "rescheduled_commitments": stalled["counts"]["rescheduled_commitments"],
+            "unanswered_promises": stalled["counts"]["unanswered_promises"],
+            "workspace_schema_version": workspace.get("schema_version"),
+            "workspace_needs_migration": workspace.get("needs_migration", False),
             "data_errors": issue_counts["error"],
             "data_warnings": issue_counts["warning"],
             "data_info": issue_counts["info"],
@@ -348,8 +362,111 @@ def build_project_state(root: Path, as_of: date) -> dict[str, Any]:
         "issues": issues,
         "capabilities": capabilities,
         "review_queue": review_queue,
+        "stalled": stalled,
+        "workspace": workspace,
         "next_actions": {"overdue_commitments": overdue_commitments, "high_risks": high_risks, "incomplete_meetings": incomplete_meetings, "open_review_items": review_items},
     }
+
+
+def stalled_state(root: Path, as_of: date, issues: list[dict[str, Any]]) -> dict[str, Any]:
+    """Зависшие вопросы (stalled.py) с пометками очереди решений; сбой чтения — в целостность данных, а не падение."""
+    from .stalled import find_stalled, promise_question, reschedule_question, topic_question
+    from .review import item as queue_item, latest_decisions
+
+    try:
+        stalled = find_stalled(root, as_of)
+    except NaError as exc:
+        add_issue(issues, "warning", "stalled_not_computed", f"Зависшие вопросы не рассчитаны: {exc}")
+        return {"rules": {}, "topics": [], "rescheduled_commitments": [], "unanswered_promises": [], "counts": {"topics": 0, "rescheduled_commitments": 0, "unanswered_promises": 0, "total": 0}}
+    decisions = latest_decisions(root)
+
+    def attach(row: dict[str, Any], category: str, meeting_id: Any, question: str, source_path: str, source_ref: str) -> None:
+        item_id = queue_item(category, meeting_id, question, source_path, source_ref)["item_id"]
+        decision = decisions.get(item_id) or {}
+        row["queue_item_id"] = item_id
+        row["queue_status"] = "closed" if decision.get("status") in {"closed", "resolved", "dismissed"} else decision.get("status") or "open"
+        row["queue_answer"] = decision.get("answer")
+
+    for row in stalled["topics"]:
+        attach(row, "stalled_topic", row["last_meeting_id"], topic_question(row), row["meetings"][-1]["signals"][-1]["source_path"], f"topic:{row['key']}")
+    for row in stalled["rescheduled_commitments"]:
+        attach(row, "commitment_rescheduled", row["meeting_id"], reschedule_question(row), "knowledge/commitments/open.jsonl", str(row["id"]))
+    for row in stalled["unanswered_promises"]:
+        attach(row, "unanswered_promise", row["meeting_id"], promise_question(row), "knowledge/commitments/open.jsonl", str(row["id"]))
+    return stalled
+
+
+def workspace_state(root: Path) -> dict[str, Any]:
+    from .workspace_schema import describe
+
+    return describe(root)
+
+
+def workspace_text(workspace: dict[str, Any]) -> str:
+    if workspace.get("state") == "current":
+        return f"{workspace['schema_version']} (актуальная)"
+    return workspace.get("message") or "не определена"
+
+
+def _quote_ref(meeting_id: Any, timestamp: Any, quote: Any) -> str:
+    parts = [f"[[{meeting_id}]]"] if meeting_id else []
+    if timestamp:
+        parts.append(f"`{timestamp}`")
+    if quote:
+        parts.append(f"«{quote}»")
+    return " ".join(parts) or "источник не указан"
+
+
+def stalled_markdown(stalled: dict[str, Any]) -> list[str]:
+    lines = [
+        "### Зависшие вопросы",
+        "",
+        "_Не путать с просрочкой: просрочка — срок прошёл; зависание — повтор без движения "
+        "(тема без решения на нескольких встречах, срок переносили, обещание напоминали), даже если новый срок ещё не наступил._",
+        "",
+    ]
+    if not stalled["counts"]["total"]:
+        rules = stalled.get("rules") or {}
+        lines.append("- Зависших вопросов нет" + (f" (правила: {'; '.join(rules.values())})." if rules else "."))
+        return lines
+    if stalled["topics"]:
+        lines += ["**Темы без решения в реестре:**", ""]
+        for row in stalled["topics"]:
+            dates = ", ".join(meeting["date"] or meeting["meeting_id"] for meeting in row["meetings"])
+            decisions = "; ".join(f"`{item['id']}` {item['status']}" + (f" (пересмотр {item['review_date']})" if item.get("review_date") else "") for item in row["register_decisions"]) or "нет"
+            days = f", висит {row['days_open']} дн." if row.get("days_open") is not None else ""
+            questions = f" — открытые вопросы: {', '.join('«' + text + '»' for text in row['questions'])}" if row.get("questions") else ""
+            lines.append(f"- **{row['title']}**" + (f" (`{row['topic_id']}`)" if row.get("topic_id") else "") + f"{questions}; встреч: {row['meetings_count']} ({dates}){days}; решения в реестре: {decisions}; очередь: `{row['queue_item_id']}` ({row['queue_status']}).")
+            for meeting in row["meetings"]:
+                for signal in meeting["signals"]:
+                    lines.append(f"  - {meeting['date'] or '—'}: {signal['text']} — {_quote_ref(meeting['meeting_id'], signal.get('timestamp'), signal.get('quote'))}")
+        lines.append("")
+    if stalled["rescheduled_commitments"]:
+        lines += ["**Сроки, перенесённые повторно:**", ""]
+        for row in stalled["rescheduled_commitments"]:
+            overdue = "просрочено" if row["is_overdue"] else "текущий срок не наступил"
+            lines.append(f"- **{row['owner_name']}** — {row['what']}; переносов: {row['reschedules']} ({' → '.join(row['chain'])}), основание: {row['basis']}; {overdue}; очередь: `{row['queue_item_id']}` ({row['queue_status']}).")
+            lines.append(f"  - обязательство: {_quote_ref(row.get('meeting_id'), row.get('source_timestamp'), row.get('source_quote'))}")
+            for change in row["changes"]:
+                if change.get("recorded_at") or change.get("event_id"):
+                    where = f"запись в базе {(change.get('recorded_at') or '')[:10] or 'без даты'}" + (f" по итогам [[{change['meeting_id']}]]" if change.get("meeting_id") else f", событие `{change.get('event_id')}`")
+                else:
+                    where = f"встреча {change.get('date') or 'без даты'} [[{change.get('meeting_id')}]]"
+                reason = f"; причина: {change['change_reason']}" if change.get("change_reason") else ""
+                quote = f"; {_quote_ref(None, change.get('timestamp'), change.get('quote'))}" if change.get("quote") else ""
+                lines.append(f"  - {change['from']} → {change['to']} ({where}){reason}{quote}")
+        lines.append("")
+    if stalled["unanswered_promises"]:
+        lines += ["**Обещания другой стороны без результата после напоминаний:**", ""]
+        for row in stalled["unanswered_promises"]:
+            overdue = "; просрочено" if row["is_overdue"] else ""
+            lines.append(f"- **{row['owner_name']}** — {row['what']}; срок {row.get('deadline') or 'не установлен'}{overdue}; поднималось на встречах: {row['reminder_meetings']}; очередь: `{row['queue_item_id']}` ({row['queue_status']}).")
+            lines.append(f"  - обещание: {_quote_ref(row.get('meeting_id'), row.get('source_timestamp'), row.get('source_quote'))}")
+            for reminder in row["reminders"]:
+                for episode in reminder["episodes"]:
+                    lines.append(f"  - {episode.get('date') or '—'}: {episode['kind']} — {_quote_ref(reminder['meeting_id'], episode.get('timestamp'), episode.get('quote'))}")
+        lines.append("")
+    return lines
 
 
 def build_markdown(state: dict[str, Any]) -> str:
@@ -362,7 +479,8 @@ def build_markdown(state: dict[str, Any]) -> str:
         f"**Состояние на:** {state['as_of_date']}  ",
         f"**Сформировано:** {state['generated_at']}  ",
         f"**Версия онтологии:** `{state.get('ontology_version') or 'не определена'}`  ",
-        f"**Профиль:** {profile_text}",
+        f"**Профиль:** {profile_text}  ",
+        f"**Версия схемы базы:** {workspace_text(state.get('workspace') or {})}",
         "",
         "## Главное",
         "",
@@ -372,6 +490,7 @@ def build_markdown(state: dict[str, Any]) -> str:
         table_row(["Полностью готовы", summary["meetings_ready"]]),
         table_row(["Открытые обязательства", summary["open_commitments"]]),
         table_row(["Из них просрочены", summary["overdue_commitments"]]),
+        table_row(["Зависшие вопросы", summary.get("stalled_items", 0)]),
         table_row(["Активные риски", summary["active_risks"]]),
         table_row(["Риски высокой важности", summary["high_risks"]]),
         table_row(["Решения в реестре", summary["decisions"]]),
@@ -395,6 +514,8 @@ def build_markdown(state: dict[str, Any]) -> str:
             lines.append(f"- **{row['owner_name']}** — {row.get('what')}; исходный срок {row.get('deadline') or 'не установлен'}, просрочка {row['days_overdue']} дн., контрольная дата {row.get('control_date') or 'не установлена'}.")
     else:
         lines.append("- Просроченных обязательств нет.")
+    if state.get("stalled"):
+        lines += [""] + stalled_markdown(state["stalled"])
     lines += ["", "### Активные риски высокой важности", ""]
     high_risks = state["next_actions"]["high_risks"]
     if high_risks:
@@ -476,6 +597,14 @@ def validate_control_center(root: Path) -> dict[str, Any]:
         for row in state.get("meetings", []):
             if f"[[{row['meeting_id']}]]" not in text:
                 errors.append(f"встреча {row['meeting_id']} отсутствует в markdown")
+        stalled = state.get("stalled") or {}
+        for row in stalled.get("topics", []):
+            if row.get("title") and row["title"] not in text:
+                errors.append(f"зависшая тема {row.get('key')} отсутствует в markdown")
+        for key in ("rescheduled_commitments", "unanswered_promises"):
+            for row in stalled.get(key, []):
+                if row.get("what") and row["what"] not in text:
+                    errors.append(f"зависший пункт {row.get('id')} отсутствует в markdown")
     result = {"valid": not errors, "generated_at": state.get("generated_at") if isinstance(state, dict) else None, "errors": errors}
     write_json(root / "system/control_center_validation.json", result)
     return result

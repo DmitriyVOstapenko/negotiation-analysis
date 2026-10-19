@@ -12,9 +12,13 @@ processing_gate:
   recorded_at: null
   source: null                     # user_confirmation
 speaker_mapping:
-  status: "pending"                # pending | confirmed
+  status: "pending"                # pending | proposed (карта предложена, пользователь не подтвердил) | confirmed
   source: null
   speakers: []                     # [{label, person_name, role, person_id}]
+analysis_profile:                  # нет ключа — full; na.py profile set --meeting … --profile light|full
+  mode: "full"                     # full — 11 артефактов | light — только 01, 07, 08 (обязательства и риски)
+  source: null                     # user_confirmation
+  recorded_at: null
 source_scope:
   status: "pending"
   analyzed_from: null

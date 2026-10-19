@@ -106,6 +106,9 @@ def relative(path: Path, root: Path) -> str:
 
 
 def ensure_workspace(root: Path) -> None:
+    from .workspace_schema import has_content, record_workspace_write  # локальный импорт: версия схемы базы
+
+    had_content = has_content(root)
     for name in (
         "negotiations",
         "knowledge/people",
@@ -133,6 +136,7 @@ def ensure_workspace(root: Path) -> None:
         path = root / name
         if not path.exists():
             path.write_text("", encoding="utf-8")
+    record_workspace_write(root, had_content)
 
 
 # ---------------------------------------------------------------------------

@@ -108,6 +108,13 @@ def build_queue(root: Path) -> dict[str, Any]:
         if not mitigation.get("deadline"):
             items.append(item("risk_deadline", risk.get("last_seen_meeting_id"), f"Назначить срок митигации риска: {risk.get('description')}", "knowledge/risks/active.jsonl", str(risk.get("id")), priority=priority))
 
+    try:  # зависшие вопросы: тема без решения, повторный перенос срока, обещание без результата
+        from .stalled import queue_items as stalled_queue_items
+
+        items.extend(stalled_queue_items(root, item))
+    except NaError:
+        pass  # повреждённый реестр или журнал показывает контрольный центр; очередь строится без этих пунктов
+
     deduplicated = {entry["item_id"]: entry for entry in items}
     decisions = latest_decisions(root)
     for entry in deduplicated.values():
