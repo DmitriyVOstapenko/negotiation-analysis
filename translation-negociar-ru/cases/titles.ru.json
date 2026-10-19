@@ -3854,7 +3854,7 @@
   "n": 551,
   "domain": "D6 Autoridad y liderazgo",
   "title_es": "Confidente",
-  "title_ru": "Доверенное лицо"
+  "title_ru": "Осведомитель"
  },
  {
   "id": "00438931",
@@ -6318,7 +6318,7 @@
   "n": 903,
   "domain": "D3 Dinámica de roles",
   "title_es": "La confrontación con el recepcionista o la interfaz del sistema",
-  "title_ru": "Противостояние с сотрудником ресепшен, или интерфейс системы"
+  "title_ru": "Противостояние с администратором ресепшена, или интерфейс системы"
  },
  {
   "id": "00438978",

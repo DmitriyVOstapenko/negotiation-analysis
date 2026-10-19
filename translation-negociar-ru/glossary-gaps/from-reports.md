@@ -251,3 +251,11 @@
 - anticipo → задаток; paga y señal → предоплата; promesa / compromiso de compra → обязательство о покупке / купить; bono → бонус (заголовок: «премия» — выровнять)
 - baja por maternidad → декрет; complacer → ублажить (двусмысленность важна); imposición de responsabilidad → навязывание ответственности; tener beef → наезжать
 - joder как глагол (670) — прочитан как «ceder» → «прогибаться» (заметка)
+
+## batch-041 (draft-3)
+- recepcionista → администратор ресепшена (заголовок 903 исправлен); confidente (информатор в команде) → осведомитель (заголовок 551 — «Осведомитель», по смыслу: ведущий зовёт его «крысой»); rata → крыса
+- Director Médico → медицинский директор (метка «Директор»); Directora de desarrollo de negocios → директор по развитию бизнеса; Director de la empresa → директор компании
+- Rehén / Terrorista → Заложник / Террорист; Coach de ventas → Коуч по продажам; Vendedor de gimnasio → Продавец спортзала; Empleado de confianza → доверенный сотрудник
+- bono → премия (о продажных бонусах — «бонусы»); tratamiento estético → косметологическая процедура
+- брань: huevos → яйца; jodido → чёртово
+- «ante la autoridad / autoridad de agente» (690) — исправлено координатором: «перед властями» / «с полномочиями агента»; строка в draft-3
