@@ -401,3 +401,11 @@
 - Redactor (газета) → журналист; Redactor creativo → креативный копирайтер; Editor jefe → главный редактор; Técnico audiovisual → аудиовизуальный техник
 - encargado de contabilidad → ответственный за бухгалтерию; Contable → Бухгалтер; compromisos (обещания клиенту) → обязательства
 - stock → остатки / запасы; manual de marca → брендбук; brainstorm → мозговой штурм; señor jefe → шеф
+
+## batch-056 (draft-3)
+- заголовок 197 → «Помощник бухгалтера против главного бухгалтера» (draft-3); соседний 198 и titles — привести при проходе
+- escalar (карьерный рост) → расти (третье значение рядом с «эскалировать» и «масштабировать»)
+- gerente de talento → руководитель по работе с талантами; jefe de sistemas → руководитель ИТ-отдела; director de desarrollo → директор по развитию
+- autónomo (Испания) → самозанятый (autónomo); seguratas → охранники; HRs → кадровики
+- compromiso (договорённость: «¿podríamos tener este compromiso?») → договориться
+- Participante-женщина: 391 «Участница A», в 392 тот же персонаж «Участник A» — выровнять
