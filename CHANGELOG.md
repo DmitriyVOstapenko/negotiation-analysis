@@ -1,5 +1,15 @@
 # Журнал изменений
 
+## 0.3.0 — 2026-10-19
+
+Библиотека случаев Negociar-RU переведена полностью: 1018 случаев на русском (один изъят вместе
+с принципом 05 #8, см. `licenses/negociar-ru/NOTICE.md`). Три выравнивающих прохода по терминам
+(словарь draft-4, `translation-negociar-ru/glossary.md`): весь канон и все случаи —
+`terminology_checked`; отчёты — `translation-negociar-ru/alignment-report-draft*.md`. Испанские
+учреждения и налоги не заменяются российскими; брань ведущего — в исходном регистре. Поиск
+`buscar.py` больше не требует испанских запросов. Проверка перевода человеком — отдельный шаг
+(`translation-review.jsonl`, `review-resolutions-draft*.jsonl`).
+
 ## 0.2.0 — 2026-10-19
 
 Встроен советник Negociar-RU — русская адаптация Negociar (оригинал © Artur Galiev, CC BY-NC-SA

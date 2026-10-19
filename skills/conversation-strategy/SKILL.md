@@ -11,7 +11,7 @@ description: >
   Galiev, Russian adaptation) to build the strategy; message drafts are never written
   unprompted and never sent.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   license: "CC BY-NC-SA 4.0"
 ---
 
@@ -40,9 +40,9 @@ python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py --show <N>
 python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py --canon D4
 ```
 
-Поиск понимает русские слова в любой форме. Часть случаев ещё переведена только в заголовке
-(поле `translation_status`): при пустом или слабом результате повторить запрос испанскими
-словами. Не подменять канон общими советами по переговорам; если канон чего-то не покрывает —
+Поиск понимает русские слова в любой форме; вся библиотека переведена (поле
+`translation_status` — уровень проверки перевода). При слабом результате переформулировать
+запрос другими словами ситуации или снять фильтр домена. Не подменять канон общими советами по переговорам; если канон чего-то не покрывает —
 сказать об этом.
 
 ## 2. Перед разбором — факты отдельно от стратегии

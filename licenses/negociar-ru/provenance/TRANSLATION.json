@@ -17,22 +17,35 @@
  "translation": {
   "started": "2026-10-19",
   "method": "llm_builtin (Claude, batched, glossary-driven)",
-  "glossary": "translation/glossary.md",
-  "glossary_version": "draft-1",
+  "glossary": "translation-negociar-ru/glossary.md",
+  "glossary_version": "draft-4",
   "status_files": [
-   "translation/canon-status.json",
-   "translation/cases-status.json"
+   "translation-negociar-ru/canon-status.json",
+   "translation-negociar-ru/cases-status.json"
   ],
-  "review_notes": "translation/translation-review.jsonl",
-  "corpus_status": "machine_draft"
+  "review_notes": "translation-negociar-ru/translation-review.jsonl",
+  "corpus_status": "terminology_checked",
+  "completed": "2026-10-19",
+  "alignment_reports": [
+   "translation-negociar-ru/alignment-report.md",
+   "translation-negociar-ru/alignment-report-draft3.md",
+   "translation-negociar-ru/alignment-report-draft4-A.md",
+   "translation-negociar-ru/alignment-report-draft4-B.md",
+   "translation-negociar-ru/alignment-report-draft4-C.md",
+   "translation-negociar-ru/alignment-report-draft4-D.md"
+  ],
+  "human_review": "not yet performed"
  },
  "changes": [
   "full Russian translation of canon (275 principles), case library (1019 cases) and SKILL.md",
   "Russian as default answer language",
   "search script messages translated (MIT code, modified)",
   "skill directory renamed negociar -> negociar-ru to coexist with upstream",
-  "new tools/ for translation, verification and assembly (MIT)",
-  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation/exclusions.json and NOTICE.md",
-  "case 00438891:400 (same bribery story as excluded principle) excluded from the Russian adaptation, 2026-10-19"
+  "new translation-negociar-ru/tools/ for translation, verification and assembly (MIT)",
+  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation-negociar-ru/exclusions.json and NOTICE.md",
+  "case 00438891:400 (same bribery story as excluded principle) excluded from the Russian adaptation, 2026-10-19",
+  "search script buscar.mjs ported to Python (skills/negociar-ru/scripts/buscar.py, MIT) with Russian word-form matching; results match the original on the same data",
+  "adaptation merged into the plugin repository DmitriyVOstapenko/negotiation-analysis (skills/negociar-ru/, translation-negociar-ru/, licenses/negociar-ru/), 2026-10-19",
+  "terminology alignment passes (glossary draft-2, draft-3, draft-4); Spanish institutions and taxes are not replaced with Russian ones"
  ]
 }
