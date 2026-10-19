@@ -6,7 +6,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0001,
    "suspect_lines": 0,
-   "sha256": "9f724f5ea04d789180258b561a935a7b7664263853c9067e3b9e2077c63075d7"
+   "sha256": "13a3a71591ae82d1defaba1ee3d2063d80a62adc1fa9429c864983607e2fbdd5"
   },
   "02-imagen-mundo-picture-world.md": {
    "principles": 14,
@@ -14,7 +14,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "9801085390d0af6c083bcfcb530246b4cd83dcfb276ca68d78a3c4dc5f5730f2"
+   "sha256": "2a8e333d2c8dffdf9d1b6b906f64f4bba8e66251a55b29671389c9bde723210e"
   },
   "03-dinamica-roles-role-dynamics.md": {
    "principles": 26,
@@ -22,7 +22,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "d3a80024734838c94b97c41b424787a04e10884e3a91a46ab9898142920d1ac7"
+   "sha256": "ffd1580a991155f89b6308e87e03066971d76cde6b782b7cd5fee738811701b8"
   },
   "04-negociacion-posicional-positional-negotiation.md": {
    "principles": 25,
@@ -30,7 +30,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "e7bf71106d7768c2b4d71bfaebae06f0ca004299f979a1100743f0cd8011553a"
+   "sha256": "8c237c2f6743571bfe8043421b0a5ea1c40e3ed2475c11a4d02ee8e27741b14c"
   },
   "05-ventas-complejas-complex-sales.md": {
    "principles": 24,
@@ -38,7 +38,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0002,
    "suspect_lines": 0,
-   "sha256": "542781926fa736ef980fdd52f72336be70ae077ad5568ef92d12e96ddb50bc4f"
+   "sha256": "73cced2198694717b78abca0a8238bf0566e52e23c83da31250d116f123feab2"
   },
   "06-autoridad-distanciamiento-authority-distancing.md": {
    "principles": 34,
@@ -46,7 +46,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "23142f8a656d119732b91935f7d66ec1e336692e9cf133add9abea8cb3a915d8"
+   "sha256": "51db718fb2a4cdf82c99bf086c1e760df77dfabfd1e37149f59c501dc8ee4c92"
   },
   "07-tecnologia-social-social-technology.md": {
    "principles": 23,
@@ -54,7 +54,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "99a13b51acb9abbd44aa6afc80af5dec8af65a8b0368ab87b5b54565eaf38550"
+   "sha256": "5ee72b4afe83e62a55c615b42286d1eeddd3596b3fc8da1b7b1cd932c0e1051e"
   },
   "08-gestion-conflicto-conflict-management.md": {
    "principles": 27,
@@ -78,7 +78,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "ca19bfa59834f3ecb71f57e3f3e3c8e3a2fd275a42597ceea891c086c6bf680a"
+   "sha256": "1fc7bc230d9aeac70241ac28af42d0a266dd8b66a5da30aa8788613e8c6db892"
   }
  },
  "principles": 275,

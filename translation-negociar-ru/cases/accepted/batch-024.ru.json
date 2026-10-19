@@ -9,7 +9,7 @@
   "sha256_ru": "79e0cef4a8caf79ff41c56dfbc4968ec0e7d0d26d947b2b258fb9d009dae2b5e",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438972",
@@ -21,7 +21,7 @@
   "sha256_ru": "a7be36f944c53a01529324651c9fb207f8df9d145b2b6b02137424ef1f73676e",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438973",
@@ -33,7 +33,7 @@
   "sha256_ru": "3d139029a9980703d5672acc6d15d47c9e52a65bc1ec8481f8742e6e09e46c55",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438973",
@@ -45,7 +45,7 @@
   "sha256_ru": "6f21227fe2ad6158b277f5166e44e1ec553eb9620f6dc32ffeca2196781cb30b",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438975",
@@ -57,7 +57,7 @@
   "sha256_ru": "121713b8bedb81bbbfe56c4d811a74b5bec9a34c62fcb06baa24d3d831272d35",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438975",
@@ -69,7 +69,7 @@
   "sha256_ru": "f025be091630e5f82884c34af3fd973d68e8fc5c89370e5ce4c8c720a7b80aeb",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438975",
@@ -81,7 +81,7 @@
   "sha256_ru": "949c8d5f4bac06ca777d9587e243ceaf6d616127ecb8fd2952a36807cb1e40bf",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438975",
@@ -93,7 +93,7 @@
   "sha256_ru": "30d796b7a9188feb173ecf3ba050a0ff3322654afd34f072878cf91cc015adf0",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438975",
@@ -105,7 +105,7 @@
   "sha256_ru": "688db8c414f713c36eef06189928a6e44726fa584973bb39e85c79f72923e022",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -117,7 +117,7 @@
   "sha256_ru": "cc7ad25372635d3900426e69f2e12a4ac6fad128f9bb80beb8d2af5e3b71212b",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -129,7 +129,7 @@
   "sha256_ru": "b98d0f35106d9a68eb1a6448bf54b5ce27d769314cc518141862f5000f9915ad",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -141,6 +141,6 @@
   "sha256_ru": "761a802a6167f098432667a1f88c5af5757ba5ee197a668b5977fdb40e7c8ff8",
   "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]
