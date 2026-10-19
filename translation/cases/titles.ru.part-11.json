@@ -1,0 +1,415 @@
+[
+ {
+  "id": "00438968",
+  "n": 961,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El rol de víctima como trampa social (el primo y las chicas que rescatan)",
+  "title_ru": "Роль жертвы как социальная ловушка (двоюродный брат и девушки-спасительницы)"
+ },
+ {
+  "id": "00438968",
+  "n": 962,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La fuerza de la indiferencia: el bully y la botella rota",
+  "title_ru": "Сила безразличия: задира и разбитая бутылка"
+ },
+ {
+  "id": "00438963",
+  "n": 963,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Valor objetivo vs. valor subjetivo del hombre",
+  "title_ru": "Объективная ценность против субъективной ценности мужчины"
+ },
+ {
+  "id": "00438963",
+  "n": 964,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La primera rotura reparte el rol de dominado y dominador",
+  "title_ru": "Первый разрыв распределяет роли доминируемого и доминирующего"
+ },
+ {
+  "id": "00438963",
+  "n": 965,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Tecnología 1: el derecho a evaluar (y el hombre que rompe el programa)",
+  "title_ru": "Технология 1: право оценивать (и мужчина, который ломает программу)"
+ },
+ {
+  "id": "00438963",
+  "n": 966,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Tecnología 2: control de la agenda y la distancia técnica",
+  "title_ru": "Технология 2: контроль повестки и техническая дистанция"
+ },
+ {
+  "id": "00438963",
+  "n": 967,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Tecnología 3: gestión por guión y la gratitud como antídoto",
+  "title_ru": "Технология 3: управление по сценарию и благодарность как противоядие"
+ },
+ {
+  "id": "00438963",
+  "n": 968,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Tecnología 4: gestión por provocación (los gansos) y el aislamiento social",
+  "title_ru": "Технология 4: управление через провокацию (гуси) и социальная изоляция"
+ },
+ {
+  "id": "00438963",
+  "n": 969,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El elogio que ciega: el amigo engañado",
+  "title_ru": "Ослепляющая похвала: обманутый друг"
+ },
+ {
+  "id": "00438963",
+  "n": 970,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La tía que educó al hombre para ser líder",
+  "title_ru": "Тётя, которая воспитала из мужа лидера"
+ },
+ {
+  "id": "00438963",
+  "n": 971,
+  "domain": "D11 Capital social",
+  "title_es": "El amor como actos de bondad sin refuerzo (efecto Participante A Franklin)",
+  "title_ru": "Любовь как добрые дела без подкрепления (эффект Участника A Франклина)"
+ },
+ {
+  "id": "00438963",
+  "n": 972,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Los hijos y el anillo multiplican la dominación (no la frenan)",
+  "title_ru": "Дети и кольцо умножают доминирование (а не сдерживают его)"
+ },
+ {
+  "id": "00438963",
+  "n": 973,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Asignar un rol ventajoso para frenar la lucha (la abogada y la jueza)",
+  "title_ru": "Назначить выгодную роль, чтобы остановить борьбу (адвокат и судья)"
+ },
+ {
+  "id": "00438963",
+  "n": 974,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El billonario que iba de shopping tras cada conflicto",
+  "title_ru": "Миллиардер, который после каждой ссоры ходил по магазинам"
+ },
+ {
+  "id": "00438963",
+  "n": 975,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Honestidad radical al conocer a alguien",
+  "title_ru": "Радикальная честность при знакомстве"
+ },
+ {
+  "id": "00438957",
+  "n": 976,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El portero de la discoteca: bajar de plan para no perder autoridad",
+  "title_ru": "Охранник в клубе: снизить планку, чтобы не потерять авторитет"
+ },
+ {
+  "id": "00438957",
+  "n": 977,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El borracho en el bar ('¿qué miras?'): un engaño que evita la pelea",
+  "title_ru": "Пьяный в баре («Чего уставился?»): обман, который предотвращает драку"
+ },
+ {
+  "id": "00438957",
+  "n": 978,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El ultimátum de pareja ('si esto no cambia, lo dejamos')",
+  "title_ru": "Ультиматум в паре («если это не изменится, мы расстаёмся»)"
+ },
+ {
+  "id": "00438957",
+  "n": 979,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El casero que cuenta su vida difícil (derecho a la ignorancia)",
+  "title_ru": "Арендодатель, который рассказывает о своей тяжёлой жизни (право на незнание)"
+ },
+ {
+  "id": "00438957",
+  "n": 980,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Cómo responder a juicios de carácter ('eres prepotente')",
+  "title_ru": "Как отвечать на суждения о характере («ты высокомерный»)"
+ },
+ {
+  "id": "00438957",
+  "n": 981,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El vecino que aparca en la plaza que tú excavaste",
+  "title_ru": "Сосед, который паркуется на месте, которое ты откопал"
+ },
+ {
+  "id": "00438957",
+  "n": 982,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La hija que exige un coche ('¿soy peor que los demás?')",
+  "title_ru": "Дочь, которая требует машину («Я что, хуже других?»)"
+ },
+ {
+  "id": "00438954",
+  "n": 983,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La envidia entre amigos y la réplica de los escalones",
+  "title_ru": "Зависть между друзьями и реплика про ступеньки"
+ },
+ {
+  "id": "00438954",
+  "n": 984,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Fijar límites a un amigo envidioso",
+  "title_ru": "Установить границы завистливому другу"
+ },
+ {
+  "id": "00438954",
+  "n": 985,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Los padres son malos mentores por su sesgo",
+  "title_ru": "Родители — плохие наставники из-за своей предвзятости"
+ },
+ {
+  "id": "00438954",
+  "n": 986,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La cita hace desaparecer la procrastinación",
+  "title_ru": "Свидание убирает прокрастинацию"
+ },
+ {
+  "id": "00438954",
+  "n": 987,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El fundador deprimido que dejó a la buena pareja por entretenerse",
+  "title_ru": "Подавленный основатель, который бросил хорошую партнёршу ради развлечений"
+ },
+ {
+  "id": "00438954",
+  "n": 988,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Shaquille O'Neal: saber decir no a la familia con el dinero",
+  "title_ru": "Шакил О’Нил: умение отказать семье в деньгах"
+ },
+ {
+  "id": "00438954",
+  "n": 989,
+  "domain": "D11 Capital social",
+  "title_es": "Las personas dulces a las que no puedes decir no",
+  "title_ru": "Милые люди, которым ты не можешь отказать"
+ },
+ {
+  "id": "00438954",
+  "n": 990,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El chico de 15 años y la mochila: los cinco porqués",
+  "title_ru": "15-летний парень и рюкзак: пять «почему»"
+ },
+ {
+  "id": "00438971",
+  "n": 991,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "\"Repítelo\" ante la falta de respeto de tu pareja",
+  "title_ru": "«Повтори» в ответ на неуважение партнёра"
+ },
+ {
+  "id": "00438971",
+  "n": 992,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El amigo que te manipula con el rol de amistad",
+  "title_ru": "Друг, который манипулирует тобой через роль дружбы"
+ },
+ {
+  "id": "00438971",
+  "n": 993,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "\"Apelar a la empatía\" es una confesión de culpa",
+  "title_ru": "«Апеллировать к эмпатии» — это признание вины"
+ },
+ {
+  "id": "00438971",
+  "n": 994,
+  "domain": "D11 Capital social",
+  "title_es": "El amigo que quiere quedarse de copas en la fiesta",
+  "title_ru": "Друг, который хочет остаться выпивать на вечеринке"
+ },
+ {
+  "id": "00438840",
+  "n": 995,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El vestido de novia: no exigir/dar la verdad que no se quiere oír",
+  "title_ru": "Свадебное платье: не требовать и не говорить правду, которую не хотят слышать"
+ },
+ {
+  "id": "00438840",
+  "n": 996,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El niño y la verdad: cambiar la entonación en vez de exigir explicaciones",
+  "title_ru": "Ребёнок и правда: менять интонацию вместо требования объяснений"
+ },
+ {
+  "id": "00438840",
+  "n": 997,
+  "domain": "D11 Capital social",
+  "title_es": "El termo chino: mentir para no agrietar la relación",
+  "title_ru": "Китайский термос: солгать, чтобы отношения не дали трещину"
+ },
+ {
+  "id": "00438840",
+  "n": 998,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "No autoengañarse sobre cómo te perciben los demás",
+  "title_ru": "Не обманывать себя насчёт того, как тебя воспринимают другие"
+ },
+ {
+  "id": "00438840",
+  "n": 999,
+  "domain": "D11 Capital social",
+  "title_es": "Reparar una relación dañada por decir la verdad: el cambio de imagen",
+  "title_ru": "Восстановить отношения, испорченные правдой: смена имиджа"
+ },
+ {
+  "id": "00438977",
+  "n": 1000,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Ajustarse al público para causar buena primera impresión",
+  "title_ru": "Соответствовать аудитории, чтобы произвести хорошее первое впечатление"
+ },
+ {
+  "id": "00438977",
+  "n": 1001,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "No ceder terreno en un colectivo nuevo",
+  "title_ru": "Не сдавать позиций в новом коллективе"
+ },
+ {
+  "id": "00438977",
+  "n": 1002,
+  "domain": "D11 Capital social",
+  "title_es": "No asociarse rápido: Participante A la chismosa",
+  "title_ru": "Не объединяться поспешно: сплетница Участник A"
+ },
+ {
+  "id": "00438977",
+  "n": 1003,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "No luchar contra los haters: gustar más a los que ya te gustan",
+  "title_ru": "Не бороться с хейтерами: нравиться ещё больше тем, кто уже нравится тебе"
+ },
+ {
+  "id": "00438977",
+  "n": 1004,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Leer al público rápido y saber callarse",
+  "title_ru": "Быстро считывать аудиторию и уметь промолчать"
+ },
+ {
+  "id": "00438977",
+  "n": 1005,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El hater con punto válido sigue siendo hater",
+  "title_ru": "Хейтер с обоснованным замечанием всё равно хейтер"
+ },
+ {
+  "id": "00438977",
+  "n": 1006,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La vergüenza como motivador (el gatekeeper y el sistema)",
+  "title_ru": "Стыд как мотиватор (привратник и система)"
+ },
+ {
+  "id": "00438937",
+  "n": 1007,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El limón en el bolsillo (el juego de presión)",
+  "title_ru": "Лимон в кармане (игра на давление)"
+ },
+ {
+  "id": "00438937",
+  "n": 1008,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La esposa que llora gana el conflicto (el rol de víctima)",
+  "title_ru": "Плачущая жена выигрывает конфликт (роль жертвы)"
+ },
+ {
+  "id": "00438937",
+  "n": 1009,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "No dejar que la pareja infiel se ponga de víctima",
+  "title_ru": "Не дать неверному партнёру встать в позу жертвы"
+ },
+ {
+  "id": "00438937",
+  "n": 1010,
+  "domain": "D11 Capital social",
+  "title_es": "Gestión por provocación (los gansos)",
+  "title_ru": "Управление через провокацию (гуси)"
+ },
+ {
+  "id": "00438937",
+  "n": 1011,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "No alabar a la persona conflictiva (el elogio como evaluación)",
+  "title_ru": "Не хвалить конфликтного человека (похвала как оценка)"
+ },
+ {
+  "id": "00438937",
+  "n": 1012,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "La reputación sustituye al hecho (Diddy / O. J. Simpson)",
+  "title_ru": "Репутация подменяет факт (Diddy / O. J. Simpson)"
+ },
+ {
+  "id": "00438970",
+  "n": 1013,
+  "domain": "D11 Capital social",
+  "title_es": "No luchar contra la exclusión: ser un tipo chill",
+  "title_ru": "Не бороться с исключением: быть расслабленным парнем"
+ },
+ {
+  "id": "00438970",
+  "n": 1014,
+  "domain": "D11 Capital social",
+  "title_es": "Ser popular en tu círculo: reciprocidad y decir que no",
+  "title_ru": "Быть популярным в своём кругу: взаимность и умение сказать «нет»"
+ },
+ {
+  "id": "00438970",
+  "n": 1015,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Vecino ruidoso: negociar el volumen y usar el recurso externo",
+  "title_ru": "Шумный сосед: договориться о громкости и использовать внешний ресурс"
+ },
+ {
+  "id": "00438970",
+  "n": 1016,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Pasajero ruidoso: responder con lenguaje de fuerza",
+  "title_ru": "Шумный пассажир: ответить языком силы"
+ },
+ {
+  "id": "00438970",
+  "n": 1017,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Los niños mienten a las madres que reaccionan con la cara",
+  "title_ru": "Дети лгут матерям, которые реагируют выражением лица"
+ },
+ {
+  "id": "00438970",
+  "n": 1018,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "No insistir en la victoria contra una mujer (salvar la cara)",
+  "title_ru": "Не добиваться победы над женщиной (сохранить лицо)"
+ },
+ {
+  "id": "00438970",
+  "n": 1019,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El diario: no se puede leer la mente ni tener expectativas",
+  "title_ru": "Дневник: нельзя читать мысли и иметь ожидания"
+ }
+]

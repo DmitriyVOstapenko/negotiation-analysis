@@ -1,0 +1,422 @@
+[
+ {
+  "id": "00438977",
+  "n": 901,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La propuesta cortés de formación al jefe",
+  "title_ru": "Вежливое предложение руководителю об обучении"
+ },
+ {
+  "id": "00438977",
+  "n": 902,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El enfoque alternativo sobre el programa del curso",
+  "title_ru": "Альтернативный подход к программе курса"
+ },
+ {
+  "id": "00438977",
+  "n": 903,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La confrontación con el recepcionista o la interfaz del sistema",
+  "title_ru": "Противостояние с сотрудником ресепшен, или интерфейс системы"
+ },
+ {
+  "id": "00438978",
+  "n": 904,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El primer día de trabajo",
+  "title_ru": "Первый рабочий день"
+ },
+ {
+  "id": "00438978",
+  "n": 905,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Micromanagement",
+  "title_ru": "Микроменеджмент"
+ },
+ {
+  "id": "00438978",
+  "n": 906,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Discriminación en el ascenso",
+  "title_ru": "Дискриминация при повышении"
+ },
+ {
+  "id": "00438978",
+  "n": 907,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El dilema de la producción premium",
+  "title_ru": "Дилемма премиального производства"
+ },
+ {
+  "id": "00438978",
+  "n": 908,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Las tiendas independientes",
+  "title_ru": "Независимые магазины"
+ },
+ {
+  "id": "00438979",
+  "n": 909,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Horas extra sin compensación",
+  "title_ru": "Сверхурочные без компенсации"
+ },
+ {
+  "id": "00438979",
+  "n": 910,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Mensajes nocturnos al abogado",
+  "title_ru": "Ночные сообщения юристу"
+ },
+ {
+  "id": "00438979",
+  "n": 911,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Negarse a recibir ayuda con la tecnología",
+  "title_ru": "Отказ от помощи с техникой"
+ },
+ {
+  "id": "00438979",
+  "n": 912,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El cliente que quiere pagar menos al freelancer",
+  "title_ru": "Клиент, который хочет заплатить фрилансеру меньше"
+ },
+ {
+  "id": "00438979",
+  "n": 913,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El empleado que se aprovecha del teletrabajo",
+  "title_ru": "Сотрудник, который злоупотребляет удалённой работой"
+ },
+ {
+  "id": "00438980",
+  "n": 914,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Calidad de leads y efectividad de ventas",
+  "title_ru": "Качество лидов и эффективность продаж"
+ },
+ {
+  "id": "00438980",
+  "n": 915,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Cambios en el proceso de atención al cliente",
+  "title_ru": "Изменения в процессе обслуживания клиентов"
+ },
+ {
+  "id": "00438980",
+  "n": 916,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Conflicto por el modelo híbrido de trabajo",
+  "title_ru": "Конфликт из-за гибридного формата работы"
+ },
+ {
+  "id": "00438980",
+  "n": 917,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Cuestionamiento de reuniones de ventas",
+  "title_ru": "Сомнение в пользе совещаний по продажам"
+ },
+ {
+  "id": "00438980",
+  "n": 918,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Mérito no reconocido en estrategia de producto",
+  "title_ru": "Непризнанная заслуга в продуктовой стратегии"
+ },
+ {
+  "id": "00438980",
+  "n": 919,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Relación jefe-subordinado y propuesta de mejora",
+  "title_ru": "Отношения «руководитель — подчинённый» и предложение по улучшению"
+ },
+ {
+  "id": "00438981",
+  "n": 920,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El coach de ventas y el gimnasio",
+  "title_ru": "Коуч по продажам и спортзал"
+ },
+ {
+  "id": "00438981",
+  "n": 921,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Elaboración de perfil en el gimnasio",
+  "title_ru": "Составление профиля в спортзале"
+ },
+ {
+  "id": "00438981",
+  "n": 922,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El vendedor de mantenimiento de coches",
+  "title_ru": "Продавец услуг техобслуживания автомобилей"
+ },
+ {
+  "id": "00438981",
+  "n": 923,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El organizador de Inteligencia Artificial",
+  "title_ru": "Органайзер на искусственном интеллекте"
+ },
+ {
+  "id": "00438981",
+  "n": 924,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Replicando el disconfort en un cliente frío",
+  "title_ru": "Воспроизводим дискомфорт у холодного клиента"
+ },
+ {
+  "id": "00438981",
+  "n": 925,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El headhunting del técnico de aire acondicionado",
+  "title_ru": "Хедхантинг техника по кондиционерам"
+ },
+ {
+  "id": "00438964",
+  "n": 926,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "No dejar que te mientan: \"fue mutuo\"",
+  "title_ru": "Не давать себе лгать: «это было взаимно»"
+ },
+ {
+  "id": "00438964",
+  "n": 927,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El perfil contradictorio de Tinder (short/long term)",
+  "title_ru": "Противоречивый профиль в Tinder (short/long term)"
+ },
+ {
+  "id": "00438964",
+  "n": 928,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "\"¿Qué es lo que más te irrita en un hombre?\"",
+  "title_ru": "«Что тебя больше всего раздражает в мужчине?»"
+ },
+ {
+  "id": "00438964",
+  "n": 929,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Carrera vs hijos: el criterio de coherencia",
+  "title_ru": "Карьера против детей: критерий последовательности"
+ },
+ {
+  "id": "00438964",
+  "n": 930,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El enamoramiento masculino frente al femenino",
+  "title_ru": "Мужская влюблённость в сравнении с женской"
+ },
+ {
+  "id": "00438964",
+  "n": 931,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Las modelos operadas, las más vulnerables al rechazo",
+  "title_ru": "Модели после пластики — самые уязвимые к отказу"
+ },
+ {
+  "id": "00438964",
+  "n": 932,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La femme fatale: luchar sin luchar",
+  "title_ru": "Роковая женщина: бороться не борясь"
+ },
+ {
+  "id": "00438964",
+  "n": 933,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El beso y la resistencia física en la cita",
+  "title_ru": "Поцелуй и физическое сопротивление на свидании"
+ },
+ {
+  "id": "00438964",
+  "n": 934,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El cumplido que nadie le ha dado (crítica a los coaches de reels)",
+  "title_ru": "Комплимент, которого никто не делал (критика коучей из рилсов)"
+ },
+ {
+  "id": "00438964",
+  "n": 935,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Castigo constructivo vs destructivo: la madre castiga emocionalmente",
+  "title_ru": "Конструктивное наказание против деструктивного: мать наказывает эмоционально"
+ },
+ {
+  "id": "00438964",
+  "n": 936,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Los castigos constructivos del padre de Arti",
+  "title_ru": "Конструктивные наказания отца Арти"
+ },
+ {
+  "id": "00438964",
+  "n": 937,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La figura paterna como prototipo de las relaciones",
+  "title_ru": "Фигура отца как прототип отношений"
+ },
+ {
+  "id": "00438966",
+  "n": 938,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El divorcio: pelear por la posición antes de correr a la solución",
+  "title_ru": "Развод: бороться за позицию, прежде чем бежать к решению"
+ },
+ {
+  "id": "00438966",
+  "n": 939,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "No uses 'me parece tarde': formula preguntas",
+  "title_ru": "Не говори «мне кажется, поздно»: задавай вопросы"
+ },
+ {
+  "id": "00438966",
+  "n": 940,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La amenaza de reseña negativa no funciona sola",
+  "title_ru": "Угроза плохим отзывом сама по себе не работает"
+ },
+ {
+  "id": "00438966",
+  "n": 941,
+  "domain": "D11 Capital social",
+  "title_es": "No fabricar un hater: desescalar hacia el beneficio futuro",
+  "title_ru": "Не создавать хейтера: деэскалация к будущей выгоде"
+ },
+ {
+  "id": "00438943",
+  "n": 942,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Disculparse sin resolver rompe la amistad",
+  "title_ru": "Извинение без решения разрушает дружбу"
+ },
+ {
+  "id": "00438943",
+  "n": 943,
+  "domain": "D11 Capital social",
+  "title_es": "Resolver sin la fórmula 'tú eres responsable, paga'",
+  "title_ru": "Решать без формулы «ты отвечаешь — плати»"
+ },
+ {
+  "id": "00438943",
+  "n": 944,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La manipulación por pena y el rol de víctima nunca gana a una mujer",
+  "title_ru": "Манипуляция жалостью и роль жертвы никогда не завоюют женщину"
+ },
+ {
+  "id": "00438943",
+  "n": 945,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El rico no puede aconsejar al pobre (por qué no le gusta ser influencer)",
+  "title_ru": "Богатый не может советовать бедному (почему он не любит быть блогером)"
+ },
+ {
+  "id": "00438943",
+  "n": 946,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Hacerse cargo de la propia decisión, no cargársela al amigo",
+  "title_ru": "Отвечать за своё решение, а не перекладывать его на друга"
+ },
+ {
+  "id": "00438943",
+  "n": 947,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El colchón de piedras: aprender de las mujeres, suave en forma y duro en contenido",
+  "title_ru": "Матрас из камней: учиться у женщин — мягко по форме, твёрдо по сути"
+ },
+ {
+  "id": "00438959",
+  "n": 948,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El champú en el gimnasio",
+  "title_ru": "Шампунь в спортзале"
+ },
+ {
+  "id": "00438959",
+  "n": 949,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La vecina que fuma en la escalera: amenazas vacías vs. desescalar",
+  "title_ru": "Соседка, которая курит на лестнице: пустые угрозы против деэскалации"
+ },
+ {
+  "id": "00438959",
+  "n": 950,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Escalar para conseguir la fuerza interna que aún no tienes",
+  "title_ru": "Обострять, чтобы получить внутреннюю силу, которой у тебя ещё нет"
+ },
+ {
+  "id": "00438959",
+  "n": 951,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Mi hijo sacó las mejores notas y la compañera lloró",
+  "title_ru": "Мой сын получил лучшие оценки, а одноклассница расплакалась"
+ },
+ {
+  "id": "00438959",
+  "n": 952,
+  "domain": "D11 Capital social",
+  "title_es": "Defender a tu pareja y no contratar a familiares",
+  "title_ru": "Защищать партнёра и не нанимать родственников"
+ },
+ {
+  "id": "00438959",
+  "n": 953,
+  "domain": "D11 Capital social",
+  "title_es": "Las serpientes y los círculos sociales",
+  "title_ru": "Змеи и социальные круги"
+ },
+ {
+  "id": "00438968",
+  "n": 954,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Los ricos, el rol de anfitrión y \"buen chaval no es una profesión\"",
+  "title_ru": "Богатые, роль хозяина и «хороший парень — не профессия»"
+ },
+ {
+  "id": "00438968",
+  "n": 955,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La expareja y el egoísmo con el horario",
+  "title_ru": "Бывший партнёр и эгоизм с графиком"
+ },
+ {
+  "id": "00438968",
+  "n": 956,
+  "domain": "D11 Capital social",
+  "title_es": "El amigo del aeropuerto: la lealtad como excepción al egoísmo",
+  "title_ru": "Друг из аэропорта: лояльность как исключение из эгоизма"
+ },
+ {
+  "id": "00438968",
+  "n": 957,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La TV entre hermanos ante la madre jueza",
+  "title_ru": "Телевизор между братьями при маме-судье"
+ },
+ {
+  "id": "00438968",
+  "n": 958,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La madre que encierra a la hija para negociar",
+  "title_ru": "Мать, которая запирает дочь, чтобы договориться"
+ },
+ {
+  "id": "00438968",
+  "n": 959,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La dominación en la pareja: víctima/culpable y la separación breve",
+  "title_ru": "Доминирование в паре: жертва/виноватый и короткое расставание"
+ },
+ {
+  "id": "00438968",
+  "n": 960,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El préstamo del coche entre amigos: el rol de víctima adulto",
+  "title_ru": "Машина взаймы между друзьями: роль взрослой жертвы"
+ }
+]
