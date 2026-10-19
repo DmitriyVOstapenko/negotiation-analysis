@@ -357,3 +357,10 @@
 - ONG → НПО (в 045: «НКО» — выровнять, предлагается НКО); división cuartos → служба номерного фонда; encargada de reservaciones → менеджер по бронированию; gerente de recepción → руководитель ресепшена; auxiliar administrativa → административная помощница
 - supervisión → надзор; cuestionar / cuestionamiento → спрашивать / спрос; «cuestionamiento rígido» → «негибкий спрос» (неудачно — при проходе: «жёсткий спрос»? rigidez-правило о поведении; проверить)
 - estricto → строгий; no hay pasta → бабок нет; [Cambio de enfoque] → [Смена подхода]
+
+## batch-054 (draft-3)
+- заголовок 317 → «Фрустрация из-за новой программы (Попытка 2)» (frustración → фрустрация)
+- gerente пиццерии → управляющий (метка «Управляющий»); Profesora → Учитель; Administradora → Администратор; Compañera de marketing → Коллега из маркетинга
+- Propietario de la obra → Заказчик ремонта; Técnico de mantenimiento → Мастер по обслуживанию; Compañero de piso → Сосед по квартире (в 052 Conviviente — так же)
+- Voz inquisidora / Voz que pone excusas → Допрашивающий голос / Голос, придумывающий отговорки
+- confrontación → противостояние; daño moral → моральный вред; liquidación → расчёт при увольнении; subcontratistas → субподрядчики; mandona → властная
