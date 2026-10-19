@@ -306,3 +306,10 @@
 - Licenciada (обращение) → госпожа; combate → схватка (не lucha, не duelo)
 - joder (глагол): me van a joder → меня поимеют; clavar (перен.) → впаять / вставить — по смыслу
 - Arturo-участник (275) — латиницей; «Arthur» в метке 327 → «Артур» (проверить, участник ли)
+
+## batch-045 (draft-3)
+- oficina de reclutamiento militar → «военкомат» — исправлено координатором на «призывной пункт» (российские учреждения в испанском контексте не ставить, как с НДФЛ); encargado → дежурный; reclutas → призывники; oficial en reserva → офицер запаса
+- asociado/a senior / socio principal (юрфирма) → старший юрист / старший партнёр; Junior (метка) → Младшая сотрудница
+- Dueño del Hospital / Médico Experimentado → Владелец больницы / Опытный врач; Jefe de comunicación → руководитель по коммуникациям; ONG → НКО; autónomo → самозанятый
+- классы на борту: turística / económica / primera / premium / premier / ejecutiva → туристический / эконом / первый / премиум / премьер / бизнес-класс
+- joder-глагол: jodido → хреново; te ha jodido → поимел; joderte → нагадить; брань участников: perros → кобели; cabrones → сволочи
