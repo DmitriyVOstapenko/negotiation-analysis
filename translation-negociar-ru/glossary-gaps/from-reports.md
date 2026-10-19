@@ -321,3 +321,10 @@
 - Gerente de Producto → Менеджер по продукту (gerente → руководитель? устойчивое название — оставить); Director de Marketing → Директор по маркетингу; Jefa de Atención al Cliente → Руководитель отдела обслуживания клиентов
 - señor gerente (обращение) → господин руководитель; Coordinadora de formación → Координатор обучения; Entrevistadora → Интервьюер
 - andas muy gallito → что-то ты больно петушишься; a la mierda → в жопу; joder → чёрт
+
+## batch-049 (draft-3)
+- compromiso (договорённость: «llegar a un compromiso») → компромисс — добавить в draft-3 рядом с «вовлечённостью»
+- empresa comprometida → «обязательная компания» — неудачно; при проходе: «компания, которая держит слово / надёжная компания»
+- Analista Junior → Младший аналитик; Líder → Лидер; Portavoz → Представитель; Persona 1/2 → Человек 1/2; Inversora → Инвестор; gerente regional → региональный руководитель
+- montar un pollo → скандал; comodín → джокер; fallos lógicos → логические нестыковки; empleado piedra / roca → сотрудник-камень / сотрудник-скала; interpretación (ролевая) → актёрская игра
+- брань: ¿estás puto tonto? → ты что, бля, тупой?; hostia → чёрт
