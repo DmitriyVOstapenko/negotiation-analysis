@@ -313,3 +313,11 @@
 - Dueño del Hospital / Médico Experimentado → Владелец больницы / Опытный врач; Jefe de comunicación → руководитель по коммуникациям; ONG → НКО; autónomo → самозанятый
 - классы на борту: turística / económica / primera / premium / premier / ejecutiva → туристический / эконом / первый / премиум / премьер / бизнес-класс
 - joder-глагол: jodido → хреново; te ha jodido → поимел; joderte → нагадить; брань участников: perros → кобели; cabrones → сволочи
+
+## batch-048 (draft-3)
+- заголовки: 163 → «Администратор ресепшена и руководитель»; 820 → «Увольнение топ-менеджера и долг по премиям» (ejecutivo ≠ jefe)
+- ejecutivo (без уточнения) → топ-менеджер; bono (руководителю) → премия, bonos (продажи) → бонусы
+- Líder (метка) → Лидер; Líder de ventas → Руководитель продаж; Responsable de marketing → Специалист по маркетингу
+- Gerente de Producto → Менеджер по продукту (gerente → руководитель? устойчивое название — оставить); Director de Marketing → Директор по маркетингу; Jefa de Atención al Cliente → Руководитель отдела обслуживания клиентов
+- señor gerente (обращение) → господин руководитель; Coordinadora de formación → Координатор обучения; Entrevistadora → Интервьюер
+- andas muy gallito → что-то ты больно петушишься; a la mierda → в жопу; joder → чёрт
