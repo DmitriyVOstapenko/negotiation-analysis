@@ -383,3 +383,12 @@
 - timing → момент (тайминг); reencuadre de indiferencia → смена рамки через безразличие; anfitrión → хозяин; buen chaval → хороший парень; horario → график; lealtad → лояльность
 - piedad → сострадание; pena → жалость; Office Manager → офис-менеджер; denunciar (соседка) → заявить
 - брань: tocar los cojones → мозг выносить (в 021 «задолбать», в 047 «крутить яйца» — выровнять); sin cojones → без яиц
+
+## batch-062 (draft-3)
+- 971: сбой анонимизатора «efecto Participante A Franklin» — исправлено координатором на «эффект Бенджамина Франклина» (общеизвестное название, не участник)
+- метки формата B: Contexto / Ejemplo / Enseñanza → Контекст / Пример / Урок — внести в словарь
+- lucha verbal → словесная борьба; dominación → доминирование; valor objetivo / subjetivo → объективная / субъективная ценность
+- distancia técnica → техническая дистанция; gestión por guión / por provocación → управление по сценарию / через провокацию
+- refuerzo positivo → положительное подкрепление; incentivo y castigo → поощрение и наказание; seductores → пикаперы; casero → арендодатель
+- círculo interno → ближний круг; prepotente → высокомерный; altanero → заносчивый; sesgo → предвзятость; mentor → наставник; los cinco porqués → приём «пять почему»
+- colectivo → коллектив; no ceder terreno → не сдавать позиций; cambio de imagen → смена имиджа
