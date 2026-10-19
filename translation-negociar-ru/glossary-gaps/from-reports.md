@@ -188,3 +188,13 @@
 - técnicas de atención al cliente → методики обслуживания клиентов (не «приёмы»: не название приёма)
 - участники с именем Arthur/Artur (223, 226, 243) — латиницей; ведущий — «Артур» / «Арти»
 - брань: hijos de puta → сукины дети; cabrón → сволочь; Joder → Бля (в 022 — «Твою мать»); Hostia → Твою мать (в 020/021 — «чёрт») — выровнять по draft-3
+
+## batch-034 (draft-2)
+- gerente de proyectos → руководитель проектов; jefe de desarrolladores → руководитель разработчиков; Team Lead → тимлид
+- jefe de operaciones logísticos → руководитель логистических операций; directora de cadena de suministro → директор по цепочке поставок; coordinadora de almacén → координатор склада
+- jefe de contabilidad → руководитель бухгалтерии (draft-3: «главный бухгалтер» — привести, в т.ч. заголовок 00438847:198); asistente contable → помощник бухгалтера; servicio social → соцпрактика
+- etiquetar / llamar la emoción → навесить ярлык / назвать эмоцию; agarrar a una persona → захватить человека; scripts de ventas → скрипты продаж
+- perder la compostura → потерять самообладание; fecha fantasma → призрачная дата; visto bueno → одобрение; el beneficio es dinámico → выгода динамична
+- «gerentes, jefes» рядом в речи ведущего → «управляющие, руководители»
+- rigidez → решено: «негибкость» (заголовок 868 исправлен; тело 868 — «жёсткий» → «негибкий» при проходе)
+- брань: no cagar encima de tus productos → не обсирать свои продукты; no me toques los huevos → не морочь мне яйца
