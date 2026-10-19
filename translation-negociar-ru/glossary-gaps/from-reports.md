@@ -349,3 +349,11 @@
 - encargado (выдаёт униформу) → заведующий; presencialidad / teletrabajo → работа в офисе / удалённая работа; sentido de pertenencia → чувство принадлежности
 - Profesor / Alumno → Учитель / Ученик; Asesor → Консультант; Interlocutor → Собеседник
 - Organizadora (женщина) → «Участница A (Организатор)»; брань: puto → долбаный; hostia → чёрт
+
+## batch-052 (draft-3)
+- Vendedor comercial → Продажник (Продавец); Trabajador de taller → работник автомастерской; Responsable de sistemas → специалист по информационным системам
+- Gerente de administración → руководитель административной службы; Líder (del comité / del proyecto) → руководитель (оргкомитета / проекта); Director de comunicación → директор по коммуникациям (в 045: «руководитель по коммуникациям» для Jefe — ок)
+- Conviviente → сосед по квартире; Evaluador → Оценщик (в 036: «Оценивающий» — выровнять); Analista de sostenibilidad → аналитик по устойчивому развитию
+- ONG → НПО (в 045: «НКО» — выровнять, предлагается НКО); división cuartos → служба номерного фонда; encargada de reservaciones → менеджер по бронированию; gerente de recepción → руководитель ресепшена; auxiliar administrativa → административная помощница
+- supervisión → надзор; cuestionar / cuestionamiento → спрашивать / спрос; «cuestionamiento rígido» → «негибкий спрос» (неудачно — при проходе: «жёсткий спрос»? rigidez-правило о поведении; проверить)
+- estricto → строгий; no hay pasta → бабок нет; [Cambio de enfoque] → [Смена подхода]
