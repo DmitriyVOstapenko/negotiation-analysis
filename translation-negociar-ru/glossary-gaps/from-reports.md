@@ -370,3 +370,8 @@
 - creadores de contenido → создатели контента; hater / hate / hatear → хейтер / хейт / хейтить; elogio / halagos / adular → похвала / лесть / льстить; evaluadores / evaluados → оценивающие / оцениваемые
 - imagen del hecho → образ факта (≠ картина мира); comité de vecinos → комитет жильцов; insistir en la victoria → добиваться победы; perder la cara → терять лицо
 - está de paso → здесь проездом; checkpoints → чекпоинты; retro (de la Situación) → разбор
+
+## batch-055 (draft-3)
+- responsable de comunicación interna → специалист по внутренним коммуникациям; encargado del proceso → ответственный за процесс
+- validación (одобрение решений, 418, 468) → согласование (третье значение рядом с «признанием» и «проверкой»)
+- oído cocina → понял-принял; Interlocutor / Oyente / Visitante → Собеседник / Слушатель / Посетитель
