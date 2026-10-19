@@ -13,8 +13,10 @@
 
 1. **Устанавливаемый универсальный продукт** — этот репозиторий: навыки, онтология,
    контракты, скрипты, шаблоны, синтетические тесты. Без данных конкретных людей.
-2. **Отдельно лицензируемые методические модули** — Negociar (CC BY-NC-SA 4.0, свой
-   репозиторий); будущий собственный «Контур диалога». Обнаруживаются во время выполнения.
+2. **Отдельно лицензируемый методический модуль** — Negociar-RU, русская адаптация Negociar
+   (CC BY-NC-SA 4.0, оригинал © Artur Galiev). Встроен в плагин, но физически отделён папками
+   `skills/negociar-ru/`, `translation-negociar-ru/`, `licenses/negociar-ru/` с собственными
+   лицензией, NOTICE и provenance.
 3. **Приватные профили и накопленные данные пользователя** — `profile/`, `negotiations/`,
    `knowledge/` в его папке или проекте. Никогда не входят в продукт.
 4. **Внешние провайдеры и их учётные данные** — PLAUD, WonderScribe, локальная
@@ -30,7 +32,7 @@
 | Analysis workflows | `skills/meeting-analysis/`, `scripts/na.py validate/report/followup` | 8 артефактов + 3 производных, отчёт с одним экраном, follow-up `draft_not_sent` |
 | Memory and projections | `skills/knowledge-update/`, `scripts/na.py knowledge …/refresh-all` | proposal → diff → подтверждение → запись; append-only журнал событий; пересобираемые `system/` |
 | Executive workflows | `skills/control-center/`, `skills/executive-briefing/` | Контрольный центр, очередь решений, брифинг, обзоры, board pack, поддержка решения |
-| Strategic advisory | `skills/conversation-strategy/` | Общий интерфейс стратегии; внешний модуль с собственным provenance |
+| Strategic advisory | `skills/conversation-strategy/`, `skills/negociar-ru/` | Стратегия по фактам базы; метод — встроенный канон Negociar-RU с собственным provenance |
 | Profiles and policies | `profiles/base/`, `profiles/examples/` | Универсальные значения и синтетические примеры; приватный профиль пользователя — в его корне |
 | Host adapters | `.claude-plugin/` | Манифест плагина и marketplace Claude; формат OpenAI/Codex — следующая версия |
 

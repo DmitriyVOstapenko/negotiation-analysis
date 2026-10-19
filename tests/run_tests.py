@@ -392,5 +392,53 @@ class GateAndInvariantTests(WorkspaceTestCase):
         self.assertEqual(json.loads(completed.stdout)["root"], str(self.root.resolve()))
 
 
+class NegociarRuTests(unittest.TestCase):
+    """Встроенный навык negociar-ru: канон собран, поиск работает, изъятое не распространяется."""
+
+    SKILL = REPO / "skills" / "negociar-ru"
+    BUSCAR = SKILL / "scripts" / "buscar.py"
+
+    def run_buscar(self, *args: str) -> subprocess.CompletedProcess:
+        env = {**os.environ, "CLAUDE_PLUGIN_ROOT": str(REPO), "PYTHONUTF8": "1"}
+        return subprocess.run([sys.executable, str(self.BUSCAR), *args], capture_output=True, text=True,
+                              encoding="utf-8", env=env, check=False)
+
+    def test_canon_complete(self) -> None:
+        canon = self.SKILL / "data" / "canon"
+        files = sorted(p for p in canon.glob("[01][0-9]-*.md") if p.name != "00-ARQUITECTURA.md")
+        self.assertEqual(len(files), 10)
+        total = sum(len([l for l in p.read_text(encoding="utf-8").splitlines() if l.startswith("### ")]) for p in files)
+        self.assertEqual(total, 275)
+
+    def test_library_integrity(self) -> None:
+        casos = json.loads((self.SKILL / "data" / "casos.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(casos), 1019)
+        self.assertEqual(len({(c["id"], c["n"]) for c in casos}), 1019)
+        self.assertTrue(all(c.get("translation_status") for c in casos))
+
+    def test_search_russian_word_forms(self) -> None:
+        out = self.run_buscar("извинения фиксация", "--n", "3")
+        self.assertEqual(out.returncode, 0, out.stderr)
+        self.assertIn("Требовать извинений как фиксацию", out.stdout)
+        canon = self.run_buscar("--canon", "D8")
+        self.assertEqual(canon.returncode, 0)
+        self.assertTrue(canon.stdout.strip().endswith("08-gestion-conflicto-conflict-management.md"))
+
+    def test_excluded_material_not_distributed(self) -> None:
+        canon05 = (self.SKILL / "data" / "canon" / "05-ventas-complejas-complex-sales.md").read_text(encoding="utf-8")
+        self.assertIn("изъят из русской адаптации", canon05)
+        casos = json.loads((self.SKILL / "data" / "casos.json").read_text(encoding="utf-8"))
+        c400 = casos[399]
+        self.assertEqual(c400["translation_status"], "excluded")
+        self.assertNotIn("cuadriciclo", c400["body"])
+        self.assertNotIn("квадроцикл", canon05)
+
+    def test_attribution_present(self) -> None:
+        notice = (REPO / "licenses" / "negociar-ru" / "NOTICE.md").read_text(encoding="utf-8")
+        for needle in ("Artur Galiev", "Arti Galiev", "d94df3bbb00e02e9389a7fa45f54d4907d318743", "CC BY-NC-SA 4.0", "не заявлял об"):
+            self.assertIn(needle, notice)
+        self.assertTrue((REPO / "licenses" / "negociar-ru" / "UPSTREAM-LICENSE-ORIGINAL").exists())
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

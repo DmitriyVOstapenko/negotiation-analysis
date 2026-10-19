@@ -2,10 +2,17 @@ MIT License
 
 Copyright (c) 2026 Dmitriy Ostapenko
 
-This MIT License applies to the SOFTWARE in this repository: all files under
-`scripts/`, `tests/`, `core/contracts/` (JSON Schema files), `core/ontology/profile.schema.json`,
-and any other source code. The methodology, prompts, ontology text, skill
-instructions and documentation are licensed separately — see LICENSE-CONTENT.md.
+This MIT License applies to the SOFTWARE of the author's own part of this repository: all
+files under `scripts/`, `tests/`, `core/contracts/` (JSON Schema files),
+`core/ontology/profile.schema.json`, and the translation tools under
+`translation-negociar-ru/tools/`. The methodology, prompts, ontology text, skill instructions
+and documentation are licensed separately — see LICENSE-CONTENT.md.
+
+The Negociar-RU zone (`skills/negociar-ru/`, `translation-negociar-ru/` except its `tools/`,
+`licenses/negociar-ru/`) is NOT covered by this file: it is an adaptation of material
+Copyright (c) 2026 Artur Galiev, licensed under CC BY-NC-SA 4.0; its search script is MIT
+Copyright (c) 2026 Artur Galiev (port to Python by Dmitriy Ostapenko). See
+`licenses/negociar-ru/`.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

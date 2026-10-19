@@ -74,16 +74,9 @@ follow-up → проект изменений → применение → ко�
 Claude Code: `/plugin update negotiation-analysis@negotiation-analysis-marketplace`. База
 пользователя при обновлении плагина не затрагивается — она живёт отдельно.
 
-## Стратегический модуль Negociar (по желанию)
+## Советник Negociar-RU
 
-Отдельный продукт Арти Галиева. Русская адаптация (CC BY-NC-SA 4.0):
-https://github.com/DmitriyVOstapenko/negociar-ru. Claude Code:
-
-```
-/plugin marketplace add DmitriyVOstapenko/negociar-ru
-/plugin install negociar-ru@negociar-ru-marketplace
-```
-
-Оригинал на испанском: `arturgaliev3099-ux/realmanagement` (`negociar@negociar-marketplace`).
-
-Нужен Node.js (`node` в `PATH`). Навык `conversation-strategy` обнаружит модуль сам.
+Встроен в плагин (навык `negociar-ru`): ставить отдельно ничего не нужно, Node.js не нужен —
+поиск по случаям на Python. Проверка: `python3 skills/negociar-ru/scripts/buscar.py "долг клиент"`
+из каталога плагина должен вывести список случаев. Оригинал на испанском
+(`arturgaliev3099-ux/realmanagement`) для работы не требуется.
