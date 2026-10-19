@@ -243,3 +243,11 @@
 - метки: Esposo/Novio, Esposa/Novia → Муж/Парень, Жена/Девушка; Amigo 1/2 → Друг 1/2
 - resiliencia → устойчивость; desencanto → разочарование; defraudado → подведённый; equidad (доля в капитале) → доля
 - заголовок 421 «en quien comina» — искажён распознаванием, не восстановлен (заметка проверки)
+
+## batch-039 (draft-3)
+- Encargado de Compras → менеджер по закупкам; director(a) de producción → директор по производству; director ejecutivo → исполнительный директор; jefe de marketing → руководитель маркетинга
+- Jefa (метка) → «Руководительница» — расходится с 037 и прежними («Руководитель»); выровнять: метка «Руководитель» независимо от рода
+- Propietario → Владелец; Dueño → Хозяин; junta directiva → совет директоров
+- anticipo → задаток; paga y señal → предоплата; promesa / compromiso de compra → обязательство о покупке / купить; bono → бонус (заголовок: «премия» — выровнять)
+- baja por maternidad → декрет; complacer → ублажить (двусмысленность важна); imposición de responsabilidad → навязывание ответственности; tener beef → наезжать
+- joder как глагол (670) — прочитан как «ceder» → «прогибаться» (заметка)
