@@ -276,3 +276,10 @@
 - nómina → зарплатная ведомость; quincenas → выплаты за полмесяца; dejar en el aire → оставлять в подвешенном состоянии; fidelizar → удержание (клиентов)
 - excusas externas → внешние отговорки (justificación → оправдание); desubicado → «забываешься»
 - брань: joder → твою мать
+
+## batch-042 (draft-3)
+- Gerente de Recursos Humanos → руководитель отдела кадров; Gerente de Finanzas → финансовый менеджер; Jefe de Finanzas → руководитель финансового отдела
+- gerente general → генеральный директор; alta gerencia → высшее руководство; liderazgo → руководство; Project Manager → руководитель проекта
+- rotación (персонала) → текучесть; asistente de transición → помощник по переходному периоду; sparrings gerenciales → управленческие спарринги; facturación → выручка
+- Pareja A/B (метки, сфера «пара») → Партнёр A/B; validar / validada → дать признание / почувствовала себя признанной; cargar con responsabilidad → нагрузить ответственностью
+- заголовок 00438903:425 → «Команда отдела кадров»
