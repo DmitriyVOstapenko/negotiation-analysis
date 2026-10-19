@@ -308,6 +308,23 @@ class GateAndInvariantTests(WorkspaceTestCase):
         self.assertIn("(m) Предпочитает", (self.root / "knowledge" / "people" / "p-krylova-polaris.md").read_text(encoding="utf-8"))
         self.assertFalse((self.root / "knowledge" / "people" / "p-danilov-nordtech.md").exists())
 
+    def test_apply_stops_when_target_changed_after_diff(self) -> None:
+        # другой чат или ручная правка изменили карточку после показа diff — apply ничего не пишет
+        self.prepare_valid_meeting()
+        person = self.root / "knowledge" / "people" / "p-krylova-polaris.md"
+        shutil.copyfile(FIXTURE / "existing_p-krylova-polaris.md", person)
+        shutil.copyfile(FIXTURE / "knowledge_proposal.json", self.meeting / "knowledge_proposal.json")
+        self.assertEqual(run(self.root, "knowledge", "diff", "--meeting", MEETING).returncode, 0)
+        self.assertTrue((self.meeting / "knowledge_diff_snapshot.json").exists())
+        edited = person.read_text(encoding="utf-8") + "- (m) Правка из другого чата после показа diff.\n"
+        person.write_text(edited, encoding="utf-8")
+        apply = run(self.root, "knowledge", "apply", "--meeting", MEETING, "--confirm")
+        self.assertNotEqual(apply.returncode, 0)
+        self.assertIn("изменились файлы базы", apply.stderr + apply.stdout)
+        self.assertEqual(person.read_text(encoding="utf-8"), edited)
+        self.assertFalse((self.root / "knowledge" / "people" / "p-danilov-nordtech.md").exists())
+        self.assertFalse((self.meeting / "knowledge_apply.json").exists())
+
     def test_close_moves_record_without_losing_history(self) -> None:
         self.prepare_valid_meeting()
         shutil.copyfile(FIXTURE / "existing_p-krylova-polaris.md", self.root / "knowledge" / "people" / "p-krylova-polaris.md")

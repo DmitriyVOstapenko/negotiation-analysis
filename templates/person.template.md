@@ -2,6 +2,8 @@
 id: "[устойчивый-id, например p-familiya-org]"
 display_name: "[как обращаться]"
 full_name: null
+speech_variants: []   # как называют в речи
+asr_variants: []      # типовые ошибки распознавания
 description: "[одно предложение: кто это и в каком взаимодействии участвует]"
 status: "requires_confirmation"
 identity_confidence: "not_assessed"

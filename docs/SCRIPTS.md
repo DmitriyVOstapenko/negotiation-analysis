@@ -39,7 +39,7 @@ python3 <plugin>/scripts/na.py [--root R] [--json] <команда> [подко�
 │   ├── analysis/audio_acoustic_metrics.json (опц.)
 │   ├── report_auto.md   report.md
 │   ├── follow_up.json   follow_up_protocol.md   follow_up_message.md
-│   ├── knowledge_proposal.json   knowledge_diff.md   knowledge_apply.json
+│   ├── knowledge_proposal.json   knowledge_diff.md   knowledge_diff_snapshot.json   knowledge_apply.json
 │   ├── run_manifest.json   analysis_bundle.json
 ├── knowledge/
 │   ├── people/*.md   organizations/*.md (companies/ — устаревшее имя, читается)   topics/*.md   tactics_observed/*.md
@@ -122,7 +122,8 @@ Markdown, таблица для записей реестров). Ничего �
 `create` не поверх существующего файла, `update` только существующего,
 сохранение всех строк с пометкой `(m)`, `append` только нового id, `update` не
 переводит в терминальный статус (для этого `close`). Код 1 при ошибках
-предусловий — применение заблокировано.
+предусловий — применение заблокировано. Рядом с diff пишется `knowledge_diff_snapshot.json` —
+SHA-256 каждого файла и реестра, которые затронет apply.
 
 `knowledge apply --meeting <id> --confirm` — применяет предложение: пишет md,
 добавляет/обновляет записи, при `close` переносит запись из `open`/`active` в
@@ -131,7 +132,9 @@ Markdown, таблица для записей реестров). Ничего �
 `knowledge/events/ledger.jsonl` по `knowledge_event.schema.json`, пишет квитанцию
 `knowledge_apply.json`, отмечает diff как применённый и пересобирает
 `knowledge/index.md` (если он создан движком). Требует показанного diff того же
-предложения (по SHA-256). Без `--confirm` — отказ (код 2). Повторный apply того
+предложения (по SHA-256). Без `--confirm` — отказ (код 2). Если после показа diff
+изменился любой затронутый файл или реестр (другой чат, ручная правка), apply ничего не
+пишет и просит показать diff заново (код 1). Повторный apply того
 же предложения ничего не дублирует (`status: already_applied`).
 
 Формат `knowledge_proposal.json` (готовит LLM-этап):

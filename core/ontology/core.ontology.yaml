@@ -565,6 +565,8 @@ entities:
       display_name: string                        # как показывать (с учётом masking_mode)
       full_name: string_or_null
       short_name: string_or_null
+      speech_variants: list(string)               # как называют в речи: «Лена», «Елена Сергеевна», «Крылова»
+      asr_variants: list(string)                  # типовые ошибки распознавания речи; для сопоставления, не для слияния
       role: enum(role)                            # основная роль в контексте встречи
       roles: list(enum(role))                     # все подтверждённые роли
       role_freeform: string_or_null               # должность словами
@@ -613,6 +615,8 @@ entities:
       display_name: string
       legal_name: string_or_null
       short_name: string_or_null
+      speech_variants: list(string)               # как называют в речи: «Полярис», «наши логисты»
+      asr_variants: list(string)                  # типовые ошибки распознавания речи
       inn: string_or_null                         # налоговый идентификатор (имя поля зафиксировано контрактом)
       kpp: string_or_null                         # дополнительный реквизит; пример локального реквизита, задаётся профилем организации
       organization_type: string_or_null           # словарь задаёт профиль организации

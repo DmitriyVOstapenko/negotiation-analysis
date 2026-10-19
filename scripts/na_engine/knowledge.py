@@ -6,6 +6,8 @@
 - строки с пометкой `(m)` текущего файла обязаны сохраниться в новом содержимом;
 - закрытие записи переносит её в закрытый реестр, не удаляя историю;
 - повторный apply того же предложения ничего не дублирует;
+- apply останавливается, если целевой файл или реестр изменился после показа diff
+  (другой чат, ручная правка): снимок хешей целей пишется рядом с diff;
 - в ledger попадают снимки обязательств и рисков по knowledge_event.schema.json.
 """
 
@@ -40,6 +42,7 @@ from .ledger import sync_ledger
 PROPOSAL_FILE = "knowledge_proposal.json"
 DIFF_FILE = "knowledge_diff.md"
 RECEIPT_FILE = "knowledge_apply.json"
+SNAPSHOT_FILE = "knowledge_diff_snapshot.json"
 VALID_FILE_ACTIONS = {"create", "update"}
 VALID_RECORD_ACTIONS = {"append", "update", "close"}
 SUMMARY_KEYS = ("what", "description", "statement", "title", "decision", "id")
@@ -308,6 +311,7 @@ def render_diff(meeting_id: str, proposal_sha: str, plan: dict[str, Any], propos
         f"**Сформировано:** {now_iso()}  ",
         f"**Версия контрактов:** `{proposal.get('contract_version') or 'не указана'}`  ",
         "**Статус:** `proposed` — база знаний НЕ изменена. Применение: `na.py knowledge apply --meeting … --confirm`.",
+        f"**Снимок целей:** `{SNAPSHOT_FILE}` — если до применения изменится любой из затронутых файлов или реестров, apply остановится.",
         "",
         "## Сводка",
         "",
@@ -343,11 +347,23 @@ def render_diff(meeting_id: str, proposal_sha: str, plan: dict[str, Any], propos
     return "\n".join(lines)
 
 
+def _target_snapshot(root: Path, plan: dict[str, Any]) -> dict[str, str | None]:
+    """Хеши всех файлов, которые apply прочитает или перезапишет (None — файла нет)."""
+    targets: set[str] = set()
+    for item in plan["files"]:
+        targets.add(item["path"])
+        if item.get("current_path"):
+            targets.add(item["current_path"])
+    targets.update(plan["registries"].keys())
+    return {target: sha256_file(root / target) for target in sorted(targets)}
+
+
 def run_diff(root: Path, meeting_id: str) -> dict[str, Any]:
     path = meeting_dir(root, meeting_id)
     proposal, proposal_sha = load_proposal(path)
     plan = plan_changes(root, proposal)
     write_text(path / DIFF_FILE, render_diff(meeting_id, proposal_sha, plan, proposal))
+    write_json(path / SNAPSHOT_FILE, {"proposal_sha256": proposal_sha, "taken_at": now_iso(), "targets": _target_snapshot(root, plan)})
     return {
         "valid": not plan["errors"],
         "meeting_id": meeting_id,
@@ -391,6 +407,17 @@ def run_apply(root: Path, meeting_id: str, confirm: bool) -> dict[str, Any]:
         }
     if _diff_sha(path) != proposal_sha:
         raise NaError("Diff для текущего предложения не показан (knowledge_diff.md отсутствует или относится к другой версии). Выполните knowledge diff, затем apply --confirm.")
+    snapshot = read_json_or_none(path / SNAPSHOT_FILE) or {}
+    if snapshot.get("proposal_sha256") != proposal_sha:
+        raise NaError("Нет снимка целевых файлов для этого diff. Выполните knowledge diff заново, покажите его пользователю, затем apply --confirm.")
+    changed = sorted(target for target, digest in (snapshot.get("targets") or {}).items() if sha256_file(root / target) != digest)
+    if changed:
+        raise NaError(
+            "Применение остановлено: после показа diff изменились файлы базы — "
+            + ", ".join(changed)
+            + ". Ничего не записано. Выполните knowledge diff заново и покажите пользователю новую версию.",
+            exit_code=1,
+        )
 
     plan = plan_changes(root, proposal)
     if plan["errors"]:

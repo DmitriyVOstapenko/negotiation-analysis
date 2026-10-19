@@ -11,7 +11,7 @@ description: >
   Galiev, Russian adaptation) to build the strategy; message drafts are never written
   unprompted and never sent.
 metadata:
-  version: "0.4.1"
+  version: "0.5.0"
   license: "CC BY-NC-SA 4.0"
 ---
 
@@ -28,6 +28,8 @@ metadata:
 опереть на накопленные факты.
 
 ## 1. Метод — встроенный `negociar-ru`
+
+> **Пути.** Claude Code сам подставляет путь к плагину вместо переменной `CLAUDE_PLUGIN_ROOT` (со знаком доллара и в фигурных скобках) в тексте этого файла. Если в команде переменная осталась как есть (другой хост) или команда взята из справочного файла (там написано `<корень плагина>`), подставь путь сам: корень плагина — на два уровня выше каталога этого навыка (`Base directory for this skill` → `…/skills/<навык>` → корень). Переменная окружения в Bash пуста — не полагайся на неё.
 
 Полностью прочитать `${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/SKILL.md` и работать по его
 контракту: четыре блока (реальная ситуация и слепая зона · что это по канону · лестница ходов
