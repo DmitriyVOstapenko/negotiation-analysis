@@ -115,3 +115,12 @@
 - retroalimentación personal (ведущий участнику) → личный разбор; escalar / escalación → эскалировать / эскалация; condescendencia → снисходительность
 - ajustes (требований) → правки; Editor / Anunciante → Издатель / Рекламодатель; árbitro → судья; onboarding → онбординг
 - брань: hostia → чёрт; tocarle las pelotas → задолбать; cabrón → сволочь; a la mierda → в жопу (сверить регистр с 025: «долбаный мудак», «обосрётесь»)
+
+## batch-019
+- gerente de sección → руководитель сектора; jefe del departamento → руководитель отдела; jefe de área → руководитель направления; área de logística/producción → направление логистики/производства
+- alto directivo / directivo → топ-менеджер; jefe de producción → руководитель производства (jefe de planta → начальник производства)
+- gerente / manager senior / junior → старший / младший менеджер (метки «(старший)/(младший)»)
+- Subdirector General de Producción → заместитель генерального директора по производству
+- inventario (товар, сырьё) → запасы — уточнить запись словаря «учёт запасов»
+- «entra en mi posición» → «встань на моё место» (не «войти в положение»); метки Doctora → Доктор, Ronda → Раунд
+- брань: quién coño se cree → кем он, на хрен, себя возомнил; muy jodido → всё очень хреново
