@@ -237,3 +237,9 @@
 - fiscal → прокурор; falta de compromiso → недостаток вовлечённости; imagen (профессиональная) → имидж (не «картина мира»)
 - micro gestión / micromanagement → микроменеджмент; deadline → дедлайн; recargo → наценка; alcance (проекта) → объём работ; HR → HR
 - метки: Comprador → Покупатель; Evaluador → Оценивающий; Técnico de laboratorio → Лаборант; Director médico → Медицинский директор; Visitante → Посетитель; Secretaria → Секретарь; Diseñador → Дизайнер; Proveedor → Поставщик; Señorito → Молодой человек
+
+## batch-035 (draft-3)
+- socio director → управляющий партнёр (как socio gerente); jefe de equipo → руководитель команды
+- метки: Esposo/Novio, Esposa/Novia → Муж/Парень, Жена/Девушка; Amigo 1/2 → Друг 1/2
+- resiliencia → устойчивость; desencanto → разочарование; defraudado → подведённый; equidad (доля в капитале) → доля
+- заголовок 421 «en quien comina» — искажён распознаванием, не восстановлен (заметка проверки)
