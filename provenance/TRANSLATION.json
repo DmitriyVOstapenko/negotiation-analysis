@@ -31,6 +31,7 @@
   "Russian as default answer language",
   "search script messages translated (MIT code, modified)",
   "skill directory renamed negociar -> negociar-ru to coexist with upstream",
-  "new tools/ for translation, verification and assembly (MIT)"
+  "new tools/ for translation, verification and assembly (MIT)",
+  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation/exclusions.json and NOTICE.md"
  ]
 }

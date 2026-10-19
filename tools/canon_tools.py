@@ -160,8 +160,24 @@ def relink(text: str, tmap: dict[str, str], unresolved: list[str]) -> str:
     return LINK_RE.sub(rep, text)
 
 
+def load_exclusions() -> dict[tuple[str, int], dict]:
+    path = ROOT / "translation" / "exclusions.json"
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {(e["file"], int(e["index"])): e for e in data.get("canon", [])}
+
+
+EXCLUDED_BODY = (
+    "*Этот принцип изъят из русской адаптации по решению её автора. "
+    "Причина: {reason} Исходный текст — в оригинальном репозитории Negociar; "
+    "подробности — в `NOTICE.md`.*\n"
+)
+
+
 def cmd_assemble(args: argparse.Namespace) -> int:
     tmap = load_title_map()
+    excluded = load_exclusions()
     OUT.mkdir(parents=True, exist_ok=True)
     problems = 0
     for name in DOMAIN_FILES:
@@ -176,6 +192,9 @@ def cmd_assemble(args: argparse.Namespace) -> int:
         lines = [relink(ru.get("preamble_ru") or src["preamble_es"], tmap, unresolved).rstrip("\n"), ""]
         for u in src["units"]:
             r = ru_units.get(u["index"])
+            exc = excluded.get((name, u["index"]))
+            if exc:
+                r = dict(r or {}, body_ru=EXCLUDED_BODY.format(reason=exc["reason"]))
             if not r or not r.get("body_ru", "").strip():
                 print(f"  [ошибка] {name} #{u['index']}: нет body_ru")
                 problems += 1

@@ -16,13 +16,21 @@
    "suspect_lines": 0,
    "sha256": "f65e7f73a76b022d3b02b8b6a09c042cadf047f95f237bd53c84f3b0764b40ef"
   },
+  "04-negociacion-posicional-positional-negotiation.md": {
+   "principles": 25,
+   "links": 39,
+   "unresolved_links": [],
+   "spanish_marker_ratio": 0.0,
+   "suspect_lines": 0,
+   "sha256": "a68221f1e57092268fce8956916ba6af0a98379c9d2acd1b3c4b645f6948aa34"
+  },
   "05-ventas-complejas-complex-sales.md": {
    "principles": 24,
-   "links": 24,
+   "links": 23,
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0002,
    "suspect_lines": 0,
-   "sha256": "f87ba4007637445ebd6ab0f95926767f74de6d70bf3990dc4e67658939d74b73"
+   "sha256": "dfa18ac8ec2748c05caadcf3de798e356814217460d216a2c1b9552fd8d51821"
   },
   "06-autoridad-distanciamiento-authority-distancing.md": {
    "principles": 34,
@@ -65,10 +73,9 @@
    "sha256": "515825f328cb7c199e31a5258e599a054d75025fbaced11e3a485b82a130802b"
   }
  },
- "principles": 236,
+ "principles": 261,
  "problems": [
   "02-imagen-mundo-picture-world.md: не собран",
-  "04-negociacion-posicional-positional-negotiation.md: не собран",
-  "принципов 236 вместо 275"
+  "принципов 261 вместо 275"
  ]
 }
