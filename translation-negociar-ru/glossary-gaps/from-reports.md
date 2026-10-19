@@ -259,3 +259,11 @@
 - bono → премия (о продажных бонусах — «бонусы»); tratamiento estético → косметологическая процедура
 - брань: huevos → яйца; jodido → чёртово
 - «ante la autoridad / autoridad de agente» (690) — исправлено координатором: «перед властями» / «с полномочиями агента»; строка в draft-3
+
+## batch-040 (draft-3)
+- Director ejecutivo → Исполнительный директор; Directora de producción → Директор по производству; junta de directivos → совещание топ-менеджеров
+- escalar (бизнес, проект) → масштабировать; escalar (вопрос наверх) → эскалировать
+- control de la agenda → контроль повестки; llamadas en frío → холодные звонки; socio inversor → компаньон-инвестор; interpretado por X → (играет X)
+- Comprador → Покупатель; Personal de la clínica → Персонал клиники; Jefa → Руководитель
+- Artur / Arthur / Ardo, когда обращаются к ведущему → «Артур»; участник с этим именем — латиницей (проверить при проходе)
+- брань: te meto el casco por el culo → засуну тебе каску в задницу; una mierda de empresa → дерьмовая компания
