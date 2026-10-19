@@ -88,3 +88,11 @@
 - luchar por tu ignorancia → бороться за своё незнание (связь с «правом на незнание»)
 - Opinión del dato → «Мнение о данных» (буквально; проверить, не «данные против мнений»)
 - английское managers в речи участника → «менеджеров» (не gerente — правило «руководитель» не применялось); имя участника Arthur в 00438852:226 оставлено латиницей (это не ведущий)
+
+## batch-025
+- Jefe de Contabilidad → руководитель бухгалтерии (по правилу jefe → руководитель; решить: «главный бухгалтер»?)
+- director de innovación / de operaciones / de transformación digital / de recursos humanos → директор по инновациям / операционный директор / директор по цифровой трансформации / директор по персоналу
+- acoso laboral → травля на работе; cliente interno → внутренний клиент; imperfección moral → моральный изъян; picaresca → жульничество
+- Labeling / Mirroring (Восс) → навешивание ярлыка (labeling) / отзеркаливание (mirroring); golpear la intención → бить по намерению
+- elevación al absurdo → доведение до абсурда; exceso de fuerza → избыток силы; duelos de gestión → управленческие поединки
+- заголовок 00438978:908: tiendas autónomas — «Автономные магазины» (не «независимые» = несетевые)
