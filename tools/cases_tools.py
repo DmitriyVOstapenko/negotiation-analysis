@@ -180,11 +180,27 @@ def cmd_assemble(_: argparse.Namespace) -> int:
     titles = {}
     if TITLES_RU.exists():
         titles = {f"{t['id']}:{t['n']}": t["title_ru"] for t in json.loads(TITLES_RU.read_text(encoding="utf-8")) if t.get("title_ru")}
+    exc_path = ROOT / "translation" / "exclusions.json"
+    excluded = {}
+    if exc_path.exists():
+        excluded = {f"{e['id']}:{e['n']}": e for e in json.loads(exc_path.read_text(encoding="utf-8")).get("cases", [])}
     out = []
-    n_full = n_title = 0
+    n_full = n_title = n_exc = 0
     for c in src:
         k = key(c)
         d = dict(c)
+        if k in excluded:
+            d["title"] = "Изъято из русской адаптации"
+            d["body"] = ("*Этот случай изъят из русской адаптации по решению её автора. Причина: "
+                         + excluded[k]["reason"] + " Исходный текст — в оригинальном репозитории Negociar; "
+                         "подробности — в `NOTICE.md`.*\n")
+            d["domain"] = DOMAIN_RU.get(c["domain"].split()[0], c["domain"])
+            d["title_es"] = c["title"]
+            d["translation_status"] = "excluded"
+            d["peso"] = 0
+            n_exc += 1
+            out.append(d)
+            continue
         if k in done:
             r = done[k]
             d["title"], d["body"], d["domain"] = r["title_ru"], r["body_ru"], r["domain_ru"]
@@ -203,7 +219,7 @@ def cmd_assemble(_: argparse.Namespace) -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     assert len(out) == len(src) == len({key(c) for c in out})
-    print(f"casos.json: записей {len(out)}; полный перевод {n_full}; только заголовок {n_title}; без перевода {len(out)-n_full-n_title}")
+    print(f"casos.json: записей {len(out)}; полный перевод {n_full}; только заголовок {n_title}; изъято {n_exc}; без перевода {len(out)-n_full-n_title-n_exc}")
     return 0
 
 

@@ -32,6 +32,7 @@
   "search script messages translated (MIT code, modified)",
   "skill directory renamed negociar -> negociar-ru to coexist with upstream",
   "new tools/ for translation, verification and assembly (MIT)",
-  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation/exclusions.json and NOTICE.md"
+  "principle 05-ventas-complejas #8 (corruption in government sales) excluded from the Russian adaptation by decision of the adaptation author, 2026-10-19; see translation/exclusions.json and NOTICE.md",
+  "case 00438891:400 (same bribery story as excluded principle) excluded from the Russian adaptation, 2026-10-19"
  ]
 }
