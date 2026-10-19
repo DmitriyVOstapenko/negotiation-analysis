@@ -198,3 +198,13 @@
 - «gerentes, jefes» рядом в речи ведущего → «управляющие, руководители»
 - rigidez → решено: «негибкость» (заголовок 868 исправлен; тело 868 — «жёсткий» → «негибкий» при проходе)
 - брань: no cagar encima de tus productos → не обсирать свои продукты; no me toques los huevos → не морочь мне яйца
+
+## batch-033 (draft-2)
+- manutención (между супругами) → алименты; bullying / bully → травля / задира; colaboradora → сотрудница
+- ventas al por mayor → оптовые продажи; ventas en frío / en campo → холодные / полевые продажи; delivery → доставка
+- Responsable de Seguridad → Ответственный за безопасность; Coordinador de Almacén → Координатор склада; despacho de gestores → бухгалтерская фирма
+- IVA / IRPF → НДС / НДФЛ (локализация — проверить при проходе: допустимо ли)
+- «el zapatero a sus zapatos» → «сапожник — к своим сапогам» (буквально, ведущий развивает образ)
+- deslizante (о сопернике) → скользкий; ir a por todas → идти ва-банк; colado → перебор
+- «como gerente, como jefe» в речи ведущего → «как управленец, как руководитель» (034: «управляющие, руководители» — выровнять пару gerente/jefe рядом)
+- a nivel de técnica → на уровне приёмов
