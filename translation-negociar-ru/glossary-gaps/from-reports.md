@@ -267,3 +267,12 @@
 - Comprador → Покупатель; Personal de la clínica → Персонал клиники; Jefa → Руководитель
 - Artur / Arthur / Ardo, когда обращаются к ведущему → «Артур»; участник с этим именем — латиницей (проверить при проходе)
 - брань: te meto el casco por el culo → засуну тебе каску в задницу; una mierda de empresa → дерьмовая компания
+
+## batch-044 (draft-3)
+- заголовок 00438844:166 → «Украинский анекдот про свекровь» (мать мужа, не тёща)
+- Jefe/Jefa de talento humano → руководитель по работе с персоналом; supervisor de producción → супервайзер производства
+- метки: Cónyuge A/B → Супруг A/B; Vecina → Соседка; Nutricionista / Culturista → Диетолог / Культурист; Camarera → Официантка; Hermano menor/mayor → Младший/Старший брат; Madre / Padre / Hijo → Мать / Отец / Сын
+- «Señora Participante A» → «Сеньора Участница A»; «Doctora Participante B» → «Доктор Участник B» (как в 672) — выровнять: участница-женщина → «Участница»
+- nómina → зарплатная ведомость; quincenas → выплаты за полмесяца; dejar en el aire → оставлять в подвешенном состоянии; fidelizar → удержание (клиентов)
+- excusas externas → внешние отговорки (justificación → оправдание); desubicado → «забываешься»
+- брань: joder → твою мать
