@@ -6,7 +6,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0001,
    "suspect_lines": 0,
-   "sha256": "6feaf43cf79a9b48ca44f2f86581f5d4459389dd7d0dbc2e9e78b2612b0ee081"
+   "sha256": "22c8443c3b9211fbd4927043ab34c1a9b3329c626faf038bb5af0e32a84958f4"
   },
   "02-imagen-mundo-picture-world.md": {
    "principles": 14,
@@ -14,7 +14,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "58d9ff45012f3ad0025a02f550c945d039c5c416f2d2be9725e382cb5781e787"
+   "sha256": "0031318f6af258a37abe7e00828648d8df2202cc8b842196c2b975f8337c385d"
   },
   "03-dinamica-roles-role-dynamics.md": {
    "principles": 26,
@@ -22,7 +22,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "f65e7f73a76b022d3b02b8b6a09c042cadf047f95f237bd53c84f3b0764b40ef"
+   "sha256": "29cc7ec63b40ff08b71527751686a2f4e00fac4e2bcbc54515b49df05760d755"
   },
   "04-negociacion-posicional-positional-negotiation.md": {
    "principles": 25,
@@ -30,7 +30,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "a68221f1e57092268fce8956916ba6af0a98379c9d2acd1b3c4b645f6948aa34"
+   "sha256": "0d75a7e41e66e9e76d30f2ae664a7bda3ac0836476d5859af076ea734193a19e"
   },
   "05-ventas-complejas-complex-sales.md": {
    "principles": 24,
@@ -38,7 +38,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0002,
    "suspect_lines": 0,
-   "sha256": "dfa18ac8ec2748c05caadcf3de798e356814217460d216a2c1b9552fd8d51821"
+   "sha256": "559e8e5f91563b048f7b06c4b7d42a689e0c7fd78781fe2a99d159610c752e08"
   },
   "06-autoridad-distanciamiento-authority-distancing.md": {
    "principles": 34,
@@ -46,7 +46,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "4443a04c96c8816a49fb185933bf109fe7d0de9207b22b29d9646b4be13dfed8"
+   "sha256": "e4dd27dbbc21388d35fe75118cd009d43d932e35a7b35010d4352a152ffd07dd"
   },
   "07-tecnologia-social-social-technology.md": {
    "principles": 23,
@@ -54,7 +54,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "caf8cac18127057a7ee90cf52f044c60bef33073515fb742a3dfe6c968fbe3e8"
+   "sha256": "539fd688b9a47241544daf9c405b1d590ff39d031dd19d5302b783f1da82f775"
   },
   "08-gestion-conflicto-conflict-management.md": {
    "principles": 27,
@@ -62,7 +62,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0002,
    "suspect_lines": 0,
-   "sha256": "ad188826888e6852cd480c0d611d918dca14232a4af1f84cc561a0beda8b89e8"
+   "sha256": "3bcb55ee76d489cfac43dfccb120c950482f28d37d375feda40e4c5473691ce6"
   },
   "09-productividad-habitos-productivity-habits.md": {
    "principles": 28,
@@ -78,7 +78,7 @@
    "unresolved_links": [],
    "spanish_marker_ratio": 0.0,
    "suspect_lines": 0,
-   "sha256": "515825f328cb7c199e31a5258e599a054d75025fbaced11e3a485b82a130802b"
+   "sha256": "688a781c96b58a709017033672b27f8b899dedfe14728594a88cca347392aac8"
   }
  },
  "principles": 275,

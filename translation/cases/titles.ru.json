@@ -550,7 +550,7 @@
   "n": 79,
   "domain": "D5 Ventas complejas B2B",
   "title_es": "Capacitadora contra gerente de planta",
-  "title_ru": "Тренер против начальника производства"
+  "title_ru": "Тренер против директора завода"
  },
  {
   "id": "00438835",
@@ -627,7 +627,7 @@
   "n": 90,
   "domain": "D8 Conflicto y disciplina",
   "title_es": "Coordinadora de Bienestar Laboral vs. Líder de equipo tóxico (Roles invertidos)",
-  "title_ru": "Координатор по благополучию персонала против токсичного лидера команды (Обратные роли)"
+  "title_ru": "Координатор по благополучию персонала против токсичного лидера команды (Смена ролей)"
  },
  {
   "id": "00438837",
@@ -774,14 +774,14 @@
   "n": 111,
   "domain": "D5 Ventas complejas B2B",
   "title_es": "Coordinadora de recursos humanos con gerente de planta industrial",
-  "title_ru": "Координатор по персоналу с управляющим заводом"
+  "title_ru": "Координатор по персоналу с директором завода"
  },
  {
   "id": "00438839",
   "n": 112,
   "domain": "D5 Ventas complejas B2B",
   "title_es": "Coordinadora de recursos humanos con gerente de planta industrial (Cambio de roles)",
-  "title_ru": "Координатор по персоналу с управляющим заводом (Смена ролей)"
+  "title_ru": "Координатор по персоналу с директором завода (Смена ролей)"
  },
  {
   "id": "00438839",
@@ -1572,14 +1572,14 @@
   "n": 225,
   "domain": "D3 Dinámica de roles",
   "title_es": "Ejecutivo comercial contra el director general de filial",
-  "title_ru": "Коммерческий менеджер против генерального директора филиала"
+  "title_ru": "Менеджер по продажам против генерального директора филиала"
  },
  {
   "id": "00438852",
   "n": 226,
   "domain": "D3 Dinámica de roles",
   "title_es": "Coordinador de mantenimiento contra Gerente de planta industrial",
-  "title_ru": "Координатор по техобслуживанию против управляющего заводом"
+  "title_ru": "Координатор по техобслуживанию против директора завода"
  },
  {
   "id": "00438852",
@@ -1607,7 +1607,7 @@
   "n": 230,
   "domain": "D3 Dinámica de roles",
   "title_es": "(Ronda 2) — Ejecutivo comercial contra el director general de filial",
-  "title_ru": "(Раунд 2) — Коммерческий менеджер против генерального директора филиала"
+  "title_ru": "(Раунд 2) — Менеджер по продажам против генерального директора филиала"
  },
  {
   "id": "00438852",
@@ -1621,7 +1621,7 @@
   "n": 232,
   "domain": "D3 Dinámica de roles",
   "title_es": "(Ronda 2) — Coordinador de mantenimiento contra Gerente de planta industrial",
-  "title_ru": "(Раунд 2) — Координатор по техобслуживанию против управляющего заводом"
+  "title_ru": "(Раунд 2) — Координатор по техобслуживанию против директора завода"
  },
  {
   "id": "00438853",
@@ -1754,7 +1754,7 @@
   "n": 251,
   "domain": "D3 Dinámica de roles",
   "title_es": "Ingeniero de mantenimiento vs. Gerente de planta industrial",
-  "title_ru": "Инженер по техобслуживанию против управляющего заводом"
+  "title_ru": "Инженер по техобслуживанию против директора завода"
  },
  {
   "id": "00438855",
@@ -3518,21 +3518,21 @@
   "n": 503,
   "domain": "D3 Dinámica de roles",
   "title_es": "El gerente engañado",
-  "title_ru": "Обманутый менеджер"
+  "title_ru": "Обманутый руководитель"
  },
  {
   "id": "00438926",
   "n": 504,
   "domain": "D3 Dinámica de roles",
   "title_es": "El gerente engañado (Demostración práctica 1)",
-  "title_ru": "Обманутый менеджер (практическая демонстрация 1)"
+  "title_ru": "Обманутый руководитель (практическая демонстрация 1)"
  },
  {
   "id": "00438926",
   "n": 505,
   "domain": "D3 Dinámica de roles",
   "title_es": "El gerente engañado (Demostración práctica 2)",
-  "title_ru": "Обманутый менеджер (практическая демонстрация 2)"
+  "title_ru": "Обманутый руководитель (практическая демонстрация 2)"
  },
  {
   "id": "00438927",
@@ -4225,14 +4225,14 @@
   "n": 604,
   "domain": "D8 Conflicto y disciplina",
   "title_es": "El propietario del gimnasio y el gerente de ventas",
-  "title_ru": "Владелец спортзала и менеджер по продажам"
+  "title_ru": "Владелец спортзала и руководитель отдела продаж"
  },
  {
   "id": "00438938",
   "n": 605,
   "domain": "D5 Ventas complejas B2B",
   "title_es": "(Continuación con cambio de roles) — El propietario del gimnasio y el gerente de ventas",
-  "title_ru": "(Продолжение со сменой ролей) — Владелец спортзала и менеджер по продажам"
+  "title_ru": "(Продолжение со сменой ролей) — Владелец спортзала и руководитель отдела продаж"
  },
  {
   "id": "00438938",
@@ -5506,7 +5506,7 @@
   "n": 787,
   "domain": "D4 Negociación posicional",
   "title_es": "El dinero no devuelto por el exgerente",
-  "title_ru": "Деньги, не возвращённые бывшим управляющим"
+  "title_ru": "Деньги, не возвращённые бывшим руководителем"
  },
  {
   "id": "00438966",

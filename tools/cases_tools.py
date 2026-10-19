@@ -156,6 +156,18 @@ def cmd_import(args: argparse.Namespace) -> int:
     return 0
 
 
+STATUS_ORDER = ["untranslated", "machine_draft", "terminology_checked", "reviewed", "approved"]
+
+
+def corpus_status(src: list[dict], done: dict[str, dict]) -> str:
+    """Статус корпуса = минимальный статус обязательных элементов (непереведённый случай → untranslated)."""
+    worst = len(STATUS_ORDER) - 1
+    for c in src:
+        st = done.get(key(c), {}).get("status", "untranslated")
+        worst = min(worst, STATUS_ORDER.index(st) if st in STATUS_ORDER else 0)
+    return STATUS_ORDER[worst]
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     src = load_src()
     done = accepted_map()
@@ -168,7 +180,7 @@ def cmd_status(_: argparse.Namespace) -> int:
     titles = json.loads(TITLES_RU.read_text(encoding="utf-8")) if TITLES_RU.exists() else []
     st = {"total": total, "translated": n_done, "remaining": total - n_done, "by_tier": dict(by_tier),
           "by_sphere": dict(by_sphere), "words_translated": words_done, "words_total": words_total,
-          "titles_translated": len(titles), "corpus_status": "machine_draft" if n_done else "not_started"}
+          "titles_translated": len(titles), "corpus_status": corpus_status(src, done)}
     STATUS.write_text(json.dumps(st, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(st, ensure_ascii=False, indent=1))
     return 0

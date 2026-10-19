@@ -12,7 +12,7 @@
 |---|---------|:-------:|:------:|
 | 1 | [Основы управленческой борьбы / Fundamentals of Management Fight](01-fundamentos-lucha-fundamentals-management-fight.md) | 9 | 44 |
 | 2 | [Картина мира и информационная асимметрия / Picture of the World and Information Asymmetry](02-imagen-mundo-picture-world.md) | 6 | 14 |
-| 3 | [Ролевая динамика и сценарии власти / Role Dynamics and Power Scenarios](03-dinamica-roles-role-dynamics.md) | 7 | 26 |
+| 3 | [Динамика ролей и сценарии власти / Role Dynamics and Power Scenarios](03-dinamica-roles-role-dynamics.md) | 7 | 26 |
 | 4 | [Позиционные переговоры и распределение выгоды / Positional Negotiation and Benefit Distribution](04-negociacion-posicional-positional-negotiation.md) | 7 | 25 |
 | 5 | [Сложные продажи и B2B-решения / Complex Sales and B2B Solutions](05-ventas-complejas-complex-sales.md) | 7 | 24 |
 | 6 | [Авторитет, дистанцирование и руководство командами / Authority, Distancing and Team Leadership](06-autoridad-distanciamiento-authority-distancing.md) | 6 | 34 |
