@@ -290,6 +290,23 @@ def cmd_pack(args: argparse.Namespace) -> int:
     return rc
 
 
+def cmd_titles_sync(_: argparse.Namespace) -> int:
+    """Перенести в titles.ru.json заголовки, уточнённые переводчиками в принятых пакетах."""
+    if not TITLES_RU.exists():
+        print("нет titles.ru.json"); return 1
+    done = accepted_map()
+    items = json.loads(TITLES_RU.read_text(encoding="utf-8"))
+    n = 0
+    for it in items:
+        r = done.get(f"{it['id']}:{it['n']}")
+        if r and r.get("title_ru") and r["title_ru"] != it.get("title_ru"):
+            print(f"  {it['id']}:{it['n']}: {it.get('title_ru')} → {r['title_ru']}")
+            it["title_ru"] = r["title_ru"]; n += 1
+    TITLES_RU.write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"Синхронизировано заголовков: {n}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -298,6 +315,7 @@ def main() -> int:
     i = sub.add_parser("import"); i.add_argument("file"); i.set_defaults(fn=cmd_import)
     sub.add_parser("status").set_defaults(fn=cmd_status)
     sub.add_parser("assemble").set_defaults(fn=cmd_assemble)
+    sub.add_parser("titles-sync").set_defaults(fn=cmd_titles_sync)
     sub.add_parser("titles-export").set_defaults(fn=cmd_titles_export)
     ti = sub.add_parser("titles-import"); ti.add_argument("file"); ti.set_defaults(fn=cmd_titles_import)
     args = ap.parse_args()
