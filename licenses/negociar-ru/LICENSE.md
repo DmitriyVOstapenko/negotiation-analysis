@@ -1,23 +1,27 @@
-# Лицензии / Licencias
+# Лицензии Negociar-RU / Licencias
 
-Этот репозиторий — русская адаптация (перевод) материала Negociar. В нём три правовые
-зоны; ни одна лицензия верхнего уровня не ограничивает права получателей на CC-материал.
+Этот файл описывает правовую зону русской адаптации Negociar внутри репозитория
+`negotiation-analysis`. Собственная часть репозитория лицензирована отдельно (`LICENSE`,
+`LICENSE-CONTENT.md` в корне).
+
+Русская адаптация (перевод) материала Negociar состоит из трёх правовых зон; ни одна лицензия
+верхнего уровня репозитория не ограничивает права получателей на CC-материал.
 
 ---
 
 ## 1. Адаптированный контент — CC BY-NC-SA 4.0
 
-Применяется к: `skills/negociar/data/` (переведённые канон и библиотека случаев, а также
-исходные испанские тексты в `translation/canon-src/` и `translation/cases/casos.src.json`),
-`skills/negociar/SKILL.md`, `skills/negociar/EJEMPLO-NOVATO.md`, `translation/glossary.md`,
-`translation/canon-units/`, `translation/cases/` и производной документации (`README.md`,
-`NOTICE.md`, `docs/`).
+Применяется к: `skills/negociar-ru/data/` (переведённые канон и библиотека случаев, а также
+исходные испанские тексты в `translation-negociar-ru/canon-src/` и `translation-negociar-ru/cases/casos.src.json`),
+`skills/negociar-ru/SKILL.md`, `skills/negociar-ru/EJEMPLO-NOVATO.md`, `translation-negociar-ru/glossary.md`,
+`translation-negociar-ru/canon-units/`, `translation-negociar-ru/cases/` и производной документации
+(`licenses/negociar-ru/README.md`, `licenses/negociar-ru/NOTICE.md`, документы в `translation-negociar-ru/`).
 
 **Исходный материал:** Copyright (c) 2026 Artur Galiev. Автор и сторона атрибуции —
 Arti Galiev, https://instagram.com/arti_galiev. Источник:
 https://github.com/arturgaliev3099-ux/realmanagement, commit
 `d94df3bbb00e02e9389a7fa45f54d4907d318743`. Исходный лицензионный файл сохранён без
-изменений: `LICENSES/UPSTREAM-LICENSE-ORIGINAL`.
+изменений: `licenses/negociar-ru/UPSTREAM-LICENSE-ORIGINAL`.
 
 **Адаптация (перевод на русский язык):** © 2026 Дмитрий Остапенко — распространяется на
 тех же условиях **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
@@ -43,13 +47,13 @@ https://github.com/arturgaliev3099-ux/realmanagement, commit
 Применяется к: `skills/negociar-ru/scripts/buscar.py` — перенос исходного `buscar.mjs`
 на Python с русскими сообщениями. Copyright (c) 2026 Artur Galiev (исходный скрипт);
 перенос — Copyright (c) 2026 Dmitriy Ostapenko. Текст разрешения MIT — в
-`LICENSES/UPSTREAM-LICENSE-ORIGINAL`, раздел 2; он сохраняется во всех копиях.
+`licenses/negociar-ru/UPSTREAM-LICENSE-ORIGINAL`, раздел 2; он сохраняется во всех копиях.
 
 ---
 
 ## 3. Новый код адаптации — MIT
 
-Применяется к: `tools/` (инструменты перевода, проверки и сборки), `.claude-plugin/`
+Применяется к: `translation-negociar-ru/tools/` (инструменты перевода, проверки и сборки)
 (новые манифесты). Copyright (c) 2026 Dmitriy Ostapenko.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this

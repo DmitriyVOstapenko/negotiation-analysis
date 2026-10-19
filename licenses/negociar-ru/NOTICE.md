@@ -15,7 +15,7 @@ Artur Galiev; автор и сторона атрибуции — Arti Galiev, h
 `d94df3bbb00e02e9389a7fa45f54d4907d318743` (дата коммита 2026-08-17, объявленная версия
 1.0.8). Изменения: полный перевод на русский язык канона и библиотеки случаев (за изъятием двух единиц — см. «Изъятое из адаптации») и правил
 навыка; русский язык ответа по умолчанию; переведённые сообщения поиска; техническая
-реструктуризация для отдельного плагина; инструменты перевода и проверки (новый код).
+встраивание в плагин `negotiation-analysis`; инструменты перевода и проверки (новый код).
 Адаптированный материал распространяется по CC BY-NC-SA 4.0:
 https://creativecommons.org/licenses/by-nc-sa/4.0/. **Автор оригинала не заявлял об
 одобрении или официальном статусе этой адаптации.**
@@ -24,11 +24,11 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/. **Автор оригина�
 
 | Зона | Что | Лицензия | Правообладатель |
 |---|---|---|---|
-| Исходный контент и его перевод | `skills/negociar/data/`, `SKILL.md`, `EJEMPLO-NOVATO.md`, `translation/`, документация | CC BY-NC-SA 4.0 | оригинал — Artur Galiev; перевод — Дмитрий Остапенко (на тех же условиях) |
+| Исходный контент и его перевод | `skills/negociar-ru/data/`, `SKILL.md`, `EJEMPLO-NOVATO.md`, `translation-negociar-ru/`, документация | CC BY-NC-SA 4.0 | оригинал — Artur Galiev; перевод — Дмитрий Остапенко (на тех же условиях) |
 | Код поиска | `skills/negociar-ru/scripts/buscar.py` — перенос исходного `buscar.mjs` на Python | MIT | Artur Galiev (исходный скрипт); перенос — Dmitriy Ostapenko |
-| Новый код | `tools/`, `.claude-plugin/` | MIT | Dmitriy Ostapenko |
+| Новый код | `translation-negociar-ru/tools/` | MIT | Dmitriy Ostapenko |
 
-Полные тексты: `LICENSE` (этот репозиторий), `LICENSES/UPSTREAM-LICENSE-ORIGINAL`
+Полные тексты: `licenses/negociar-ru/LICENSE.md` (эта зона), `licenses/negociar-ru/UPSTREAM-LICENSE-ORIGINAL`
 (исходный файл, без изменений).
 
 ## Изъятое из адаптации
@@ -37,14 +37,14 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/. **Автор оригина�
 принцип канона и один случай библиотеки с тем же сюжетом. Заголовок принципа оставлен на месте,
 чтобы ссылки на него не ломались; запись случая сохранена (те же `id` и `n`, номер в поиске
 не сдвигается), вместо текста — пометка об изъятии. Исходный испанский текст не изменялся и доступен в
-оригинальном репозитории и в замороженной копии источника `translation/canon-src/`.
+оригинальном репозитории и в замороженной копии источника `translation-negociar-ru/canon-src/`.
 
 | Файл канона | № | Принцип (ES / EN) | Причина |
 |---|---|---|---|
 | `05-ventas-complejas-complex-sales.md` | 8 | El factor humano irreemplazable: la excepción de la corrupción en ventas gubernamentales / The Irreplaceable Human Factor: The Corruption Exception in Government Sales | Описывает подкуп должностного лица (подарок ребёнку чиновника ради госконтракта) как рабочий приём продаж. Автор адаптации не распространяет такое содержание под своим именем. |
 | `casos.json` | случай 400 (`00438891`, n=400) | El cumpleaños del hijo del manager gubernamental | Тот же сюжет, что в изъятом принципе: подарок ребёнку представителя госзаказчика подан как способ закрывать сделки с государством. |
 
-Машиночитаемый список — `translation/exclusions.json`. Это изменение адаптированного
+Машиночитаемый список — `translation-negociar-ru/exclusions.json`. Это изменение адаптированного
 материала в смысле CC BY-NC-SA 4.0; оно не меняет условий для исходного материала.
 
 ## Что сохранено без перевода
@@ -63,12 +63,12 @@ JSON-ключи; `id`, `n`, `date`, `dir`, `tier`, `sphere`, `peso`; коды д
 ## Статус перевода
 
 Перевод выполнен встроенной языковой моделью по утверждаемому словарю терминов
-(`translation/glossary.md`) пакетами с проверкой структуры, хешей и остатков испанского.
-Статус каждой единицы — в `translation/canon-status.json`, `translation/cases-status.json`
+(`translation-negociar-ru/glossary.md`) пакетами с проверкой структуры, хешей и остатков испанского.
+Статус каждой единицы — в `translation-negociar-ru/canon-status.json`, `translation-negociar-ru/cases-status.json`
 и в поле `translation_status` каждого случая. Общий статус корпуса равен минимальному
 статусу его обязательных элементов и не превышает `machine_draft`, пока независимый
 проход не поднимет его до `reviewed`. Машинный перевод не выдаётся за проверенный человеком.
-Сомнительные места — `translation/translation-review.jsonl`.
+Сомнительные места — `translation-negociar-ru/translation-review.jsonl`.
 
 ## Чего здесь нет
 

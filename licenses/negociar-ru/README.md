@@ -6,7 +6,7 @@
 > `d94df3bbb00e02e9389a7fa45f54d4907d318743`. Изменения: полный перевод на русский язык,
 > русский язык ответа по умолчанию, изъятие одного принципа канона и одного случая (см. `NOTICE.md`),
 > техническая реструктуризация для отдельного плагина,
-> перечисленные в `NOTICE.md` корректировки. Адаптированный материал распространяется по
+> перечисленные в `licenses/negociar-ru/NOTICE.md` корректировки. Адаптированный материал распространяется по
 > **CC BY-NC-SA 4.0**: https://creativecommons.org/licenses/by-nc-sa/4.0/. **Автор оригинала
 > не заявлял об одобрении или официальном статусе этой адаптации.**
 
@@ -26,32 +26,24 @@
 ## Состояние перевода
 
 Перевод делается пакетами, с проверкой структуры, хешей и остатков испанского; статусы
-честные. Актуальные цифры — `translation/canon-status.json` и
-`translation/cases-status.json`; в каждом случае есть поле `translation_status`
+честные. Актуальные цифры — `translation-negociar-ru/canon-status.json` и
+`translation-negociar-ru/cases-status.json`; в каждом случае есть поле `translation_status`
 (`machine_draft` / `title_only` / `untranslated`). Общий статус корпуса не выше
 `machine_draft`, пока независимый проход не поднимет его до `reviewed`. Сомнительные
-места — `translation/translation-review.jsonl`. Словарь терминов —
-`translation/glossary.md` (статус `draft` до утверждения).
+места — `translation-negociar-ru/translation-review.jsonl`. Словарь терминов —
+`translation-negociar-ru/glossary.md` (статус `draft` до утверждения).
 
 | Часть | Объём | Статус |
 |---|---|---|
-| Правила навыка `SKILL.md` | 1 файл | см. `translation/canon-status.json` |
-| Канон: 10 доменов + архитектура + служебные файлы | 275 принципов | см. `translation/canon-status.json` |
-| Библиотека случаев | 1019 случаев | см. `translation/cases-status.json` |
+| Правила навыка `SKILL.md` | 1 файл | см. `translation-negociar-ru/canon-status.json` |
+| Канон: 10 доменов + архитектура + служебные файлы | 275 принципов | см. `translation-negociar-ru/canon-status.json` |
+| Библиотека случаев | 1019 случаев | см. `translation-negociar-ru/cases-status.json` |
 | Пример-разбор `EJEMPLO-NOVATO.md` | 1 файл | в исходнике уже по-русски, перенесён как есть |
 
 ## Установка
 
-Работает в **Claude Code** (и как плагин Claude). Нужен Python 3.10+ (`python3`) — он ищет по
-базе случаев.
-
-```
-/plugin marketplace add DmitriyVOstapenko/negociar-ru
-/plugin install negociar-ru@negociar-ru-marketplace
-```
-
-Перезапустите Claude Code. Навык называется `negociar-ru`, чтобы не конфликтовать с
-оригинальным `negociar`, если он тоже установлен.
+Отдельной установки нет: Negociar-RU встроен в плагин `negotiation-analysis` как навык
+`negociar-ru`. Установка плагина — см. `README.md` в корне репозитория. Нужен Python 3.10+.
 
 ## Как получить настоящий ответ
 
@@ -64,17 +56,17 @@
 ## Что происходит на вашей машине
 
 Один скрипт поиска `skills/negociar-ru/scripts/buscar.py` (Python, без внешних библиотек) — читает только свои файлы, не
-пишет, не ходит в сеть. Инструменты перевода в `tools/` — локальные, без сети. Телеметрии нет.
+пишет, не ходит в сеть. Инструменты перевода в `translation-negociar-ru/tools/` — локальные, без сети. Телеметрии нет.
 
 ## Лицензии
 
 - Переведённые канон, случаи, правила навыка, словарь и документация — **CC BY-NC-SA 4.0**
   (оригинал © Artur Galiev; перевод © Дмитрий Остапенко на тех же условиях).
 - `buscar.py` — **MIT** © Artur Galiev (исходный `buscar.mjs`), перенос на Python и русские сообщения © Dmitriy Ostapenko.
-- `tools/`, манифесты — **MIT** © Dmitriy Ostapenko.
+- `translation-negociar-ru/tools/` — **MIT** © Dmitriy Ostapenko.
 
-Подробно — `LICENSE`, `NOTICE.md`, исходная лицензия без изменений —
-`LICENSES/UPSTREAM-LICENSE-ORIGINAL`.
+Подробно — `licenses/negociar-ru/LICENSE.md`, `licenses/negociar-ru/NOTICE.md`, исходная лицензия без изменений —
+`licenses/negociar-ru/UPSTREAM-LICENSE-ORIGINAL`.
 
 Методику можно применять в своей работе и в своей компании без ограничений; нельзя
 продавать сам материал, включать его в платный продукт или выдавать за свой.
@@ -91,8 +83,8 @@ skills/negociar-ru/SKILL.md          — правила навыка (перев
 skills/negociar-ru/EJEMPLO-NOVATO.md — полный пример разбора (исходник по-русски)
 skills/negociar-ru/data/canon/       — канон (перевод, те же имена файлов)
 skills/negociar-ru/data/casos.json   — библиотека случаев (перевод; title_es сохранён)
-skills/negociar-ru/scripts/          — поиск по базе (MIT, upstream)
-translation/                         — исходники, словарь, единицы перевода, статусы, заметки проверки
-tools/                               — инструменты нарезки, проверки и сборки перевода
-provenance/                          — источник и журнал адаптации
+skills/negociar-ru/scripts/          — поиск по базе buscar.py (MIT, перенос upstream на Python)
+translation-negociar-ru/             — исходники, словарь, единицы перевода, статусы, заметки проверки
+translation-negociar-ru/tools/       — инструменты нарезки, проверки и сборки перевода
+licenses/negociar-ru/provenance/     — источник и журнал адаптации
 ```
