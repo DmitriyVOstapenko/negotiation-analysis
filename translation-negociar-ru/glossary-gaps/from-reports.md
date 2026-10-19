@@ -283,3 +283,10 @@
 - rotación (персонала) → текучесть; asistente de transición → помощник по переходному периоду; sparrings gerenciales → управленческие спарринги; facturación → выручка
 - Pareja A/B (метки, сфера «пара») → Партнёр A/B; validar / validada → дать признание / почувствовала себя признанной; cargar con responsabilidad → нагрузить ответственностью
 - заголовок 00438903:425 → «Команда отдела кадров»
+
+## batch-043 (draft-3)
+- метки Ejemplo / Enseñanza → Пример / Урок; pagar con exposición → заплатить публичностью; promoción → продвижение
+- por desgaste / desgastar → измором / измотать; estar sobrevendido → перепродать себя; decisión gerencial → управленческое решение
+- input → инпут; bullying → буллинг (в 033: «травля» — выровнять); takes → тейки; analista junior → младший аналитик
+- DGT → Главное управление дорожного движения (DGT); visión del mundo → видение мира (≠ imagen del mundo — картина мира)
+- брань: ni puta idea → бля, понятия не имеет; joder как глагол → по смыслу в том же регистре («нагадить», «облажаться», «подставить») — внести правилом в словарь
