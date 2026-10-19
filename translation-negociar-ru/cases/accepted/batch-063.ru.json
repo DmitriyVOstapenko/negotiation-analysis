@@ -7,9 +7,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "c92b012c21935aa56329fbbaf8a0bddfe16a1e9f45450a9ad1df30d5a78c2e7a",
   "sha256_ru": "043d56051acf82f395bd5f232e0d0d7ecc66e7b0c0b79ff4517400d3aa631e81",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438885",
@@ -19,9 +19,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "8ac4120a13d62500e232f8d96a9815e0f6c41b9b5c84dca6d2e6f6fb7c09b0c6",
   "sha256_ru": "654dbaeaf686771282cd48941f887c20e2bec0f702324dabf106899120d51afe",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438932",
@@ -31,9 +31,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "0ba3d42a1eb38143b8d72835db2acb3c10ac354e1c521d2296a5a3f9edbe3f6d",
   "sha256_ru": "a2ed59d60834fe8515df9a67a035b98ce242c456965b4401685a3014b81f4039",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -43,9 +43,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "683f0de2920fc2bc09c5afcb1bbbf5db46416eb1076fef8378fe76710d8cfe35",
   "sha256_ru": "ee2bc28ed3ab7d75f47a4eca046f788ceb3ac4e7aca1d528ef192f0b32c3dd1d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -55,9 +55,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "5817ced49cefd01ed3c7de986e14926e009b559629c58b16dab816dbb9da8bf3",
   "sha256_ru": "6eb59107571b8b67862c1af90b0f386ad64a107a04f3185811ea2d58b6a96e6a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -67,9 +67,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "553688f92e2bd5ebdf0398507b4367f7cd831a17cf6e4bc474e1f817c32ec831",
   "sha256_ru": "f5c2d0006f7f4dc656f6126bc7426856e24b9f229fc61d7c35df3403429a1e2e",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -79,9 +79,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "8eed6a09b8c2be79b80064c8670a5022c310433caa71b73b018daf7eb871f724",
   "sha256_ru": "92f97cec4f1c638176a88783012bace0c22f99710cee986bf31a76c41199259f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -91,9 +91,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "7af59e260689585d557ca2cafa55d9ac4d07dc5d471211754b5a3325f3d4f89b",
   "sha256_ru": "87a656495b8ef9bbb8099473ad281c16a1d086f5e3eaa8190cf2396c86e02dfc",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438937",
@@ -103,9 +103,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "9f2f92d12d203e6065f1dcd382f08ceeee4383291abf52f9757cadf0eb469c62",
   "sha256_ru": "3ba1ec4d795e077afc9025cd41246dd235afbc90ca2075dd95c28efdc13bc87d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -115,9 +115,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "efa9b783bd1a696e6653bc8f1fb41a7b69b4f823099eae9b15eecff14f0a9075",
   "sha256_ru": "92fe1479f06e9cb7fc08cc85be006fdd1dc5aad5a94b564943439fda258faed2",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -127,9 +127,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "4d0da63e875d9b8495d4ca3e1b7a57db751f8440b478a7dd9c2c35c78760e5b4",
   "sha256_ru": "12ed9361ec709e4efdf54cddbf194f2f64b5e76f311dd070083ead23406421c3",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -139,9 +139,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "b53dee920aa6208519518978075a96cedafb9030bdd564037033ca972b81e0b7",
   "sha256_ru": "3da2ae9d4970a3216e8a2cb7ae5eaa73fd7673aa3f61251e535c13f4c240b39a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -151,9 +151,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "a26198291146261cea0855b80a2592642a23504c9ee78788e886f2be184fdac0",
   "sha256_ru": "89ab8594e34a7b87d22dacf72dd486afa5cfc2f29925372ff92998f4ce7fc1ef",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -163,9 +163,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "ece599aa6af24ba39b4002de1176a24a3e91edddaaa23c99409305f3a00ad73a",
   "sha256_ru": "000271d563440bcd7d02332eb8a80613a54983ff89fe2f67270d12645dd7038b",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -175,9 +175,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "c0fe47a83b00125725a944f1f4eccf5aef0b5242fb41d4f0903d052c33f22a7d",
   "sha256_ru": "8926c9fb34e3eaaf0a6f2f59baac7c1f97a47c942f70db301016d926ed29f63b",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -187,9 +187,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "8255fe8f384252f53268715a548e78aa327b2b35f62a8563e8b753f358be961b",
   "sha256_ru": "7f14ff0efd7a6d99608a3dc6faf758c6542cd150789bb5cb7252ba3099c66282",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -199,8 +199,8 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "067327c4f06e43fad072a218554d49a94b8fcf44be007190dd2ab66208abb51e",
   "sha256_ru": "80baf8e909820f4ac4f12f9f62061d6982fb12e7c7330b99575d3d096d208c7b",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

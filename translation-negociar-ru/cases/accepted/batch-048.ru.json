@@ -7,9 +7,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "559c2ebe38a38822bd8af4dd0ae5f2729e2419b4060e63c0576c84038fcbe598",
   "sha256_ru": "79cbd66003b251dd936438d012f2259546cf3fa8db05fbbc93fa119fcacd6cf5",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438844",
@@ -19,21 +19,21 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "5d5f8d82f76d5f0f0b2d597d80659081facb227fec9b5ca55ac29e6efb71f28b",
   "sha256_ru": "ff3c8dc8813aebc368e0c74e0e4bbdc0540c5c6ae1bba329dc4a6ff1ead46e81",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438844",
   "n": 175,
   "title_ru": "Качество лидов: продажи против маркетинга (Раунд 2)",
-  "body_ru": "- **Контекст:** Второй раунд симуляции о качестве лидов для курса по лидерству — с поменявшимися ролями и той же стартовой фразой.\n- **Роли:**\n  - **Руководитель продаж:** Участник A\n  - **Специалист по маркетингу:** Участник B\n- **Диалог:**\n  - **Участник A:** «Если ты даёшь мне мусор, не жди, что я превращу его в золото».\n  - **Участник B:** «Ты думаешь, что мусор — это все люди, которые могут быть заинтересованы в этом курсе?»\n  - **Участник A:** «Честно говоря, я со всеми ними связался, и они не были заинтересованы. Тогда я убеждал их разными способами, и нет, они ждали чего-то бесплатного. Этот курс я продать не могу. Значит, профиль, профилирование клиентов нам не подходит под наше предложение».\n  - **Участник B:** «Да люди не всегда хотят всё бесплатно. Что ты мог бы сделать, например, — это предложить им что-то бесплатное в виде образца, пробную часть, и так продать им продукт».\n  - **Участник A:** «Да, Участник B, я, честно говоря, всё перепробовал, но лид, который приходит, не готов платить. Поэтому я и предложил тебе поменять профиль клиентов. К тому же так мы могли бы получать эффективные лиды, которые, я думаю, весят в твоих метриках больше, чем с конверсией в продажу».\n  - **Участник B:** «Ну, мой приём больше про то, кого мне удаётся тебе привести и сколько. Вот это мне и удаётся делать. У тебя есть какое-то предложение о том, чтобы приводить тебе такое количество, но не мешая продаже?»\n  - **Участник A:** «Не понял».\n- **Разбор:** Ведущий вмешивается, чтобы объяснить, насколько важно присоединиться к картине мира другого. Он подробно поясняет, что в корпоративных отношениях продажи — внутренний клиент маркетинга, потому что это первичный отдел, который приносит доход, поэтому маркетинг должен адаптировать свой продукт (лиды) к потребностям продаж. Кроме того, он приводит технические данные о частоте рекламных контактов, необходимых для покупки, и о критическом влиянии времени реакции продавцов при связи с лидами.\n\n---\n",
+  "body_ru": "- **Контекст:** Второй раунд симуляции о качестве лидов для курса по лидерству — со сменой ролей и той же стартовой фразой.\n- **Роли:**\n  - **Руководитель продаж:** Участник A\n  - **Ответственный за маркетинг:** Участник B\n- **Диалог:**\n  - **Участник A:** «Если ты даёшь мне мусор, не жди, что я превращу его в золото».\n  - **Участник B:** «Ты думаешь, что мусор — это все люди, которые могут быть заинтересованы в этом курсе?»\n  - **Участник A:** «Честно говоря, я со всеми ними связался, и они не были заинтересованы. Тогда я убеждал их разными способами, и нет, они ждали чего-то бесплатного. Этот курс я продать не могу. Значит, профиль, профилирование клиентов нам не подходит под наше предложение».\n  - **Участник B:** «Да люди не всегда хотят всё бесплатно. Что ты мог бы сделать, например, — это предложить им что-то бесплатное в виде образца, пробную часть, и так продать им продукт».\n  - **Участник A:** «Да, Участник B, я, честно говоря, всё перепробовал, но лид, который приходит, не готов платить. Поэтому я и предложил тебе поменять профиль клиентов. К тому же так мы могли бы получать эффективные лиды, которые, я думаю, весят в твоих метриках больше, чем с конверсией в продажу».\n  - **Участник B:** «Ну, мой приём больше про то, кого мне удаётся тебе привести и сколько. Вот это мне и удаётся делать. У тебя есть какое-то предложение о том, чтобы приводить тебе такое количество, но не мешая продаже?»\n  - **Участник A:** «Не понял».\n- **Разбор:** Ведущий вмешивается, чтобы объяснить, насколько важно присоединиться к картине мира другого. Он подробно поясняет, что в корпоративных отношениях продажи — внутренний клиент маркетинга, потому что это первичный отдел, который приносит доход, поэтому маркетинг должен адаптировать свой продукт (лиды) к потребностям продаж. Кроме того, он приводит технические данные о частоте рекламных контактов, необходимых для покупки, и о критическом влиянии времени реакции продавцов при связи с лидами.\n\n---\n",
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "cfd1ee66b19e1da3be52db6ab5e953491b643f9ce370ec8ccaf7ab9fbfa109f6",
-  "sha256_ru": "367c77c6401774cd027afc67e2adc1c57dd5cbb6ce5932c95dcf0c0063acb8cc",
-  "status": "machine_draft",
+  "sha256_ru": "8a1874bd98a524f85b35ee8917ee841ff81e2f4fbcfef6170dd6501bd44d07a4",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438860",
@@ -43,9 +43,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "7a2f47e11b60f856d2d0e8be26651657ec035f9a4455af0c0df532d8f99c54d1",
   "sha256_ru": "0bfa30f2242f74434ff2936f237d90ccfebf6ff36c44d31db61bc8f4d64527b2",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438864",
@@ -55,9 +55,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "f21ec1919409d8b2f96426ae4f20d8e7895b88770e8d92b74569f1fe64cde794",
   "sha256_ru": "089d0be4b4c33b357a536059a2e72ebc3484b85bcb453aa72f00a90fd2f85646",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438877",
@@ -67,9 +67,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "2f3036ef5fc3dfe34898b01d2f75904884cbb597affefda6639475dba47cb79e",
   "sha256_ru": "cd8b308e1a4ddc3cc5639aa2c80c9c2d7264cd8be06df745419ec62c5aa12536",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438885",
@@ -79,9 +79,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "22b04e8ce497423b37384919f1307a97b25872ea3ac4a22c2cebe1d3b198fa93",
   "sha256_ru": "720bec0c517b746e7d237c6e268ba1a7b723b074ccf0bb188201ad2283820de1",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438885",
@@ -91,9 +91,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "0fd5200bcc614a672d86596c794f89518b995f4560db2b1b97edcf4493d7df9b",
   "sha256_ru": "e2f654bb29e322f340dc37b6a261ea9a7905e2dfeae8c0df2b72383c054cf678",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438893",
@@ -103,9 +103,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "f0cc1a2bd6e09554af1fbac0c16935039adda749c58665c5de841be7521656bb",
   "sha256_ru": "24c3eafe3ee6ca450985e6f028c98286beb7c5e21ca25d275ac6b7decc2b2cd2",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438909",
@@ -115,9 +115,9 @@
   "domain_ru": "D6 Авторитет и лидерство",
   "sha256_src": "e2ea625e904d113731c0728a99f4b8fcd9a32fba783c2964082a385aca93adc8",
   "sha256_ru": "8d259067e2bc172caa81a02ac08db03c7609768c6d89efaf6e04be8de4bb4177",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438931",
@@ -127,9 +127,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "551c0b529806e0636e29ba50d407c1dc9ccc9808904fa16de18cd80a61c4d804",
   "sha256_ru": "933b577de38b08cd7a58626a55c376da73b0be55e385f7ff5c6b85d7e4d94a42",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438960",
@@ -139,9 +139,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "880e1fcf3f046a06261522a00fa228cd76ba085b38b0ea107c32b5dd219a2001",
   "sha256_ru": "33d1dcb676abae8d0872e8742c8dc12596bfb03554266480d60ac6cd703b3d03",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438964",
@@ -151,9 +151,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "64a484c8cada0d0f47f34699412dbdb7750f846e4e70a0e40088421ca4b9ff20",
   "sha256_ru": "fe119e301d6d6a54d11daf31a0ce91f095f0bbc1cbf96138ba2504cfaeb50128",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438964",
@@ -163,9 +163,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "a3b1ea6a5e15646b80987c941788288e923e404133f372bb0c0abe2c1a89a9eb",
   "sha256_ru": "cedd556f8c2812404c6bc0b5ed592404f2766e2bf77bb20fe3ab98d736bbdc32",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -175,9 +175,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "44f84c600f4c4932baba644d2bba62a91a5c12eb801bee5f21affb265903a355",
   "sha256_ru": "cd4233b759957cf4abca3163d6da87303a1291b65d98b1723db66bc7310d745a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -187,9 +187,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "5e30e36b0bdffa4f48c70215e0cb57f011a4aa2e908f4947df94955a2991523f",
   "sha256_ru": "63c66ae1bf5f1a89c3fceb127f21b1b578dc9d66961caf342a22efbc3e59b280",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438980",
@@ -199,9 +199,9 @@
   "domain_ru": "D6 Авторитет и лидерство",
   "sha256_src": "c22cd0b970aa11569a684e7cae50637b9dbe2a34fb2d7e711718b55638a84242",
   "sha256_ru": "ed798855c2dec3b0b5372b88f786775c960ac168bfb46cd4e13a2f03a4d59d7a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438980",
@@ -211,8 +211,8 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "fea95c7d8db178fbeebfbc59e09b7ec532f4c5cd7375bc1c86fac3afdc251701",
   "sha256_ru": "df4788b9e1f4184bede4119bfd2386be53a204da2efd839f6171ff7e46f922e1",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

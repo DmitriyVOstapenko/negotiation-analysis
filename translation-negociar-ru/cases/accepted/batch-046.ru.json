@@ -7,9 +7,9 @@
   "domain_ru": "D9 Продуктивность и привычки",
   "sha256_src": "51af168c8040d7048d6204ee68cc2460bfd02f82d2cc41c5256f4e7acd285b9e",
   "sha256_ru": "2d447ab807dd55a17d179a687fd0a4d638d72e2c94725ab9677768fdcf2c060c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438860",
@@ -19,9 +19,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "526cc7d1f444bd359156cba32c32ef8ae19fc9e79c3f12d3b27bcf6562a3cf74",
   "sha256_ru": "366339a1b70b869dcd0bfe0bb29fd309eb68c0eedcd255319be891b5bdb76829",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438872",
@@ -31,21 +31,21 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "499bf29acd67ba74c791b1cb06b35978197ff23b96196cf06204355c43953aef",
   "sha256_ru": "fc635c11e293e0835ba8f6ab958a4d38828271d778d06763fb5431a08f2c039d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438872",
   "n": 327,
   "title_ru": "Вторжение в свободное время (Попытка 2)",
-  "body_ru": "- **Контекст:** Та же ситуация: Участник A требует уважения к своему свободному времени в ответ на ночные сообщения руководителя.\n- **Роли:** Руководитель (Участник B) / Участник A (Артур)\n- **Диалог:**\n  - **Участник A (Артур):** \"Мне нужно, чтобы уважали моё время вне офиса.\"\n  - **Руководитель (Участник B):** \"Ты воспринял как вторжение эти сообщения, которые я тебе отправлял в WhatsApp?\"\n  - **Участник A (Артур):** \"Потому что я воспринял их как вторжение. Но, слушай, речь ведь и не о том, чтобы не отвечать на сообщения своего руководителя, понимаешь?\"\n  - **Руководитель (Участник B):** \"Ну, у тебя не включён микрофон. Что ты имеешь в виду, что мы, это самое, обесценили твой график?\"\n  - **Участник A (Артур):** \"Я не имею в виду, что вы обесценили мой график Я этого не говорю Я говорю, что нельзя присылать мне сообщения в любое время А потом упрекать за то, что я на них не отвечаю Мне нужно, чтобы уважали моё время вне офиса\"\n  - **Руководитель (Участник B):** \"Ок, но раньше ты на эти сообщения отвечал, поэтому я думал, что тебя это не беспокоит. И кроме того, вот это, которое я тебе только что отправил, действительно крайне срочное.\"\n- **Разбор:** Ок. Ну, время, но, скажем так, я бы продолжал бороться, а? Я бы продолжал бороться. All right. Как это можно было бы сделать, скажем так? На что это похоже, когда ты объясняешь, не дойдя до «точно», без признания, без всего такого? Как это ощущается — слушай, на самом деле я не хотел этого делать? Это очень срочно — до того, как дойти до «точно». Это звучит так, будто я на тебя напал, а ты оправдываешься. Ты оправдываешься. А это не дело, понимаешь? Поэтому сначала дойти до признания. Поэтому сначала дойти до «точно». Потому что решение без этого шага выглядит как поиск оправдания, отговорки, решения, быстрого выхода.\n\n---\n",
+  "body_ru": "- **Контекст:** Та же ситуация: Участник A требует уважения к своему свободному времени в ответ на ночные сообщения руководителя.\n- **Роли:** Руководитель (Участник B) / Участник A (Arthur)\n- **Диалог:**\n  - **Участник A (Arthur):** \"Мне нужно, чтобы уважали моё время вне офиса.\"\n  - **Руководитель (Участник B):** \"Ты воспринял как вторжение эти сообщения, которые я тебе отправлял в WhatsApp?\"\n  - **Участник A (Arthur):** \"Потому что я воспринял их как вторжение. Но, слушай, речь ведь и не о том, чтобы не отвечать на сообщения своего руководителя, понимаешь?\"\n  - **Руководитель (Участник B):** \"Ну, у тебя не включён микрофон. Что ты имеешь в виду, что мы, это самое, обесценили твой график?\"\n  - **Участник A (Arthur):** \"Я не имею в виду, что вы обесценили мой график Я этого не говорю Я говорю, что нельзя присылать мне сообщения в любое время А потом упрекать за то, что я на них не отвечаю Мне нужно, чтобы уважали моё время вне офиса\"\n  - **Руководитель (Участник B):** \"Ок, но раньше ты на эти сообщения отвечал, поэтому я думал, что тебя это не беспокоит. И кроме того, вот это, которое я тебе только что отправил, действительно крайне срочное.\"\n- **Разбор:** Ок. Ну, время, но, скажем так, я бы продолжал бороться, а? Я бы продолжал бороться. All right. Как это можно было бы сделать, скажем так? На что это похоже, когда ты объясняешь, не дойдя до «точно», без признания, без всего такого? Как это ощущается — слушай, на самом деле я не хотел этого делать? Это очень срочно — до того, как дойти до «точно». Это звучит так, будто я на тебя напал, а ты оправдываешься. Ты оправдываешься. А это не дело, понимаешь? Поэтому сначала дойти до признания. Поэтому сначала дойти до «точно». Потому что решение без этого шага выглядит как поиск оправдания, отговорки, решения, быстрого выхода.\n\n---\n",
   "domain_ru": "D2 Картина мира",
   "sha256_src": "da08e0127fc6d93a9b47944187a6293f68144783026ea241652dd789fb5ac01a",
-  "sha256_ru": "c211c759335a98e48aeda98b3177043459f2c110450d8571209288261f5b5ae7",
-  "status": "machine_draft",
+  "sha256_ru": "194642de9086a97d335b1276afeed7a5d43305f251fc829f80ba22ec513226f3",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438873",
@@ -55,9 +55,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "d4101442eb327c509bf0feeb456b49254f11128338f0b796c51d19411c355c0d",
   "sha256_ru": "8f218d9a7f270d05a1baf49f869a9a2893ea41d30f2c54c8e4d1062075f18bcb",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438904",
@@ -67,9 +67,9 @@
   "domain_ru": "D6 Авторитет и лидерство",
   "sha256_src": "767d34f0c10d30955f1eec6259f7793b5defb4e0f0e96e33602e1365a1cd43f8",
   "sha256_ru": "a5655dddbbd57d42e5f4147575e80c155c47fd8c08d09d5a208a0de902b0ed94",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438928",
@@ -79,9 +79,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "a7155850759e77e874bcc4014692f26c4d27e0cef9998c2d77b81ed8662b1bf9",
   "sha256_ru": "51e3dda04b2f5e6b95a2ce46de379fa29b0190598598dd7f3b283e75ae7dbec5",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438931",
@@ -91,9 +91,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "a1b1d4c23f481fe055b945da7b592059708f65fe688607f069da62c3d9ac9559",
   "sha256_ru": "64dc84c0a669039be0a0c9b3a5e20670e1c0b74828b9a59eb413e3fd3880c173",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438938",
@@ -103,9 +103,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "c999087ae4b08ea3aac1fb42b17afda59a97660c2bb15c52e520b76fd64dc9f3",
   "sha256_ru": "84064bf3d56cb6bdefe5d8dee8a2b932e285e9327ee2cfeb1eca19a49a28f165",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438939",
@@ -115,9 +115,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "28e92f006f972f2925a9f2471ace072943f7ad9eeca2407a92506477a78d2c39",
   "sha256_ru": "be1c1c854bfe11be4a6dab97d9d3b3a131a859e00270417c854932ae0f639ada",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -127,9 +127,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "4cd2c7f1e370a79896436c747b30bf06332be9910ea6f22520e62d0dfdc82669",
   "sha256_ru": "68faeb19ea91a9661f93c68bc692d75b03da179033a894d15adc3cf50959dd9d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438946",
@@ -139,9 +139,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "dc219fa2f0577e8f4ab0ea4ac049cda4d54c7ac911cd2f0ba1d35af271dc6dc2",
   "sha256_ru": "90fb9af43a87d46b9242d2b51f5c24fb38078355198c513b0b759fc5fd364817",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438948",
@@ -151,9 +151,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "0ab364bf1237a30763815c2decd746231f95ef75819a72a27363854fa19f3e13",
   "sha256_ru": "62d49af54e38db0e93fb3c2f013eabe1475dab297894fe02fe80d5d7943f02ec",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438960",
@@ -163,9 +163,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "b15c9d160adc6e02dabc12d4f3804eae2e07abf8b340bf96b29ea5e6eb4368c5",
   "sha256_ru": "ad42c6abe156e834b0728bbd15ae2871e227c5096e6c674ac9a58e4dc28a8fbd",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438961",
@@ -175,9 +175,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "b8e219a06c98a30ed9987caaf0648c53e34a94817d0da6a752de1cc980420938",
   "sha256_ru": "444c8af861530e2d36d00f0f32466dbf513f9040e1cefbff367138db7853102c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438962",
@@ -187,9 +187,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "2943621ec979efd263d9e8d8ce4ab03989542c5625ce39a550bde6d7a78387f9",
   "sha256_ru": "5f3cb2509e20d33b98555700b113a423260b8a464f44e6af4151232434197334",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -199,9 +199,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "079aaf9f66d5db680afcd15b55789e4ddd258de16282132615f058917256b69a",
   "sha256_ru": "080d9841844f1cf88291d44b995b7b3e255d0cc0090371255fdd4363ccd55e1f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -211,8 +211,8 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "1ffe7b0ba1c322fdbae6b8390ca134f12f6d293d28b678cb1ec2e0dc028fd763",
   "sha256_ru": "60ed5d7c949ee9d45abe0cd869c45d18768f73a63ad999dd78a4e59becd0990c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

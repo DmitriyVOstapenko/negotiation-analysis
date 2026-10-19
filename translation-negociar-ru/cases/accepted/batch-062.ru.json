@@ -7,9 +7,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "f0b2bf9b9f89490648939be94d86b3fa0c2e363a4b615fe6941f08980c005da8",
   "sha256_ru": "b1ab6ad0fbfa12c9dbe76d447985a211dfb1df9232270e1b8b73a33b685776a9",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438840",
@@ -19,9 +19,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "9c66879cb11fb7394a9b67920455544d4ba5857f41d257446a2ae84a2856dbe4",
   "sha256_ru": "50afc47320f483f1b55fb21117bcf2286e85c059cf62d49cd9d6df593046745e",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438840",
@@ -31,9 +31,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "106467d08f33d87f37745e2875f40bc40eee1becfaf52ae8b5a12f46406e0992",
   "sha256_ru": "777dad449c2ea47c0cad76384eb5c3f38381dd3683d180e68c2d949966bfd258",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438840",
@@ -43,9 +43,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "c949367f8e803bfdd45e10632b6a133be6f958bebe80e3bdf0f159d993002668",
   "sha256_ru": "f41601c3f1bb8d7275f0a03913d6c2a0094b442ebad52bf4b966102fc11ecd07",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438840",
@@ -55,9 +55,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "07eb65f30599024ab81fdef3465ead3667fbfd2c3d387db311a25be841f72309",
   "sha256_ru": "14b02303c423e9d8e7fb5a29905bb1ea5a15c69a6f90fd71089701c2466414fb",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -67,9 +67,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "7958abbb7279fe0e1afe9e6a7d239460726a0a5d7fe515b8c9ec0604c5d7739d",
   "sha256_ru": "b2cae2e1bd721ebf1d54521a06fdcf85fa4593e8016512d8e1a86638ab72dacc",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -79,9 +79,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "539996c635d90df24548fd101821fa333245c006715874425364567db8ebf602",
   "sha256_ru": "87dfe7c7dc25ca08b04e2eed6f1f31a7c9fc2b89d7cf2332b7d7861e042f062c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -91,9 +91,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "2a63e44962a25dabe6dd019d311296556b66bedec74f0a308e8fa2b0e5883d26",
   "sha256_ru": "26f3a0b240eeeb4275046a8e5a536d840658060098df2428e3ce1e39ca66b8da",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -103,9 +103,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "b923f9e9f1566754fba8c8eda19a080b81d28520826e6a2500866d3905b59639",
   "sha256_ru": "9eac24c7f0cda3712db9114dd185b538946f39353476b955167e044b6453583a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -115,9 +115,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "b3ca24270037831f9ff5541e8df923624b6e8467397b4bc8363b6dde65bcba1a",
   "sha256_ru": "41a85eae89c45da2f3a46020f98e6eee2eafaa38a9f18accc5be3f3cfcd1b300",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -127,9 +127,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "efc53dffe5ce8bea8d5868a75eda9a2248dc947106c888077c64f3d4eeb65028",
   "sha256_ru": "d64b448b53366091400af8a750286ff6743c0ceb3f0d2ae21ac8f749b33f2831",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -139,9 +139,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "9b61621729927bc571b0ebdbe8e4684c8322d0610b21b8499d666ca5e42bc0dc",
   "sha256_ru": "0e8af7767b18e196e6d458f1c10b0fcd2f5d6e7ee484190bb7061b1fb9aa055b",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438954",
@@ -151,9 +151,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "a46cba968d2ab72c9d4e594b39b550b0c555848d83946d566f76a6087c9fd327",
   "sha256_ru": "0ec79ef568a4c0039033396ea7747aed7509860bad847b9c1b554ba16cdfb89e",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -163,9 +163,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "86306bcdd7d900bedd75527df67b902786d001188bcc7f82aa6c4ea7002bdbf9",
   "sha256_ru": "b15567fb93339c93534386635a75f7ccb3ba5ce6ad4a37e4b69e579ec36c3ee9",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -175,9 +175,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "0a6a92d2cbd68abb8088ab9399cd3186566802452daf827d9b4aa2d959f7f02a",
   "sha256_ru": "d66cfa80060ec43ff95e6317fad3b23a3012a80a4cab49cebbcc57d51c3fdbe6",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -187,9 +187,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "f945fc124feffbfd4d24a15fcb6c67ce3292ae3ba28115a1d40ac9a45c243023",
   "sha256_ru": "6d5890e924e9b88ba149d97494db18b28992b5d0b74def8239b20b8574af92d4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -199,9 +199,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "9fef11a1b5c1cb6d86a9562d030e41959ea897fe83ad30fb5414e940e2298851",
   "sha256_ru": "bc673555a59abe24432490da53ee3f535b70b304d192086059c8e8b807496be0",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -211,9 +211,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "cfde1224f8cce9d05ebd47d6d39e35ecd90cd2b6cf06c5f575ad4f40f94260a4",
   "sha256_ru": "d73e58d3a1ae3bc3bc1e9b2c65aa74ac9992acfa0eab1de232857767f274fadf",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
@@ -223,21 +223,21 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "a4d02128ad0978291d2b40e4ebdf23a71ce7b315001458b6f701d12674d0763d",
   "sha256_ru": "abfb125e41cd578461a37821c9eef2f926c1eac3cef3a3ef7c3aec676c0c0f73",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438957",
   "n": 982,
   "title_ru": "Дочь, которая требует машину («Я что, хуже других?»)",
-  "body_ru": "- **Контекст:** Участница A/Участница B поступает в университет и просит в подарок машину. Родители не могут её оплатить, к тому же у неё нет прав. На «сначала научись водить» она отвечает: «Я что, хуже других? Все мои друзья уже купили себе права, а вы не можете мне их купить».\n- **Пример:** Отец не должен извиняться, объясняться или оправдываться. С позиции силы: «Думаешь, ты меня убеждаешь таким аргументом? Другие родители наказали бы за такое поведение? Я тоже мог бы, но не стану: я думаю, что ты хорошая девочка и заслуживаешь права». Потом — «да, но» с условием и стимулом: «права стоят 3000; за лето работы официанткой ты накопишь 1000. Поработай одно лето, и всё, что накопишь, мы умножим на три и поможем тебе».\n- **Урок:** Ребёнок бросает вызов, потому что у него ошибочный прогноз (увидел у друга, в сериале или потому, что родители год за годом уступали). Сильная позиция у родителя по естественному праву, и он не может её уступить: аргументы работают только с позиции силы. С детьми, которые заходят со слабой позиции, нужно быть немного снисходительнее и помогать им через «да, но», которое стимулирует их становиться лучше как личность. И осторожно: вникать, давая ему ожидания «да», чтобы потом сказать «нет», — это обман; обманутые ожидания — это обман, а обман — путь к войне; лучше чёткое «нет», чем невыполненные ожидания.\n",
+  "body_ru": "- **Контекст:** Участник A/Участник B поступает в университет и просит в подарок машину. Родители не могут её оплатить, к тому же у неё нет прав. На «сначала научись водить» она отвечает: «Я что, хуже других? Все мои друзья уже купили себе права, а вы не можете мне их купить».\n- **Пример:** Отец не должен извиняться, объясняться или оправдываться. С позиции силы: «Думаешь, ты меня убеждаешь таким аргументом? Другие родители наказали бы за такое поведение? Я тоже мог бы, но не стану: я думаю, что ты хорошая девочка и заслуживаешь права». Потом — «да, но» с условием и стимулом: «права стоят 3000; за лето работы официанткой ты накопишь 1000. Поработай одно лето, и всё, что накопишь, мы умножим на три и поможем тебе».\n- **Урок:** Ребёнок бросает вызов, потому что у него ошибочный прогноз (увидел у друга, в сериале или потому, что родители год за годом уступали). Сильная позиция у родителя по естественному праву, и он не может её уступить: аргументы работают только с позиции силы. С детьми, которые заходят со слабой позиции, нужно быть немного снисходительнее и помогать им через «да, но», которое стимулирует их становиться лучше как личность. И осторожно: вникать, давая ему ожидания «да», чтобы потом сказать «нет», — это обман; обманутые ожидания — это обман, а обман — путь к войне; лучше чёткое «нет», чем невыполненные ожидания.\n",
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "f62805d18dd8719d7620e6f119b483e2228bcda4f980f1053bd0a7b876644428",
-  "sha256_ru": "5f04cf3b1a1e20390386e0193ffefd3c9407bc3d5c6641b5173410ad142fc21e",
-  "status": "machine_draft",
+  "sha256_ru": "d9ff61bbf6be5add6d405ae2f012ace8cf1ff46f22e0a7e3d99e5c95c952f1b1",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -247,9 +247,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "c5b0ff13d5bb171cc0b3822ad037efbcb8710fdd818e6b4ccf38c040213559bf",
   "sha256_ru": "45b8bd9cbea57cc24f0c4df3bd0fa417fec632d5b45777f7fe45b34867d03bb4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -259,9 +259,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "8afc3668c0d6989e9761ec66af6bb292fdc18d35f58fa903889087adeb222abd",
   "sha256_ru": "3ffcf12029f0ab82b0e32926f59e130b3af521291d89da854341b82c485d7b75",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -271,9 +271,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "11f8e265bbeee922890c825b0204fe3afd986fabd092816c78f61a2f38d46662",
   "sha256_ru": "c8f49776e129cad8323eb781522ee180e93c1395569774630d46879327e23ac7",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -283,9 +283,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "4e2deb05194f3d829b46a5032f7a30d3e1a5bd752fd66ff3c781e88f28e3e720",
   "sha256_ru": "9992cd4fbf78ced1331ac973849265d819605bcbbb301a33a7bb0d87a650d552",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -295,9 +295,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "ab20ce0f3e32b1d961a753574b1af37da3223a9695b0f18d1a91271cdcd7a9c1",
   "sha256_ru": "eb3711e6ac979085883a51d7ee12b918c5f8767938cf892f08d3a6819dfef82f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -307,9 +307,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "0868e3b5bfbaa9de93de02cf9657033c6227e0d428c194f69c107cb144725e63",
   "sha256_ru": "299b551888ab116a899dcf180538f8a863bc54a0c71f9ede10389fe330693442",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -318,10 +318,10 @@
   "body_ru": "- **Контекст:** Определение настоящей любви, отличной от влюблённости (которую Арти называет «быть обманутыми»).\n- **Пример:** Каждый день ухаживать за больной бабушкой, не получая от этого удовольствия; сцена из иранского фильма *Отец*, где сын, плача, моет своего отца с Альцгеймером; вытирать слюну спящему партнёру и снимать с него носки. Эффект Бенджамина Франклина: тот, кто оказывает тебе услугу (одалживает ручку), оправдывает это у себя в голове мыслью «это потому, что он хороший человек».\n- **Урок:** «Любовь — это давать, не получая положительного подкрепления». Добрые дела без подкрепления создают восприятие, что другой человек хороший; поэтому сильнее любит тот, кто больше вкладывает. Совет женщине: если отношения ухудшаются, вкладывай без положительного подкрепления, и «твой мозг сам объяснит тебе, зачем ты это делаешь».\n",
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "c9fda7f40b35df24661e0c1d523d84262e0afe7fdcc518187a09fee25d662347",
-  "sha256_ru": "5a6f0dfa1227a76634caa3d9d82f14ae641b6b5be6417dfd6b764c59fb0d5bd3",
-  "status": "machine_draft",
+  "sha256_ru": "f6b7fd9b9b61ed98fad7f64778989c8d345b2fa292714d7456bd0448552ffe98",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -331,9 +331,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "0d910744c295f280bf6be004679f926a31149be22d3a88df94fc96337b7dd043",
   "sha256_ru": "e984afa7b636fbc394ffcaca4b36642d22219ec5cf9c5eb676e0ee4fcb4e0e98",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -343,9 +343,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "d7de61c38756698e3d640e8bf7fbabae0726ca1f00d88ed456a3f79d2c0385b4",
   "sha256_ru": "40581e14d74e0b0e0e7aefaf8fdb13411978e9a24e3c48beeaa1e6ca851b1fff",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -355,9 +355,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "2d266000fb70b325db0f7a2fd35ba1150352d332306fe191a033fc015f0fc0ca",
   "sha256_ru": "829fd5a701a8ddfabd72c196dfae3b9383658cae1d05a3a6a10a12e90c7cb8f8",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438963",
@@ -367,9 +367,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "89b8e08b4fa645352eb585338615f6ab9b6b2cb6d9654ac33ac4d257ccd2e395",
   "sha256_ru": "635ef2568869c9f93eecef6fca82f48468717f81c9252de085e1dfce5b2f08f4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -379,9 +379,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "8552f35bea9ffde182f29fa2dd5ad4418745ddd9d9dc20aae383109262cd2e1d",
   "sha256_ru": "3616be303ed6643af2704b57c66e335be8f28cd7a189c181ba783cbdbc89aad0",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438971",
@@ -391,9 +391,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "a16090b4b4e13a260ff07f995ee33b518c997a18d15dfee0a970dd9797ac480e",
   "sha256_ru": "cba2368eb22c0f6aff648fd134812be7d231c8c891d35dd0c60142e85aaec052",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438971",
@@ -403,9 +403,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "c57b7ad3fc731a99419a5b461828cddad6c494e284735cf99a0964b943556ac0",
   "sha256_ru": "cf29621e249d33940cf68e1eaef3992ab1bb0732c688a26d460bf51d98472b41",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438971",
@@ -415,9 +415,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "31ebecf4139f5cfd02a9ebd2606fc08c4333b9ad83c372dbe9cf4ac6a17510d0",
   "sha256_ru": "829f59d3a2fc6eefaec7413ec9dd4cd4507a471bb060b18facfb240c32a752c4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438971",
@@ -427,9 +427,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "aa113d26e45593488833f39a8882d1f1e8f821bc7df4137ff10fa1f35c89146c",
   "sha256_ru": "24c66d440de84a7b7299584a20382f0ebabe6273ed56d047b5afd15bc1fb803e",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -439,9 +439,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "b76287deeea5d96c3e87453b08e9c33a24b4029c983ab4287d92eab6cce856d5",
   "sha256_ru": "20e3b8ee95dc4b524dc0c48b26d8c0231efddb5d98fcd716ffb6f8fe1d775f08",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -451,21 +451,21 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "1ba51d347b28b2f9da7190209f92d75a06d6a691a5ea92f2a3769220c24cb4ed",
   "sha256_ru": "29544e6c9790d7aaa4e231345c5c281b36f74f3ece833724a4c0308acdb04f99",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
   "n": 1002,
-  "title_ru": "Не объединяться поспешно: сплетница Участница A",
-  "body_ru": "- **Контекст:** Когда приходишь в уже сложившийся коллектив, возникает соблазн сблизиться с первым человеком, который тебя принимает и рассказывает, «кто есть кто».\n- **Пример:** Приходит новая девушка, и первый человек, который ей радуется, принимает её и проводит ей «онбординг», — это Участница A, сплетница. «Что видит коллектив? Пришла новая девушка, и её первая близкая подруга в офисе — Участница A, сплетница. Значит, она тоже будет сплетницей». Правильно: задавать много маленьких вопросов многим людям, чтобы понять, кто есть кто, прежде чем к кому-либо сближаться.\n- **Урок:** Коллектив уже знает, кто есть кто; поспешно сблизившись не с тем человеком, ты получаешь ярлык по ассоциации. Быть вежливым, но сдержанным, не сближаясь и не отдаляясь, пока не поймёшь социальную карту; потом сближаться с тем, кто соответствует твоим ценностям или целям.\n",
+  "title_ru": "Не объединяться поспешно: сплетница Участник A",
+  "body_ru": "- **Контекст:** Когда приходишь в уже сложившийся коллектив, возникает соблазн сблизиться с первым человеком, который тебя принимает и рассказывает, «кто есть кто».\n- **Пример:** Приходит новая девушка, и первый человек, который ей радуется, принимает её и проводит ей «онбординг», — это Участник A, сплетница. «Что видит коллектив? Пришла новая девушка, и её первая близкая подруга в офисе — Участник A, сплетница. Значит, она тоже будет сплетницей». Правильно: задавать много маленьких вопросов многим людям, чтобы понять, кто есть кто, прежде чем к кому-либо сближаться.\n- **Урок:** Коллектив уже знает, кто есть кто; поспешно сблизившись не с тем человеком, ты получаешь ярлык по ассоциации. Быть вежливым, но сдержанным, не сближаясь и не отдаляясь, пока не поймёшь социальную карту; потом сближаться с тем, кто соответствует твоим ценностям или целям.\n",
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "b19fde251e55020ed646b4614ee379ff1c56490c40bd475fa194479ed1441ecd",
-  "sha256_ru": "b721a9263f0c994c191c93035ac1fb4bdf11b26ab012b614e44bb6d479af9649",
-  "status": "machine_draft",
+  "sha256_ru": "1f588529c19aa0f4b154ee4f0acee71d1d9c5ae3e122674906c9fe78d6b2dce5",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -475,9 +475,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "9472e1d8f14df0443ef866509f19a1cbc2ea14b88b24313ef9982dc737b1f1db",
   "sha256_ru": "fcf1ab328a1a10e1f77252e559bc0c01d945a085eb658eeca76017a53c9f2ba6",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438977",
@@ -487,8 +487,8 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "0e67c3174eaa01dcc44fb103068a1f5f2bf31418d78fb935f374cef1f743a899",
   "sha256_ru": "c07c4f0e16f40dde4d34788cf5925ab9f8e3713785e8d2f5812f6a0938cfcf9c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

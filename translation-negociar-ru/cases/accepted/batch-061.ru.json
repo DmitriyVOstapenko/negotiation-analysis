@@ -7,9 +7,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "fd849fbfea3569a20d9ae900791bc64ff5f53273c032660e0b0d4ff232f3baf6",
   "sha256_ru": "b403b69a296b4272fb78920fef2f3187f0237f42ad07672c37710446af94a1a5",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -19,9 +19,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "37ffd4713fe08575ef46e1ab33df8733edf222f5b4068e76c0bc7c8978c6a3e9",
   "sha256_ru": "dfa5217ee36419b8d941c032d94ee0479230bfe5898e8802e45f80febbb2b7d3",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -31,9 +31,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "1535f833f4211d8dfd9f64111fe371edf6b9f9a9de3d633142ce521d196d6d9d",
   "sha256_ru": "307a7647d57440000502e571a47e3a0585777dd855a236d21b66f2b6aa386fc3",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -43,9 +43,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "3563d14398ade107677ef15890abb2cce229773cfd5dcf6da12a1969b1f592e4",
   "sha256_ru": "22d4e8f86dc53272c8b2d712ea1bbcf370b47365c7c573ec13e4ea8fe6eae7b9",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -55,9 +55,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "4717791057decaf8a0fe7b6164e798d9e33581d2a7864ce8e83da3ee24261aad",
   "sha256_ru": "da2b5d0a3d4145c792c291281fc7db73ca95e128a3e4f9e412080f2021932fcf",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438943",
@@ -67,9 +67,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "d86ab684a82944bea0a5f3448556f83e5fb78a180b9f9b5933da55680e763382",
   "sha256_ru": "3069639f96189ffb416e29022aaddf5c150cda89474dad6555dbd1136514465d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -79,9 +79,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "d9b04dff7a85ddaf3bffae2b879304369942b84cd5261bc64ec5d5a81c7a32f6",
   "sha256_ru": "faeb6cec49db751f80302f278c910fd8066b115e50fcd1e038ca9a486d7a3988",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -91,9 +91,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "0c0bc237c7fd2b6f8810affd5f99e357de0ce24c1366fd40c9f978442731c2a1",
   "sha256_ru": "bebad69a65c9e9d262c4e51c09ebba32cdfb8a084d6d9205f6126fd79f0e40a8",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -103,9 +103,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "25d61f1e029ea5f25a511ec6cec49164e45aa05466daeb5c7ecee353f86e66d0",
   "sha256_ru": "158ddf19344d4392c6bfe52ccfacd6ea80f37c862ae882bddb229ada8ddc6082",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -115,9 +115,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "0a3ba9b9c30b36b18a8a2b9b80e419cd18b018e2b3eabcc97d9eae23330c98a3",
   "sha256_ru": "5dd455c6acb613ca84e2254da402b8e38a1868fdd28e89ce5f3625f8467036bb",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -127,9 +127,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "03a7004c11052cb47510f0870d5ee3e24445a724b9405a77487503586d2ea5b4",
   "sha256_ru": "4b38c373a9757abd56bba2ac9bbbfc283fab5bea9cc75966b12f73394ef8a453",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438959",
@@ -139,21 +139,21 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "92049a10594af468038185e25ab34094e1e951f65614c260eba36e91b9494e01",
   "sha256_ru": "d2ce11f55cb276befa70154b74188f369ae719c312491ee929356973b9ea2212",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438966",
   "n": 938,
   "title_ru": "Развод: бороться за позицию, прежде чем бежать к решению",
-  "body_ru": "- **Контекст:** Муж и жена разводятся после 10 лет брака. Они договариваются продать квартиру (главный актив) пополам, находят покупателя и назначают дату; прямо перед подписанием жена отказывается: «сначала договоримся о сумме алиментов на детей».\n- **Пример:** В борьбе муж сразу же принялся торговаться о цифрах — дошёл до того, что ему предложили платить больше половины алиментов (70/30), прежде чем он обеспечил себе позицию. Арти: «ты уже, как хороший мужчина, которым ты и являешься, начал бежать к решению проблемы, прежде чем убедиться, что находишься в выгодном месте». Он замечает, что женщины лучше выбирают момент (тайминг), чтобы устроить скандал, — всегда с выгодной позиции. Реплики, чтобы вернуть позицию: «мы 6–10 месяцев искали покупателя... ты хочешь от него отказаться из-за разницы в алиментах в 50–100 долларов?»; или смена рамки через безразличие: «на самом деле квартиру сейчас продавать не обязательно... хорошо, что ты отказываешься подписывать, мы продадим её по гораздо более справедливой цене через 12–16 месяцев». Аналогия: перед двухметровым задирой с чёрным поясом по джиу-джитсу «ты поднимаешь бутылку и говоришь: мне всё равно» — задира не готов подвергать себя опасности, когда видит, что тебе всё равно.\n- **Урок:** Когда кто-то тебя прессует (буллинг) с более выгодной позиции, сначала борись за позицию — лиши его преимущества и покажи безразличие, — вместо того чтобы бежать к решению. Тот, кто может выдержать потерю и кому всё равно, возвращает себе преимущество.\n",
+  "body_ru": "- **Контекст:** Муж и жена разводятся после 10 лет брака. Они договариваются продать квартиру (главный актив) пополам, находят покупателя и назначают дату; прямо перед подписанием жена отказывается: «сначала договоримся о сумме алиментов на детей».\n- **Пример:** В борьбе муж сразу же принялся торговаться о цифрах — дошёл до того, что ему предложили платить больше половины алиментов (70/30), прежде чем он обеспечил себе позицию. Арти: «ты уже, как хороший мужчина, которым ты и являешься, начал бежать к решению проблемы, прежде чем убедиться, что находишься в выгодном месте». Он замечает, что женщины лучше выбирают момент (тайминг), чтобы устроить скандал, — всегда с выгодной позиции. Реплики, чтобы вернуть позицию: «мы 6–10 месяцев искали покупателя... ты хочешь от него отказаться из-за разницы в алиментах в 50–100 долларов?»; или смена рамки через безразличие: «на самом деле квартиру сейчас продавать не обязательно... хорошо, что ты отказываешься подписывать, мы продадим её по гораздо более справедливой цене через 12–16 месяцев». Аналогия: перед двухметровым задирой с чёрным поясом по джиу-джитсу «ты поднимаешь бутылку и говоришь: мне всё равно» — задира не готов подвергать себя опасности, когда видит, что тебе всё равно.\n- **Урок:** Когда кто-то тебя травит (bullying) с более выгодной позиции, сначала борись за позицию — лиши его преимущества и покажи безразличие, — вместо того чтобы бежать к решению. Тот, кто может выдержать потерю и кому всё равно, возвращает себе преимущество.\n",
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "a35ec6b6ae1ba2af831cfe725a890b74cac4a7ba54eb56aec21d5ff1e463ded7",
-  "sha256_ru": "68ec49163eedfb3e798d4753a260d27b56a2e747fcbd9cd2a78b590fd88cd7e2",
-  "status": "machine_draft",
+  "sha256_ru": "a85dd30ea264d27ee9ade5e849d4a0d6ef98bedd6b2d184994c972fcff8a9f93",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438966",
@@ -163,9 +163,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "880cc561cf3e80ae9e0e549289464ad1520513e2afc94a27bc5fa13d9cd9e28d",
   "sha256_ru": "e6ab94997da2609e8a6cb94845e67aedc2aa91ff178d0fecc30dc379b573ec1c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438966",
@@ -175,9 +175,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "78d234d78f90293055d0522549a366cb3cc0c05b13c5688f122f501da2d9e407",
   "sha256_ru": "4c7c65be3a98924f0de29152334ffda7f68b02bd145fdd9a897a7b0955da6016",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438966",
@@ -187,9 +187,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "ea8274f2fd94fb7e4b147dfa990c7bb76488521b90173c0e005ef4365ec74deb",
   "sha256_ru": "d6d61a647d4808cd3853cbe0ddc89b99bff5a685478a7015fea0f9835525b979",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -199,9 +199,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "1b7fca137351d3d3842fba07daf614171cbf76361d3a3063db3184e8ab4cd96d",
   "sha256_ru": "b9ac7e7146b109910822c7ba9b35bdb23ea73481ff0c24c3221a38f84069b8dd",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -211,9 +211,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "4d2f12485c66a49aa45a11e58a0ab2e5fc1af2f7a7f985dc9f11c9df54494af5",
   "sha256_ru": "3ffa5bf5afd75c9ec0a6c150d09b0fb5906a7543a034fffc10f2c2df7008aa0f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -223,9 +223,9 @@
   "domain_ru": "D11 Социальный капитал",
   "sha256_src": "bd6432a8e8d999ae4dea3f39f8a2636eba53c307d9b953e4fbc29af31db43396",
   "sha256_ru": "cb903e45da5047a9b9a353b5124534d3d9abb8276f60245e9c6f24325cbacf17",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -235,9 +235,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "62b702c14aad7a31e73ca4aa1439df8af1b3e60638e93b442a4fd8ac11664e56",
   "sha256_ru": "94c3c8fa0013ba569a08b6764511d9486a11e4c63580293f459d97890f9038a0",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -247,9 +247,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "abd0b1fd1e72cc77094c2fdbdbabca56da6e2a97c5ed98de7679aa57f5f76ee1",
   "sha256_ru": "275133cef311e45299d4f23c77ff19c581ac477c1c60cd9434a5712701aab458",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -259,9 +259,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "2100a3a60e76c364cd6eb191d32697d5c0f67f7a204bfc240e0db58d307da6ba",
   "sha256_ru": "8d80557900397efdcd7861de80fb2c39630a76efcabb87deab74964d3aa8eb54",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -271,20 +271,20 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "8b5931e4250148f5d04fff70ddeb21b46d4e3dc7a3194085f687787f03a16ae7",
   "sha256_ru": "eaa72616af4d613e91598ebe350cd3d971ff8906281c8a0a8adcca3ace1aef93",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
   "n": 961,
   "title_ru": "Роль жертвы как социальная ловушка (двоюродный брат и девушки-спасительницы)",
-  "body_ru": "- **Контекст:** Объяснение того, что роль жертвы — первая роль, которую развивает человек, и почему она опасна перед тем, кто ею мастерски владеет.\n- **Пример:** В случае с его двоюродным братом девушки в 15, 16, 17 лет «всегда бежали помогать самой несчастной, самой проблемной»; потом они перестают это делать: «думаю, Участница A токсичная». «Люди, которые играют роль жертвы, знают, что делают. И они пользуются людьми... Жертвы играют на неспособности людей пользоваться отказом, уметь сказать „нет“».\n- **Урок:** Роль жертвы — выгодная роль и ловушка: тот, кто ею владеет, эксплуатирует сострадание других и их неспособность сказать «нет». Перед опытной жертвой очень моральный человек проигрывает; поэтому тем, кто перестал спасать, «пришлось стать безжалостными».\n",
+  "body_ru": "- **Контекст:** Объяснение того, что роль жертвы — первая роль, которую развивает человек, и почему она опасна перед тем, кто ею мастерски владеет.\n- **Пример:** В случае с его двоюродным братом девушки в 15, 16, 17 лет «всегда бежали помогать самой несчастной, самой проблемной»; потом они перестают это делать: «думаю, Участник A токсичная». «Люди, которые играют роль жертвы, знают, что делают. И они пользуются людьми... Жертвы играют на неспособности людей пользоваться отказом, уметь сказать „нет“».\n- **Урок:** Роль жертвы — выгодная роль и ловушка: тот, кто ею владеет, эксплуатирует сострадание других и их неспособность сказать «нет». Перед опытной жертвой очень моральный человек проигрывает; поэтому тем, кто перестал спасать, «пришлось стать безжалостными».\n",
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "4a5cc9793d60d43c723e1217fcebad015c9b1458f62e0446c47f5117b44201ec",
-  "sha256_ru": "d8f7389690287e6d059fd56105164b167f439cb95725625ff86c9a8289af113a",
-  "status": "machine_draft",
+  "sha256_ru": "00a9b8be5915bb0667f18c86a6b9688c019ba4138ae936729175939ad857daee",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

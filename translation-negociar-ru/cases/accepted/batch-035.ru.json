@@ -7,9 +7,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "ee15ac6ffa0f8115523496f17bce3786c6211a66158e03ea3aba5e2f2f7171ef",
   "sha256_ru": "479d0f0c89cf61b1fff2fa1c38a6a975515805d61c85fc6b7f0209a865b0500d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438858",
@@ -19,9 +19,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "45a2422595abf29c18fe8057b38830ee189f8ceb12bf8017ff201c0da1dcea60",
   "sha256_ru": "793ebe9d99cd6761201ea89d6821d5cda4f30192020ef69d2f4c1231fa279364",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438878",
@@ -31,9 +31,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "11ff7bdd132152be7ec10ecf8836ba209289ecd9e5aa00b60982121b5ea557b0",
   "sha256_ru": "193fad4fb8dac317578bff3316c709032009995caffe4c4201874780367917f7",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438903",
@@ -43,9 +43,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "336f0f5c8f908975b35094973662f5b424c05a95450e431cd72ca374c1283fe3",
   "sha256_ru": "841387c72b0beac58562d674c7ada6446531fc3a57edfe1315b966890ffb443f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438903",
@@ -55,9 +55,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "7b953cd68e7c58ca6158e6a93cb53b1e97180b7db2e73a75f2fdf00393a04840",
   "sha256_ru": "95b7701933fc69efe8481ca297f62b625128d83eea1eac5aade6f654f63bdd9f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438927",
@@ -67,9 +67,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "5790fc3ed9b7418f21dc523ddeca0162bd5931fe6bb53f40dcc65e1f608eb3c7",
   "sha256_ru": "90367eb9a66292f868020ef165f615378298cda53f9adc644a0a80c7af2b9e02",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438934",
@@ -79,9 +79,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "2f016574b50b3a455cab354df3a439323647e56d0244f4b361763b8e11a6f574",
   "sha256_ru": "57514213e1f09b383cf3f3f42876d746caed3960c6f4fd8e32a81714b298b787",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438947",
@@ -91,9 +91,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "2d54e1396c7399dabca5a8c2aa05dc9d10bf22998fc5bba555aead0f1b2d7190",
   "sha256_ru": "7e42d62ae2d8c82520d01878a1022375e67296cde936ae9736302714ced662a4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438958",
@@ -103,9 +103,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "5a4c80803930a48b248ed33ea3edec12a58d40c85a2f689368bb9795adf29421",
   "sha256_ru": "e4ad63066d43f3f42a3e43823aa8680a6bd2aff7152576bd52fbd8e7a82498e1",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -115,9 +115,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "504be1851766f31068a6ceb29b6afac1e7e73afa8a79fc31847fe4638ebcdb92",
   "sha256_ru": "219604603941dc42c7c8a69db9c170a03d4e572ccd90bff4fee4112c93b8ae8f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438970",
@@ -127,9 +127,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "93ab44d4bb7ec665d35eba4d820216af4bc3b1d5f7550704c181ddd5b8f27241",
   "sha256_ru": "a8dd68fdb12594bb6ed09528e87d4db2d0595d9e7858afceddd77971d9069666",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438972",
@@ -139,8 +139,8 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "1982fb17b2cb8e311e79c60450f5ffcd11c4d4ab850bc3049a46a0203572ced2",
   "sha256_ru": "03c2d3cc4be17d194fbb99503ece4409ecdcf39a094d52fdffb4dfc8a55f41e7",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]

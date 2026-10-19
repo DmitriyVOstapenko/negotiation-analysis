@@ -3,13 +3,13 @@
   "id": "00438844",
   "n": 166,
   "title_ru": "Украинский анекдот про свекровь",
-  "body_ru": "- **Контекст:** Анекдот, чтобы показать, как можно окрасить в негативный тон набор данных, которые на объективном уровне верны.\n- **Роли:**\n  - Соседка\n  - Сеньора Участница A (свекровь)\n- **Диалог:**\n  - **Соседка:** \"Эй, сеньора Участница A, я слышала, ваш сын нашёл себе жену. Как она вам?\"\n  - **Сеньора Участница A:** \"А, да. Хорошо воспитана. Девушка из полной семьи. Уважает свою мать, уважает своего отца, уважает моего сына, прислуживает ему, готовит ему, убирает в доме. Что тебе сказать? Змея.\"\n- **Разбор:** Что она делает? На уровне картины мира всё хорошо, всё хорошо, всё хорошо, всё хорошо, всё хорошо, всё хорошо, но берёт и красит это в чёрный цвет. И красит в чёрный. И это становится, становится малоприятным, скажем, Скажем, на эстетическом уровне не очень приятно, на этическом уровне почти ок. Скажем, она подаёт данные, подаёт данные, придаёт данным цвет. Придаёт данным цвет. И человек говорит: ок, не очень привлекательно. Не очень привлекательно. И говорит: ок. И слышит форму, и судит по форме. Больше, чем по данным. Форма для него важнее данных. Тебе сказали «змея», и ты говоришь: а, негатив, ок, ок. Негатив, негатив. У нас есть, скажем, мы тоже можем раскрашивать. И если мы раскрашиваем, люди — да, технически всё хорошо, на уровне данных всё хорошо, но продолжать не хочу, потому что не нравится. Что ж, можем делать и так.\n",
+  "body_ru": "- **Контекст:** Анекдот, чтобы показать, как можно окрасить в негативный тон набор данных, которые на объективном уровне верны.\n- **Роли:**\n  - Соседка\n  - Госпожа Участник A (свекровь)\n- **Диалог:**\n  - **Соседка:** \"Эй, госпожа Участник A, я слышала, ваш сын нашёл себе жену. Как она вам?\"\n  - **Госпожа Участник A:** \"А, да. Хорошо воспитана. Девушка из полной семьи. Уважает свою мать, уважает своего отца, уважает моего сына, прислуживает ему, готовит ему, убирает в доме. Что тебе сказать? Змея.\"\n- **Разбор:** Что она делает? На уровне картины мира всё хорошо, всё хорошо, всё хорошо, всё хорошо, всё хорошо, всё хорошо, но берёт и красит это в чёрный цвет. И красит в чёрный. И это становится, становится малоприятным, скажем, Скажем, на эстетическом уровне не очень приятно, на этическом уровне почти ок. Скажем, она подаёт данные, подаёт данные, придаёт данным цвет. Придаёт данным цвет. И человек говорит: ок, не очень привлекательно. Не очень привлекательно. И говорит: ок. И слышит форму, и судит по форме. Больше, чем по данным. Форма для него важнее данных. Тебе сказали «змея», и ты говоришь: а, негатив, ок, ок. Негатив, негатив. У нас есть, скажем, мы тоже можем раскрашивать. И если мы раскрашиваем, люди — да, технически всё хорошо, на уровне данных всё хорошо, но продолжать не хочу, потому что не нравится. Что ж, можем делать и так.\n",
   "domain_ru": "D2 Картина мира",
   "sha256_src": "90d524d7999f28609ba05df2b27b94672b1ea7147e5b61cd1ca3143dc58d920a",
-  "sha256_ru": "0a0cfdf189ecbef089efa3d6203bd96b71a0a365090cca60f69e153b3cf13fc3",
-  "status": "machine_draft",
+  "sha256_ru": "fb2665d7d8f5ae81439f0ccdf6b51cb51fe2743934490d3f63b0bf22b1f37fb4",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438853",
@@ -19,9 +19,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "e59f5bb9fc828bf2bc8303e706fd8e608dde3feaea6a486a843498aed890e2ed",
   "sha256_ru": "da5f2e3e82413176d30e0c05063185b704c776d12c268e5ec66c2a39ab6e1223",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438856",
@@ -31,9 +31,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "0a96a163fc9a4dc34c356a3fe7b217d26da5a7e048cb31ac93dd576465277b67",
   "sha256_ru": "030ef044db61ba299ba8ac59bcc8e30d015f43ca9e246a2e596d87d516951d21",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438872",
@@ -43,9 +43,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "97f4aee9525ed541249c11eff2dc84b8016fe2c7abea5f45ebc77c2dc701c500",
   "sha256_ru": "5efceaa32046766e99176e6f381b5e79768d73e24cf5683e8e705730a34a6638",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438872",
@@ -55,9 +55,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "a431219274d7c1fcee2216162c6d9027effe4127f5d17991a7b31adf3c7ed7ad",
   "sha256_ru": "5a71fc624f30e123c8bf817970b46b4e1cedb0f7bf7013c596d77e5e3005a045",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438873",
@@ -67,9 +67,9 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "e52518e0ebbe2d737db63d2c3abf08fe40acbd7557c57f0d168b02deb747e0f9",
   "sha256_ru": "7f08126c8a1e439800cd018a7e161120d3dd8c966cf9d131d6b1a5b3ebd4d56c",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438912",
@@ -79,9 +79,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "3142ee57a665a220cd62e9cfd1f507cc66007633fb8f5662c47b639b24f15d5d",
   "sha256_ru": "fde3a42142935513605cf6cc72a305d357337f5b226282e321660c5ceb89d476",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438938",
@@ -91,9 +91,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "ff6ace4f767d91efbebed75a1448c210a7e3b4201ad71b1b5a84c14eff3c2505",
   "sha256_ru": "c44520223bda194a25de5a9449d1478e0cdb5210dcdbe9653bfbadd499c8b0af",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438946",
@@ -103,9 +103,9 @@
   "domain_ru": "D1 Основы управленческой борьбы",
   "sha256_src": "72859a0ac6b475f5a36bf0d3d50f9eb3dd5661b3963b13789a1544e5e606fd2e",
   "sha256_ru": "0e516a113fb1cb9b3b28aab69cc47ee8b26eac041903e1dec8cc5ba87c004072",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438947",
@@ -115,9 +115,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "649f59ea889415b3a7ec0b746265c144706bd5e6e4b1cb56bafc44557b86a6fd",
   "sha256_ru": "72d8ecca5e62b62ef3e2d1b6fe3cbddba7fa4675f3d02ea3857b46f518f9fe51",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438966",
@@ -127,9 +127,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "3250bee056f1d16f6e03dff98536210eb8f671f6cc490b23f5e01fd38ab81085",
   "sha256_ru": "fd0eb26d7d5c24f82949dca3641368aac6df2010882e07f6eb22450613c191b8",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  },
  {
   "id": "00438968",
@@ -139,8 +139,8 @@
   "domain_ru": "D2 Картина мира",
   "sha256_src": "7edcced7fc9d18cdee6d3c0befed3f684074fe3cfa06349eec20d48df9bb7db5",
   "sha256_ru": "584810607ad806ebd697178fe2cc74625ae17fbdd368b2b8e026bd7632172faf",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-3"
+  "glossary_version": "draft-4"
  }
 ]
