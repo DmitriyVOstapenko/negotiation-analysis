@@ -141,3 +141,10 @@
 - concesiones → уступки; ancla → якорь; luchas en directo → борьбы в прямых эфирах; miembros (сообщества) → члены сообщества; tarasso → Тарасов
 - «lucha por la guerra» (транскрипция garra) → «борьба за захват»
 - брань: joder → Твою мать
+
+## batch-027
+- encargado de almacén → заведующий складом; directora administrativa → административный директор; jefe comercial → руководитель продаж
+- señora mayor / joven madre → пожилая женщина / молодая мать; litera → полка (в поезде); fuerzas mayores → форс-мажор
+- cuentas (в продажах) → клиенты; me está dando largas → кормит завтраками; validada (эмоционально) → признанная
+- jefe в обращении → шеф (за «шеф»: 023, 027; за «начальник»: 024)
+- брань: el puto amo → я тут, бля, самый крутой
