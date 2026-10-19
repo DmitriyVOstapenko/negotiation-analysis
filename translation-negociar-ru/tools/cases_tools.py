@@ -172,7 +172,13 @@ STATUS_ORDER = ["untranslated", "machine_draft", "terminology_checked", "reviewe
 def corpus_status(src: list[dict], done: dict[str, dict]) -> str:
     """Статус корпуса = минимальный статус обязательных элементов (непереведённый случай → untranslated)."""
     worst = len(STATUS_ORDER) - 1
+    exc_path = TR / "exclusions.json"
+    excluded = set()
+    if exc_path.exists():
+        excluded = {f"{e['id']}:{e['n']}" for e in json.loads(exc_path.read_text(encoding="utf-8")).get("cases", [])}
     for c in src:
+        if key(c) in excluded:  # изъятое не входит в обязательные элементы
+            continue
         st = done.get(key(c), {}).get("status", "untranslated")
         worst = min(worst, STATUS_ORDER.index(st) if st in STATUS_ORDER else 0)
     return STATUS_ORDER[worst]
