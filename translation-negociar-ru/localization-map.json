@@ -13573,6 +13573,128 @@
    "cases": [],
    "canon": true,
    "note": "реальное лицо — не заменять; русская форма"
+  },
+  {
+   "source": "Andrés (442)",
+   "variants_ru": [
+    "andrés"
+   ],
+   "class": "person",
+   "replacement": "Анатолий",
+   "gender": "m",
+   "cases": [
+    442
+   ],
+   "canon": false,
+   "note": "добавлено по отчёту L3 (Андрей занят под Armando)"
+  },
+  {
+   "source": "Alejandra",
+   "variants_ru": [
+    "lejandra",
+    "Alejandra"
+   ],
+   "class": "person",
+   "replacement": "Александра",
+   "gender": "f",
+   "cases": [
+    444
+   ],
+   "canon": false,
+   "note": "добавлено по отчёту L3"
+  },
+  {
+   "source": "Beatriz (batriz)",
+   "variants_ru": [
+    "batriz"
+   ],
+   "class": "person",
+   "replacement": "Варвара",
+   "gender": "f",
+   "cases": [
+    459
+   ],
+   "canon": false,
+   "note": "добавлено по отчёту L1"
+  },
+  {
+   "source": "Claudio (женский персонаж, 454)",
+   "variants_ru": [
+    "Claudio"
+   ],
+   "class": "person",
+   "replacement": "Клавдия",
+   "gender": "f",
+   "cases": [
+    454
+   ],
+   "canon": false,
+   "note": "по отчёту L1: персонаж женский — того же пола"
+  },
+  {
+   "source": "Larissa",
+   "variants_ru": [
+    "Larissa"
+   ],
+   "class": "person",
+   "replacement": "Лариса",
+   "gender": "f",
+   "cases": [],
+   "canon": true,
+   "note": "SKILL.md; по отчёту L7"
+  },
+  {
+   "source": "Art (446)",
+   "variants_ru": [
+    "Art"
+   ],
+   "class": "host_keep",
+   "replacement": "Арти",
+   "gender": "m",
+   "cases": [
+    446
+   ],
+   "canon": false,
+   "note": "ведущий во втором раунде; по отчёту L6"
+  },
+  {
+   "source": "Casa Blanca",
+   "variants_ru": [
+    "Белый дом"
+   ],
+   "class": "place",
+   "replacement": null,
+   "gender": null,
+   "cases": [
+    350
+   ],
+   "canon": false,
+   "note": "Белый дом (США) — заграница, не заменять; по отчёту L6"
+  },
+  {
+   "source": "las cortes",
+   "variants_ru": [
+    "кортесах"
+   ],
+   "class": "place",
+   "replacement": "Законодательное собрание",
+   "gender": null,
+   "cases": [
+    582
+   ],
+   "canon": false,
+   "note": "районная политика — городской парламент; по отчёту L3"
   }
- ]
+ ],
+ "realities_added": {
+  "estado (штат)": "регион",
+  "provincia": "область / регион",
+  "municipio": "мэрия",
+  "junta / comité de vecinos": "совет дома",
+  "céntimo, centavo": "копейка",
+  "servicio social (студ.)": "практика",
+  "organismos de seguridad laboral": "трудовая инспекция",
+  "Navidad в воспоминаниях ведущего": "как в источнике (биография)",
+  "язык занятия (español)": "русский; кроме фраз ведущего о том, где он живёт"
+ }
 }
