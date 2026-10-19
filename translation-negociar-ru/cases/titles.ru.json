@@ -1341,7 +1341,7 @@
   "n": 192,
   "domain": "D4 Negociación posicional",
   "title_es": "Coordinador de logística vs. Gerente de operaciones (Roles invertidos)",
-  "title_ru": "Координатор логистики против руководителя операций (смена ролей)"
+  "title_ru": "Координатор логистики против операционного менеджера (смена ролей)"
  },
  {
   "id": "00438847",
@@ -4855,7 +4855,7 @@
   "n": 694,
   "domain": "D8 Conflicto y disciplina",
   "title_es": "Retrasos",
-  "title_ru": "Задержки"
+  "title_ru": "Опоздания"
  },
  {
   "id": "00438954",
