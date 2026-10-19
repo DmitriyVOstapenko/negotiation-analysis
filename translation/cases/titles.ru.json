@@ -25,7 +25,7 @@
   "n": 4,
   "domain": "D5 Ventas complejas B2B",
   "title_es": "Replicación del disconfort en un cliente frío",
-  "title_ru": "Воспроизведение дискомфорта у холодного клиента"
+  "title_ru": "Воспроизведение дискомфорта на холодном клиенте"
  },
  {
   "id": "00438825",
@@ -39,14 +39,14 @@
   "n": 6,
   "domain": "D4 Negociación posicional",
   "title_es": "El caso del técnico de mantenimiento de aire acondicionado (Headhunting)",
-  "title_ru": "Случай техника по обслуживанию кондиционеров (хедхантинг)"
+  "title_ru": "Случай с мастером по обслуживанию кондиционеров (хедхантинг)"
  },
  {
   "id": "00438825",
   "n": 7,
   "domain": "D4 Negociación posicional",
   "title_es": "Negociación de aumento salarial mediante oferta de funciones",
-  "title_ru": "Переговоры о повышении зарплаты через предложение новых функций"
+  "title_ru": "Переговоры о повышении зарплаты через предложение функций"
  },
  {
   "id": "00438826",
@@ -60,28 +60,28 @@
   "n": 9,
   "domain": "D4 Negociación posicional",
   "title_es": "El escepticismo ante la oferta de diseño con IA",
-  "title_ru": "Скептицизм к предложению дизайна с ИИ"
+  "title_ru": "Скепсис в ответ на предложение по дизайну с ИИ"
  },
  {
   "id": "00438826",
   "n": 10,
   "domain": "D4 Negociación posicional",
   "title_es": "Evitar el malentendido del upselling con el jefe",
-  "title_ru": "Избежать недопонимания с руководителем из-за допродажи (upselling)"
+  "title_ru": "Как избежать недоразумения с апселлом перед руководителем"
  },
  {
   "id": "00438826",
   "n": 11,
   "domain": "D3 Dinámica de roles",
   "title_es": "Propuesta descartada sin abrir",
-  "title_ru": "Предложение, отклонённое без просмотра"
+  "title_ru": "Предложение, отклонённое не глядя"
  },
  {
   "id": "00438826",
   "n": 12,
   "domain": "D3 Dinámica de roles",
   "title_es": "Interferencia con un cliente",
-  "title_ru": "Вмешательство в отношения с клиентом"
+  "title_ru": "Вмешательство в работу с клиентом"
  },
  {
   "id": "00438826",
@@ -102,7 +102,7 @@
   "n": 15,
   "domain": "D8 Conflicto y disciplina",
   "title_es": "Evaluación de desempeño cerrada",
-  "title_ru": "Уже закрытая оценка результатов работы"
+  "title_ru": "Закрытая оценка эффективности"
  },
  {
   "id": "00438826",
