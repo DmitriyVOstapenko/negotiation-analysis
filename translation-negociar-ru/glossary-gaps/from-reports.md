@@ -132,3 +132,12 @@
 - excusa (оправдание ошибочного решения) → повод; pareja (близкие) → вторая половина (не путать с socio = партнёр)
 - jefe в обращении → начальник / господин начальник (расходится с batch-023: «шеф» — выровнять)
 - брань: Cabrón → Сволочь (так же в 021)
+
+## batch-022
+- Jefe de Logística / Jefe de Tienda → руководитель логистики / руководитель магазина; Vendedora (метка) → Продавец; Participante (слушательница) → Участница; Doctora → Доктор
+- Representante de la pastelería / Novio → Представитель кондитерской / Жених; Huésped afectado / Alborotador → Пострадавший гость / Нарушитель тишины
+- golpe/golpear inesperado → неожиданный удар (в 021: «ударить по неожиданному» — выровнять); remate / dar el remate → добивающий удар / добить
+- caramba (приём) → «Ничего себе!»; vergüenza ajena → испанский стыд; zasca → хлёсткий ответ (zasca)
+- concesiones → уступки; ancla → якорь; luchas en directo → борьбы в прямых эфирах; miembros (сообщества) → члены сообщества; tarasso → Тарасов
+- «lucha por la guerra» (транскрипция garra) → «борьба за захват»
+- брань: joder → Твою мать
