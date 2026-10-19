@@ -7,9 +7,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "b76ca20b74ea6f5253e102cf062369d9d9a7c1d6302578e459308167f422fb0e",
   "sha256_ru": "d8230dc81aa23a13e09a27741489da75d94fd7df96c33d6d2a668653302c349d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438882",
@@ -19,9 +19,9 @@
   "domain_ru": "D5 Сложные продажи B2B",
   "sha256_src": "6566413172f4a8636775af9adb3c513976e2f6ac3f6699ee8c6569ba5094f17c",
   "sha256_ru": "63b594fd5c29382d033faa873e8b6e322f9cdee556274c570656f40dd7450139",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438888",
@@ -31,9 +31,9 @@
   "domain_ru": "D4 Позиционные переговоры",
   "sha256_src": "85de4b9a32e71abe339bad9567cc81435f4ffcedf9d0e1eef36639dd197d62d9",
   "sha256_ru": "a2622406b7aeb9c1040489395c7b2636370a1f009be572c41cfc58ae3649264a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438898",
@@ -43,9 +43,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "f95c41acafddaf531d6f66e1459022838921ba8470162149a84fdc6deaf583d0",
   "sha256_ru": "d5556d416cb3faf47a477adeaba18edec4cf831dd102a82638cb61b3ef4e9293",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438898",
@@ -55,9 +55,9 @@
   "domain_ru": "D7 Влияние и убеждение",
   "sha256_src": "ccda3e2bf0c428c2f1c71fb834ed041b13d59a332d9028cd0b4c53e696ad3593",
   "sha256_ru": "ff5643549a6bb56e5dab35b629c0d4188e8170895b4ff48960b2d4bd8711454d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438898",
@@ -67,9 +67,9 @@
   "domain_ru": "D6 Авторитет и лидерство",
   "sha256_src": "3a3f1f54ba14870d1cd4e6d8bd21427b14a4827c076fabef0ae29a11b6e45a40",
   "sha256_ru": "376bb2c7838ae91f5f200e62a7bc0446688150291ae41ef24ea32be8a6b470f4",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438900",
@@ -79,9 +79,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "351162a68b42875948a9d2b8ccac4cd5995701039d09ee2691b5da259475659c",
   "sha256_ru": "386eeae9b7dddb6435aca780e14663be6a89328f03419429ca6ebf856a29754b",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438900",
@@ -91,9 +91,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "3c626326e1c5144e035f3046c70f7151aa26034735e5c9463a09ad5366079a0e",
   "sha256_ru": "ed79b980939ce54b1bde8b14e19e1d38d60aff217b07ade4bbab52d34d16e261",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438903",
@@ -103,9 +103,9 @@
   "domain_ru": "D3 Динамика ролей",
   "sha256_src": "852a39c5486d36695748b1e9d30e305d033817edef150dcba93f5dca9f81ab0d",
   "sha256_ru": "203bfe8ef029a74655363c56bf1b9dd70532ca8a033b0664bc19a5866867156d",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438906",
@@ -115,9 +115,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "7bff7055ddfad3d206741a69c10e507e0940b185ea26a1aae7b91b6f61e16ffb",
   "sha256_ru": "07940d2f3dac0c314716d9fd5d936bcecd17f4d33a5474e34f62b0ad8f541b86",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438906",
@@ -127,9 +127,9 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "9ada6960518a97cf10a2a1b574a28ae16c75eb8a5dfb515e63e115e2d0da6c0a",
   "sha256_ru": "4aaec04d4648c2faaa243969ec3029d36c9562fcd75c8c14a137d60f3b78d53f",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  },
  {
   "id": "00438906",
@@ -139,8 +139,8 @@
   "domain_ru": "D8 Конфликт и дисциплина",
   "sha256_src": "0cd8ae6ffaf7296b3f8c357aa8758be65e9ca57e04f398ca1309f30329c46af1",
   "sha256_ru": "75c429153811136d4111e7d302c8960c4f255c46512da00e38c53f9450a63e6a",
-  "status": "machine_draft",
+  "status": "terminology_checked",
   "method": "llm_builtin",
-  "glossary_version": "draft-2"
+  "glossary_version": "draft-3"
  }
 ]
