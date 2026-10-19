@@ -464,5 +464,17 @@ class NegociarRuTests(unittest.TestCase):
         self.assertTrue((REPO / "licenses" / "negociar-ru" / "UPSTREAM-LICENSE-ORIGINAL").exists())
 
 
+def load_tests(loader: unittest.TestLoader, standard_tests: unittest.TestSuite, pattern: str | None) -> unittest.TestSuite:
+    """Подключить тесты из tests/test_*.py (каждая область — свой файл; общие помощники берутся отсюда)."""
+    import importlib
+
+    here = Path(__file__).resolve().parent
+    if str(here) not in sys.path:
+        sys.path.insert(0, str(here))
+    for path in sorted(here.glob("test_*.py")):
+        standard_tests.addTests(loader.loadTestsFromModule(importlib.import_module(path.stem)))
+    return standard_tests
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

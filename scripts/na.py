@@ -122,7 +122,26 @@ def build_parser() -> argparse.ArgumentParser:
     audio.add_argument("--wav")
     audio.add_argument("--segments")
     audio.add_argument("--check", action="store_true", help="Только проверить наличие зависимостей")
+    for extension in _cli_extensions():
+        extension.register(sub, root_parent)
     return parser
+
+
+def _cli_extensions() -> list:
+    """Модули na_engine/cli_*.py с функциями register(sub, root_parent) и handle(args, root).
+
+    handle возвращает (результат, строки, код) или None, если команда не его.
+    """
+    import importlib
+    import pkgutil
+
+    import na_engine
+
+    modules = []
+    for info in sorted(pkgutil.iter_modules(na_engine.__path__), key=lambda item: item.name):
+        if info.name.startswith("cli_"):
+            modules.append(importlib.import_module(f"na_engine.{info.name}"))
+    return modules
 
 
 def dispatch(args: argparse.Namespace, root: Path) -> tuple[dict, list[str], int]:
@@ -271,6 +290,10 @@ def dispatch(args: argparse.Namespace, root: Path) -> tuple[dict, list[str], int
             return result, lines, 0 if result["available"] else 2
         result = run_audio(root, args.meeting, Path(args.wav), Path(args.segments))
         return result, [f"Акустические метрики записаны: {result['output']}.", "Метрики не содержат смысловых или клинических выводов."], 0
+    for extension in _cli_extensions():
+        handled = extension.handle(args, root)
+        if handled is not None:
+            return handled
     raise NaError(f"Неизвестная команда: {command}")
 
 
