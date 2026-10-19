@@ -29,11 +29,14 @@ class FakeTelegram(BaseHTTPRequestHandler):
 
     def _reply(self, code: int, body: dict) -> None:
         raw = json.dumps(body).encode("utf-8")
-        self.send_response(code)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(raw)))
-        self.end_headers()
-        self.wfile.write(raw)
+        try:
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(raw)))
+            self.end_headers()
+            self.wfile.write(raw)
+        except (BrokenPipeError, ConnectionResetError):
+            pass  # клиент уже ушёл по таймауту — так и задумано в тесте неизвестного исхода
 
     def _handle(self) -> None:
         state = self.server.state  # type: ignore[attr-defined]
