@@ -12,6 +12,17 @@
 Сырьё для выравнивающего прохода (шаг 1). Не словарь — варианты, которые переводчики выбрали
 сами; решение принимается при выравнивании.
 
+## batch-001
+- comercial → продажник; ejecutivo de cuentas → менеджер по работе с клиентами; cuentas → клиенты; cartera → портфель
+- director comercial → коммерческий директор; gerente de ventas → руководитель отдела продаж; jefe de ventas → руководитель продаж (в batch-002: «начальник продаж»!)
+- jefe de soporte técnico → руководитель техподдержки; jefe de proyecto → руководитель проекта; gerente (начальник сотрудника) → руководитель
+- director general / de operaciones / de tecnología / de marketing → генеральный / операционный / технический директор / директор по маркетингу
+- supervisor(a) → супервайзер; reclutador → рекрутер; técnico de mantenimiento → мастер по обслуживанию; alumnos → ученики
+- upsell → апселл (upsell); headhunting → хедхантинг; brief → бриф; evaluación de desempeño → оценка эффективности
+- lucha posicional / verbal → позиционная / словесная борьба; acercarse al reno → приближение к оленю
+- dato → данные, счётное → факт(ы); retroalimentación: разбор Артура → «разбор», между участниками → «обратная связь»
+- «Oiga, jefe» → «Послушайте, руководитель» (сомнительно в живой речи — рассмотреть «шеф»); el tío / la tía → мужик / девушка
+
 ## batch-002
 - gerente: «руководитель отдела продаж» (gerente de ventas), «коммерческий менеджер» (gerente comercial), «финансовый менеджер» (gerente financiero), «менеджер» — нужен единый вариант; jefe de ventas → «начальник продаж»
 - posición ventajosa / desventajosa / fuerte → выгодная / невыгодная / сильная позиция
@@ -60,3 +71,5 @@
 - garra: напор (batch-005) / захват (batch-003)
 - dejarse agarrar: дать себя захватить / дать взять себя в захват
 - gerente (без уточнения): менеджер / руководитель
+- jefe de ventas: руководитель продаж / начальник продаж
+- jefe в обращении («Oiga, jefe»): руководитель / шеф

@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438926",
+  "n": 501,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Los debatientes",
+  "title_ru": "Спорщики"
+ },
+ {
+  "id": "00438926",
+  "n": 502,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Los debatientes (Cambio de roles)",
+  "title_ru": "Спорщики (смена ролей)"
+ },
+ {
+  "id": "00438926",
+  "n": 503,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El gerente engañado",
+  "title_ru": "Обманутый менеджер"
+ },
+ {
+  "id": "00438926",
+  "n": 504,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El gerente engañado (Demostración práctica 1)",
+  "title_ru": "Обманутый менеджер (практическая демонстрация 1)"
+ },
+ {
+  "id": "00438926",
+  "n": 505,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El gerente engañado (Demostración práctica 2)",
+  "title_ru": "Обманутый менеджер (практическая демонстрация 2)"
+ },
+ {
+  "id": "00438927",
+  "n": 506,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El tratamiento estético y la percepción de la edad",
+  "title_ru": "Косметологическая процедура и восприятие возраста"
+ },
+ {
+  "id": "00438927",
+  "n": 507,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Pajaritos (Participante A vs. Ponente)",
+  "title_ru": "Птички (Участник A против Ведущего)"
+ },
+ {
+  "id": "00438927",
+  "n": 508,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Pajaritos (Participante A vs. Participante B)",
+  "title_ru": "Птички (Участник A против Участника B)"
+ },
+ {
+  "id": "00438927",
+  "n": 509,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Pajaritos (Ponente vs. Participante A)",
+  "title_ru": "Птички (Ведущий против Участника A)"
+ },
+ {
+  "id": "00438928",
+  "n": 510,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El desertor (Ronda 1)",
+  "title_ru": "Дезертир (Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 511,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El desertor (Ronda 2)",
+  "title_ru": "Дезертир (Раунд 2)"
+ },
+ {
+  "id": "00438928",
+  "n": 512,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Donde fueres haz lo que vieres (Ronda 1)",
+  "title_ru": "В чужой монастырь со своим уставом не ходят (Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 513,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Donde fueres haz lo que vieres (Ronda 2)",
+  "title_ru": "В чужой монастырь со своим уставом не ходят (Раунд 2)"
+ },
+ {
+  "id": "00438928",
+  "n": 514,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Se necesita sangre nueva (Ronda 1)",
+  "title_ru": "Нужна свежая кровь (Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 515,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Se necesita sangre nueva (Ronda 2)",
+  "title_ru": "Нужна свежая кровь (Раунд 2)"
+ },
+ {
+  "id": "00438928",
+  "n": 516,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Grupo activista (Ronda 1)",
+  "title_ru": "Группа активистов (Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 517,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Grupo activista (Ronda 2)",
+  "title_ru": "Группа активистов (Раунд 2)"
+ },
+ {
+  "id": "00438928",
+  "n": 518,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Grupo activista (Demostración del ponente - Ronda 1)",
+  "title_ru": "Группа активистов (демонстрация Ведущего — Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 519,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Grupo activista (Demostración del ponente - Ronda 2)",
+  "title_ru": "Группа активистов (демонстрация Ведущего — Раунд 2)"
+ },
+ {
+  "id": "00438928",
+  "n": 520,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Estudio de diseño (Ronda 1)",
+  "title_ru": "Дизайн-студия (Раунд 1)"
+ },
+ {
+  "id": "00438928",
+  "n": 521,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Estudio de diseño (Ronda 2)",
+  "title_ru": "Дизайн-студия (Раунд 2)"
+ },
+ {
+  "id": "00438929",
+  "n": 522,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El menú de primera clase (Ronda 1)",
+  "title_ru": "Меню первого класса (Раунд 1)"
+ },
+ {
+  "id": "00438929",
+  "n": 523,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El menú de primera clase (Ronda 2)",
+  "title_ru": "Меню первого класса (Раунд 2)"
+ },
+ {
+  "id": "00438929",
+  "n": 524,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El menú de primera clase (Ronda de demostración del ponente)",
+  "title_ru": "Меню первого класса (демонстрационный раунд Ведущего)"
+ },
+ {
+  "id": "00438929",
+  "n": 525,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diplomacia en el autobús (Ronda 1)",
+  "title_ru": "Дипломатия в автобусе (Раунд 1)"
+ },
+ {
+  "id": "00438929",
+  "n": 526,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Diplomacia en el autobús (Ronda 2)",
+  "title_ru": "Дипломатия в автобусе (Раунд 2)"
+ },
+ {
+  "id": "00438929",
+  "n": 527,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Pregunta agresiva (Ronda 1)",
+  "title_ru": "Агрессивный вопрос (Раунд 1)"
+ },
+ {
+  "id": "00438929",
+  "n": 528,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Pregunta agresiva (Ronda 2)",
+  "title_ru": "Агрессивный вопрос (Раунд 2)"
+ },
+ {
+  "id": "00438929",
+  "n": 529,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Fuerza Mayor (Ronda 1)",
+  "title_ru": "Форс-мажор (Раунд 1)"
+ },
+ {
+  "id": "00438929",
+  "n": 530,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Fuerza Mayor (Ronda 2)",
+  "title_ru": "Форс-мажор (Раунд 2)"
+ },
+ {
+  "id": "00438929",
+  "n": 531,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Defecto Oculto (Ronda 1)",
+  "title_ru": "Скрытый дефект (Раунд 1)"
+ },
+ {
+  "id": "00438929",
+  "n": 532,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Defecto Oculto (Ronda 2)",
+  "title_ru": "Скрытый дефект (Раунд 2)"
+ },
+ {
+  "id": "00438930",
+  "n": 533,
+  "domain": "D11 Capital social",
+  "title_es": "Solicitud de un mafioso",
+  "title_ru": "Просьба мафиози"
+ },
+ {
+  "id": "00438930",
+  "n": 534,
+  "domain": "D11 Capital social",
+  "title_es": "Solicitud de un mafioso (Cambio de roles)",
+  "title_ru": "Просьба мафиози (смена ролей)"
+ },
+ {
+  "id": "00438930",
+  "n": 535,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Dueño irresponsable",
+  "title_ru": "Безответственный владелец"
+ },
+ {
+  "id": "00438930",
+  "n": 536,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Dueño irresponsable (Cambio de roles)",
+  "title_ru": "Безответственный владелец (смена ролей)"
+ },
+ {
+  "id": "00438930",
+  "n": 537,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La promoción ha terminado",
+  "title_ru": "Акция закончилась"
+ },
+ {
+  "id": "00438930",
+  "n": 538,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "La promoción ha terminado (Cambio de roles)",
+  "title_ru": "Акция закончилась (смена ролей)"
+ },
+ {
+  "id": "00438930",
+  "n": 539,
+  "domain": "D4 Negociación posicional",
+  "title_es": "250 mil dólares perdidos",
+  "title_ru": "Потерянные 250 тысяч долларов"
+ },
+ {
+  "id": "00438930",
+  "n": 540,
+  "domain": "D11 Capital social",
+  "title_es": "250 mil dólares perdidos (Segunda parte)",
+  "title_ru": "Потерянные 250 тысяч долларов (вторая часть)"
+ },
+ {
+  "id": "00438931",
+  "n": 541,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Guerras de la luz",
+  "title_ru": "Войны за свет"
+ },
+ {
+  "id": "00438931",
+  "n": 542,
+  "domain": "D11 Capital social",
+  "title_es": "Amigo mío, enemigo mío",
+  "title_ru": "Друг мой, враг мой"
+ },
+ {
+  "id": "00438931",
+  "n": 543,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Noche en el Museo",
+  "title_ru": "Ночь в музее"
+ },
+ {
+  "id": "00438931",
+  "n": 544,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Sobre la urgencia",
+  "title_ru": "О срочности"
+ },
+ {
+  "id": "00438931",
+  "n": 545,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Abuela Batman",
+  "title_ru": "Бабушка-Бэтмен"
+ },
+ {
+  "id": "00438931",
+  "n": 546,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Sin agua",
+  "title_ru": "Без воды"
+ },
+ {
+  "id": "00438931",
+  "n": 547,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Electricidad gratis",
+  "title_ru": "Бесплатное электричество"
+ },
+ {
+  "id": "00438931",
+  "n": 548,
+  "domain": "D11 Capital social",
+  "title_es": "Préstamo indefinido",
+  "title_ru": "Бессрочный заём"
+ },
+ {
+  "id": "00438931",
+  "n": 549,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Tarea de casa",
+  "title_ru": "Домашнее задание"
+ },
+ {
+  "id": "00438931",
+  "n": 550,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Es la última vez que lo rehago",
+  "title_ru": "Переделываю в последний раз"
+ },
+ {
+  "id": "00438931",
+  "n": 551,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Confidente",
+  "title_ru": "Доверенное лицо"
+ },
+ {
+  "id": "00438931",
+  "n": 552,
+  "domain": "D11 Capital social",
+  "title_es": "Alquiler de coche",
+  "title_ru": "Аренда машины"
+ },
+ {
+  "id": "00438931",
+  "n": 553,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Mientras el traje quede bien",
+  "title_ru": "Лишь бы костюм сидел"
+ },
+ {
+  "id": "00438931",
+  "n": 554,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Apoyo del Estado",
+  "title_ru": "Господдержка"
+ },
+ {
+  "id": "00438931",
+  "n": 555,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El trabajo colectivo es voluntario",
+  "title_ru": "Коллективная работа — дело добровольное"
+ },
+ {
+  "id": "00438931",
+  "n": 556,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Propuesta comercial",
+  "title_ru": "Коммерческое предложение"
+ },
+ {
+  "id": "00438931",
+  "n": 557,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Constructivo",
+  "title_ru": "Конструктивно"
+ },
+ {
+  "id": "00438931",
+  "n": 558,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Horas extras con caramelos",
+  "title_ru": "Сверхурочные за конфеты"
+ },
+ {
+  "id": "00438931",
+  "n": 559,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Derecho de servidumbre",
+  "title_ru": "Крепостное право"
+ },
+ {
+  "id": "00438931",
+  "n": 560,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Criticar es fácil",
+  "title_ru": "Критиковать легко"
+ },
+ {
+  "id": "00438931",
+  "n": 561,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El niño rico",
+  "title_ru": "Богатый мальчик"
+ },
+ {
+  "id": "00438931",
+  "n": 562,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Me tiene harto",
+  "title_ru": "Он меня достал"
+ },
+ {
+  "id": "00438931",
+  "n": 563,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Simplemente me cansé de todo",
+  "title_ru": "Я просто от всего устал"
+ },
+ {
+  "id": "00438931",
+  "n": 564,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "No somos bienvenidos aquí",
+  "title_ru": "Нам здесь не рады"
+ },
+ {
+  "id": "00438931",
+  "n": 565,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Persistencia",
+  "title_ru": "Настойчивость"
+ },
+ {
+  "id": "00438931",
+  "n": 566,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cosas al suelo",
+  "title_ru": "Вещи на полу"
+ },
+ {
+  "id": "00438932",
+  "n": 567,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El ex jefe y el nuevo jefe",
+  "title_ru": "Бывший руководитель и новый руководитель"
+ },
+ {
+  "id": "00438932",
+  "n": 568,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El ex jefe y el nuevo jefe (Cambio de roles)",
+  "title_ru": "Бывший руководитель и новый руководитель (смена ролей)"
+ },
+ {
+  "id": "00438932",
+  "n": 569,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El reproche del director (Simulación ponente y Participante A)",
+  "title_ru": "Упрёк директора (симуляция: Ведущий и Участник A)"
+ },
+ {
+  "id": "00438932",
+  "n": 570,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Comisión ilegal (Participante A y Participante B)",
+  "title_ru": "Незаконная комиссия (Участник A и Участник B)"
+ },
+ {
+  "id": "00438932",
+  "n": 571,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Comisión ilegal (Participante A y Participante B)",
+  "title_ru": "Незаконная комиссия (Участник A и Участник B)"
+ },
+ {
+  "id": "00438933",
+  "n": 572,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Pregunta sobre maternidad en entrevista",
+  "title_ru": "Вопрос о материнстве на собеседовании"
+ },
+ {
+  "id": "00438933",
+  "n": 573,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Negociaciones agresivas",
+  "title_ru": "Агрессивные переговоры"
+ },
+ {
+  "id": "00438933",
+  "n": 574,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Amigos en la misma empresa",
+  "title_ru": "Друзья в одной компании"
+ },
+ {
+  "id": "00438933",
+  "n": 575,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Metros adicionales (Pareja 1)",
+  "title_ru": "Дополнительные метры (Пара 1)"
+ },
+ {
+  "id": "00438933",
+  "n": 576,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Metros adicionales (Pareja 2)",
+  "title_ru": "Дополнительные метры (Пара 2)"
+ },
+ {
+  "id": "00438933",
+  "n": 577,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Candidato nuevo",
+  "title_ru": "Новый кандидат"
+ },
+ {
+  "id": "00438934",
+  "n": 578,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El cobro de facturas atrasadas",
+  "title_ru": "Взыскание просроченных счетов"
+ },
+ {
+  "id": "00438934",
+  "n": 579,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Quejas por fumar en el pasillo",
+  "title_ru": "Жалобы на курение в коридоре"
+ },
+ {
+  "id": "00438934",
+  "n": 580,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Insubordinación al jefe joven",
+  "title_ru": "Неподчинение молодому руководителю"
+ },
+ {
+  "id": "00438934",
+  "n": 581,
+  "domain": "D4 Negociación posicional",
+  "title_es": "¿Quién paga la cuenta?",
+  "title_ru": "Кто платит по счёту?"
+ },
+ {
+  "id": "00438934",
+  "n": 582,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Casa para el pato",
+  "title_ru": "Домик для утки"
+ },
+ {
+  "id": "00438934",
+  "n": 583,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Tarea incomprensible",
+  "title_ru": "Непонятное задание"
+ },
+ {
+  "id": "00438935",
+  "n": 584,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "No me enseñe a vivir",
+  "title_ru": "Не учите меня жить"
+ },
+ {
+  "id": "00438935",
+  "n": 585,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Trabajo en casa",
+  "title_ru": "Работа из дома"
+ },
+ {
+  "id": "00438936",
+  "n": 586,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El despido del administrador de sistemas (Ronda 1)",
+  "title_ru": "Увольнение системного администратора (Раунд 1)"
+ },
+ {
+  "id": "00438936",
+  "n": 587,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El despido del administrador de sistemas (Ronda 2)",
+  "title_ru": "Увольнение системного администратора (Раунд 2)"
+ },
+ {
+  "id": "00438936",
+  "n": 588,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El despido del administrador de sistemas (Ronda 3)",
+  "title_ru": "Увольнение системного администратора (Раунд 3)"
+ },
+ {
+  "id": "00438936",
+  "n": 589,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El despido del administrador de sistemas (Ronda 4)",
+  "title_ru": "Увольнение системного администратора (Раунд 4)"
+ },
+ {
+  "id": "00438937",
+  "n": 590,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Vacaciones no autorizadas (Primer Sparring)",
+  "title_ru": "Несогласованный отпуск (первый спарринг)"
+ },
+ {
+  "id": "00438937",
+  "n": 591,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Vacaciones no autorizadas (Segundo Sparring)",
+  "title_ru": "Несогласованный отпуск (второй спарринг)"
+ },
+ {
+  "id": "00438937",
+  "n": 592,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Conflicto de pareja (Esposo y Esposa)",
+  "title_ru": "Конфликт в паре (муж и жена)"
+ },
+ {
+  "id": "00438937",
+  "n": 593,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Conflicto de pareja (Cambio de Rol)",
+  "title_ru": "Конфликт в паре (смена ролей)"
+ },
+ {
+  "id": "00438937",
+  "n": 594,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El Candidato y el Director de Recursos Humanos",
+  "title_ru": "Кандидат и директор по персоналу"
+ },
+ {
+  "id": "00438937",
+  "n": 595,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El Candidato y el Director de Recursos Humanos (Cambio de Rol)",
+  "title_ru": "Кандидат и директор по персоналу (смена ролей)"
+ },
+ {
+  "id": "00438937",
+  "n": 596,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Uno de los nuestros, uno de los suyos (Primer Sparring)",
+  "title_ru": "Наш человек, их человек (первый спарринг)"
+ },
+ {
+  "id": "00438937",
+  "n": 597,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Uno de los nuestros, uno de los suyos (Segundo Sparring Tripartito)",
+  "title_ru": "Наш человек, их человек (второй спарринг, втроём)"
+ },
+ {
+  "id": "00438938",
+  "n": 598,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El debate sobre los psicólogos con un influencer",
+  "title_ru": "Спор о психологах с блогером"
+ },
+ {
+  "id": "00438938",
+  "n": 599,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Simulación de conversación sobre gestión de equipos en networking",
+  "title_ru": "Симуляция разговора об управлении командами на нетворкинге"
+ },
+ {
+  "id": "00438938",
+  "n": 600,
+  "domain": "D11 Capital social",
+  "title_es": "Simulación de conversación sobre desarrolladores de software en networking",
+  "title_ru": "Симуляция разговора о разработчиках ПО на нетворкинге"
+ }
+]

@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438825",
+  "n": 1,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El coach de ventas y el gimnasio (Incomprensión de la venta transaccional)",
+  "title_ru": "Коуч по продажам и спортзал (непонимание транзакционной продажи)"
+ },
+ {
+  "id": "00438825",
+  "n": 2,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta de servicios de mantenimiento a talleres automovilísticos",
+  "title_ru": "Продажа услуг техобслуживания автомастерским"
+ },
+ {
+  "id": "00438825",
+  "n": 3,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Simulación de entrevista para descubrir el disconfort (El desorganizado)",
+  "title_ru": "Имитация интервью для выявления дискомфорта (неорганизованный)"
+ },
+ {
+  "id": "00438825",
+  "n": 4,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Replicación del disconfort en un cliente frío",
+  "title_ru": "Воспроизведение дискомфорта у холодного клиента"
+ },
+ {
+  "id": "00438825",
+  "n": 5,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación salarial desde una posición fuerte",
+  "title_ru": "Переговоры о зарплате с сильной позиции"
+ },
+ {
+  "id": "00438825",
+  "n": 6,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El caso del técnico de mantenimiento de aire acondicionado (Headhunting)",
+  "title_ru": "Случай техника по обслуживанию кондиционеров (хедхантинг)"
+ },
+ {
+  "id": "00438825",
+  "n": 7,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación de aumento salarial mediante oferta de funciones",
+  "title_ru": "Переговоры о повышении зарплаты через предложение новых функций"
+ },
+ {
+  "id": "00438826",
+  "n": 8,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La oferta de inteligencia artificial al jefe",
+  "title_ru": "Предложение руководителю по искусственному интеллекту"
+ },
+ {
+  "id": "00438826",
+  "n": 9,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El escepticismo ante la oferta de diseño con IA",
+  "title_ru": "Скептицизм к предложению дизайна с ИИ"
+ },
+ {
+  "id": "00438826",
+  "n": 10,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Evitar el malentendido del upselling con el jefe",
+  "title_ru": "Избежать недопонимания с руководителем из-за допродажи (upselling)"
+ },
+ {
+  "id": "00438826",
+  "n": 11,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Propuesta descartada sin abrir",
+  "title_ru": "Предложение, отклонённое без просмотра"
+ },
+ {
+  "id": "00438826",
+  "n": 12,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Interferencia con un cliente",
+  "title_ru": "Вмешательство в отношения с клиентом"
+ },
+ {
+  "id": "00438826",
+  "n": 13,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Formación de empleados",
+  "title_ru": "Обучение сотрудников"
+ },
+ {
+  "id": "00438826",
+  "n": 14,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Evaluación injusta",
+  "title_ru": "Несправедливая оценка"
+ },
+ {
+  "id": "00438826",
+  "n": 15,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Evaluación de desempeño cerrada",
+  "title_ru": "Уже закрытая оценка результатов работы"
+ },
+ {
+  "id": "00438826",
+  "n": 16,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Ignorar experiencia previa (Situación 55)",
+  "title_ru": "Игнорирование прежнего опыта (ситуация 55)"
+ },
+ {
+  "id": "00438826",
+  "n": 17,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Reclamos cruzados entre departamentos (Situación 60)",
+  "title_ru": "Взаимные претензии между отделами (ситуация 60)"
+ },
+ {
+  "id": "00438827",
+  "n": 18,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El cambio de proveedor logístico",
+  "title_ru": "Смена логистического поставщика"
+ },
+ {
+  "id": "00438827",
+  "n": 19,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El descarte del plan detallado",
+  "title_ru": "Отказ от подробного плана"
+ },
+ {
+  "id": "00438827",
+  "n": 20,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El evento sin recursos",
+  "title_ru": "Мероприятие без ресурсов"
+ },
+ {
+  "id": "00438827",
+  "n": 21,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El cambio de brief a último momento",
+  "title_ru": "Смена брифа в последний момент"
+ },
+ {
+  "id": "00438827",
+  "n": 22,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Las vacaciones de la supervisora",
+  "title_ru": "Отпуск супервайзера"
+ },
+ {
+  "id": "00438827",
+  "n": 23,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Vacaciones y retrasos acumulados",
+  "title_ru": "Отпуск и накопившиеся задержки"
+ },
+ {
+  "id": "00438827",
+  "n": 24,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El programador y el error del sistema",
+  "title_ru": "Программист и системная ошибка"
+ },
+ {
+  "id": "00438827",
+  "n": 25,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La ejecutiva de cuentas y el cliente complejo",
+  "title_ru": "Менеджер по работе с клиентами и сложный клиент"
+ },
+ {
+  "id": "00438827",
+  "n": 26,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Sparring: Empleado joven vs. Jefe mayor",
+  "title_ru": "Спарринг: молодой сотрудник против руководителя старшего возраста"
+ },
+ {
+  "id": "00438827",
+  "n": 27,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Sparring: Activación fuera de horario local",
+  "title_ru": "Спарринг: активация вне рабочего времени"
+ },
+ {
+  "id": "00438827",
+  "n": 28,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Favor personal disfrazado de urgencia (Ronda 1)",
+  "title_ru": "Личная услуга под видом срочности (Раунд 1)"
+ },
+ {
+  "id": "00438827",
+  "n": 29,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Favor personal disfrazado de urgencia (Ronda 2)",
+  "title_ru": "Личная услуга под видом срочности (Раунд 2)"
+ },
+ {
+  "id": "00438827",
+  "n": 30,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Reemplazo sin aviso previo (Ronda 1)",
+  "title_ru": "Замена без предварительного уведомления (Раунд 1)"
+ },
+ {
+  "id": "00438827",
+  "n": 31,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Reemplazo sin aviso previo (Ronda 2)",
+  "title_ru": "Замена без предварительного уведомления (Раунд 2)"
+ },
+ {
+  "id": "00438827",
+  "n": 32,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El mensaje a las once de la noche",
+  "title_ru": "Сообщение в одиннадцать вечера"
+ },
+ {
+  "id": "00438827",
+  "n": 33,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Los 40 cambios del director creativo",
+  "title_ru": "40 правок креативного директора"
+ },
+ {
+  "id": "00438828",
+  "n": 34,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Instrucción ambigua",
+  "title_ru": "Неоднозначная инструкция"
+ },
+ {
+  "id": "00438828",
+  "n": 35,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Retraso de maquinaria",
+  "title_ru": "Задержка оборудования"
+ },
+ {
+  "id": "00438828",
+  "n": 36,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Prioridades opuestas",
+  "title_ru": "Противоположные приоритеты"
+ },
+ {
+  "id": "00438828",
+  "n": 37,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Viaje impuesto",
+  "title_ru": "Навязанная поездка"
+ },
+ {
+  "id": "00438828",
+  "n": 38,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Corrección pública",
+  "title_ru": "Публичное исправление"
+ },
+ {
+  "id": "00438828",
+  "n": 39,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Sistema bloqueado",
+  "title_ru": "Заблокированная система"
+ },
+ {
+  "id": "00438828",
+  "n": 40,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Decisiones técnicas",
+  "title_ru": "Технические решения"
+ },
+ {
+  "id": "00438828",
+  "n": 41,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Tareas fuera de rol",
+  "title_ru": "Задачи вне роли"
+ },
+ {
+  "id": "00438828",
+  "n": 42,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Aumento prometido",
+  "title_ru": "Обещанное повышение"
+ },
+ {
+  "id": "00438828",
+  "n": 43,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Informe ignorado",
+  "title_ru": "Проигнорированный отчёт"
+ },
+ {
+  "id": "00438829",
+  "n": 44,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Conflicto por los niveles de inventario (Just in Time vs. Economías de escala)",
+  "title_ru": "Конфликт из-за уровней запасов (Just in Time против экономии на масштабе)"
+ },
+ {
+  "id": "00438829",
+  "n": 45,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "Rediseño del logo corporativo (Modernización vs. Tradición)",
+  "title_ru": "Редизайн корпоративного логотипа (модернизация против традиции)"
+ },
+ {
+  "id": "00438830",
+  "n": 46,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Contrato firmado sin revisión legal",
+  "title_ru": "Контракт, подписанный без юридической проверки"
+ },
+ {
+  "id": "00438830",
+  "n": 47,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Solicitud de fondos para mantenimiento urgente",
+  "title_ru": "Запрос средств на срочное обслуживание"
+ },
+ {
+  "id": "00438830",
+  "n": 48,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Inclusión y tiempo de carga de la web",
+  "title_ru": "Инклюзия и время загрузки сайта"
+ },
+ {
+  "id": "00438830",
+  "n": 49,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Renovación del menú del restaurante",
+  "title_ru": "Обновление меню ресторана"
+ },
+ {
+  "id": "00438830",
+  "n": 50,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Tareas fuera del rol de recepcionista",
+  "title_ru": "Задачи вне роли секретаря на ресепшен"
+ },
+ {
+  "id": "00438831",
+  "n": 51,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Director de Arte en Agencia de Marketing Digital",
+  "title_ru": "Арт-директор в агентстве цифрового маркетинга"
+ },
+ {
+  "id": "00438831",
+  "n": 52,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Director de Arte en Agencia de Marketing Digital (Roles Invertidos)",
+  "title_ru": "Арт-директор в агентстве цифрового маркетинга (смена ролей)"
+ },
+ {
+  "id": "00438831",
+  "n": 53,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Consultor Junior en Consultoría de Gestión Empresarial",
+  "title_ru": "Младший консультант в консалтинге по управлению бизнесом"
+ },
+ {
+  "id": "00438831",
+  "n": 54,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Consultor Junior en Consultoría de Gestión Empresarial (Roles Invertidos)",
+  "title_ru": "Младший консультант в консалтинге по управлению бизнесом (смена ролей)"
+ },
+ {
+  "id": "00438831",
+  "n": 55,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Especialista en Publicidad Digital en Google",
+  "title_ru": "Специалист по цифровой рекламе в Google"
+ },
+ {
+  "id": "00438831",
+  "n": 56,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Especialista en Publicidad Digital en Google (Roles Invertidos)",
+  "title_ru": "Специалист по цифровой рекламе в Google (смена ролей)"
+ },
+ {
+  "id": "00438831",
+  "n": 57,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Ingeniero de Proyectos de Energía Renovable en British Petroleum",
+  "title_ru": "Инженер проектов возобновляемой энергетики в British Petroleum"
+ },
+ {
+  "id": "00438831",
+  "n": 58,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Ingeniero de Proyectos de Energía Renovable en British Petroleum (Roles Invertidos)",
+  "title_ru": "Инженер проектов возобновляемой энергетики в British Petroleum (смена ролей)"
+ },
+ {
+  "id": "00438832",
+  "n": 59,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "Interferencia constante (Situación 71)",
+  "title_ru": "Постоянное вмешательство (ситуация 71)"
+ },
+ {
+  "id": "00438832",
+  "n": 60,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Obligación de disfrazarse de voluntarios (Situación 73)",
+  "title_ru": "Обязанность изображать добровольцев (ситуация 73)"
+ },
+ {
+  "id": "00438832",
+  "n": 61,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Favor personal disfrazado de urgencia (Situación 156)",
+  "title_ru": "Личная услуга под видом срочности (ситуация 156)"
+ },
+ {
+  "id": "00438832",
+  "n": 62,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Jornada doble y asignación forzada",
+  "title_ru": "Двойная смена и принудительное назначение"
+ },
+ {
+  "id": "00438832",
+  "n": 63,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Editor contra autor (Situación 74)",
+  "title_ru": "Редактор против автора (ситуация 74)"
+ },
+ {
+  "id": "00438832",
+  "n": 64,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Cajero bancario contra gerente de sucursal",
+  "title_ru": "Банковский кассир против управляющего отделением"
+ },
+ {
+  "id": "00438833",
+  "n": 65,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Falta de flexibilidad ante emergencias",
+  "title_ru": "Негибкость в экстренных ситуациях"
+ },
+ {
+  "id": "00438833",
+  "n": 66,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Cambio en el proceso de compra",
+  "title_ru": "Изменение процесса покупки"
+ },
+ {
+  "id": "00438833",
+  "n": 67,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Minimizar logros personales",
+  "title_ru": "Преуменьшение личных достижений"
+ },
+ {
+  "id": "00438833",
+  "n": 68,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Horas extras por compromiso",
+  "title_ru": "Сверхурочные из вовлечённости"
+ },
+ {
+  "id": "00438834",
+  "n": 69,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Fuga química menor",
+  "title_ru": "Небольшая химическая утечка"
+ },
+ {
+  "id": "00438834",
+  "n": 70,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Traducción comercial",
+  "title_ru": "Коммерческий перевод"
+ },
+ {
+  "id": "00438834",
+  "n": 71,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Alumno con discapacidad",
+  "title_ru": "Ученик с инвалидностью"
+ },
+ {
+  "id": "00438834",
+  "n": 72,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Ingredientes vencidos",
+  "title_ru": "Просроченные ингредиенты"
+ },
+ {
+  "id": "00438834",
+  "n": 73,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Ilustración rosa y tierna",
+  "title_ru": "Розовая и милая иллюстрация"
+ },
+ {
+  "id": "00438834",
+  "n": 74,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Materiales para voluntarios",
+  "title_ru": "Материалы для волонтёров"
+ },
+ {
+  "id": "00438835",
+  "n": 75,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Asistente social contra coordinador municipal",
+  "title_ru": "Социальный работник против муниципального координатора"
+ },
+ {
+  "id": "00438835",
+  "n": 76,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Especialista contra directora de ventas",
+  "title_ru": "Специалист против директора по продажам"
+ },
+ {
+  "id": "00438835",
+  "n": 77,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Profesor universitario contra coordinador académico",
+  "title_ru": "Университетский преподаватель против академического координатора"
+ },
+ {
+  "id": "00438835",
+  "n": 78,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Ingeniero de soporte contra gerente de cuentas",
+  "title_ru": "Инженер поддержки против менеджера по работе с клиентами"
+ },
+ {
+  "id": "00438835",
+  "n": 79,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Capacitadora contra gerente de planta",
+  "title_ru": "Тренер против начальника производства"
+ },
+ {
+  "id": "00438835",
+  "n": 80,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "Ingeniera química contra director de planta",
+  "title_ru": "Инженер-химик против директора завода"
+ },
+ {
+  "id": "00438836",
+  "n": 81,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El desarrollador freelance y la coordinadora de startup",
+  "title_ru": "Фриланс-разработчик и координатор стартапа"
+ },
+ {
+  "id": "00438836",
+  "n": 82,
+  "domain": "D4 Negociación posicional",
+  "title_es": "(Inversión de roles / Segunda ronda) — El desarrollador freelance y la coordinadora de startup",
+  "title_ru": "(Смена ролей / Второй раунд) — Фриланс-разработчик и координатор стартапа"
+ },
+ {
+  "id": "00438836",
+  "n": 83,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Terapeuta ocupacional y directora del centro privado",
+  "title_ru": "Эрготерапевт и директор частного центра"
+ },
+ {
+  "id": "00438836",
+  "n": 84,
+  "domain": "D4 Negociación posicional",
+  "title_es": "(Inversión de roles / Segunda ronda) — Terapeuta ocupacional y directora del centro privado",
+  "title_ru": "(Смена ролей / Второй раунд) — Эрготерапевт и директор частного центра"
+ },
+ {
+  "id": "00438836",
+  "n": 85,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Programador y Project Manager",
+  "title_ru": "Программист и Project Manager"
+ },
+ {
+  "id": "00438836",
+  "n": 86,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Inversión de roles / Segunda ronda) — Programador y Project Manager",
+  "title_ru": "(Смена ролей / Второй раунд) — Программист и Project Manager"
+ },
+ {
+  "id": "00438836",
+  "n": 87,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Cambio de producto sin ticket",
+  "title_ru": "Обмен товара без чека"
+ },
+ {
+  "id": "00438836",
+  "n": 88,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Campaña audaz vs. Campaña conservadora",
+  "title_ru": "Смелая кампания против консервативной"
+ },
+ {
+  "id": "00438836",
+  "n": 89,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinadora de Bienestar Laboral vs. Líder de equipo tóxico",
+  "title_ru": "Координатор по благополучию персонала против токсичного лидера команды"
+ },
+ {
+  "id": "00438836",
+  "n": 90,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Coordinadora de Bienestar Laboral vs. Líder de equipo tóxico (Roles invertidos)",
+  "title_ru": "Координатор по благополучию персонала против токсичного лидера команды (Обратные роли)"
+ },
+ {
+  "id": "00438837",
+  "n": 91,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El empleado perezoso que pide ayuda sin buscar en Google",
+  "title_ru": "Ленивый сотрудник, который просит помощи, не поискав в Google"
+ },
+ {
+  "id": "00438838",
+  "n": 92,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La guardia muere pero no se rinde",
+  "title_ru": "Гвардия умирает, но не сдаётся"
+ },
+ {
+  "id": "00438838",
+  "n": 93,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación en el teatro de Dubrovka (2004)",
+  "title_ru": "Переговоры в театре на Дубровке (2004)"
+ },
+ {
+  "id": "00438838",
+  "n": 94,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El cliente que quiere dejar el gimnasio",
+  "title_ru": "Клиент, который хочет бросить спортзал"
+ },
+ {
+  "id": "00438838",
+  "n": 95,
+  "domain": "D4 Negociación posicional",
+  "title_es": "La negociación de la permanencia en el gimnasio",
+  "title_ru": "Переговоры об обязательном сроке контракта в спортзале"
+ },
+ {
+  "id": "00438838",
+  "n": 96,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Enemigos rodeados en la guerra",
+  "title_ru": "Окружённые враги на войне"
+ },
+ {
+  "id": "00438839",
+  "n": 97,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de proyectos culturales con la secretaria de gobierno local",
+  "title_ru": "Координатор культурных проектов с секретарём местной администрации"
+ },
+ {
+  "id": "00438839",
+  "n": 98,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Coordinadora de proyectos culturales con la secretaria de gobierno local (Cambio de roles)",
+  "title_ru": "Координатор культурных проектов с секретарём местной администрации (Смена ролей)"
+ },
+ {
+  "id": "00438839",
+  "n": 99,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Chef ejecutivo con el gerente del hotel",
+  "title_ru": "Шеф-повар с управляющим отеля"
+ },
+ {
+  "id": "00438839",
+  "n": 100,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Chef ejecutivo con el gerente del hotel (Cambio de roles)",
+  "title_ru": "Шеф-повар с управляющим отеля (Смена ролей)"
+ }
+]

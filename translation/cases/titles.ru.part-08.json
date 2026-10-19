@@ -1,0 +1,702 @@
+[
+ {
+  "id": "00438955",
+  "n": 701,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Error",
+  "title_ru": "Ошибка"
+ },
+ {
+  "id": "00438956",
+  "n": 702,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El líder para un nuevo proyecto",
+  "title_ru": "Лидер для нового проекта"
+ },
+ {
+  "id": "00438956",
+  "n": 703,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Inversión de roles) — El líder para un nuevo proyecto",
+  "title_ru": "(Смена ролей) — Лидер для нового проекта"
+ },
+ {
+  "id": "00438956",
+  "n": 704,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "¿Por qué viniste solo?",
+  "title_ru": "Почему ты пришёл один?"
+ },
+ {
+  "id": "00438956",
+  "n": 705,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El esfuerzo en el trabajo",
+  "title_ru": "Усилия на работе"
+ },
+ {
+  "id": "00438956",
+  "n": 706,
+  "domain": "D4 Negociación posicional",
+  "title_es": "(Inversión de roles) — El esfuerzo en el trabajo",
+  "title_ru": "(Смена ролей) — Усилия на работе"
+ },
+ {
+  "id": "00438957",
+  "n": 707,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El regalo de coñac",
+  "title_ru": "Подарок-коньяк"
+ },
+ {
+  "id": "00438957",
+  "n": 708,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Estacionamiento invernal",
+  "title_ru": "Зимняя парковка"
+ },
+ {
+  "id": "00438957",
+  "n": 709,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Jerarquía de necesidades",
+  "title_ru": "Иерархия потребностей"
+ },
+ {
+  "id": "00438957",
+  "n": 710,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El regalo de graduación",
+  "title_ru": "Подарок на выпускной"
+ },
+ {
+  "id": "00438958",
+  "n": 711,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El poder situacional en la isla desierta",
+  "title_ru": "Ситуативная власть на необитаемом острове"
+ },
+ {
+  "id": "00438958",
+  "n": 712,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El caso de Vladimir Tarasov y el empresario indignado",
+  "title_ru": "Случай Владимира Тарасова и возмущённого предпринимателя"
+ },
+ {
+  "id": "00438958",
+  "n": 713,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El activista y el líder del movimiento político",
+  "title_ru": "Активист и лидер политического движения"
+ },
+ {
+  "id": "00438958",
+  "n": 714,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El líder y el activista (Ronda 1)",
+  "title_ru": "Лидер и активист (Раунд 1)"
+ },
+ {
+  "id": "00438958",
+  "n": 715,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El líder y el activista (Ronda 2)",
+  "title_ru": "Лидер и активист (Раунд 2)"
+ },
+ {
+  "id": "00438958",
+  "n": 716,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El nuevo jefe de departamento (Ronda 1)",
+  "title_ru": "Новый руководитель отдела (Раунд 1)"
+ },
+ {
+  "id": "00438958",
+  "n": 717,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El nuevo jefe de departamento (Ronda 2)",
+  "title_ru": "Новый руководитель отдела (Раунд 2)"
+ },
+ {
+  "id": "00438958",
+  "n": 718,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El retraso en el pago (Ronda 1)",
+  "title_ru": "Задержка платежа (Раунд 1)"
+ },
+ {
+  "id": "00438958",
+  "n": 719,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El retraso en el pago (Ronda 2)",
+  "title_ru": "Задержка платежа (Раунд 2)"
+ },
+ {
+  "id": "00438959",
+  "n": 720,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Fuerza excesiva",
+  "title_ru": "Чрезмерная сила"
+ },
+ {
+  "id": "00438959",
+  "n": 721,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Fuerza excesiva (Ronda 1)",
+  "title_ru": "Чрезмерная сила (Раунд 1)"
+ },
+ {
+  "id": "00438959",
+  "n": 722,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Fuerza excesiva (Ronda 2)",
+  "title_ru": "Чрезмерная сила (Раунд 2)"
+ },
+ {
+  "id": "00438959",
+  "n": 723,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El Office Manager y la esposa (Ronda 1)",
+  "title_ru": "Офис-менеджер и жена (Раунд 1)"
+ },
+ {
+  "id": "00438959",
+  "n": 724,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El Office Manager y la esposa (Ronda 2)",
+  "title_ru": "Офис-менеджер и жена (Раунд 2)"
+ },
+ {
+  "id": "00438959",
+  "n": 725,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "Confrontación con el jefe administrativo por defender a la esposa",
+  "title_ru": "Противостояние с административным руководителем из-за защиты жены"
+ },
+ {
+  "id": "00438959",
+  "n": 726,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El director y el asistente (Continuación)",
+  "title_ru": "Директор и ассистент (продолжение)"
+ },
+ {
+  "id": "00438959",
+  "n": 727,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "La tarea no realizada",
+  "title_ru": "Невыполненное задание"
+ },
+ {
+  "id": "00438959",
+  "n": 728,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Quejas por fumar en la escalera (Segundo intento)",
+  "title_ru": "Жалобы на курение на лестнице (вторая попытка)"
+ },
+ {
+  "id": "00438960",
+  "n": 729,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El gesto del bono y la expectativa engañada",
+  "title_ru": "Жест с премией и обманутое ожидание"
+ },
+ {
+  "id": "00438960",
+  "n": 730,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El empleado altamente cualificado y los cambios de requisitos",
+  "title_ru": "Высококвалифицированный сотрудник и изменение требований"
+ },
+ {
+  "id": "00438960",
+  "n": 731,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Las tonterías del rey",
+  "title_ru": "Глупости короля"
+ },
+ {
+  "id": "00438960",
+  "n": 732,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Una oferta poco atractiva",
+  "title_ru": "Малопривлекательное предложение"
+ },
+ {
+  "id": "00438960",
+  "n": 733,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Negociación de transporte y crédito",
+  "title_ru": "Переговоры о транспорте и кредите"
+ },
+ {
+  "id": "00438960",
+  "n": 734,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Análisis de la argumentación de Participante A",
+  "title_ru": "Анализ аргументации Участника A"
+ },
+ {
+  "id": "00438960",
+  "n": 735,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Evaluación de la fuerza de los argumentos (Participante A y Participante B)",
+  "title_ru": "Оценка силы аргументов (Участник A и Участник B)"
+ },
+ {
+  "id": "00438960",
+  "n": 736,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Retroalimentación personal a Participante A",
+  "title_ru": "Личный разбор для Участника A"
+ },
+ {
+  "id": "00438960",
+  "n": 737,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El organizador y el conocido criticón",
+  "title_ru": "Организатор и знакомый-критикан"
+ },
+ {
+  "id": "00438960",
+  "n": 738,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "Cambio de roles: El organizador y el conocido criticón",
+  "title_ru": "Смена ролей: организатор и знакомый-критикан"
+ },
+ {
+  "id": "00438960",
+  "n": 739,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Simulación de objeción sobre tiempos de implementación de ERP",
+  "title_ru": "Симуляция возражения о сроках внедрения ERP"
+ },
+ {
+  "id": "00438960",
+  "n": 740,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El debate sobre la implementación del ERP",
+  "title_ru": "Спор о внедрении ERP"
+ },
+ {
+  "id": "00438961",
+  "n": 741,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Retraso en la publicación (Ronda 1)",
+  "title_ru": "Задержка публикации (Раунд 1)"
+ },
+ {
+  "id": "00438961",
+  "n": 742,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Retraso en la publicación (Ronda 2 - Roles invertidos)",
+  "title_ru": "Задержка публикации (Раунд 2 — смена ролей)"
+ },
+ {
+  "id": "00438961",
+  "n": 743,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El préstamo entre amigos",
+  "title_ru": "Заём между друзьями"
+ },
+ {
+  "id": "00438961",
+  "n": 744,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El vagón de tren (Ronda 1)",
+  "title_ru": "Вагон поезда (Раунд 1)"
+ },
+ {
+  "id": "00438961",
+  "n": 745,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El vagón de tren (Ronda 2)",
+  "title_ru": "Вагон поезда (Раунд 2)"
+ },
+ {
+  "id": "00438961",
+  "n": 746,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El bono de fin de trimestre (Ronda 1)",
+  "title_ru": "Премия в конце квартала (Раунд 1)"
+ },
+ {
+  "id": "00438961",
+  "n": 747,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El bono de fin de trimestre (Ronda 2)",
+  "title_ru": "Премия в конце квартала (Раунд 2)"
+ },
+ {
+  "id": "00438961",
+  "n": 748,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Negociación de bonos en público (Continuación)",
+  "title_ru": "Публичные переговоры о премиях (продолжение)"
+ },
+ {
+  "id": "00438961",
+  "n": 749,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El retorno progresivo a la oficina",
+  "title_ru": "Постепенное возвращение в офис"
+ },
+ {
+  "id": "00438961",
+  "n": 750,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El regreso a la oficina",
+  "title_ru": "Возвращение в офис"
+ },
+ {
+  "id": "00438961",
+  "n": 751,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El vendedor experimentado desafiante",
+  "title_ru": "Опытный продавец, бросающий вызов"
+ },
+ {
+  "id": "00438961",
+  "n": 752,
+  "domain": "D6 Autoridad y liderazgo",
+  "title_es": "El empleado que abandonó su iniciativa",
+  "title_ru": "Сотрудник, который бросил свою инициативу"
+ },
+ {
+  "id": "00438962",
+  "n": 753,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El cliente complicado",
+  "title_ru": "Сложный клиент"
+ },
+ {
+  "id": "00438962",
+  "n": 754,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El cliente complicado (Cambio de roles)",
+  "title_ru": "Сложный клиент (смена ролей)"
+ },
+ {
+  "id": "00438962",
+  "n": 755,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El error del empleado",
+  "title_ru": "Ошибка сотрудника"
+ },
+ {
+  "id": "00438962",
+  "n": 756,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Confrontación por error en informe (Versión A)",
+  "title_ru": "Противостояние из-за ошибки в отчёте (вариант A)"
+ },
+ {
+  "id": "00438962",
+  "n": 757,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Confrontación por error en informe (Versión B)",
+  "title_ru": "Противостояние из-за ошибки в отчёте (вариант B)"
+ },
+ {
+  "id": "00438962",
+  "n": 758,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Conflicto informal por desorden en tienda (Versión A)",
+  "title_ru": "Неформальный конфликт из-за беспорядка в магазине (вариант A)"
+ },
+ {
+  "id": "00438962",
+  "n": 759,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Conflicto informal por desorden en tienda (Versión B)",
+  "title_ru": "Неформальный конфликт из-за беспорядка в магазине (вариант B)"
+ },
+ {
+  "id": "00438962",
+  "n": 760,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El visitante impertinente",
+  "title_ru": "Дерзкий посетитель"
+ },
+ {
+  "id": "00438962",
+  "n": 761,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "(Inversión de roles) — El visitante impertinente",
+  "title_ru": "(Смена ролей) — Дерзкий посетитель"
+ },
+ {
+  "id": "00438962",
+  "n": 762,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "El instructor y la participante insatisfecha",
+  "title_ru": "Инструктор и недовольная участница"
+ },
+ {
+  "id": "00438962",
+  "n": 763,
+  "domain": "D1 Fundamentos de la lucha",
+  "title_es": "(Inversión de roles) — El instructor y la participante insatisfecha",
+  "title_ru": "(Смена ролей) — Инструктор и недовольная участница"
+ },
+ {
+  "id": "00438962",
+  "n": 764,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El project manager y el jefe de finanzas",
+  "title_ru": "Project manager и финансовый руководитель"
+ },
+ {
+  "id": "00438962",
+  "n": 765,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación por recursos adicionales",
+  "title_ru": "Переговоры о дополнительных ресурсах"
+ },
+ {
+  "id": "00438962",
+  "n": 766,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Inversión de roles en la negociación de recursos",
+  "title_ru": "Смена ролей в переговорах о ресурсах"
+ },
+ {
+  "id": "00438963",
+  "n": 767,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El elogio y la ruptura del programa",
+  "title_ru": "Похвала и слом программы"
+ },
+ {
+  "id": "00438963",
+  "n": 768,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El reinicio de las relaciones y la negociación de condiciones",
+  "title_ru": "Перезапуск отношений и переговоры об условиях"
+ },
+ {
+  "id": "00438963",
+  "n": 769,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El elogio cegador y la traición",
+  "title_ru": "Ослепляющая похвала и предательство"
+ },
+ {
+  "id": "00438963",
+  "n": 770,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La educación del líder",
+  "title_ru": "Воспитание лидера"
+ },
+ {
+  "id": "00438964",
+  "n": 771,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La provocación del Lamborghini",
+  "title_ru": "Провокация с Lamborghini"
+ },
+ {
+  "id": "00438964",
+  "n": 772,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El perfil de Tinder contradictorio",
+  "title_ru": "Противоречивый профиль в Tinder"
+ },
+ {
+  "id": "00438964",
+  "n": 773,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El audio de Tinder para generar confianza",
+  "title_ru": "Голосовое в Tinder, чтобы вызвать доверие"
+ },
+ {
+  "id": "00438964",
+  "n": 774,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El contra-interrogatorio sobre la simpatía hacia otro hombre",
+  "title_ru": "Встречный допрос о симпатии к другому мужчине"
+ },
+ {
+  "id": "00438964",
+  "n": 775,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El juego verbal con la femme fatale",
+  "title_ru": "Словесная игра с роковой женщиной"
+ },
+ {
+  "id": "00438964",
+  "n": 776,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El avance físico y la resistencia en la cita",
+  "title_ru": "Физическое сближение и сопротивление на свидании"
+ },
+ {
+  "id": "00438964",
+  "n": 777,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La justificación de la resistencia física",
+  "title_ru": "Оправдание физического сопротивления"
+ },
+ {
+  "id": "00438964",
+  "n": 778,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "El filtro de la primera cita",
+  "title_ru": "Фильтр первого свидания"
+ },
+ {
+  "id": "00438964",
+  "n": 779,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La confirmación del sí en la primera cita",
+  "title_ru": "Подтверждение «да» на первом свидании"
+ },
+ {
+  "id": "00438966",
+  "n": 780,
+  "domain": "D4 Negociación posicional",
+  "title_es": "Negociación de manutención y venta de apartamento",
+  "title_ru": "Переговоры об алиментах и продаже квартиры"
+ },
+ {
+  "id": "00438966",
+  "n": 781,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El Bullying en la Negociación del Divorcio",
+  "title_ru": "Травля в переговорах о разводе"
+ },
+ {
+  "id": "00438966",
+  "n": 782,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "El Seguro Militar en la Segunda Guerra Mundial",
+  "title_ru": "Военная страховка во Второй мировой войне"
+ },
+ {
+  "id": "00438966",
+  "n": 783,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La Cita y la Diferencia de Edad",
+  "title_ru": "Свидание и разница в возрасте"
+ },
+ {
+  "id": "00438966",
+  "n": 784,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El Coche Rayado en el Concesionario",
+  "title_ru": "Поцарапанная машина в автосалоне"
+ },
+ {
+  "id": "00438966",
+  "n": 785,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El rasguño en el coche nuevo",
+  "title_ru": "Царапина на новой машине"
+ },
+ {
+  "id": "00438966",
+  "n": 786,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El coche no lavado y la espera",
+  "title_ru": "Немытая машина и ожидание"
+ },
+ {
+  "id": "00438966",
+  "n": 787,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El dinero no devuelto por el exgerente",
+  "title_ru": "Деньги, не возвращённые бывшим управляющим"
+ },
+ {
+  "id": "00438966",
+  "n": 788,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El pastel de bodas incorrecto (Ronda 1)",
+  "title_ru": "Не тот свадебный торт (Раунд 1)"
+ },
+ {
+  "id": "00438966",
+  "n": 789,
+  "domain": "D4 Negociación posicional",
+  "title_es": "El pastel de bodas incorrecto (Ronda 2)",
+  "title_ru": "Не тот свадебный торт (Раунд 2)"
+ },
+ {
+  "id": "00438966",
+  "n": 790,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta del laboratorio químico (Intento 1)",
+  "title_ru": "Продажа химической лаборатории (Попытка 1)"
+ },
+ {
+  "id": "00438966",
+  "n": 791,
+  "domain": "D5 Ventas complejas B2B",
+  "title_es": "Venta del laboratorio químico (Intento 2)",
+  "title_ru": "Продажа химической лаборатории (Попытка 2)"
+ },
+ {
+  "id": "00438967",
+  "n": 792,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El límite de la zona roja",
+  "title_ru": "Граница красной зоны"
+ },
+ {
+  "id": "00438967",
+  "n": 793,
+  "domain": "D7 Influencia y persuasión",
+  "title_es": "La escena de la película Stalker de Tarkovsky",
+  "title_ru": "Сцена из фильма «Сталкер» Тарковского"
+ },
+ {
+  "id": "00438967",
+  "n": 794,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "El ingeniero conductor",
+  "title_ru": "Инженер-водитель"
+ },
+ {
+  "id": "00438967",
+  "n": 795,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La independencia se castiga por ley",
+  "title_ru": "Самостоятельность наказуема по закону"
+ },
+ {
+  "id": "00438967",
+  "n": 796,
+  "domain": "D3 Dinámica de roles",
+  "title_es": "La independencia se castiga por ley (Cambio de roles)",
+  "title_ru": "Самостоятельность наказуема по закону (смена ролей)"
+ },
+ {
+  "id": "00438967",
+  "n": 797,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Fiesta en la habitación contigua",
+  "title_ru": "Вечеринка в соседнем номере"
+ },
+ {
+  "id": "00438967",
+  "n": 798,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "Fiesta en la habitación contigua (Cambio de roles)",
+  "title_ru": "Вечеринка в соседнем номере (смена ролей)"
+ },
+ {
+  "id": "00438967",
+  "n": 799,
+  "domain": "D8 Conflicto y disciplina",
+  "title_es": "El subordinado sarcástico",
+  "title_ru": "Саркастичный подчинённый"
+ },
+ {
+  "id": "00438968",
+  "n": 800,
+  "domain": "D2 Imagen del mundo",
+  "title_es": "El caso de Elon Musk y el videojuego",
+  "title_ru": "Случай Илона Маска и видеоигры"
+ }
+]
