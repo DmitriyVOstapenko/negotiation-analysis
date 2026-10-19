@@ -409,3 +409,17 @@
 - autónomo (Испания) → самозанятый (autónomo); seguratas → охранники; HRs → кадровики
 - compromiso (договорённость: «¿podríamos tener este compromiso?») → договориться
 - Participante-женщина: 391 «Участница A», в 392 тот же персонаж «Участник A» — выровнять
+
+## batch-057 (draft-3)
+- jefe de operaciones → руководитель операционного направления; jefe comercial / del departamento comercial → руководитель коммерческого отдела (в 027: jefe comercial → руководитель продаж — выровнять); jefatura administrativa → руководитель административной службы
+- coordinadora de cuentas por pagar → координатор кредиторской задолженности; encargada de tienda → заведующий магазином; supervisora zonal → территориальный супервайзер; jefe de comunicación → руководитель отдела коммуникаций
+- community manager → комьюнити-менеджер; Joven abogada → Молодой юрист; EPI → средства индивидуальной защиты; embudo de reclutamiento → воронка подбора; habilidades blandas → гибкие навыки
+- palizas (выговор) → «всыпал»; abandono (неотвеченное письмо) → брошенная работа; «eres tu propio jefe» → «сам себе начальник» (идиома в прямой речи)
+- метка женской роли → «Участница» (737, 624, 152, 240, 244, 246)
+
+## batch-060 (draft-3)
+- метки конспектов Ejemplo / Enseñanza → Пример / Урок — в корпусе 94 случая, закрепить в словаре
+- Regional Manager → региональный менеджер; Gerente (de tienda) в метке → Управляющий; junta (решающий орган) → правление; junta directiva → совет директоров
+- engagement → отклик (engagement) (≠ compromiso → вовлечённость); respuestas evasivas → уклончивые ответы (excusa → отговорка)
+- comercial как должность («trabajado como comercial») → менеджер по продажам (draft-2: comercial-человек → «продажник» — развести: должность / разговорное)
+- cuota (продажи) → квота; morra (мекс.) → девчонка; felpudo → тряпка; me voy de chismoso → иду ябедничать; abusador → абьюзер; culo → задница
