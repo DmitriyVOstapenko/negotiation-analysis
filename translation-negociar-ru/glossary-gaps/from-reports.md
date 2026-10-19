@@ -342,3 +342,10 @@
 - метки: Femme Fatale → Роковая женщина; Emisor / Receptor → Отправитель / Получатель; Asistente Administrativa → Административный ассистент; Dueño de la Pyme → Владелец малого бизнеса; Agente de seguros → Страховой агент
 - slop (ИИ) → мусор (slop); dominado / dominador → доминируемый / доминирующий; gandalla → нагло
 - брань: jodido → чертовски (в других пакетах «хреново» — выровнять по месту)
+
+## batch-053 (draft-3)
+- compromiso — развести три значения: вовлечённость (в компанию) / компромисс (llegar a un compromiso) / согласие, договорённость, обязательство (compromiso de agendar una reunión)
+- derecho a sorprenderse → право удивиться; excusa (защита эго) → отговорка (justificación → оправдание; excusa honorable → почётный повод)
+- encargado (выдаёт униформу) → заведующий; presencialidad / teletrabajo → работа в офисе / удалённая работа; sentido de pertenencia → чувство принадлежности
+- Profesor / Alumno → Учитель / Ученик; Asesor → Консультант; Interlocutor → Собеседник
+- Organizadora (женщина) → «Участница A (Организатор)»; брань: puto → долбаный; hostia → чёрт
