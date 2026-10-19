@@ -216,3 +216,11 @@
 - «mi director» в обращении → господин директор; Participante A (como X) → Участник A (в роли X)
 - gerente de producción cultural (237) → «руководитель производства в сфере культуры» по словарю; по смыслу — «руководитель продакшена»: решить при проходе (и заголовок)
 - la técnica = технические навыки (437) → «технике», не «приёму» — допустимое исключение
+
+## batch-032 (draft-2)
+- Jefe de Ventas (вышестоящий, компаньон директора) и Gerente de Ventas (подчинённый) в одном случае (597, и 596 в batch-038) — РЕШЕНО координатором: Jefe de Ventas → «директор по продажам», Gerente de Ventas → «руководитель отдела продаж»; вне такой пары — правило draft-2
+- conflicto de apariencia → конфликт видимости; riesgo de imagen → имиджевый риск; dilución / evasión de responsabilidad → размывание / уклонение от ответственности
+- distanciamiento informativo → информационное дистанцирование; Responsable de producto / de tecnología → ответственный за продукт / за технологии
+- Jefe de Finanzas → руководитель финансового отдела; Project Manager → руководитель проекта (Project Manager); Productor(a) de campo → продюсер на площадке
+- frustrada / frustración → фрустрирована / фрустрация (разбор обсуждает само слово)
+- брань: coño → херня; puta mierda → полное, бля, дерьмо; hostia → ни хрена себе (в других пакетах «чёрт»); joder → чёрт
