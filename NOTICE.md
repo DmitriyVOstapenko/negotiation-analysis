@@ -25,7 +25,7 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/. **Автор оригина�
 | Зона | Что | Лицензия | Правообладатель |
 |---|---|---|---|
 | Исходный контент и его перевод | `skills/negociar/data/`, `SKILL.md`, `EJEMPLO-NOVATO.md`, `translation/`, документация | CC BY-NC-SA 4.0 | оригинал — Artur Galiev; перевод — Дмитрий Остапенко (на тех же условиях) |
-| Исходный код поиска | `skills/negociar/scripts/buscar.mjs` | MIT | Artur Galiev |
+| Код поиска | `skills/negociar-ru/scripts/buscar.py` — перенос исходного `buscar.mjs` на Python | MIT | Artur Galiev (исходный скрипт); перенос — Dmitriy Ostapenko |
 | Новый код | `tools/`, `.claude-plugin/` | MIT | Dmitriy Ostapenko |
 
 Полные тексты: `LICENSE` (этот репозиторий), `LICENSES/UPSTREAM-LICENSE-ORIGINAL`

@@ -42,8 +42,8 @@
 
 ## Установка
 
-Работает в **Claude Code** (и как плагин Claude). Нужен `node` в `PATH` — он ищет по базе
-случаев.
+Работает в **Claude Code** (и как плагин Claude). Нужен Python 3.10+ (`python3`) — он ищет по
+базе случаев.
 
 ```
 /plugin marketplace add DmitriyVOstapenko/negociar-ru
@@ -63,14 +63,14 @@
 
 ## Что происходит на вашей машине
 
-Один скрипт поиска `skills/negociar-ru/scripts/buscar.mjs` — читает только свои файлы, не
+Один скрипт поиска `skills/negociar-ru/scripts/buscar.py` (Python, без внешних библиотек) — читает только свои файлы, не
 пишет, не ходит в сеть. Инструменты перевода в `tools/` — локальные, без сети. Телеметрии нет.
 
 ## Лицензии
 
 - Переведённые канон, случаи, правила навыка, словарь и документация — **CC BY-NC-SA 4.0**
   (оригинал © Artur Galiev; перевод © Дмитрий Остапенко на тех же условиях).
-- `buscar.mjs` — **MIT** © Artur Galiev (с переведёнными сообщениями).
+- `buscar.py` — **MIT** © Artur Galiev (исходный `buscar.mjs`), перенос на Python и русские сообщения © Dmitriy Ostapenko.
 - `tools/`, манифесты — **MIT** © Dmitriy Ostapenko.
 
 Подробно — `LICENSE`, `NOTICE.md`, исходная лицензия без изменений —

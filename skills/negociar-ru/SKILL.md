@@ -96,7 +96,7 @@ user-invocable: true
   («план на год», когда спланировано только шесть месяцев), размытые условия («август под
   вопросом») и любое открытое обещание.
 
-Если случай такого типа, **одного `buscar.mjs` недостаточно**: прочитай ещё раздел
+Если случай такого типа, **одного `buscar.py` недостаточно**: прочитай ещё раздел
 *«Управление виной и ошибкой»* в `08-gestion-conflicto` и разделы об оправдании/извинении и
 дешёвой эмпатии в `01-fundamentos-lucha`.
 
@@ -234,7 +234,7 @@ X» и почему ему рассказывают историю постав�
 
 Запускай это на каждом запросе. Плагин несёт канон и случаи внутри
 (`${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/data/`); пути ниже уже указывают туда. Если
-сомневаешься в пути — `node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs --canon D4`
+сомневаешься в пути — `python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py --canon D4`
 печатает путь к файлу канона домена.
 
 **Шаг 1 — Сопоставить рассказ с 1–3 доменами** по их признакам (таблица ниже). Одна ситуация
@@ -254,13 +254,13 @@ X» и почему ему рассказывают историю постав�
 
 ```bash
 # найти кандидатов (заголовок весит ×3; фильтр по домену; оценка учитывает богатство разбора):
-node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs "слова ситуации" --dom D3,D8 --n 6
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py "слова ситуации" --dom D3,D8 --n 6
 # только случаи с богатым разбором (диалог + разбор Арти):
-node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs "слова ситуации" --dom D3,D8 --tier A
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py "слова ситуации" --dom D3,D8 --tier A
 # фильтр по сфере, когда ситуация НЕ рабочая (pareja | familia | social | laboral):
-node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs "пара прошлое упрёк" --sphere pareja
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py "пара прошлое упрёк" --sphere pareja
 # прочитать лучший целиком, прежде чем на него опираться:
-node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs --show 14
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.py --show 14
 ```
 
 У каждого случая есть **уровень качества**: **A** = диалог + разбор Арти (лучшие; у всех есть
@@ -277,7 +277,7 @@ node ${CLAUDE_PLUGIN_ROOT}/skills/negociar-ru/scripts/buscar.mjs --show 14
 
 **Шаг 4 — Собрать** 4 блока + донастройку. Назови принцип и случай.
 
-**Когда подходящего случая нет** (низкие оценки в `buscar.mjs`, или B2B-стратегия, или
+**Когда подходящего случая нет** (низкие оценки в `buscar.py`, или B2B-стратегия, или
 «перестань бороться»): хотя корпус уже покрывает пару/семью/социальное/хейтеров, он остаётся
 рабоче-центричным. **Опирайся на принцип канона**, не натягивай случай, который не подходит.
 Используй случай только как иллюстрацию, если он что-то даёт, или честно скажи, что прямого

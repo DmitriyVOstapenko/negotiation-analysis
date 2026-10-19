@@ -159,7 +159,8 @@
 | decisor / tomador de decisiones | **лицо, принимающее решение (ЛПР)**, далее **ЛПР** | — | draft |
 | autoridad (уважение, домен 6) | **авторитет** | власть | draft |
 | poder | **власть** | — | draft |
-| garra («buena garra») | **напор** | захват (захват — только agarre) | draft |
+| garra как черта характера («tiene garra») | **напор** | — | draft |
+| garra в значении agarre («fijar la garra», «buena garra» о ходе) | **захват** | напор | draft |
 | dejarse agarrar | **дать себя захватить** | дать взять себя в захват | draft |
 | framing / encuadre / marco | **рамка**; в прямой речи ведущего допустимо **фрейм** | фрейминг (кроме первого употребления в скобках) | draft |
 | reencuadrar / reencuadre | **сменить рамку / смена рамки** | переставить рамку | draft |

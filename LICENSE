@@ -40,8 +40,9 @@ https://github.com/arturgaliev3099-ux/realmanagement, commit
 
 ## 2. Код исходного репозитория — MIT
 
-Применяется к: `skills/negociar/scripts/buscar.mjs` (с переведёнными на русский
-сообщениями). Copyright (c) 2026 Artur Galiev. Текст разрешения MIT — в
+Применяется к: `skills/negociar-ru/scripts/buscar.py` — перенос исходного `buscar.mjs`
+на Python с русскими сообщениями. Copyright (c) 2026 Artur Galiev (исходный скрипт);
+перенос — Copyright (c) 2026 Dmitriy Ostapenko. Текст разрешения MIT — в
 `LICENSES/UPSTREAM-LICENSE-ORIGINAL`, раздел 2; он сохраняется во всех копиях.
 
 ---
