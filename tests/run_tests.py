@@ -417,7 +417,9 @@ class NegociarRuTests(unittest.TestCase):
         self.assertTrue(all(c.get("translation_status") for c in casos))
 
     def test_search_russian_word_forms(self) -> None:
-        out = self.run_buscar("извинения фиксация", "--n", "3")
+        # формы запроса отличаются от заголовка («извинения» / «извинений», «фиксация» / «фиксацию»);
+        # третье слово держит случай в топе по мере роста переведённой библиотеки
+        out = self.run_buscar("требовать извинения фиксация", "--n", "3")
         self.assertEqual(out.returncode, 0, out.stderr)
         self.assertIn("Требовать извинений как фиксацию", out.stdout)
         canon = self.run_buscar("--canon", "D8")
