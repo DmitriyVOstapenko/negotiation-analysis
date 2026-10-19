@@ -423,3 +423,11 @@
 - engagement → отклик (engagement) (≠ compromiso → вовлечённость); respuestas evasivas → уклончивые ответы (excusa → отговорка)
 - comercial как должность («trabajado como comercial») → менеджер по продажам (draft-2: comercial-человек → «продажник» — развести: должность / разговорное)
 - cuota (продажи) → квота; morra (мекс.) → девчонка; felpudo → тряпка; me voy de chismoso → иду ябедничать; abusador → абьюзер; culo → задница
+
+## batch-059 (draft-3, последний по времени)
+- 563: пара jefa de ventas (выше) / gerente de ventas — дано «руководитель продаж» / «руководитель отдела продаж»; по решению координатора — «директор по продажам» / «руководитель отдела продаж» (как 596, 597) — привести
+- jefe del departamento administrativo → руководитель административного отдела; director(es) de departamento → директора департаментов; mesa directiva → правление
+- empresa administradora → управляющая компания; cuentas por cobrar → дебиторская задолженность; vacaciones de crédito → кредитные каникулы; acta de entrega → акт приёма-передачи
+- compromiso de que… (обязательство) → обязательство
+- метки: Árbitro / Jugador experimentado → Судья / Опытный игрок; Editor / Anunciante → Редактор / Рекламодатель (в 021: «Издатель» — выровнять); Esposo / Esposa → Муж / Жена
+- подзаголовки: Segundo/Tercer intento → Вторая/Третья попытка
