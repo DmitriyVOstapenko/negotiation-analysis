@@ -7,7 +7,7 @@
   },
   "homepage": "https://github.com/DmitriyVOstapenko/negotiation-analysis",
   "repository": "https://github.com/DmitriyVOstapenko/negotiation-analysis",
-  "license": "MIT (code) / CC-BY-NC-SA-4.0 (methodology, prompts, ontology, docs; skills/negociar-ru — adaptation of arturgaliev3099-ux/realmanagement © Artur Galiev)",
+  "license": "MIT AND CC-BY-NC-SA-4.0",
   "keywords": [
     "briefing",
     "commitments",

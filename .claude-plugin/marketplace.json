@@ -3,10 +3,11 @@
   "owner": {
     "name": "Dmitriy Ostapenko"
   },
+  "description": "Плагин negotiation-analysis: накопительная система анализа деловых переговоров со встроенным советником Negociar-RU. По-русски.",
   "plugins": [
     {
       "name": "negotiation-analysis",
-      "source": ".",
+      "source": "./",
       "description": "Накопительная система анализа деловых переговоров со встроенным советником Negociar-RU (русская адаптация канона Арти Галиева, CC BY-NC-SA 4.0). По-русски.",
       "version": "0.6.0"
     }
