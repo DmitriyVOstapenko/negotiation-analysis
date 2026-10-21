@@ -1,7 +1,7 @@
 {
   "meeting_id": "[meeting-id]",
   "generated_at": "[ISO-8601]",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "files": [
     {
       "path": "knowledge/people/[person-id].md",

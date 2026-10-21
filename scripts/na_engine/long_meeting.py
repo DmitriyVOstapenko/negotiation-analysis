@@ -9,9 +9,10 @@
 - check — проверяет файлы частей: контракт артефакта, цитаты (тем же модулем quote_check, что и
   validate) и то, что опорная цитата лежит в своей части;
 - merge — сводит части одного артефакта в итоговый analysis/<артефакт>.json: списки
-  объединяются, точные дубликаты снимаются, счётчики 05 суммируются, доли речи взвешиваются по
-  объёму частей; поля, которые описывают встречу целиком (исход, вывод, общий тон), перечисляются
-  в review_fields — их главный агент утверждает по итоговому JSON.
+  объединяются, точные дубликаты снимаются, обязательство 07 из нескольких частей сводится в
+  одну запись (связанные реплики объединяются), счётчики 05 суммируются, доли речи взвешиваются
+  по объёму частей; поля, которые описывают встречу целиком (исход, вывод, общий тон),
+  перечисляются в review_fields — их главный агент утверждает по итоговому JSON.
 
 Раскладка: negotiations/<id>/analysis/parts/plan.json и
 analysis/parts/<NN>_<имя>.part-<K>.json (контракт тот же, что у итогового файла).
@@ -20,6 +21,7 @@ analysis/parts/<NN>_<имя>.part-<K>.json (контракт тот же, что
 
 from __future__ import annotations
 
+import copy
 import json
 import re
 from pathlib import Path
@@ -55,6 +57,10 @@ LONG_THRESHOLDS = {"duration_min": 60, "chars": 50_000, "replicas": 500}
 # уступки, связанная и ответная реплики могут прозвучать раньше или позже — для них
 # допустим весь транскрипт (предупреждение, если вне части).
 STRICT_RANGE_KEYS = {"quote", "source_quote", "evidence_quote"}
+# Списки, чьи цитаты — не опора пункта, хотя поле и называется quote: связанные реплики
+# обязательства (07 related_mentions) и реплики, по которым установлена личность участника
+# (01 participants[].evidence: человек мог представиться в другой части).
+RELAXED_RANGE_PATHS = (".related_mentions[", ".participants[")
 
 # Списки сущностей 01: одна запись на ключ; при расхождении остаётся запись с более высокой
 # уверенностью (при равной — из более ранней части), расхождение попадает в conflicts.
@@ -64,6 +70,16 @@ KEYED_ENTITY_LISTS = {
     ("01_extraction", "topics"): "id",
 }
 CONFIDENCE_RANK = {"certain": 3, "probable": 2, "possible": 1, "speculative": 0}
+# 07: одно обязательство из нескольких частей — одна запись. «Та же запись» — совпадают
+# исполнитель, формулировка, опора (цитата и таймкод) и срок (строки сравниваются без учёта
+# лишних пробелов). Связанные реплики (related_mentions) объединяются без повторов по цитате и
+# таймкоду; другие поля при расхождении — в conflicts (остаётся запись с большей уверенностью,
+# при равной — из более ранней части). Остальные совпадения — та же опора при другой
+# формулировке или сроке, опора одной записи среди связанных реплик другой у того же
+# исполнителя — не сводятся, а попадают в possible_duplicates: решает главный агент.
+COMMITMENT_LISTS = {("07_commitments", "commitments")}
+COMMITMENT_IDENTITY = ("who", "what", "source_quote", "source_timestamp", "deadline")
+MENTIONS_KEY = "related_mentions"
 # Поля, которые описывают встречу целиком: значение по частям — только черновик.
 WHOLE_MEETING_FIELDS = {
     "01_extraction": ["outcome", "outcome_summary", "excluded_source_range"],
@@ -296,8 +312,9 @@ def check_part_file(path: Path, stem: str, part_no: int | None, meeting_id: str,
             if _in_text(item["quote"], part_text):
                 continue
             key = item["path"].rsplit(".", 1)[-1]
+            strict = key in STRICT_RANGE_KEYS and not any(marker in item["path"] for marker in RELAXED_RANGE_PATHS)
             message = f"цитата вне своей части (часть {part_no}: строки {part['line_from']}–{part['line_to']}, найдена в строке {line}): {name} {item['path']}"
-            (errors if key in STRICT_RANGE_KEYS else warnings).append(message)
+            (errors if strict else warnings).append(message)
 
     items = {key: len(value) for key, value in data.items() if isinstance(value, list)}
     return {"file": name, "artifact": f"{stem}.json", "part": part_no, "valid": not errors, "items": items, "quotes": result["stats"].get("checked", len(quotes)), "errors": errors, "warnings": warnings}
@@ -417,6 +434,110 @@ def _merge_list(field: str, values: list[tuple[int, list[Any]]], renamed: list[d
     return merged, dropped
 
 
+def _squash(value: Any) -> Any:
+    return " ".join(value.split()) if isinstance(value, str) else value
+
+
+def _mention_key(mention: Any) -> Any:
+    if isinstance(mention, dict):
+        return (_squash(mention.get("quote")), _squash(mention.get("timestamp")))
+    return canonical_json(mention)
+
+
+def _union_mentions(kept: list[Any], extra: list[Any]) -> tuple[list[Any], int]:
+    """Связанные реплики без повторов (цитата + таймкод); пустое note дополняется из повтора."""
+    result = [dict(item) if isinstance(item, dict) else item for item in kept]
+    index = {_mention_key(item): position for position, item in enumerate(result)}
+    added = 0
+    for mention in extra:
+        key = _mention_key(mention)
+        if key in index:
+            current = result[index[key]]
+            if isinstance(current, dict) and isinstance(mention, dict) and not current.get("note") and mention.get("note"):
+                current["note"] = mention["note"]
+            continue
+        index[key] = len(result)
+        result.append(dict(mention) if isinstance(mention, dict) else mention)
+        added += 1
+    if added:
+        result.sort(key=lambda item: _seconds(item.get("timestamp")) if isinstance(item, dict) and _seconds(item.get("timestamp")) is not None else 10**9)
+    return result, added
+
+
+def _merge_commitments(field: str, values: list[tuple[int, list[Any]]], renamed: list[dict[str, Any]], conflicts: list[dict[str, Any]], joined: list[dict[str, Any]], hints: list[dict[str, Any]]) -> tuple[list[Any], int]:
+    """Обязательства 07: одна запись на (who, what, source_quote, source_timestamp, deadline)."""
+    records: list[dict[str, Any]] = []  # {"part", "item", "parts", "absorbed_ids", "added"}
+    by_key: dict[tuple[Any, ...], int] = {}
+    dropped = 0
+    for part_no, items in values:
+        for item in items:
+            if not isinstance(item, dict):
+                records.append({"part": part_no, "item": item, "parts": [part_no], "absorbed_ids": [], "added": 0})
+                continue
+            key = tuple(_squash(item.get(name)) for name in COMMITMENT_IDENTITY)
+            if key not in by_key:
+                by_key[key] = len(records)
+                records.append({"part": part_no, "item": copy.deepcopy(item), "parts": [part_no], "absorbed_ids": [], "added": 0})
+                continue
+            record = records[by_key[key]]
+            kept = record["item"]
+            body_kept = {name: value for name, value in kept.items() if name != MENTIONS_KEY}
+            body_new = {name: value for name, value in item.items() if name != MENTIONS_KEY}
+            old_mentions = kept.get(MENTIONS_KEY) or []
+            mentions, added = _union_mentions(old_mentions, item.get(MENTIONS_KEY) or [])
+            same_body = canonical_json(body_kept) == canonical_json(body_new)
+            if same_body and canonical_json(mentions) == canonical_json(old_mentions):
+                dropped += 1  # точный повтор (с точностью до пустого списка связанных реплик)
+                continue
+            has_mentions = MENTIONS_KEY in kept or MENTIONS_KEY in item
+            if not same_body:
+                differs = sorted(name for name in set(body_kept) | set(body_new) if canonical_json(body_kept.get(name)) != canonical_json(body_new.get(name)))
+                better = CONFIDENCE_RANK.get(item.get("confidence"), -1) > CONFIDENCE_RANK.get(kept.get("confidence"), -1)
+                conflicts.append({
+                    "field": field,
+                    "key": f"id={kept.get('id')}",
+                    "parts": [record["part"], part_no],
+                    "kept_from_part": part_no if better else record["part"],
+                    "differs": differs,
+                    "reason": "та же запись (исполнитель, формулировка, опора, срок), другие поля различаются; оставлена с большей уверенностью (при равной — из более ранней части), связанные реплики объединены",
+                })
+                loser = kept if better else item
+                if better:
+                    kept = copy.deepcopy(body_new)
+                if loser.get("id") != kept.get("id") and loser.get("id") not in record["absorbed_ids"]:
+                    record["absorbed_ids"].append(loser.get("id"))
+            if has_mentions:
+                kept = {name: value for name, value in kept.items() if name not in (MENTIONS_KEY, "follow_up")} | {MENTIONS_KEY: mentions} | ({"follow_up": kept["follow_up"]} if "follow_up" in kept else {})
+            record["item"] = kept
+            record["added"] += added
+            if part_no not in record["parts"]:
+                record["parts"].append(part_no)
+
+    for record in records:
+        if len(record["parts"]) > 1 or record["added"] or record["absorbed_ids"]:
+            joined.append({"field": field, "id": record["item"].get("id") if isinstance(record["item"], dict) else None, "parts": record["parts"], "related_mentions_added": record["added"], "absorbed_ids": record["absorbed_ids"]})
+
+    # Не сводятся автоматически: та же опора у того же исполнителя при другой формулировке или
+    # сроке; опора одной записи — связанная реплика другой записи того же исполнителя.
+    items = [(record["part"], record["item"]) for record in records if isinstance(record["item"], dict)]
+    for index, (part_a, first) in enumerate(items):
+        for part_b, second in items[index + 1 :]:
+            if _squash(first.get("who")) != _squash(second.get("who")):
+                continue
+            anchor_a = (_squash(first.get("source_quote")), _squash(first.get("source_timestamp")))
+            anchor_b = (_squash(second.get("source_quote")), _squash(second.get("source_timestamp")))
+            reason = None
+            if anchor_a == anchor_b:
+                reason = "та же опора и исполнитель, но другая формулировка или срок"
+            elif anchor_b in {_mention_key(m) for m in first.get(MENTIONS_KEY) or []} or anchor_a in {_mention_key(m) for m in second.get(MENTIONS_KEY) or []}:
+                reason = "опора одной записи — связанная реплика другой у того же исполнителя"
+            if reason:
+                hints.append({"field": field, "ids": [first.get("id"), second.get("id")], "parts": [part_a, part_b], "reason": reason})
+
+    merged, removed = _merge_list(field, [(record["part"], [record["item"]]) for record in records], renamed)
+    return merged, dropped + removed
+
+
 def _sum_counts(values: list[tuple[int, list[Any]]], keys: tuple[str, ...]) -> list[dict[str, Any]]:
     totals: dict[tuple[Any, ...], int] = {}
     order: list[tuple[Any, ...]] = []
@@ -476,6 +597,8 @@ def merge_artifact(stem: str, parts: list[tuple[int, dict[str, Any]]], meeting_i
     review_fields: list[dict[str, Any]] = []
     conflicts: list[dict[str, Any]] = []
     renamed: list[dict[str, Any]] = []
+    joined: list[dict[str, Any]] = []
+    hints: list[dict[str, Any]] = []
     dropped = 0
     for key in keys:
         if key == "meeting_id":
@@ -492,6 +615,9 @@ def merge_artifact(stem: str, parts: list[tuple[int, dict[str, Any]]], meeting_i
                 merged[key] = _sum_counts(lists, ("who", "whom"))
             elif stem == "05_power" and key == "talk_time_share":
                 merged[key] = _weighted_share(lists, weights)
+            elif (stem, key) in COMMITMENT_LISTS:
+                merged[key], removed = _merge_commitments(key, lists, renamed, conflicts, joined, hints)
+                dropped += removed
             else:
                 merged[key], removed = _merge_list(key, lists, renamed)
                 dropped += removed
@@ -530,7 +656,7 @@ def merge_artifact(stem: str, parts: list[tuple[int, dict[str, Any]]], meeting_i
             top, inner = field.split(".", 1)
             values = {str(part_no): (data.get(top) or {}).get(inner) if isinstance(data.get(top), dict) else None for part_no, data in parts}
             review_fields.append({"field": field, "chosen_from_part": parts[-1][0], "values_by_part": values, "differs": len({canonical_json(v) for v in values.values()}) > 1})
-    return {"data": merged, "review_fields": review_fields, "conflicts": conflicts, "renamed_ids": renamed, "dropped_duplicates": dropped}
+    return {"data": merged, "review_fields": review_fields, "conflicts": conflicts, "renamed_ids": renamed, "dropped_duplicates": dropped, "joined": joined, "possible_duplicates": hints}
 
 
 def _artifact_filter(value: str | None) -> set[str] | None:
@@ -594,7 +720,9 @@ def run_merge(root: Path, meeting_id: str, artifacts: str | None = None, force: 
                 "items": {key: len(value) for key, value in result["data"].items() if isinstance(value, list)},
                 "dropped_duplicates": result["dropped_duplicates"],
                 "renamed_ids": result["renamed_ids"],
+                "joined": result["joined"],
                 "conflicts": result["conflicts"],
+                "possible_duplicates": result["possible_duplicates"],
                 "review_fields": result["review_fields"],
                 "schema_errors": schema_errors,
             }
@@ -613,8 +741,15 @@ def merge_lines(result: dict[str, Any]) -> list[str]:
             lines.append(f"    · нет частей: {', '.join(map(str, item['missing_parts']))}")
         for entry in item["renamed_ids"]:
             lines.append(f"    · id {entry['from']} → {entry['to']} ({entry['field']}, часть {entry['part']})")
+        for entry in item["joined"]:
+            extra = f", связанных реплик добавлено {entry['related_mentions_added']}" if entry["related_mentions_added"] else ""
+            absorbed = f", поглощены id {', '.join(map(str, entry['absorbed_ids']))}" if entry["absorbed_ids"] else ""
+            lines.append(f"    · {entry['field']} {entry['id']}: части {', '.join(map(str, entry['parts']))} сведены в одну запись{extra}{absorbed}")
         for entry in item["conflicts"]:
-            lines.append(f"    · расхождение {entry['field']} {entry['key']} (части {entry['parts']}), оставлено из части {entry['kept_from_part']}")
+            differs = f"; различаются: {', '.join(entry['differs'])}" if entry.get("differs") else ""
+            lines.append(f"    · расхождение {entry['field']} {entry['key']} (части {entry['parts']}), оставлено из части {entry['kept_from_part']}{differs}")
+        for entry in item["possible_duplicates"]:
+            lines.append(f"    ? возможный дубль {entry['field']}: {' и '.join(map(str, entry['ids']))} (части {', '.join(map(str, entry['parts']))}) — {entry['reason']}; свести или оставить — решает главный агент")
         for entry in item["review_fields"]:
             source = entry.get("note") or f"черновик из части {entry['chosen_from_part']}"
             lines.append(f"    ? {entry['field']}: {source}" + (" (части расходятся)" if entry["differs"] else "") + " — утвердить по всей встрече")

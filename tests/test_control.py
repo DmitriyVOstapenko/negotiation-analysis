@@ -19,6 +19,11 @@ from run_tests import FIXTURE, MEETING, NA, WorkspaceTestCase, payload, read_jso
 SECOND = "2026-11-12-polaris-nordtech-followup"
 TOPIC = "wms-three-warehouses"
 ESTIMATE = "c-2026-10-28-nordtech-estimate"
+SUPPORT_COST = "c-2026-10-28-nordtech-support-cost"
+WARRANTY = "c-2026-10-28-nordtech-warranty-terms"
+ZONING = "c-2026-10-28-polaris-zoning"
+API_DOCS = "c-2026-10-28-polaris-api-docs-request"
+PAYMENT_DECISION = "c-2026-10-28-polaris-payment-decision"
 WORKSPACE = Path("knowledge") / "workspace.json"
 
 
@@ -34,18 +39,6 @@ def snapshot(root: Path) -> dict[str, bytes]:
 
 def proposal(meeting_id: str, records: list[dict], files: list[dict] | None = None) -> dict:
     return {"meeting_id": meeting_id, "generated_at": "2026-11-12T18:00:00+03:00", "contract_version": "1.0.0", "files": files or [], "records": records}
-
-
-def commitment(cid: str, who: str, to_whom: str, what: str, deadline: str, quote: str, timestamp: str) -> dict:
-    return {
-        "registry": "knowledge/commitments/open.jsonl", "action": "append", "id": cid,
-        "record": {
-            "id": cid, "meeting_id": MEETING, "type": "conduct_action", "who": who, "to_whom": to_whom, "what": what,
-            "deadline": deadline, "deadline_verbatim": None, "status": "open", "value_rub": None,
-            "source_quote": quote, "source_timestamp": timestamp, "confidence": "certain", "linked_topic": TOPIC,
-            "follow_up": {"reminder_date": None, "reminder_sent": False, "actual_completion_date": None, "completion_notes": None},
-        },
-    }
 
 
 class ControlAreaTestCase(WorkspaceTestCase):
@@ -134,7 +127,10 @@ class StalledItemsTests(ControlAreaTestCase):
         self.assertEqual([change.get("meeting_id") for change in rows[0]["changes"]], [MEETING, MEETING])
         self.assertEqual(rows[0]["changes"][1]["change_reason"], "поставщик терминалов пересматривает цены")
         self.assertFalse(rows[0]["is_overdue"])
-        self.assertEqual(state["next_actions"]["overdue_commitments"], [], "перенесённый срок ещё не наступил — это не просрочка")
+        overdue = [row["id"] for row in state["next_actions"]["overdue_commitments"]]
+        self.assertNotIn(ESTIMATE, overdue, "перенесённый срок ещё не наступил — это не просрочка")
+        # а наше обещание принять решение по оплате до 2026-11-10 к 15 ноября просрочено — обязательства нашей стороны тоже контролируются
+        self.assertEqual(overdue, [PAYMENT_DECISION])
         center = (self.root / "system" / "control_center.md").read_text(encoding="utf-8")
         self.assertIn("Сроки, перенесённые повторно", center)
         self.assertIn("2026-11-05 → 2026-11-12 → 2026-11-19", center)
@@ -233,27 +229,24 @@ class WorkspaceSchemaTests(ControlAreaTestCase):
 
 class CounterpartyReviewTests(ControlAreaTestCase):
     def test_counterparty_review_splits_promises_by_confirmation(self) -> None:
+        # обязательства обеих сторон — из фикстуры (07 и предложение базы)
         self.base_with_fixture_applied()
-        self.apply_proposal(MEETING, proposal(MEETING, [
-            commitment("c-2026-10-28-nordtech-api-questions", "p-danilov-nordtech", "p-krylova-polaris", "подготовить список вопросов прежнему подрядчику по API", "2026-11-02", "Мы со своей стороны подготовим список вопросов к прежнему подрядчику, чтобы ускорить поиск.", "00:04:51"),
-            commitment("c-2026-10-28-nordtech-licenses", "p-danilov-nordtech", "p-krylova-polaris", "пересчитать лицензии на 24 пользователя", "2026-11-05", "Тогда в уточнённой смете поставим двадцать четыре лицензии, а запас вынесем в отдельную опцию.", "00:09:38"),
-            commitment("c-2026-10-28-polaris-zoning", "p-krylova-polaris", "p-danilov-nordtech", "передать схему зонирования складов", "2026-10-31", "Я пришлю уточнённую смету по трём складам до пятого ноября, при условии что схему зонирования мы получим на этой неделе.", "00:08:18"),
-        ]))
-        # смета и схема зонирования закрыты со слов пользователя
+        # смета, схема зонирования и решение по оплате закрыты со слов пользователя
         self.apply_proposal(MEETING, proposal(MEETING, [
             {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": ESTIMATE, "record": {"status": "done", "follow_up": {"reminder_date": "2026-11-03", "reminder_sent": False, "actual_completion_date": "2026-11-04", "completion_notes": "пользователь сообщил, что смета получена"}}},
-            {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": "c-2026-10-28-polaris-zoning", "record": {"status": "done", "follow_up": {"reminder_date": None, "reminder_sent": False, "actual_completion_date": "2026-10-30", "completion_notes": "схему отправили"}}},
+            {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": ZONING, "record": {"status": "done", "follow_up": {"reminder_date": None, "reminder_sent": False, "actual_completion_date": "2026-10-30", "completion_notes": "схему отправили"}}},
+            {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": PAYMENT_DECISION, "record": {"status": "done", "follow_up": {"reminder_date": "2026-11-08", "reminder_sent": False, "actual_completion_date": "2026-11-09", "completion_notes": "решение по оплате сообщили Нордтеху"}}},
         ]))
-        # список вопросов закрыт по документу, зарегистрированному как источник
-        document = self.tmp / "api-questions.txt"
-        document.write_text("Список вопросов прежнему подрядчику по API учётной системы. Стр. 1–2.\n", encoding="utf-8")
-        doc_meeting = "2026-11-02-nordtech-api-questions-doc"
-        created = run(self.root, "source", "create", "--meeting", doc_meeting, "--transcript", str(document), "--provider", "document", "--captured-at", "2026-11-02T10:00:00+03:00")
+        # условия гарантии закрыты по документу, зарегистрированному как источник
+        document = self.tmp / "warranty-terms.txt"
+        document.write_text("Условия гарантии на оборудование складского учёта. Стр. 1–2.\n", encoding="utf-8")
+        doc_meeting = "2026-11-06-nordtech-warranty-terms-doc"
+        created = run(self.root, "source", "create", "--meeting", doc_meeting, "--transcript", str(document), "--provider", "document", "--captured-at", "2026-11-06T10:00:00+03:00")
         self.assertEqual(created.returncode, 0, created.stdout + created.stderr)
         self.apply_proposal(doc_meeting, proposal(doc_meeting, [
-            {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": "c-2026-10-28-nordtech-api-questions", "record": {
+            {"registry": "knowledge/commitments/open.jsonl", "action": "close", "id": WARRANTY, "record": {
                 "status": "done", "fulfillment_evidence": [{"source_id": doc_meeting, "evidence_class": "confirmed_fact", "quote": None, "page_or_cell": "стр. 1–2", "confidence": "high"}],
-                "follow_up": {"reminder_date": None, "reminder_sent": False, "actual_completion_date": "2026-11-02", "completion_notes": None}}},
+                "follow_up": {"reminder_date": None, "reminder_sent": False, "actual_completion_date": "2026-11-06", "completion_notes": None}}},
         ]))
 
         completed = run(self.root, "counterparty", "--org", "Нордтех")
@@ -262,10 +255,12 @@ class CounterpartyReviewTests(ControlAreaTestCase):
         self.assertEqual(review["organization"]["id"], "org-nordtech")
         self.assertEqual([person["id"] for person in review["people"]], ["p-danilov-nordtech"])
         groups = {row["id"]: row["group"] for row in review["their_commitments"]}
-        self.assertEqual(groups, {ESTIMATE: "user_words", "c-2026-10-28-nordtech-api-questions": "document", "c-2026-10-28-nordtech-licenses": "talk_only"})
+        self.assertEqual(groups, {ESTIMATE: "user_words", WARRANTY: "document", SUPPORT_COST: "talk_only"})
         self.assertEqual(review["summary"]["their_by_group"], {"document": 1, "user_words": 1, "talk_only": 1, "cancelled": 0})
+        # наши обещания им: срок «до пятницы» без даты — «в срок» не оценивается; решение по оплате — в срок
         ours = review["our_commitments"]
-        self.assertEqual([(row["id"], row["group"], row["on_time"]) for row in ours], [("c-2026-10-28-polaris-zoning", "user_words", True)])
+        self.assertEqual([(row["id"], row["group"], row["on_time"]) for row in ours], [(API_DOCS, "talk_only", None), (PAYMENT_DECISION, "user_words", True), (ZONING, "user_words", None)])
+        self.assertEqual(review["summary"]["our_commitments"], 3)
         self.assertTrue(review["positions"], "позиции из карты аргументов встречи")
         self.assertEqual([risk["id"] for risk in review["risks"]], ["r-2026-10-28-api-documentation"])
         self.assertEqual(review["outputs"], ["system/counterparty/org-nordtech.json", "system/counterparty/org-nordtech.md"])
@@ -276,6 +271,7 @@ class CounterpartyReviewTests(ControlAreaTestCase):
 
         # период: закрытое до начала периода не попадает, открытое — остаётся
         later = payload(run(self.root, "counterparty", "--org", "org-nordtech", "--since", "2026-12-01"))
-        self.assertEqual([row["id"] for row in later["their_commitments"]], ["c-2026-10-28-nordtech-licenses"])
+        self.assertEqual([row["id"] for row in later["their_commitments"]], [SUPPORT_COST])
+        self.assertEqual([row["id"] for row in later["our_commitments"]], [API_DOCS])
         self.assertEqual(run(self.root, "counterparty", "--org", "Несуществующая компания").returncode, 2)
         self.assertEqual(run(self.root, "counterparty", "--org", "Нордтех", "--since", "28.10.2026").returncode, 2)

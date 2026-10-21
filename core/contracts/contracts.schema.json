@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/DmitriyVOstapenko/negotiation-analysis/schemas/negotiation-analysis-contracts.schema.json",
   "title": "Исполняемые контракты 11 результатов анализа переговоров",
-  "x-contract-version": "1.0.0",
+  "x-contract-version": "1.1.0",
   "x-file-contracts": {
     "01_extraction.json": "#/$defs/extraction",
     "02_tactics.json": "#/$defs/tactics",
@@ -87,9 +87,18 @@
               "is_our_side": {"type": "boolean"},
               "identity_source": {
                 "type": "string",
+                "description": "Откуда подтверждена личность: transcript — из записи; user_confirmed и user_confirmation (равнозначны) — подтвердил пользователь; existing_knowledge — карточка базы. Способ установления — в evidence и evidence_note.",
                 "enum": ["transcript", "user_confirmed", "user_confirmation", "existing_knowledge"]
               },
-              "confidence": {"$ref": "#/$defs/confidence"}
+              "confidence": {"$ref": "#/$defs/confidence"},
+              "evidence": {
+                "$ref": "#/$defs/evidence_array",
+                "description": "Необязательно. Реплики, по которым установлена личность: самопредставление, обращение по имени. Цитаты проверяются по транскрипту без атрибуции (обращение произносит другой человек)."
+              },
+              "evidence_note": {
+                "$ref": "#/$defs/nullable_string",
+                "description": "Необязательно. Способ установления словами: представился сам, обратились по имени, вывод по содержанию (тогда confidence не выше probable), подтвердил пользователь."
+              }
             },
             "additionalProperties": false
           }
@@ -163,6 +172,10 @@
           "required": ["from", "reason"],
           "properties": {
             "from": {"$ref": "#/$defs/timestamp"},
+            "to": {
+              "$ref": "#/$defs/nullable_timestamp",
+              "description": "Необязательно. Конец исключённого фрагмента; null или нет поля — до конца записи."
+            },
             "reason": {"$ref": "#/$defs/non_empty_string"}
           },
           "additionalProperties": false
@@ -358,7 +371,11 @@
               "quote": {"$ref": "#/$defs/non_empty_string"},
               "timestamp": {"$ref": "#/$defs/timestamp"},
               "prior_position_quote": {"$ref": "#/$defs/non_empty_string"},
-              "prior_position_timestamp": {"$ref": "#/$defs/timestamp"}
+              "prior_position_timestamp": {"$ref": "#/$defs/timestamp"},
+              "prior_position_speaker": {
+                "$ref": "#/$defs/nullable_id",
+                "description": "Необязательно. person_id того, кто назвал прежнюю позицию, если это не speaker (коллега или другая сторона). Задан — атрибуция prior_position_quote проверяется по нему; null или нет поля — по speaker."
+              }
             },
             "additionalProperties": false
           }
@@ -409,6 +426,20 @@
       },
       "additionalProperties": false
     },
+    "related_mention": {
+      "type": "object",
+      "description": "Связанная реплика обязательства: предложение, принятие или подтверждение другой стороной, повтор в итогах, прежняя версия до изменения. Цитата проверяется по транскрипту без атрибуции к who.",
+      "required": ["quote", "timestamp"],
+      "properties": {
+        "quote": {"$ref": "#/$defs/non_empty_string"},
+        "timestamp": {"$ref": "#/$defs/timestamp"},
+        "note": {
+          "$ref": "#/$defs/nullable_string",
+          "description": "Необязательно. Чем реплика связана с обязательством: предложено, принято, подтверждено в итогах, изменено (прежняя версия)."
+        }
+      },
+      "additionalProperties": false
+    },
     "commitment_item": {
       "type": "object",
       "required": ["id", "meeting_id", "type", "who", "to_whom", "what", "deadline", "deadline_verbatim", "status", "value_rub", "source_quote", "source_timestamp", "confidence", "linked_topic", "follow_up"],
@@ -433,6 +464,11 @@
         "source_timestamp": {"$ref": "#/$defs/timestamp"},
         "confidence": {"$ref": "#/$defs/confidence"},
         "linked_topic": {"$ref": "#/$defs/non_empty_string"},
+        "related_mentions": {
+          "type": "array",
+          "description": "Необязательно. what — только актуальная формулировка; прежние версии, предложение, принятие, подтверждение в итогах — сюда.",
+          "items": {"$ref": "#/$defs/related_mention"}
+        },
         "follow_up": {
           "type": "object",
           "required": ["reminder_date", "reminder_sent", "actual_completion_date", "completion_notes"],
@@ -543,7 +579,10 @@
               "topic": {"$ref": "#/$defs/non_empty_string"},
               "decision": {"$ref": "#/$defs/non_empty_string"},
               "options": {"$ref": "#/$defs/string_array"},
-              "current_state": {"$ref": "#/$defs/non_empty_string"},
+              "current_state": {
+                "$ref": "#/$defs/non_empty_string",
+                "description": "Начинается со статусного префикса: «Принято: …», «Не решено: …», «Отложено: …», «Отменено: …». Принятым решение считается только по префиксу «Принято», «Решено», «Согласовано» или «Утверждено» и «:», «.» или «—» после него; без префикса — открытое."
+              },
               "final_decision_maker": {"$ref": "#/$defs/nullable_id"},
               "advisory_participants": {"$ref": "#/$defs/string_array"},
               "blocking_rights": {"$ref": "#/$defs/nullable_string"},

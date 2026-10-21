@@ -9,8 +9,10 @@ import unittest
 from pathlib import Path
 
 from run_tests import FIXTURE, MEETING, WorkspaceTestCase, payload, read_json, run
+from na_engine.long_meeting import merge_lines  # run_tests добавил scripts/ в sys.path
 
 LIST_FIELDS_FROM_ALL_PARTS = {("01_extraction", "participants"), ("01_extraction", "companies")}
+CONFIDENCE = {"certain": 3, "probable": 2, "possible": 1, "speculative": 0}
 
 
 def write(path: Path, data: object) -> None:
@@ -173,6 +175,78 @@ class PartsTests(WorkspaceTestCase):
         self.assertEqual(merged["participants"][0]["confidence"], "certain")
         conflicts = [entry for item in result["merged"] for entry in item["conflicts"]]
         self.assertTrue(any(entry["field"] == "participants" and entry["kept_from_part"] == 2 for entry in conflicts))
+
+    def commitments_in_three_parts(self) -> tuple[dict, dict, dict]:
+        """Встреча из трёх частей, как 08: обещания в частях 1 и 2, повтор в итогах — в части 3."""
+        plan = self.plan(3000)
+        self.assertEqual(len(plan["parts"]), 3)
+        self.split_fixture(plan, ("07_commitments",))
+        base = read_json(FIXTURE / "analysis" / "07_commitments.json")
+        docs = next(item for item in base["commitments"] if item["source_timestamp"] == "00:04:01")
+        estimate = next(item for item in base["commitments"] if item["source_timestamp"] == "00:08:18")
+        self.assertEqual((self.part_of(plan, docs["source_quote"]), self.part_of(plan, estimate["source_quote"])), (1, 2))
+        return base, docs, estimate
+
+    def merge_07(self) -> tuple[dict, list]:
+        merge = run(self.root, "parts", "merge", "--meeting", MEETING, "--artifact", "07", "--force")
+        self.assertEqual(merge.returncode, 0, merge.stdout)
+        return payload(merge)["merged"][0], read_json(self.meeting / "analysis" / "07_commitments.json")["commitments"]
+
+    def test_merge_joins_commitment_repeated_in_later_part(self) -> None:
+        base, docs, estimate = self.commitments_in_three_parts()
+        question = {"quote": "Кто в таком случае несёт расходы на восстановление документации?", "timestamp": "00:03:36", "note": "вопрос другой стороны"}
+        docs_summary = {"quote": "запрос документации у прежнего подрядчика — беру на себя", "timestamp": "00:11:13", "note": "подтверждено в итогах"}
+        estimate_summary = {"quote": "Первое: мы присылаем уточнённую смету по трём складам до пятого ноября.", "timestamp": "00:10:42", "note": "подтверждено в итогах"}
+        first = read_json(self.parts_dir / "07_commitments.part-1.json")
+        next(item for item in first["commitments"] if item["id"] == docs["id"])["related_mentions"] = [question]
+        write(self.parts_dir / "07_commitments.part-1.json", first)
+        # аналитик части 3 записал те же обязательства с повтором в итогах; уже известная реплика — без note
+        third = read_json(self.parts_dir / "07_commitments.part-3.json")
+        third["commitments"] += [
+            {**docs, "related_mentions": [{**question, "note": None}, docs_summary]},
+            {**estimate, "related_mentions": [estimate_summary]},
+        ]
+        write(self.parts_dir / "07_commitments.part-3.json", third)
+
+        report, merged = self.merge_07()
+        self.assertEqual(sorted(item["id"] for item in merged), sorted(item["id"] for item in base["commitments"]))
+        by_id = {item["id"]: item for item in merged}
+        self.assertEqual(by_id[docs["id"]]["related_mentions"], [question, docs_summary])
+        self.assertEqual(by_id[estimate["id"]]["related_mentions"], [estimate_summary])
+        self.assertEqual({key: value for key, value in by_id[docs["id"]].items() if key != "related_mentions"}, docs)
+        self.assertEqual(list(by_id[estimate["id"]])[-2:], ["related_mentions", "follow_up"])
+        self.assertEqual((report["renamed_ids"], report["conflicts"], report["possible_duplicates"]), ([], [], []))
+        joined = {entry["id"]: entry for entry in report["joined"]}
+        self.assertEqual((joined[docs["id"]]["parts"], joined[docs["id"]]["related_mentions_added"]), ([1, 3], 1))
+        self.assertEqual((joined[estimate["id"]]["parts"], joined[estimate["id"]]["related_mentions_added"]), ([2, 3], 1))
+        text = "\n".join(merge_lines({"meeting_id": MEETING, "merged": [report], "skipped": [], "warnings": []}))
+        self.assertIn(f"{docs['id']}: части 1, 3 сведены в одну запись, связанных реплик добавлено 1", text)
+        validate = run(self.root, "validate", "--meeting", MEETING)
+        self.assertEqual(validate.returncode, 0, validate.stdout)
+
+    def test_merge_commitment_conflicts_and_possible_duplicates(self) -> None:
+        base, docs, estimate = self.commitments_in_three_parts()
+        third = read_json(self.parts_dir / "07_commitments.part-3.json")
+        # та же запись с другой уверенностью: одна запись, расхождение в conflicts
+        stronger = {**estimate, "id": "c-estimate-part-3", "confidence": "certain" if estimate["confidence"] != "certain" else "probable"}
+        # опора — повтор в итогах, формулировка своя: не сводится, но помечается как возможный дубль
+        first = read_json(self.parts_dir / "07_commitments.part-1.json")
+        next(item for item in first["commitments"] if item["id"] == docs["id"])["related_mentions"] = [{"quote": "запрос документации у прежнего подрядчика — беру на себя", "timestamp": "00:11:13"}]
+        write(self.parts_dir / "07_commitments.part-1.json", first)
+        summary_anchor = {**docs, "id": "c-docs-summary", "what": "запросить документацию у прежнего подрядчика", "source_quote": "запрос документации у прежнего подрядчика — беру на себя", "source_timestamp": "00:11:13"}
+        third["commitments"] += [stronger, summary_anchor]
+        write(self.parts_dir / "07_commitments.part-3.json", third)
+
+        report, merged = self.merge_07()
+        self.assertEqual(len(merged), len(base["commitments"]) + 1)
+        kept = [item for item in merged if item["source_timestamp"] == estimate["source_timestamp"]]
+        self.assertEqual(len(kept), 1)
+        better = CONFIDENCE[stronger["confidence"]] > CONFIDENCE[estimate["confidence"]]
+        self.assertEqual(kept[0]["id"], stronger["id"] if better else estimate["id"])
+        conflict = report["conflicts"][0]
+        self.assertEqual((conflict["parts"], conflict["differs"], conflict["kept_from_part"]), ([2, 3], ["confidence", "id"], 3 if better else 2))
+        self.assertEqual(report["joined"][0]["absorbed_ids"], [estimate["id"] if better else stronger["id"]])
+        self.assertEqual(report["possible_duplicates"], [{"field": "commitments", "ids": [docs["id"], "c-docs-summary"], "parts": [1, 3], "reason": "опора одной записи — связанная реплика другой у того же исполнителя"}])
 
     def test_merge_renames_colliding_ids(self) -> None:
         self.plan(4000)

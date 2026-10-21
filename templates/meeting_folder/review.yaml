@@ -19,13 +19,14 @@ analysis_profile:                  # нет ключа — full; na.py profile s
   mode: "full"                     # full — 11 артефактов | light — только 01, 07, 08 (обязательства и риски)
   source: null                     # user_confirmation
   recorded_at: null
-source_scope:
+source_scope:                      # границы анализа; та же граница — в 01.excluded_source_range {from, to, reason}
   status: "pending"
   analyzed_from: null
   analyzed_until: null
-  excluded_from: null
+  excluded_from: null              # начало исключённого фрагмента (таймкод)
+  excluded_until: null             # конец исключённого фрагмента; null — до конца записи
   exclusion_reason: null
-  source: null
+  source: null                     # user_confirmation
 transcript_quality:
   status: "pending"
   known_issues: []

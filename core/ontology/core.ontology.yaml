@@ -47,7 +47,7 @@ meta:
   unknown_values: [unknown, not_stated, requires_confirmation]
   # Контракты, которым онтология не должна противоречить (зафиксированы).
   contracts:
-    meeting_analysis: "core/contracts/contracts.schema.json"          # x-contract-version 1.0.0, 11 артефактов
+    meeting_analysis: "core/contracts/contracts.schema.json"          # x-contract-version 1.1.0, 11 артефактов
     executive_objects: "core/contracts/executive_contracts.schema.json"
     knowledge_event: "core/contracts/knowledge_event.schema.json"      # event_version 1.0.0
   profile_schema: "core/ontology/profile.schema.json"

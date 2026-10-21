@@ -40,7 +40,7 @@ class StrictQuoteTests(QuoteTestCase):
         code, report = self.validate()
         self.assertEqual(code, 0, report["errors"])
         stats = report["quote_stats"]
-        self.assertEqual((stats["checked"], stats["exact"], stats["normalized"], stats["ellipsis"]), (30, 30, 0, 0))
+        self.assertEqual((stats["checked"], stats["exact"], stats["normalized"], stats["ellipsis"]), (35, 35, 0, 0))
         self.assertEqual((stats["not_found"], stats["spliced"], stats["attribution_mismatched"]), (0, 0, 0))
         self.assertGreaterEqual(stats["attribution_matched"], 15)
         self.assertEqual(stats["timestamp_drift"] + stats["timestamp_other_reply"], 0)
@@ -53,7 +53,7 @@ class StrictQuoteTests(QuoteTestCase):
         self.assertEqual(run(self.root, "report", "--meeting", MEETING).returncode, 0)
         lines = (self.meeting / "report_auto.md").read_text(encoding="utf-8").splitlines()
         self.assertTrue(lines[2].startswith("**Данные:**"), lines[:4])
-        for needle in ("таймкоды есть", "разметка говорящих есть", "карта спикеров подтверждена", "буквально 30", "разбор полный"):
+        for needle in ("таймкоды есть", "разметка говорящих есть", "карта спикеров подтверждена", "буквально 35", "разбор полный"):
             self.assertIn(needle, lines[2])
         self.assertIn("### Качество источника", lines)
 
@@ -70,7 +70,7 @@ class StrictQuoteTests(QuoteTestCase):
         code, report = self.validate()
         self.assertEqual(code, 0, report["errors"])
         self.assertEqual(report["quote_stats"]["normalized"], 3)
-        self.assertEqual(report["quote_stats"]["exact"], 27)
+        self.assertEqual(report["quote_stats"]["exact"], 32)
         flagged = self.check_for(report, "01_extraction.json", "$.key_facts[0].quote")
         self.assertEqual((flagged["level"], flagged["timestamp"], flagged["speaker_labels"]), ("normalized", "00:02:27", ["Speaker 2"]))
 

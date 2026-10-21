@@ -15,7 +15,10 @@ DISTORTED. Общий процент не считается. Методика �
 - исполнитель, ЛПР, владелец → человек ядра: по id, по имени участника из 01 (все слова имени
   из ядра входят в имя), по метке спикера, по транслитерации slug (`p-danilov-…` → Данилов);
 - формулировка → ключевые слова ядра: группы основ слов, каждая группа — хотя бы одна
-  альтернатива; числа сравниваются целиком, слова — по началу.
+  альтернатива; числа сравниваются целиком, слова — по началу;
+- утверждение о согласии в факте или карте решений: утвердительная форма без отрицания, без
+  признаков отсрочки, без описания замены или отмены и не в пересказе чужих слов
+  (`claims_decision_text`).
 
 Модуль намеренно не зависит от validate.py и quote_check.py: чтение и нормализация — свои,
 чтобы оценка не менялась вместе с правилами валидатора.
@@ -36,7 +39,7 @@ from typing import Any
 from .common import NaError, meeting_dir, read_yaml, write_json, write_text
 
 
-EVAL_VERSION = "0.1.0"
+EVAL_VERSION = "0.2.0"
 
 STATUSES = ("FULL", "PARTIAL", "MISSING", "DISTORTED")
 STATUS_RANK = {"FULL": 3, "PARTIAL": 2, "DISTORTED": 1, "MISSING": 0}
@@ -79,6 +82,33 @@ _DEFERRAL_PREFIXES = (
     # будущее время: «примет решение», «согласует с директором» — решения ещё нет
     "примет", "примут", "примем", "решит", "решат", "решим", "утвердит", "утвердят", "согласует", "согласуют", "согласуем",
 )
+
+# Замена и отмена — в любом месте текста: описана переигранная или снятая договорённость.
+# Только прошедшее время и краткие формы («заменена», «пересмотрели», «сняла»): настоящее время
+# («заменяет исходную») и полное причастие «пересмотренный» говорят о новой, действующей версии.
+_REPLACED_RE = re.compile(
+    r"замен(?:ен[аоы]?|енн\w*|ил\w*|а|у|е|ой|ы)"
+    r"|пересмотр(?:ен[аоы]?|ел\w*|а|е|у|ом)?"
+    r"|переигр\w*|устаре\w*|снял\w*|снят\w*|отозван\w*|отозвал[аио]?|аннулир\w*|недейств\w*"
+)
+# Существительное рядом с утвердительной формой — предмет договорённости, а не её замена:
+# «договорились о замене компрессора», «согласован пересмотр цены».
+_REPLACEMENT_NOUNS = {"замена", "замену", "замене", "заменой", "замены", "пересмотр", "пересмотра", "пересмотре", "пересмотру", "пересмотром"}
+_NOUN_LINKS = {"о", "об", "на"}
+# «Прежняя / исходная / первоначальная …» — замена, только если сказано, что она больше не действует.
+_FORMER_PREFIXES = ("прежн", "исходн", "первоначальн")
+_NO_LONGER = (("не", "действ"), ("больше", "не"), ("уже", "не"))
+
+# Пересказ чужих слов: утвердительная форма после глагола речи или просьбы и «что» (двоеточия,
+# открывающей кавычки) — это чужое утверждение, а не вывод разбора: «попросил записать, что сделка
+# закрыта», «заявил: «договорились»». Действует только в пределах предложения и до «но»/«однако».
+_REPORT_VERB_PREFIXES = ("попрос", "просил", "просьб", "заяв", "объяв", "сказал", "утвержда", "назвал", "сообщ", "говор")
+_REPORT_PHRASES = (("со", "слов"), ("по", "словам"), ("по", "заявлению"), ("по", "мнению"), ("по", "версии"))
+# Опровержение снимает утверждение в любом месте того же предложения («запись «штраф согласован»
+# опровергнута»), если перед ним нет «не» («не оспорил»).
+_REFUTATION_PREFIXES = ("опроверг", "оспор", "отриц", "отверг")
+_CLAUSE_BREAKS = {"но", "однако"}
+_ABBREVIATIONS = {"т", "г", "гг", "д", "п", "с", "ч", "тыс", "руб", "млн", "млрд", "коп", "шт", "ул", "стр", "им", "др", "пр", "см", "мин", "тел"}
 
 
 # ---------------------------------------------------------------------------
@@ -134,14 +164,132 @@ def present_alternatives(tokens: list[str], groups: list[list[str]] | None) -> l
     return found
 
 
+def _sentences(text: Any) -> list[str]:
+    """Предложения текста: границы — «!», «?», «;», перевод строки и одиночная точка не после
+    инициала, сокращения («т.», «тыс.», «руб.») и не внутри числа; многоточие предложение не делит."""
+    value = unicodedata.normalize("NFKC", str(text or ""))
+    parts: list[str] = []
+    start = 0
+    for match in re.finditer(r"\.{2,}|[.!?;\n]", value):
+        mark = match.group()
+        if len(mark) > 1:  # многоточие
+            continue
+        if mark == ".":
+            if match.end() < len(value) and value[match.end()].isdigit():
+                continue
+            previous = re.search(r"(\w+)\W*$", value[start:match.start()])
+            word = previous.group(1).lower() if previous else ""
+            if not word.isdigit() and (len(word) <= 1 or word in _ABBREVIATIONS):
+                continue
+        parts.append(value[start:match.end()])
+        start = match.end()
+    parts.append(value[start:])
+    return [part for part in parts if normalize(part)]
+
+
+def _has_pair(tokens: list[str], pair: tuple[str, str]) -> bool:
+    first, second = pair
+    for index in range(len(tokens) - 1):
+        following = tokens[index + 1]
+        if tokens[index] == first and (following in ("не", "нет") if second == "не" else following.startswith(second)):
+            return True
+    return False
+
+
+def _describes_replacement(tokens: list[str]) -> bool:
+    """В тексте сказано, что договорённость заменена, переиграна, снята или больше не действует."""
+    for index, token in enumerate(tokens):
+        if not _REPLACED_RE.fullmatch(token):
+            continue
+        if token in _REPLACEMENT_NOUNS:
+            before = tokens[index - 1] if index > 0 else ""
+            linked = index > 1 and before in _NOUN_LINKS and tokens[index - 2] in _AFFIRMATIVE
+            after = tokens[index + 1] if index + 1 < len(tokens) else ""
+            if before in _AFFIRMATIVE or linked or after in _AFFIRMATIVE:
+                continue
+        return True
+    if any(token.startswith(_FORMER_PREFIXES) for token in tokens):
+        return any(_has_pair(tokens, pair) for pair in _NO_LONGER)
+    return False
+
+
+# Слова, а также двоеточие перед пояснением и открывающая кавычка: они вводят чужие слова, как «что».
+_CLAUSE_TOKEN_RE = re.compile(r"[0-9a-zа-я]+|:(?=\s)|[«„]")
+_INTRODUCERS = {"что", ":", "«", "„"}
+
+
+def _clauses(sentence: str) -> list[list[str]]:
+    value = unicodedata.normalize("NFKC", sentence).lower().replace("ё", "е")
+    clauses: list[list[str]] = [[]]
+    for token in _CLAUSE_TOKEN_RE.findall(value):
+        if token in _CLAUSE_BREAKS:
+            clauses.append([])
+        else:
+            clauses[-1].append(token)
+    return [clause for clause in clauses if clause]
+
+
+def _previous_word(clause: list[str], index: int) -> str:
+    for position in range(index - 1, -1, -1):
+        if clause[position] not in (":", "«", "„"):
+            return clause[position]
+    return ""
+
+
+def _reported(clause: list[str], index: int) -> bool:
+    """Утвердительная форма clause[index] — пересказ чужих слов или опровергнутое утверждение."""
+    speech = False
+    for position in range(index):
+        token = clause[position]
+        if token.startswith(_REPORT_VERB_PREFIXES):
+            speech = True
+        elif token in _INTRODUCERS and speech:
+            return True
+        if any(clause[position:position + 2] == list(phrase) for phrase in _REPORT_PHRASES):
+            return True
+    return any(
+        token.startswith(_REFUTATION_PREFIXES) and _previous_word(clause, position) not in _NEGATIONS
+        for position, token in enumerate(clause)
+    )
+
+
 def claims_decision_text(text: Any) -> bool:
-    """Текст утверждает, что решение состоялось: есть утвердительная форма без «не», нет отсрочки."""
+    """Текст утверждает, что решение состоялось.
+
+    Нужна утвердительная форма («договорились», «согласовано», «принято», «закрыта») без «не» перед
+    ней. Утверждения нет, если:
+
+    - в тексте есть признак отсрочки или незавершённости («отложено», «будет», «предложено»,
+      «открыт», будущее время «примет», «согласует»);
+    - в любом месте текста сказано, что договорённость заменена или снята: «заменена»,
+      «пересмотрели», «переиграно», «устарела», «сняла», «снят», «отозвал», «аннулирована»,
+      «недействительна», а также «прежняя / исходная / первоначальная …» вместе с «не действует»,
+      «больше не», «уже не». Настоящее время («заменяет исходную»), полное причастие
+      («пересмотренный график») и существительное рядом с утвердительной формой («договорились о
+      замене») замены не означают — речь о новой, действующей версии или о предмете договорённости;
+    - утвердительная форма — пересказ чужих слов: в том же предложении и до «но»/«однако» перед ней
+      стоит глагол речи или просьбы (попросил, просьба, заявил, объявил, сказал, утверждает, назвал,
+      сообщил, говорит), а между ними — «что», двоеточие или открывающая кавычка («попросил
+      записать, что сделка закрыта»); или перед ней «со слов», «по словам», «по заявлению», «по
+      мнению», «по версии»;
+    - в том же предложении (до «но»/«однако») утверждение опровергнуто — «опроверг», «оспорил»,
+      «отрицает», «отверг» с любой стороны от утвердительной формы, если перед словом нет «не».
+
+    Маркер пересказа после утвердительной формы («Сделка закрыта — так сказал Чернов») утверждение
+    не снимает: первым стоит вывод разбора.
+    """
     tokens = words(text)
     if any(token.startswith(_DEFERRAL_PREFIXES) for token in tokens):
         return False
-    for index, token in enumerate(tokens):
-        if token in _AFFIRMATIVE and not (index > 0 and tokens[index - 1] in _NEGATIONS):
-            return True
+    if _describes_replacement(tokens):
+        return False
+    for sentence in _sentences(text):
+        for clause in _clauses(sentence):
+            for index, token in enumerate(clause):
+                if token not in _AFFIRMATIVE or _previous_word(clause, index) in _NEGATIONS:
+                    continue
+                if not _reported(clause, index):
+                    return True
     return False
 
 
@@ -1146,7 +1294,11 @@ def evaluate(core: dict[str, Any], transcript_text: str, artifacts: dict[str, An
                 verdict = Verdict("DISTORTED", [f"исход {value!r} вместо одного из {', '.join(item['outcome_any'])}"])
             results.append({**base, "status": verdict.status, "reasons": verdict.reasons, "findings": []})
 
-    # Лишние находки: дубли и устаревшие версии реестровых записей
+    # Лишние находки: дубли и устаревшие версии реестровых записей.
+    # Обязательство — дубль, если опирается на опорную или сопутствующую реплику пункта (повтор в
+    # итогах), называет его предмет и того же исполнителя. Риск — только при опоре на опорную реплику:
+    # сопутствующая реплика одного риска (последствие, ответ владельца) часто служит доказательством
+    # другого риска, и совпадение ключевого слова в описании или мерах дублем его не делает.
     by_item = {item["id"]: item for item in items}
     for item_id, (finding, _, _) in assigned.items():
         item = by_item[item_id]
@@ -1163,7 +1315,8 @@ def evaluate(core: dict[str, Any], transcript_text: str, artifacts: dict[str, An
                 continue
             if item["kind"] == "commitment" and expected_who and not (people.resolve(other.data.get("who")) & expected_who):
                 continue
-            if hits["main"] or hits["related"]:
+            duplicate = hits["main"] if item["kind"] == "risk" else hits["main"] or hits["related"]
+            if duplicate:
                 add_extra(other, "DISTORTED", f"дубль пункта ядра {item_id}: та же договорённость записана повторно", item_id)
             elif hits["superseded"]:
                 add_extra(other, "DISTORTED", f"устаревшая версия пункта ядра {item_id}: опора на переигранную реплику", item_id)

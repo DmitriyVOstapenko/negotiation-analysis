@@ -269,6 +269,7 @@ def create_source(
             "analyzed_from": None,
             "analyzed_until": None,
             "excluded_from": None,
+            "excluded_until": None,  # конец исключённого фрагмента; None — до конца записи
             "exclusion_reason": None,
             "source": None,
         },

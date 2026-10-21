@@ -12,7 +12,9 @@
 говорящих (склейка); говорящий реплики по подтверждённой карте спикеров — не тот, кому
 артефакт приписал цитату; заявленный таймкод дальше допуска и совпадает с началом другой
 реплики. Предупреждения: дрейф таймкода, неподтверждённая карта, неизвестный говорящий,
-якорь обязательства произнёс не исполнитель.
+якорь обязательства произнёс не исполнитель. Связанные реплики обязательства
+(07 related_mentions) и доказательства личности участника (01 participants[].evidence)
+проверяются по транскрипту и таймкоду, но не по атрибуции.
 
 Реплика (сегмент) — строка транскрипта, разобранная source.parse_segments; строка без
 таймкода и метки продолжает предыдущую реплику. Соседние реплики одного говорящего образуют
@@ -41,17 +43,27 @@ TIMESTAMP_TOLERANCE_SEC = 15
 MAX_OCCURRENCES = 500
 
 QUOTE_KEYS = ("quote", "source_quote", "related_quote", "prior_position_quote", "reaction_quote", "evidence_quote")
-# Поля, которыми артефакт приписывает цитату человеку (по контрактам 1.0.0):
+# Поля, которыми артефакт приписывает цитату человеку (по контрактам 1.1.0):
 # used_by — 02 тактики, 03 манипуляции; speaker — 04 аргументы, 05 framing_moments и concessions
-# (обе цитаты уступки — слова того, кто уступил), 06 sentiment_points, 10 позиции карты аргументов;
-# who — 07 исполнитель обязательства. actor — на будущее (в контрактах 1.0.0 нет).
+# (цитата уступки и, если не задан prior_position_speaker, прежняя позиция), 06 sentiment_points,
+# 10 позиции карты аргументов; who — 07 исполнитель обязательства. actor — на будущее (в
+# контрактах 1.1.0 нет).
 # strict: говорящий реплики обязан совпасть с заявленным человеком.
 # soft: по правилам доказательности опорой обязательства может быть реплика другой стороны,
 # принявшей обещание, поэтому расхождение — предупреждение «проверьте», а не ошибка.
 # Не атрибуция: target, to_whom, person_id в 09 (наблюдение о человеке, доказательство может
 # быть чужой репликой), final_decision_maker, proposal_owner, owner, involved_people.
 ATTRIBUTION_KEYS = {"used_by": "strict", "speaker": "strict", "actor": "strict", "who": "soft"}
+# Свой говорящий у отдельной цитаты: прежнюю позицию уступки мог назвать коллега или другая
+# сторона (05 concessions.prior_position_speaker). Поле задано — атрибуция этой цитаты строгая по
+# нему; null или нет поля — по общему полю записи (speaker).
+QUOTE_SPEAKER_KEYS = {"prior_position_quote": "prior_position_speaker"}
+# Вложенные доказательства наследуют атрибуцию записи (04 source_quotes, 10 positions[].evidence).
 NESTED_EVIDENCE_KEYS = ("source_quotes", "evidence")
+# Вложенные цитаты, которые проверяются по транскрипту, но атрибуцию записи не наследуют:
+# 07 related_mentions — предложение, принятие, вопрос или подтверждение другой стороны, прежняя
+# версия обязательства; это чужие реплики, а не слова исполнителя (who).
+UNATTRIBUTED_LIST_KEYS = ("related_mentions",)
 ELLIPSIS_RE = re.compile(r"…|\.{3,}")
 LEVEL_LABELS = {"exact": "буквально", "normalized": "после нормализации", "ellipsis": "с пропуском «…»"}
 
@@ -360,7 +372,12 @@ def _claimed_timestamps(node: dict[str, Any], key: str) -> tuple[str | None, str
 def collect_quotes(filename: str, data: Any) -> list[dict[str, Any]]:
     """Все непустые цитаты файла с заявленным таймкодом и полем атрибуции (если есть)."""
     attributed: dict[int, tuple[str, str, str]] = {}
+    unattributed: set[int] = set()
     for node, _ in walk_dicts(data):
+        for list_key in UNATTRIBUTED_LIST_KEYS:
+            child = node.get(list_key)
+            if isinstance(child, list):
+                unattributed.update(id(element) for element in child if isinstance(element, dict))
         for key, mode in ATTRIBUTION_KEYS.items():
             value = node.get(key)
             if isinstance(value, str) and value.strip():
@@ -378,7 +395,12 @@ def collect_quotes(filename: str, data: Any) -> list[dict[str, Any]]:
             value = node.get(key)
             if isinstance(value, str) and value:
                 start, end = _claimed_timestamps(node, key)
-                items.append({"file": filename, "path": f"{path}.{key}", "quote": value, "claimed_start": start, "claimed_end": end, "attribution": attributed.get(id(node))})
+                attribution = None if id(node) in unattributed else attributed.get(id(node))
+                speaker_key = QUOTE_SPEAKER_KEYS.get(key)
+                own_speaker = node.get(speaker_key) if speaker_key else None
+                if isinstance(own_speaker, str) and own_speaker.strip():
+                    attribution = (speaker_key, own_speaker.strip(), "strict")
+                items.append({"file": filename, "path": f"{path}.{key}", "quote": value, "claimed_start": start, "claimed_end": end, "attribution": attribution})
     return items
 
 
@@ -560,7 +582,8 @@ def check_quotes(transcript: str, items: list[dict[str, Any]], review: dict[str,
                     if mode == "soft":
                         warnings.append(
                             f"якорь обязательства произнёс не исполнитель: {where} — {who}, а реплика {_where(index, best)} → {actual}; "
-                            "проверьте, что исполнитель сам принял обязательство"
+                            "проверьте, что исполнитель сам принял обязательство или опора — реплика принявшей стороны "
+                            "(условие подано исполнителем как предложение)"
                         )
                     elif speakers.confirmed:
                         errors.append(f"атрибуция цитаты не совпадает с картой спикеров: {where} — {who}, а реплика {_where(index, best)} принадлежит: {actual}")

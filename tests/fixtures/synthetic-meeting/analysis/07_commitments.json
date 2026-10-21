@@ -22,6 +22,116 @@
         "actual_completion_date": null,
         "completion_notes": null
       }
+    },
+    {
+      "id": "c-2026-10-28-polaris-api-docs-request",
+      "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "type": "conduct_action",
+      "who": "p-krylova-polaris",
+      "to_whom": "p-danilov-nordtech",
+      "what": "запросить у прежнего подрядчика сохранившуюся документацию по API учётной системы",
+      "deadline": null,
+      "deadline_verbatim": null,
+      "status": "open",
+      "value_rub": null,
+      "source_quote": "Мы запросим у прежнего подрядчика, что у него сохранилось. Я беру это на себя.",
+      "source_timestamp": "00:04:01",
+      "confidence": "certain",
+      "linked_topic": "wms-api-integration",
+      "follow_up": {
+        "reminder_date": null,
+        "reminder_sent": false,
+        "actual_completion_date": null,
+        "completion_notes": null
+      }
+    },
+    {
+      "id": "c-2026-10-28-polaris-zoning",
+      "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "type": "deliver_document",
+      "who": "p-zaytseva-polaris",
+      "to_whom": "p-danilov-nordtech",
+      "what": "передать Нордтеху схему зонирования распределительного склада — условие уточнённой сметы",
+      "deadline": null,
+      "deadline_verbatim": "до пятницы",
+      "status": "open",
+      "value_rub": null,
+      "source_quote": "Схему зонирования мы передадим до пятницы, я проконтролирую логистику.",
+      "source_timestamp": "00:08:32",
+      "confidence": "certain",
+      "linked_topic": "wms-three-warehouses",
+      "follow_up": {
+        "reminder_date": null,
+        "reminder_sent": false,
+        "actual_completion_date": null,
+        "completion_notes": null
+      }
+    },
+    {
+      "id": "c-2026-10-28-polaris-payment-decision",
+      "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "type": "approve_decision",
+      "who": "p-krylova-polaris",
+      "to_whom": "p-danilov-nordtech",
+      "what": "принять решение по схеме оплаты после получения уточнённой сметы",
+      "deadline": "2026-11-10",
+      "deadline_verbatim": "до десятого ноября",
+      "status": "open",
+      "value_rub": null,
+      "source_quote": "Решение по схеме оплаты, соответственно, примем до десятого ноября, после сметы.",
+      "source_timestamp": "00:08:41",
+      "confidence": "certain",
+      "linked_topic": "wms-payment-terms",
+      "follow_up": {
+        "reminder_date": "2026-11-08",
+        "reminder_sent": false,
+        "actual_completion_date": null,
+        "completion_notes": null
+      }
+    },
+    {
+      "id": "c-2026-10-28-nordtech-support-cost",
+      "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "type": "provide_information",
+      "who": "p-danilov-nordtech",
+      "to_whom": "p-zaytseva-polaris",
+      "what": "добавить в уточнённую смету ориентировочную стоимость сопровождения на 12 месяцев отдельной строкой",
+      "deadline": null,
+      "deadline_verbatim": null,
+      "status": "open",
+      "value_rub": null,
+      "source_quote": "Добавим ориентировочную стоимость сопровождения на двенадцать месяцев отдельной строкой.",
+      "source_timestamp": "00:10:22",
+      "confidence": "certain",
+      "linked_topic": "wms-three-warehouses",
+      "follow_up": {
+        "reminder_date": null,
+        "reminder_sent": false,
+        "actual_completion_date": null,
+        "completion_notes": null
+      }
+    },
+    {
+      "id": "c-2026-10-28-nordtech-warranty-terms",
+      "meeting_id": "2026-10-28-polaris-nordtech-wms-terms",
+      "type": "provide_information",
+      "who": "p-danilov-nordtech",
+      "to_whom": "p-krylova-polaris",
+      "what": "подготовить условия гарантии на оборудование к следующей встрече",
+      "deadline": null,
+      "deadline_verbatim": "к следующей встрече",
+      "status": "open",
+      "value_rub": null,
+      "source_quote": "Хорошо, подготовим условия гарантии к следующей встрече.",
+      "source_timestamp": "00:11:56",
+      "confidence": "certain",
+      "linked_topic": "wms-three-warehouses",
+      "follow_up": {
+        "reminder_date": null,
+        "reminder_sent": false,
+        "actual_completion_date": null,
+        "completion_notes": null
+      }
     }
   ],
   "open_questions": [

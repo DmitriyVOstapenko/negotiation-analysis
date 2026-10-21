@@ -7,7 +7,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from run_tests import ANALYSIS_FILES, FIXTURE, MEETING, SPEAKER_MAP, WorkspaceTestCase, payload, read_json, run
+from run_tests import ANALYSIS_FILES, FIXTURE, FIXTURE_COMMITMENTS, MEETING, SPEAKER_MAP, WorkspaceTestCase, payload, read_json, run
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from na_engine.common import read_jsonl  # noqa: E402
@@ -26,10 +26,11 @@ def full_accounting() -> list[dict]:
     return [
         {"ref": "participant:p-krylova-polaris", "fate": "record", "target": {"file": KRYLOVA}, "certainty": "sure"},
         {"ref": "participant:p-danilov-nordtech", "fate": "record", "target": {"file": "knowledge/people/p-danilov-nordtech.md"}, "certainty": "sure"},
-        {"ref": "participant:p-zaytseva-polaris", "fate": "skip", "reason": "Консультативная роль в одной встрече; новых фактов для карточки нет", "certainty": "sure"},
+        {"ref": "participant:p-zaytseva-polaris", "fate": "skip", "reason": "Консультативная роль в одной встрече; её обязательство (схема зонирования) — в реестре обязательств и в карточке темы", "certainty": "sure"},
         {"ref": "organization:org-polaris", "fate": "skip", "reason": "Наша организация: отдельная карточка в базе не ведётся", "certainty": "sure"},
         {"ref": "organization:org-nordtech", "fate": "record", "target": {"file": "knowledge/organizations/org-nordtech.md"}, "certainty": "sure"},
-        {"ref": f"commitment:{COMMITMENT_ID}", "fate": "record", "target": {"registry": "knowledge/commitments/open.jsonl", "id": COMMITMENT_ID}, "certainty": "sure"},
+        # обязательства обеих сторон — каждое своей записью реестра
+        *({"ref": f"commitment:{commitment_id}", "fate": "record", "target": {"registry": "knowledge/commitments/open.jsonl", "id": commitment_id}, "certainty": "sure"} for commitment_id in FIXTURE_COMMITMENTS),
         {"ref": "question:1", "fate": "record", "target": {"file": TOPIC, "fragment": GUARANTEE_LINE}, "certainty": "sure"},
         {"ref": f"risk:{RISK_ID}", "fate": "record", "target": {"registry": "knowledge/risks/active.jsonl", "id": RISK_ID}, "certainty": "sure"},
         {"ref": "decision:1", "fate": "record", "target": {"registry": "knowledge/decisions/register.jsonl", "id": "d-2026-10-28-payment-scheme"}, "certainty": "sure"},
@@ -94,8 +95,9 @@ class AccountingTests(WorkspaceTestCase):
     def test_full_accounting_shows_section_and_applies(self) -> None:
         self.write_proposal(full_accounting())
         result = self.diff()
-        self.assertEqual(result["accounting"]["objects"], 11)
-        self.assertEqual(result["accounting"]["items"], 11)
+        self.assertEqual(result["accounting"]["objects"], 16)  # 3 участника, 2 организации, 6 обязательств, вопрос, риск, решение, полномочие, нерешённое
+        self.assertEqual(result["accounting"]["items"], 16)
+        self.assertEqual(result["accounting"]["unaccounted"], [])
         self.assertEqual(result["pending_decisions"], [])
         text = self.diff_text()
         for needle in ("## Учёт объектов разбора", "### Уверенные — применяются общим подтверждением", "**Записываем**", "**Объединяем**", "**Не переносим**", "почему: Наша организация", "Сомнительных пунктов нет."):
@@ -103,17 +105,21 @@ class AccountingTests(WorkspaceTestCase):
         self.assertNotIn("Учёт не заполнен", text)
         code, applied = self.apply()
         self.assertEqual(code, 0, applied)
-        self.assertEqual(applied["accounting"]["items"], 11)
+        self.assertEqual(applied["accounting"]["items"], 16)
+        self.assertEqual([item["id"] for item in self.registry("commitments/open.jsonl")], FIXTURE_COMMITMENTS)
         self.assertEqual([item["id"] for item in self.registry("risks/active.jsonl")], [RISK_ID])
         history = read_json(self.meeting / "knowledge_apply.json")["history"][-1]
         self.assertTrue(history["accounting"]["present"])
 
     def test_unaccounted_object_blocks_diff_and_apply(self) -> None:
-        accounting = [entry for entry in full_accounting() if entry["ref"] != f"risk:{RISK_ID}"]
+        zoning = "c-2026-10-28-polaris-zoning"  # обязательство нашей стороны — без учёта тоже блокирует
+        accounting = [entry for entry in full_accounting() if entry["ref"] not in (f"risk:{RISK_ID}", f"commitment:{zoning}")]
         self.write_proposal(accounting)
         result = self.diff(expected_code=1)
         self.assertFalse(result["valid"])
         self.assertTrue(any(f"не учтён объект разбора risk:{RISK_ID}" in error for error in result["errors"]))
+        self.assertTrue(any(f"не учтён объект разбора commitment:{zoning}" in error for error in result["errors"]))
+        self.assertEqual(sorted(result["accounting"]["unaccounted"]), sorted([f"commitment:{zoning}", f"risk:{RISK_ID}"]))
         self.assertIn("## Ошибки предусловий (применение заблокировано)", self.diff_text())
         self.decide("decision:1", "accept", expected_code=2)  # вопросы — только по предложению без ошибок
         self.assertFalse((self.meeting / "knowledge_decisions.jsonl").exists())
@@ -180,7 +186,7 @@ class AccountingTests(WorkspaceTestCase):
         code, applied = self.apply()
         self.assertEqual(code, 0, applied)
         self.assertEqual(self.registry("risks/active.jsonl"), [])
-        self.assertEqual([item["id"] for item in self.registry("commitments/open.jsonl")], [COMMITMENT_ID])
+        self.assertEqual([item["id"] for item in self.registry("commitments/open.jsonl")], FIXTURE_COMMITMENTS)
         decisions = read_json(self.meeting / "knowledge_apply.json")["history"][-1]["accounting"]["decisions"]
         self.assertEqual([(item["item"], item["decision"]) for item in decisions], [(f"risk:{RISK_ID}", "reject")])
 
@@ -311,7 +317,7 @@ class AccountingTests(WorkspaceTestCase):
         result = self.diff()
         self.assertTrue(result["valid"], result["errors"])
         self.assertEqual(result["accounting"]["profile"], "light")
-        self.assertEqual(result["accounting"]["objects"], 8)
+        self.assertEqual(result["accounting"]["objects"], 13)
         self.assertFalse(any("09_decision_authority" in warning for warning in result["warnings"]))
         self.assertIn("Профиль разбора: `light`", self.diff_text())
         # объект из артефакта вне профиля не требуется, а ссылка на него — ошибка: его в разборе нет
@@ -332,7 +338,7 @@ class AccountingTests(WorkspaceTestCase):
         accounting.append({"ref": "decision:1", "fate": "record", "target": {"registry": "knowledge/decisions/register.jsonl", "id": "d-2026-10-28-payment-scheme"}, "certainty": "sure"})
         self.write_proposal(accounting)
         result = self.diff()
-        self.assertEqual(result["accounting"]["objects"], 8)
+        self.assertEqual(result["accounting"]["objects"], 13)
         self.assertEqual(result["accounting"]["unaccounted"], [])
         code, applied = self.apply()
         self.assertEqual(code, 0, applied)

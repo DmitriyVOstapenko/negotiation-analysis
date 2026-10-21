@@ -24,7 +24,7 @@ from .common import (
 )
 from .analysis_profile import profile_error, profile_summary
 from .quote_check import QUOTE_KEYS as QUOTE_FIELDS
-from .quote_check import check_quotes, collect_quotes
+from .quote_check import check_quotes, collect_quotes, to_seconds
 from .schema_runtime import load_registry, validate_contract
 
 
@@ -122,6 +122,11 @@ def validate_meeting(meeting_path: Path, registry: dict[str, Any] | None = None)
             errors.append(f"meeting_id mismatch in {filename}: {data.get('meeting_id')!r}")
         if filename == "01_extraction.json" and isinstance(data.get("participants"), list):
             participants = data["participants"]
+        if filename == "01_extraction.json" and isinstance(data.get("excluded_source_range"), dict):
+            excluded = data["excluded_source_range"]
+            start, end = to_seconds(excluded.get("from")), to_seconds(excluded.get("to"))
+            if start is not None and end is not None and end < start:
+                errors.append(f"excluded_source_range: конец {excluded['to']} раньше начала {excluded['from']} (01_extraction.json)")
         quote_items.extend(collect_quotes(filename, data))
         for key, value, json_path in walk(data):
             if key in TIMESTAMP_KEYS and value is not None:
