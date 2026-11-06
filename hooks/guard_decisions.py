@@ -41,7 +41,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _na_hooklib import last_human_input, na_invocations  # noqa: E402
+from _na_hooklib import last_human_input, na_invocations, normalize_tool_event  # noqa: E402
 
 SHELL_TOOL_RE = re.compile(r"(?i)bash|shell|powershell|exec")
 VALUE_OPTIONS = {"--root", "--meeting", "--map", "--decision", "--status", "--item", "--text", "--target", "--file", "--channel",
@@ -222,6 +222,7 @@ def evidence(kind: str, options: dict[str, object], reply_text: str) -> tuple[bo
 def decide(event: dict) -> dict | None:
     if not isinstance(event, dict) or event.get("hook_event_name") not in (None, "PreToolUse"):
         return None
+    event = normalize_tool_event(event)
     tool = event.get("tool_name")
     tool_input = event.get("tool_input")
     if not isinstance(tool, str) or not SHELL_TOOL_RE.search(tool) or not isinstance(tool_input, dict):

@@ -1,0 +1,12 @@
+{
+  "name": "negotiation-analysis",
+  "version": "0.8.0",
+  "description": "Доказательный анализ переговоров, накопительная база, контроль обязательств и подготовка стратегии. Запись в базу — после подтверждения владельца.",
+  "skills": "./skills/",
+  "hooks": "./hooks/codex.json",
+  "interface": {
+    "displayName": "Анализ переговоров",
+    "shortDescription": "Разбор встреч, обязательства и стратегия переговоров",
+    "category": "Productivity"
+  }
+}

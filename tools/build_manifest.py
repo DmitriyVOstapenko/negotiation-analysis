@@ -41,7 +41,10 @@ def manifest_from_zip(path: Path) -> dict:
             if info.is_dir() or info.filename == MANIFEST_FILE:
                 continue
             files[info.filename] = fingerprint(info.filename, archive.read(info))
-    plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    with zipfile.ZipFile(path) as archive:
+        names = archive.namelist()
+        manifest_path = next((name for name in (".codex-plugin/plugin.json", ".claude-plugin/plugin.json") if name in names), None)
+        plugin = json.loads(archive.read(manifest_path)) if manifest_path else {"name": "negotiation-analysis", "version": "unknown"}
     return {
         "name": plugin.get("name"),
         "version": plugin.get("version"),

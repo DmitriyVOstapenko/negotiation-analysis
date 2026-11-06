@@ -15,9 +15,11 @@ import json
 import os
 import platform
 import re
+import shlex
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -149,18 +151,37 @@ def hook_shell() -> str:
     raise OSError("Bash не найден; на Windows установите Git for Windows или задайте CLAUDE_CODE_GIT_BASH_PATH.")
 
 
-def probe_hooks(plugin_root: Path = PLUGIN_ROOT) -> list[dict[str, Any]]:
+def hook_config_path(plugin_root: Path, host: str = "auto") -> Path:
+    """Выбрать явно объявленный Codex-конфиг; старые пакеты используют Claude-конфиг."""
+    if host == "claude":
+        return plugin_root / "hooks" / "hooks.json"
+    manifest = read_json_or_none(plugin_root / ".codex-plugin" / "plugin.json") or {}
+    declared = manifest.get("hooks")
+    if isinstance(declared, str):
+        candidate = (plugin_root / declared).resolve()
+        if not candidate.is_relative_to(plugin_root.resolve()):
+            raise ValueError("Путь конфигурации проверок выходит за каталог плагина")
+        return candidate
+    return plugin_root / "hooks" / "hooks.json"
+
+
+def probe_hooks(plugin_root: Path = PLUGIN_ROOT, host: str = "auto") -> list[dict[str, Any]]:
     """Запустить объявленные обработчики с пустым событием: без записи и сети."""
-    config = read_json_or_none(plugin_root / "hooks" / "hooks.json") or {}
+    config_path = hook_config_path(plugin_root, host)
+    config = read_json_or_none(config_path) or {}
+    codex = host != "claude" and (plugin_root / ".codex-plugin" / "plugin.json").is_file()
     results = []
     for event, groups in (config.get("hooks") or {}).items():
         for group in groups or []:
             for hook in group.get("hooks") or []:
                 if hook.get("type") != "command":
                     continue
-                command = hook.get("command") or ""
+                command = (hook.get("commandWindows") if os.name == "nt" else None) or hook.get("command") or ""
                 try:
-                    if "args" in hook:
+                    if codex:
+                        expanded = command.replace("${PLUGIN_ROOT}", str(plugin_root)).replace("$PLUGIN_ROOT", str(plugin_root))
+                        argv = expanded if os.name == "nt" else shlex.split(expanded)
+                    elif "args" in hook:
                         argv = [command, *hook["args"]]
                         argv = [str(part).replace("${CLAUDE_PLUGIN_ROOT}", str(plugin_root)) for part in argv]
                     else:
@@ -170,10 +191,27 @@ def probe_hooks(plugin_root: Path = PLUGIN_ROOT) -> list[dict[str, Any]]:
                     completed = subprocess.run(
                         argv, input="{}", capture_output=True, text=True, encoding="utf-8",
                         timeout=10, check=False, cwd=plugin_root,
-                        env={**os.environ, "CLAUDE_PLUGIN_ROOT": str(plugin_root), "PYTHONDONTWRITEBYTECODE": "1"},
+                        env={**os.environ, "PLUGIN_ROOT": str(plugin_root), "CLAUDE_PLUGIN_ROOT": str(plugin_root), "PYTHONDONTWRITEBYTECODE": "1", "PYTHONUTF8": "1"},
                     )
-                    results.append({"event": event, "command": command, "works": completed.returncode == 0,
-                                    "detail": (completed.stderr or completed.stdout).strip()[:240]})
+                    works = completed.returncode == 0
+                    detail = (completed.stderr or completed.stdout).strip()[:240]
+                    if works and codex and event == "PreToolUse" and "guard_writes.py" in command:
+                        # Код 0 и тишину может дать заглушка магазина: нужен ответ самого обработчика.
+                        with tempfile.TemporaryDirectory(prefix="na-doctor-") as temporary:
+                            workspace = Path(temporary)
+                            (workspace / ".na-workspace").touch()
+                            payload = {"tool_name": "apply_patch", "cwd": str(workspace),
+                                       "tool_input": {"command": "*** Begin Patch\n*** Add File: knowledge/probe.md\n+probe\n*** End Patch"}}
+                            checked = subprocess.run(argv, input=json.dumps(payload), capture_output=True,
+                                                     text=True, encoding="utf-8", timeout=10, check=False,
+                                                     cwd=plugin_root, env={**os.environ, "PLUGIN_ROOT": str(plugin_root), "PYTHONDONTWRITEBYTECODE": "1", "PYTHONUTF8": "1"})
+                            try:
+                                decision = json.loads(checked.stdout).get("hookSpecificOutput", {}).get("permissionDecision")
+                            except (ValueError, AttributeError):
+                                decision = None
+                            works = checked.returncode == 0 and decision == "deny"
+                            detail = "Синтетическая прямая запись отклонена" if works else "Нет ожидаемого отказа на синтетическую запись; запуск обработчика не подтверждён"
+                    results.append({"event": event, "command": command, "works": works, "detail": detail})
                 except (OSError, subprocess.TimeoutExpired) as exc:
                     results.append({"event": event, "command": command, "works": False, "detail": str(exc)[:240]})
     return results
@@ -193,9 +231,13 @@ def _frontmatter(text: str) -> dict[str, str] | None:
     return result
 
 
-def check_hooks(plugin_root: Path = PLUGIN_ROOT) -> dict[str, Any]:
-    path = plugin_root / "hooks" / "hooks.json"
+def check_hooks(plugin_root: Path = PLUGIN_ROOT, host: str = "auto") -> dict[str, Any]:
+    path = hook_config_path(plugin_root, host)
+    if host == "codex" and not (plugin_root / ".codex-plugin" / "plugin.json").is_file():
+        return {"state": "error", "message": "Манифест Codex отсутствует.", "problems": [".codex-plugin/plugin.json отсутствует"]}
     if not path.is_file():
+        if host != "claude" and (plugin_root / ".codex-plugin" / "plugin.json").is_file():
+            return {"state": "error", "message": f"Объявленная конфигурация отсутствует: {path}", "problems": [str(path)]}
         return {"state": "absent", "message": "Хуков в пакете нет.", "problems": []}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -206,9 +248,9 @@ def check_hooks(plugin_root: Path = PLUGIN_ROOT) -> dict[str, Any]:
     for event, groups in (data.get("hooks") or {}).items():
         for group in groups or []:
             for hook in group.get("hooks") or []:
-                parts = [hook.get("command") or ""] + [str(arg) for arg in hook.get("args") or []]
+                parts = [hook.get("command") or "", hook.get("commandWindows") or ""] + [str(arg) for arg in hook.get("args") or []]
                 for part in parts:
-                    for script in re.findall(r"\$\{?CLAUDE_PLUGIN_ROOT\}?/([^\s\"']+)", part):
+                    for script in re.findall(r"\$\{?(?:CLAUDE_PLUGIN_ROOT|PLUGIN_ROOT)\}?/([^\s\"']+)", part):
                         if not (plugin_root / script).is_file():
                             problems.append(f"{event}: нет файла {script}")
                         else:
@@ -219,7 +261,7 @@ def check_hooks(plugin_root: Path = PLUGIN_ROOT) -> dict[str, Any]:
         if state == "ok"
         else "Хуки описаны с ошибками: " + "; ".join(problems)
     )
-    return {"state": state, "registered": registered, "problems": problems, "message": message}
+    return {"state": state, "config": str(path), "registered": sorted(set(registered)), "problems": problems, "message": message}
 
 
 def check_agents(plugin_root: Path = PLUGIN_ROOT) -> dict[str, Any]:
@@ -309,7 +351,7 @@ def check_workspace(root: Path) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def run_doctor(root: Path, probe: bool = False) -> dict[str, Any]:
+def run_doctor(root: Path, probe: bool = False, host: str = "auto") -> dict[str, Any]:
     plugin_version = None
     plugin_json = read_json_or_none(PLUGIN_ROOT / ".claude-plugin" / "plugin.json")
     if isinstance(plugin_json, dict):
@@ -317,7 +359,7 @@ def run_doctor(root: Path, probe: bool = False) -> dict[str, Any]:
     checks = {
         "python": check_python(),
         "manifest": check_manifest(),
-        "hooks": check_hooks(),
+        "hooks": check_hooks(host=host),
         "agents": check_agents(),
         "workspace": check_workspace(root),
     }
@@ -332,7 +374,7 @@ def run_doctor(root: Path, probe: bool = False) -> dict[str, Any]:
     }
     if probe:
         result["interpreters"] = probe_interpreters()
-        result["hook_probes"] = probe_hooks()
+        result["hook_probes"] = probe_hooks(host=host)
         failed = [item for item in result["hook_probes"] if not item["works"]]
         if checks["hooks"].get("registered") and (failed or not result["hook_probes"]):
             checks["hooks"]["state"] = "error"
@@ -340,7 +382,7 @@ def run_doctor(root: Path, probe: bool = False) -> dict[str, Any]:
             if "hooks" not in result["errors"]:
                 result["errors"].append("hooks")
         elif checks["hooks"].get("registered") and checks["hooks"]["state"] == "ok":
-            checks["hooks"]["message"] += " Запуск объявленной команды проверен на пустом событии; запуск хостом на живом событии требует отдельной проверки."
+            checks["hooks"]["message"] += " Объявленная команда проверена отдельным процессом; запуск хостом на живом событии требует отдельной проверки."
     return result
 
 

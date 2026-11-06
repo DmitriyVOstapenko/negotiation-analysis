@@ -9,6 +9,7 @@ from typing import Any
 def register(sub: Any, root_parent: Any) -> None:
     doctor = sub.add_parser("doctor", help="Самопроверка: Python, паспорт сборки, хуки, агенты, рабочая папка, соседние плагины", parents=[root_parent])
     doctor.add_argument("--probe", action="store_true", help="Проверить запуском, какие команды Python работают (py -3, python3, python)")
+    doctor.add_argument("--host", choices=["auto", "codex", "claude"], default="auto", help="Конфигурация проверок: auto предпочитает Codex, если есть его манифест")
 
 
 def handle(args: Any, root: Path) -> tuple[dict[str, Any], list[str], int] | None:
@@ -16,5 +17,5 @@ def handle(args: Any, root: Path) -> tuple[dict[str, Any], list[str], int] | Non
         return None
     from .doctor import doctor_lines, run_doctor
 
-    result = run_doctor(root, probe=args.probe)
+    result = run_doctor(root, probe=args.probe, host=args.host)
     return result, doctor_lines(result), 1 if result["errors"] else 0

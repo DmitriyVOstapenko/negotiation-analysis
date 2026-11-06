@@ -500,8 +500,10 @@ class NegociarRuTests(unittest.TestCase):
         c400 = next(c for c in casos if c["n"] == 400)
         self.assertNotEqual(c400["translation_status"], "excluded")
         self.assertIn("квадроцикл", c400["body"])
-        skill = (self.SKILL / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("не рекомендуй подкуп", skill)
+        entry = (self.SKILL / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (self.SKILL / "references" / "workflow.md").read_text(encoding="utf-8")
+        self.assertIn("references/workflow.md", entry)
+        self.assertIn("не рекомендуй подкуп", entry + workflow)
 
     def test_attribution_present(self) -> None:
         notice = (REPO / "licenses" / "negociar-ru" / "NOTICE.md").read_text(encoding="utf-8")

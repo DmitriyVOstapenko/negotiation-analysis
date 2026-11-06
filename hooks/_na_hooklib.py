@@ -48,6 +48,30 @@ import os
 import re
 import shlex
 
+
+def normalize_tool_event(event: dict) -> dict:
+    """Одна форма вызова: Claude command и Codex cmd / raw apply_patch.
+
+    Корень команды Codex может отличаться от cwd сессии (workdir).
+    Исходный объект не меняется; неизвестные формы остаются без решения.
+    """
+    normalized = dict(event)
+    name = event.get("tool_name")
+    if isinstance(name, str):
+        normalized["tool_name"] = name.rsplit(".", 1)[-1]
+    data = event.get("tool_input")
+    if isinstance(data, str) and normalized.get("tool_name") == "apply_patch":
+        data = {"patch": data}
+    if isinstance(data, dict):
+        data = dict(data)
+        if not isinstance(data.get("command"), str) and isinstance(data.get("cmd"), str):
+            data["command"] = data["cmd"]
+        if isinstance(data.get("workdir"), str) and data["workdir"].strip():
+            normalized["cwd"] = data["workdir"]
+        normalized["tool_input"] = data
+    return normalized
+
+
 # ---------------------------------------------------------------------------
 # Команда оболочки → цели записи
 # ---------------------------------------------------------------------------
@@ -523,6 +547,19 @@ def iter_transcript_messages(path: str):
                 yield number, entry, message
                 continue
             payload = entry.get("payload")
+            if isinstance(payload, dict) and payload.get("type") == "function_call":
+                arguments = payload.get("arguments")
+                if isinstance(arguments, str):
+                    try:
+                        arguments = json.loads(arguments)
+                    except ValueError:
+                        arguments = {}
+                call = normalize_tool_event({"tool_name": payload.get("name"), "tool_input": arguments})
+                yield number, entry, {"role": "assistant", "content": [{
+                    "type": "tool_use", "id": payload.get("call_id"),
+                    "name": call.get("tool_name"), "input": call.get("tool_input"),
+                }]}
+                continue
             if isinstance(payload, dict) and payload.get("role") and payload.get("type", "message") == "message":
                 yield number, entry, {"role": payload["role"], "content": payload.get("content")}
                 continue
@@ -556,7 +593,7 @@ def last_human_input(transcript_path: str, is_show=None) -> dict | None:
                 if block.get("name") == "AskUserQuestion" and block.get("id"):
                     asked[block["id"]] = number
                 tool_input = block.get("input") if isinstance(block.get("input"), dict) else {}
-                command = tool_input.get("command")
+                command = tool_input.get("command", tool_input.get("cmd"))
                 if is_show is not None and isinstance(command, str) and is_show(command):
                     shown_index = number
         elif role == "user":

@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/guard_writes.py\"",
+            "commandWindows": "python \"${PLUGIN_ROOT}/hooks/guard_writes.py\"",
+            "timeout": 10,
+            "statusMessage": "Проверка записи в базу переговоров"
+          }
+        ]
+      }
+    ]
+  }
+}

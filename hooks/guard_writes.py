@@ -49,7 +49,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _na_hooklib import looks_like_patch, patch_targets, shell_targets  # noqa: E402
+from _na_hooklib import looks_like_patch, normalize_tool_event, patch_targets, shell_targets  # noqa: E402
 
 FILE_TOOLS = {"Write": "write", "Edit": "modify", "MultiEdit": "modify", "NotebookEdit": "modify"}
 PATH_KEYS = ("file_path", "notebook_path", "path")
@@ -122,6 +122,7 @@ def _absolute(value: str, event: dict) -> str:
 
 def targets(event: dict) -> tuple[list[tuple[str, str]], str]:
     """Цели записи вызова: [(абсолютный путь, kind)], способ записи для сообщения."""
+    event = normalize_tool_event(event)
     tool = event.get("tool_name")
     tool_input = event.get("tool_input")
     if not isinstance(tool, str) or not isinstance(tool_input, dict):
@@ -138,7 +139,11 @@ def targets(event: dict) -> tuple[list[tuple[str, str]], str]:
         return (patch_targets(patch, cwd) if patch else []), "заплатка apply_patch"
     command = tool_input.get("command")
     if SHELL_TOOL_RE.search(tool) and isinstance(command, str):
-        return shell_targets(command, cwd, powershell="powershell" in tool.lower()), "команда оболочки"
+        shell = str(tool_input.get("shell", "")).lower()
+        powershell = "powershell" in tool.lower() or "powershell" in shell or "pwsh" in shell
+        if tool == "exec_command" and not shell and os.name == "nt":
+            powershell = True
+        return shell_targets(command, cwd, powershell=powershell), "команда оболочки"
     return [], ""
 
 
