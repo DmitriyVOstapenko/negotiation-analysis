@@ -130,7 +130,18 @@ def _newlines_to_separators(text: str) -> str:
     return "".join(out)
 
 
+# Нативные абсолютные пути Windows распознаются до POSIX-токенизации: иначе
+# C:\folder превращается в C:folder. Прочие обратные косые (POSIX-экранирование,
+# код Python и относительные пути) остаются под прежними правилами shlex.
+WINDOWS_PATH_RE = re.compile(
+    r'"(?P<double>(?:[A-Za-z]:\\|\\\\[\w.-]+\\)[^"\r\n]*)"'
+    r"|'(?P<single>(?:[A-Za-z]:\\|\\\\[\w.-]+\\)[^'\r\n]*)'"
+    r"|(?P<bare>(?<![\w\\/])(?:[A-Za-z]:\\|\\\\[\w.-]+\\)[^\s'\";|&<>()]*)"
+)
+
+
 def tokenize(text: str) -> list[str]:
+    text = WINDOWS_PATH_RE.sub(lambda match: match.group(0).replace("\\", "/"), text)
     lexer = shlex.shlex(_newlines_to_separators(text), posix=True, punctuation_chars=";&|<>()")
     lexer.whitespace_split = True
     return list(lexer)

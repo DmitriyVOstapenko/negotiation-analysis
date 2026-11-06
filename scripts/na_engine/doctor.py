@@ -15,6 +15,7 @@ import json
 import os
 import platform
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -127,6 +128,55 @@ def probe_interpreters() -> list[dict[str, Any]]:
 # ---------------------------------------------------------------------------
 # Хуки и агенты
 # ---------------------------------------------------------------------------
+
+
+def hook_shell() -> str:
+    """Bash для пробы того же загрузчика: на Windows — Git Bash, не WSL."""
+    candidates = [os.environ.get("CLAUDE_CODE_GIT_BASH_PATH", "")]
+    if os.name == "nt":
+        git = shutil.which("git")
+        if git:
+            candidates.append(str(Path(git).resolve().parents[1] / "bin" / "bash.exe"))
+        for variable in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA"):
+            base = os.environ.get(variable)
+            if base:
+                candidates.append(str(Path(base) / "Git" / "bin" / "bash.exe"))
+    else:
+        candidates.append(shutil.which("bash") or "")
+    for candidate in candidates:
+        if candidate and Path(candidate).is_file():
+            return candidate
+    raise OSError("Bash не найден; на Windows установите Git for Windows или задайте CLAUDE_CODE_GIT_BASH_PATH.")
+
+
+def probe_hooks(plugin_root: Path = PLUGIN_ROOT) -> list[dict[str, Any]]:
+    """Запустить объявленные обработчики с пустым событием: без записи и сети."""
+    config = read_json_or_none(plugin_root / "hooks" / "hooks.json") or {}
+    results = []
+    for event, groups in (config.get("hooks") or {}).items():
+        for group in groups or []:
+            for hook in group.get("hooks") or []:
+                if hook.get("type") != "command":
+                    continue
+                command = hook.get("command") or ""
+                try:
+                    if "args" in hook:
+                        argv = [command, *hook["args"]]
+                        argv = [str(part).replace("${CLAUDE_PLUGIN_ROOT}", str(plugin_root)) for part in argv]
+                    else:
+                        if hook.get("shell", "bash") != "bash":
+                            raise OSError("Проба поддерживает shell=bash и обработчики с args.")
+                        argv = [hook_shell(), "-c", command]
+                    completed = subprocess.run(
+                        argv, input="{}", capture_output=True, text=True, encoding="utf-8",
+                        timeout=10, check=False, cwd=plugin_root,
+                        env={**os.environ, "CLAUDE_PLUGIN_ROOT": str(plugin_root), "PYTHONDONTWRITEBYTECODE": "1"},
+                    )
+                    results.append({"event": event, "command": command, "works": completed.returncode == 0,
+                                    "detail": (completed.stderr or completed.stdout).strip()[:240]})
+                except (OSError, subprocess.TimeoutExpired) as exc:
+                    results.append({"event": event, "command": command, "works": False, "detail": str(exc)[:240]})
+    return results
 
 
 def _frontmatter(text: str) -> dict[str, str] | None:
@@ -282,16 +332,15 @@ def run_doctor(root: Path, probe: bool = False) -> dict[str, Any]:
     }
     if probe:
         result["interpreters"] = probe_interpreters()
-        working = {item["command"] for item in result["interpreters"] if item["works"]}
-        if checks["hooks"].get("registered") and "python3" not in working:
+        result["hook_probes"] = probe_hooks()
+        failed = [item for item in result["hook_probes"] if not item["works"]]
+        if checks["hooks"].get("registered") and (failed or not result["hook_probes"]):
             checks["hooks"]["state"] = "error"
-            checks["hooks"]["message"] = (
-                "Хуки вызываются командой python3, а она не запускает Python 3.10+ — защита базы и проверка решений "
-                "владельца не работают. Установите Python так, чтобы работала команда python3 (на Windows — "
-                "установщик python.org с добавлением в PATH или псевдоним python3)."
-            )
+            checks["hooks"]["message"] = "Объявленный обработчик защиты не запускается: " + "; ".join(item["detail"] for item in failed)
             if "hooks" not in result["errors"]:
                 result["errors"].append("hooks")
+        elif checks["hooks"].get("registered") and checks["hooks"]["state"] == "ok":
+            checks["hooks"]["message"] += " Запуск объявленной команды проверен на пустом событии; запуск хостом на живом событии требует отдельной проверки."
     return result
 
 

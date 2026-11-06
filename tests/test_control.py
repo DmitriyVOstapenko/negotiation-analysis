@@ -209,12 +209,13 @@ class WorkspaceSchemaTests(ControlAreaTestCase):
         self.assertIsNone(document["created_at"])
         self.assertEqual([item["id"] for item in document["migrations_applied"]], ["0001-record-schema-version", "0002-name-variant-fields"])
         for card in cards:
-            old_lines = before[card].decode("utf-8").split("\n")
-            new_lines = (self.root / card).read_text(encoding="utf-8").split("\n")
+            new_bytes = (self.root / card).read_bytes()
+            new_lines = new_bytes.decode("utf-8").splitlines()
             closing = new_lines.index("---", 1)
             self.assertTrue(any(line.startswith("speech_variants: []") for line in new_lines[1:closing]), card)
             self.assertTrue(any(line.startswith("asr_variants: []") for line in new_lines[1:closing]), card)
-            self.assertEqual([line for line in new_lines if not line.startswith(("speech_variants:", "asr_variants:"))], old_lines, f"{card}: содержание и строки (m) не тронуты")
+            retained = b"".join(line for line in new_bytes.splitlines(keepends=True) if not line.startswith((b"speech_variants:", b"asr_variants:")))
+            self.assertEqual(retained, before[card], f"{card}: кроме вставленных полей все байты, окончания строк и пометки (m) сохранены")
         self.assertIn("(m) Предпочитает получать смету до внутреннего бюджетного комитета.", (self.root / cards[0]).read_text(encoding="utf-8"))
         after = snapshot(self.root)
         untouched = [path for path in before if path not in cards]

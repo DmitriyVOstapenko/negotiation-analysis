@@ -71,7 +71,9 @@
 /plugin install negotiation-analysis@negotiation-analysis-marketplace
 ```
 
-Требуется Python 3.10+ в `PATH` (`python3`). Внешних зависимостей нет.
+Требуется Python 3.10+ в `PATH` (`python3`, `python` или `py -3`) и Bash для запуска защитных проверок.
+На Windows используется Git Bash из Git for Windows. Загрузчик автоматически выбирает работающий
+Python, включая случай, когда `python3` ведёт в Microsoft Store. Внешних библиотек Python нет.
 
 ### Cowork / проекты claude.ai
 

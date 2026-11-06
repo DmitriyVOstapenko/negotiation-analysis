@@ -382,9 +382,13 @@ class PluginComponentsTests(unittest.TestCase):
             self.assertTrue({"Write", "Edit", "NotebookEdit", "Bash", "apply_patch"} <= tokens)
             for handler in group["hooks"]:
                 self.assertEqual(handler["type"], "command")
-                script = handler["args"][0]
-                self.assertTrue(script.startswith("${CLAUDE_PLUGIN_ROOT}/"))
-                self.assertTrue((REPO / script.replace("${CLAUDE_PLUGIN_ROOT}/", "")).is_file())
+                self.assertEqual(handler.get("shell"), "bash")
+                self.assertNotIn("args", handler)
+                scripts = re.findall(r'\$\{CLAUDE_PLUGIN_ROOT\}/([^"\s]+)', handler["command"])
+                self.assertEqual(scripts, ["hooks/run-python.sh", "hooks/guard_writes.py"])
+                for script in scripts:
+                    self.assertTrue((REPO / script).is_file())
+                self.assertNotIn(b"\r", (REPO / "hooks/run-python.sh").read_bytes())
                 self.assertLessEqual(handler.get("timeout", 600), 30)
         py_compile.compile(str(HOOK), doraise=True)
 
