@@ -32,6 +32,7 @@ from .common import (
 )
 from .control_center import ontology_version, run_control_center
 from .followup import run_followup
+from .galiev_review import CORPUS_FILES, REVIEW_FILE, check_review, report_errors
 from .knowledge import DIFF_FILE, PROPOSAL_FILE, RECEIPT_FILE, refresh_index
 from .ledger import project_ledger, sync_ledger, validate_projection
 from .report import run_report
@@ -68,9 +69,11 @@ def input_fingerprints(root: Path, meeting_path: Path) -> list[dict[str, Any]]:
     items = [fingerprint(meeting_path / name, relative(meeting_path / name, root)) for name in SOURCE_FILES]
     items += [fingerprint(meeting_path / name, relative(meeting_path / name, root)) for name in OPTIONAL_SOURCE_FILES if (meeting_path / name).is_file()]
     items += [fingerprint(meeting_path / "analysis" / name, relative(meeting_path / "analysis" / name, root)) for name in ANALYSIS_FILES]
+    items.append(fingerprint(meeting_path / "analysis" / REVIEW_FILE, relative(meeting_path / "analysis" / REVIEW_FILE, root)))
     items.append(fingerprint(meeting_path / PROPOSAL_FILE, relative(meeting_path / PROPOSAL_FILE, root)))
     items += [fingerprint(root / name, name) for name in KNOWLEDGE_INPUTS]
     items += [fingerprint(path, "plugin:" + relative(path, PLUGIN_ROOT)) for path in ENGINE_INPUTS]
+    items += [fingerprint(path, "plugin:" + relative(path, PLUGIN_ROOT)) for path in CORPUS_FILES]
     return items
 
 
@@ -91,6 +94,7 @@ def knowledge_state(meeting_path: Path) -> tuple[bool, str]:
         return False, "knowledge_proposal.json отсутствует: этап обновления базы не начат"
     proposal_sha = sha256_file(proposal_path)
     receipt = read_json_or_none(meeting_path / RECEIPT_FILE) or {}
+
     if proposal_sha in receipt.get("applied_proposals", []):
         return True, f"предложение {proposal_sha[:12]} применено по подтверждению пользователя"
     if diff_exists:
@@ -118,6 +122,11 @@ def build_manifest(root: Path, meeting_path: Path) -> dict[str, Any]:
     knowledge_done, knowledge_details = knowledge_state(meeting_path)
     speakers = gate["review"].get("speaker_mapping") if isinstance(gate["review"].get("speaker_mapping"), dict) else {}
     receipt = read_json_or_none(meeting_path / RECEIPT_FILE) or {}
+    methodology = check_review(meeting_path)
+    final_path = meeting_path / "report.md"
+    final_errors = report_errors(meeting_path, final_path.read_text(encoding="utf-8-sig")) if final_path.is_file() else []
+    auto_path = meeting_path / "report_auto.md"
+    auto_errors = report_errors(meeting_path, auto_path.read_text(encoding="utf-8-sig")) if auto_path.is_file() else []
 
     stages = [
         stage("sources_ready", all(source_state.values()), f"исходники: {sum(source_state.values())}/{len(source_state)}"),
@@ -127,16 +136,22 @@ def build_manifest(root: Path, meeting_path: Path) -> dict[str, Any]:
               + (f"; не выполняются по профилю: {len(profile['skipped_by_profile'])}" if profile["skipped_by_profile"] else "") + ")"),
         stage("schema_validated", validation.get("schema_valid") is True, f"JSON Schema {validation.get('schema_version') or contract_version()}: {'пройдена' if validation.get('schema_valid') is True else 'не пройдена'}"),
         stage("quotes_validated", validation.get("valid") is True, f"цитат проверено: {validation.get('checked_quotes', 0)}{quote_levels}; ошибок: {len(validation.get('errors', []))}"),
+        stage("galiev_review_validated", methodology["valid"],
+              "; ".join(methodology["errors"]) if methodology["errors"] else
+              ("разбор по методике Арти Галиева проверен: ссылки, участники и цитаты" if methodology["required"] else "не требуется для лёгкого профиля или прежней встречи"),
+              blocking=methodology["required"]),
         stage("auto_report_built", (meeting_path / "report_auto.md").is_file(), "report_auto.md создан" if (meeting_path / "report_auto.md").is_file() else "report_auto.md отсутствует"),
-        stage("auto_report_validated", report_validation.get("valid") is True, f"проверка отчёта: {'пройдена' if report_validation.get('valid') is True else 'не пройдена'}"),
-        stage("human_report_ready", (meeting_path / "report.md").is_file(), "финальный report.md присутствует" if (meeting_path / "report.md").is_file() else "report.md отсутствует"),
+        stage("auto_report_validated", report_validation.get("valid") is True and not auto_errors,
+              "; ".join(auto_errors) if auto_errors else f"проверка отчёта: {'пройдена' if report_validation.get('valid') is True else 'не пройдена'}"),
+        stage("human_report_ready", final_path.is_file() and not final_errors,
+              "; ".join(final_errors) if final_errors else ("финальный report.md присутствует" if final_path.is_file() else "report.md отсутствует")),
         stage("follow_up_prepared", follow_up_ready, "follow-up пакет подготовлен, статус draft_not_sent" if follow_up_ready else "follow-up комплект неполон"),
         stage("knowledge_applied", knowledge_done, knowledge_details),
     ]
     ready = all(item["status"] == "completed" for item in stages if item["blocking"])
     first_pending = next((item["id"] for item in stages if item["status"] != "completed" and item["blocking"]), None)
     inputs = input_fingerprints(root, meeting_path)
-    artifacts = [fingerprint(meeting_path / name, relative(meeting_path / name, root)) for name in ("report.md", "report_auto.md", DIFF_FILE, RECEIPT_FILE, *FOLLOW_UP_FILES, "analysis/validation_report.json", "analysis/report_auto_validation.json")]
+    artifacts = [fingerprint(meeting_path / name, relative(meeting_path / name, root)) for name in ("report.md", "report_auto.md", DIFF_FILE, RECEIPT_FILE, *FOLLOW_UP_FILES, "analysis/validation_report.json", "analysis/report_auto_validation.json", "analysis/" + REVIEW_FILE)]
     return {
         "run_manifest_version": RUN_MANIFEST_VERSION,
         "engine_version": ENGINE_VERSION,
@@ -182,7 +197,11 @@ def refresh_meeting(root: Path, meeting_path: Path, force: bool = False) -> dict
     current_digest = combined_digest(input_fingerprints(root, meeting_path))
     previous = read_json_or_none(manifest_path)
     required_outputs = [meeting_path / "report_auto.md", meeting_path / "analysis/validation_report.json", meeting_path / "analysis/report_auto_validation.json", *(meeting_path / name for name in FOLLOW_UP_FILES)]
-    if not force and previous and previous.get("pipeline_input_digest") == current_digest and previous.get("overall_status") == "ready" and all(path.is_file() for path in required_outputs):
+    final_path = meeting_path / "report.md"
+    final_ready = final_path.is_file() and not report_errors(meeting_path, final_path.read_text(encoding="utf-8-sig"))
+    auto_path = meeting_path / "report_auto.md"
+    auto_ready = auto_path.is_file() and not report_errors(meeting_path, auto_path.read_text(encoding="utf-8-sig"))
+    if not force and previous and previous.get("pipeline_input_digest") == current_digest and previous.get("overall_status") == "ready" and final_ready and auto_ready and all(path.is_file() for path in required_outputs):
         return {"meeting_id": meeting_path.name, "status": "reused", "reason": "входные fingerprint не изменились", "overall_status": "ready", "resume_from": None, "failed_actions": 0, "actions": []}
     actions: list[dict[str, Any]] = []
     if all((meeting_path / "analysis" / name).is_file() for name in required_analysis_files(meeting_path)):

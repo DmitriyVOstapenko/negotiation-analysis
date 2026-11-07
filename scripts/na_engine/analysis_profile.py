@@ -107,6 +107,8 @@ def set_profile(root: Path, meeting_id: str, profile: str) -> dict[str, Any]:
     previous = meeting_profile(path)
     review = read_yaml(review_path)
     review["analysis_profile"] = {"mode": profile, "source": "user_confirmation", "recorded_at": now_iso()}
+    if profile == "full":
+        review["galiev_review"] = {"required": True, "source": "plugin_default", "policy_version": 1}
     write_yaml(review_path, review, header=REVIEW_HEADER)
     summary = profile_summary(path)
     analysis = path / "analysis"

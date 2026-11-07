@@ -142,6 +142,9 @@ def data_line(meeting_path: Path, meta: dict[str, Any], gate: dict[str, Any], va
     else:
         quotes = "строгая проверка цитат не выполнялась (na.py validate)"
     scope = "разбор полный (11 артефактов)" if profile["profile"] == "full" else f"{PROFILE_LABELS['light']}: {', '.join(name[:2] for name in profile['required'])}"
+    method_policy = gate["review"].get("galiev_review") or {}
+    if profile["profile"] == "full" and isinstance(method_policy, dict) and method_policy.get("required") is True:
+        scope = "разбор полный (11 основных артефактов + разбор по методике Арти Галиева)"
     missing = []
     if not quality["has_timestamps"]:
         missing.append("таймкодов")
@@ -494,7 +497,13 @@ def build_report(root: Path, meeting_path: Path) -> str:
     if exclusion:
         lines.append(exclusion)
     lines.append("")
-    lines += one_screen(data, names, commitments, risks)
+    screen = one_screen(data, names, commitments, risks)
+    from .galiev_review import check_review
+
+    methodology = check_review(meeting_path)
+    if methodology["required"] and methodology["valid"]:
+        screen[-2:-2] = ["### Вывод по методике Арти Галиева", "", methodology["data"]["summary"], ""]
+    lines += screen
 
     lines += ["## Результат", "", extraction.get("outcome_summary", "Результат не сформирован."), "", "## Участники", "", "| Участник | Роль | Сторона | Источник идентификации | Confidence |", "|---|---|---|---|---|"]
     for p in extraction.get("participants", []):
@@ -633,7 +642,19 @@ def build_report(root: Path, meeting_path: Path) -> str:
 def closing_sections(meeting_path: Path, names: dict[str, str], risks: list[dict[str, Any]], effectiveness: dict[str, Any] | None, validation: dict[str, Any] | None, profile: dict[str, Any]) -> list[str]:
     """Риски, протокол (full) или «не выполнялось по профилю» (light), аудио, контроль качества."""
     # все риски встречи (проверка полноты ищет каждый здесь); сначала high; ниже probable — с пометкой «требует проверки»
-    lines = ["", "## Риски: актуальное состояние", "", "| Важность | Уверенность | Статус | Риск | Владелец | Срок | Действие | Источник записи |", "|---|---|---|---|---|---|---|---|"]
+    from .galiev_review import check_review, render_review
+
+    lines: list[str] = []
+    method_review = check_review(meeting_path)
+    if method_review["required"]:
+        if method_review["valid"]:
+            artifact = read_json(meeting_path / "analysis" / "12_galiev_review.json")
+            lines += ["", render_review(artifact, names), ""]
+        else:
+            lines += ["", "## Разбор по методике Арти Галиева", "",
+                      "Разбор не завершён. Полный отчёт пока не готов.", ""]
+            lines.extend(f"- {error}" for error in method_review["errors"])
+    lines += ["", "## Риски: актуальное состояние", "", "| Важность | Уверенность | Статус | Риск | Владелец | Срок | Действие | Источник записи |", "|---|---|---|---|---|---|---|---|"]
     for r in sorted(risks, key=risk_order):
         mitigation = r.get("mitigation") or {}
         origin = "база знаний" if r.get("record_origin") == "knowledge" else "анализ (в базу не внесено)"
@@ -675,6 +696,8 @@ def closing_sections(meeting_path: Path, names: dict[str, str], risks: list[dict
 
 
 def validate_report(root: Path, meeting_path: Path, report_name: str = "report_auto.md") -> dict[str, Any]:
+    from .galiev_review import report_errors
+
     report_path = meeting_path / report_name
     report = report_path.read_text(encoding="utf-8-sig") if report_path.is_file() else ""
     errors: list[str] = []
@@ -682,6 +705,7 @@ def validate_report(root: Path, meeting_path: Path, report_name: str = "report_a
         errors.append(f"missing or empty report: {report_name}")
     headings = LIGHT_HEADINGS if profile_summary(meeting_path)["profile"] == "light" else REQUIRED_HEADINGS
     errors.extend(f"missing heading: {h}" for h in headings if h not in report)
+    errors.extend(report_errors(meeting_path, report))
     extraction = read_json_or_none(meeting_path / "analysis" / "01_extraction.json") or {}
     errors.extend(
         f"participant absent from report: {p['full_name']}"

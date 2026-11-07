@@ -2,6 +2,10 @@
 description: "Состав папки встречи negotiations/<meeting_id>/: какие файлы создаёт движок, какие пишет LLM-этап, какие — человек."
 ---
 
+| Параметр | Значение |
+|---|---|
+| Назначение | Состав папки встречи и происхождение её файлов. |
+
 # Папка встречи
 
 Папку создаёт `na.py source create`; вручную копировать шаблон не нужно.
@@ -18,6 +22,7 @@ negotiations/<meeting_id>/
 ├── review.yaml                 шлюз согласия, карта спикеров, границы анализа      (решения пользователя)
 ├── analysis/
 │   ├── 01_extraction.json … 11_meeting_effectiveness.json   11 артефактов         (LLM-этап)
+│   ├── 12_galiev_review.json             методический разбор полного профиля     (LLM-этап)
 │   ├── validation_report.json           схема + буквальные цитаты                (na.py validate)
 │   ├── report_auto_validation.json      полнота автоотчёта                       (na.py report)
 │   └── audio_acoustic_metrics.json      опциональный акустический слой           (na.py audio)

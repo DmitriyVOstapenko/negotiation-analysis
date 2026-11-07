@@ -374,9 +374,7 @@ class SpeakerMapStatusTests(WorkspaceTestCase):
         self.assertEqual(run(self.root, "speakers", "set", "--meeting", MEETING, "--map", "Speaker 1=Анна Крылова;Speaker 2=Олег Данилов").returncode, 0)
         review = read_yaml(self.meeting / "review.yaml")
         self.assertEqual(review["speaker_mapping"]["status"], "confirmed")  # движок ставит confirmed и на частичную карту
-        for name in ("01_extraction.json", "02_tactics.json", "03_manipulations.json", "04_arguments.json", "05_power.json", "06_emotions.json",
-                     "07_commitments.json", "08_risks.json", "09_decision_authority.json", "10_argument_map.json", "11_meeting_effectiveness.json"):
-            (self.meeting / "analysis" / name).write_bytes((FIXTURE / "analysis" / name).read_bytes())
+        self.copy_analysis()
         run(self.root, "validate", "--meeting", MEETING)
         self.assertEqual(run(self.root, "report", "--meeting", MEETING).returncode, 0)
         text = (self.meeting / "report_auto.md").read_text(encoding="utf-8")

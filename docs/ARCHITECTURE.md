@@ -1,6 +1,6 @@
 | Параметр | Значение |
 |----------|----------|
-| Версия | 0.8.0 |
+| Версия | 0.9.0 |
 | Статус | active |
 | Owner | Дмитрий Остапенко |
 | Создан | 2026-10-18 |
@@ -29,7 +29,7 @@
 | Evidence core | `core/contracts/`, `scripts/na.py validate` | SourcePacket, SHA-256, цитаты, таймкоды, классы утверждений, уверенность, строгая проверка цитат (буквально / после нормализации / с «…» по частям; склейки реплик, атрибуция говорящего, близость таймкода) |
 | Ontology and contracts | `core/ontology/core.ontology.yaml`, `core/contracts/*.json`, `core/ontology/profile.schema.json` | Единый словарь сущностей и 11 исполняемых контрактов анализа; профили добавляют роли и словарь организации, не меняя смысла сущностей |
 | Ingestion | `scripts/na.py source …`, `skills/negotiation-system/references/privacy-gate.md` | Шлюз согласия, регистрация источника, дедупликация, карта спикеров |
-| Analysis workflows | `skills/meeting-analysis/`, `scripts/na.py validate/report/followup` | 8 артефактов + 3 производных (лёгкий профиль — 01/07/08), отчёт с одним экраном, follow-up `draft_not_sent`; `na.py eval` — оценка разбора по несущему ядру |
+| Analysis workflows | `skills/meeting-analysis/`, `scripts/na.py validate/report/followup` | 8 артефактов + 3 производных (лёгкий профиль — 01/07/08); в полном — отдельный `12_galiev_review.json`, отчёт с одним экраном, follow-up `draft_not_sent`; `na.py eval` — оценка разбора по несущему ядру |
 | Memory and projections | `skills/knowledge-update/`, `scripts/na.py knowledge …/refresh-all` | proposal → diff → подтверждение → запись; append-only журнал событий; пересобираемые `system/` |
 | Executive workflows | `skills/control-center/`, `skills/executive-briefing/`, `na.py counterparty` | Контрольный центр с зависшими вопросами, очередь решений, брифинг, повестка, обзор контрагента за период, обзоры, board pack, поддержка решения |
 | Strategic advisory | `skills/conversation-strategy/`, `skills/negociar-ru/` | Стратегия по фактам базы; метод — встроенный канон Negociar-RU с собственным provenance |
@@ -56,12 +56,38 @@
 ```
 источник → шлюз согласия → SourcePacket (sha256, сегменты, спикеры)
   → review.yaml (карта спикеров, границы) → 11 JSON по контрактам (лёгкий профиль — 01/07/08) → validate (схема + строгая проверка цитат)
+  → для нового полного разбора: 12_galiev_review.json (канон + случаи + все участники)
   → report_auto.md → report.md (факты / интерпретации / подтверждения) → follow-up (draft_not_sent)
   → knowledge_proposal.json (+ учёт: у каждого объекта разбора одна судьба) → knowledge_diff.md
   → ответы по сомнительным пунктам (knowledge_decisions.jsonl) → новый diff → подтверждение → knowledge apply
   → ledger.jsonl (append-only) → refresh-all (очередь, проекция, поиск, контрольный центр)
   → брифинг следующей встречи
 ```
+
+## Разбор по методике Арти Галиева в полном профиле
+
+`source create` записывает в `review.yaml` признак `galiev_review.required: true`
+с источником `plugin_default` и `policy_version: 1`. Это настройка продукта,
+а не подтверждение пользователя. Для повторного полного анализа существующей
+встречи тот же признак устанавливает `profile set --profile full`.
+Старые встречи без признака остаются совместимыми; лёгкий профиль его не требует.
+
+После проверки исходных одиннадцати артефактов модель читает применимый канон
+Negociar-RU, выполняет поиск по библиотеке и читает выбранные случаи. Результат
+сохраняется отдельно в `analysis/12_galiev_review.json`; структура и процедура —
+[galiev-review.md](../skills/meeting-analysis/references/galiev-review.md).
+Раздел отчёта называется «Разбор по методике Арти Галиева».
+
+Точка проверки — `galiev_review.py` и блокирующий этап конвейера. Проверка идёт
+при `report`/`refresh`/`pipeline`, сверяет источник, участников, цитаты и ссылки,
+а также включение содержимого в оба отчёта. Изменение артефакта или методического
+корпуса меняет отпечаток входов. Пропавший или неполный раздел не даёт готовность.
+Сигнал сбоя — полный отчёт без разбора или ссылки, не подтверждаемые корпусом.
+
+Проверка структуры и ссылок не доказывает смысловую применимость принципа.
+Она остаётся задачей анализа: нужны альтернативное объяснение и границы аналогии.
+Рекомендации не становятся фактами встречи, обязательствами или свойствами человека
+и автоматически не переносятся в `knowledge/` либо follow-up.
 
 ## Хранилище в трёх режимах
 

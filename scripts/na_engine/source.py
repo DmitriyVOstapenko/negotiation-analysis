@@ -250,6 +250,7 @@ def create_source(
         "meeting_id": meeting_id,
         "review_status": "pending",
         "reviewed_at": None,
+        "galiev_review": {"required": True, "source": "plugin_default", "policy_version": 1},
         "processing_gate": {
             "consent": "not_set",
             "masking_mode": "not_set",

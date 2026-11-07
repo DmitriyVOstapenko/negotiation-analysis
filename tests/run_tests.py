@@ -78,7 +78,7 @@ class WorkspaceTestCase(unittest.TestCase):
         return payload(completed)
 
     def copy_analysis(self) -> None:
-        for name in ANALYSIS_FILES:
+        for name in [*ANALYSIS_FILES, "12_galiev_review.json"]:
             shutil.copyfile(FIXTURE / "analysis" / name, self.meeting / "analysis" / name)
 
     def prepare_valid_meeting(self) -> None:
