@@ -529,6 +529,24 @@ def _answer_text(entry: dict, block: dict) -> str:
     return " ; ".join(answers)
 
 
+def human_replies(content: object) -> list[dict]:
+    """Codex question replies: only answers are human speech; questions are context."""
+    text = _human_text(content)
+    if not text:
+        return []
+    match = re.fullmatch(r"\s*<send_user_message_question_reply>\s*(.*?)\s*</send_user_message_question_reply>\s*", text, re.S)
+    if not match:
+        return [{"text": text, "question": ""}]
+    try:
+        values = json.loads(match.group(1))
+    except ValueError:
+        return []
+    if not isinstance(values, list):
+        return []
+    return [{"text": value["answer"], "question": value.get("question", "")}
+            for value in values if isinstance(value, dict) and isinstance(value.get("answer"), str)]
+
+
 def iter_transcript_messages(path: str):
     """(номер, запись, сообщение) по транскрипту: формы Claude Code и Codex (rollout)."""
     with open(path, encoding="utf-8", errors="replace") as handle:
@@ -547,6 +565,22 @@ def iter_transcript_messages(path: str):
                 yield number, entry, message
                 continue
             payload = entry.get("payload")
+            if entry.get("type") == "event_msg" and isinstance(payload, dict) and payload.get("type") == "item_completed":
+                item = payload.get("item") or {}
+                argv = item.get("command")
+                if item.get("type") == "CommandExecution" and isinstance(argv, list):
+                    # Native code-mode events expose the executed command without parsing JavaScript.
+                    command = None
+                    for flag in ("-Command", "-command", "-c", "-lc"):
+                        if flag in argv and argv.index(flag) + 1 < len(argv):
+                            command = argv[argv.index(flag) + 1]
+                            break
+                    if isinstance(command, str):
+                        yield number, entry, {"role": "assistant", "content": [{
+                            "type": "tool_use", "id": item.get("id"), "name": "exec_command",
+                            "input": {"command": command, "workdir": item.get("cwd")},
+                        }]}
+                continue
             if isinstance(payload, dict) and payload.get("type") == "function_call":
                 arguments = payload.get("arguments")
                 if isinstance(arguments, str):
@@ -604,9 +638,9 @@ def last_human_input(transcript_path: str, is_show=None) -> dict | None:
                         text = _answer_text(entry, block)
                         if text:
                             last = {"text": text, "index": number, "source": "AskUserQuestion"}
-            text = _human_text(content)
-            if text:
-                last = {"text": text, "index": number, "source": "message"}
+            replies = human_replies(content)
+            if replies:
+                last = {"text": " ; ".join(reply["text"] for reply in replies), "index": number, "source": "message"}
     if any(tool_id not in answered for tool_id in asked if last is None or asked[tool_id] > last["index"]):
         return None  # вопрос задан, ответ ещё не записан
     if last is not None:

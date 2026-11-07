@@ -4,7 +4,11 @@
 
 Зачем. Другие плагины в той же сессии могут подталкивать модель «решать самой вместо вопроса» —
 тогда модель сама поставит --confirm. Хук сверяет такую команду с последним вводом человека в
-транскрипте сессии (transcript_path): последняя его реплика или ответ на AskUserQuestion.
+транскрипте сессии (transcript_path). Для применения/отправки проверяется последний ответ;
+для шлюза и спикеров сохраняется явно выраженное решение в пределах текущей встречи и корня.
+Нейтральный вопрос о ходе работы его не отменяет. При смене встречи/корня, изменении параметров
+или явном отказе прежнее решение не переносится. В ответе Codex на вопрос с вариантами текст
+вопроса используется только как контекст, но никогда не считается ответом человека.
 
 Какие команды (вызов scripts/na.py в команде оболочки):
 - knowledge apply --confirm; knowledge decide (кроме --list); migrate --confirm;
@@ -41,7 +45,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _na_hooklib import last_human_input, na_invocations, normalize_tool_event  # noqa: E402
+from _na_hooklib import human_replies, iter_transcript_messages, last_human_input, na_invocations, normalize_tool_event  # noqa: E402
 
 SHELL_TOOL_RE = re.compile(r"(?i)bash|shell|powershell|exec")
 VALUE_OPTIONS = {"--root", "--meeting", "--map", "--decision", "--status", "--item", "--text", "--target", "--file", "--channel",
@@ -203,6 +207,8 @@ def evidence(kind: str, options: dict[str, object], reply_text: str) -> tuple[bo
         answered = {stem for stem in GATE_STEMS for token in tokens if token.startswith(stem)}
         return consent or len(answered) >= 2, "ответов на вопросы шлюза нет"
     if kind == "speakers":
+        if has_refusal(tokens):
+            return False, "в реплике отказ от подтверждения карты"
         names = []
         for part in str(options.get("--map", "")).split(";"):
             if "=" in part:
@@ -217,6 +223,77 @@ def evidence(kind: str, options: dict[str, object], reply_text: str) -> tuple[bo
         named = any((stem in joined) if " " in stem else (stem == "нет" and stem in tokens) or (stem != "нет" and any(token.startswith(stem) for token in tokens)) for stem in stems)
         return consent or named or _overlap(tokens, options.get("--text")), "ни согласия, ни выбранного решения нет"
     return True, ""
+
+
+def source_reply(path: str, kind: str, options: dict, cwd: str) -> dict | None:
+    """Keep explicit source decisions across status questions, within one meeting/root.
+
+    Apply/send remain last-reply decisions. Neither review.yaml nor model statements
+    constitute owner approval. Switching source scope clears earlier candidates.
+    """
+    wanted = str(options.get("--meeting", ""))
+    if not wanted or not path or not os.path.isfile(path):
+        return None
+    def root_key(value):
+        return os.path.normcase(os.path.abspath(os.path.join(cwd, str(value))))
+    target = (root_key(options.get("--root", cwd)), wanted)
+    active = None
+    candidate = None
+    known_labels: set[str] = set()
+    for index, entry, message in iter_transcript_messages(path):
+        if entry.get("isMeta") or entry.get("isSidechain") or entry.get("isCompactSummary"):
+            continue
+        if message.get("role") == "assistant" and isinstance(message.get("content"), list):
+            for block in message["content"]:
+                if not isinstance(block, dict) or block.get("type") != "tool_use":
+                    continue
+                data = block.get("input")
+                if not isinstance(data, dict):
+                    continue
+                command = data.get("command", data.get("cmd"))
+                if not isinstance(command, str):
+                    continue
+                for args in na_invocations(command):
+                    _, observed = parse_call(args)
+                    if not observed.get("--meeting"):
+                        continue
+                    scope = (root_key(observed.get("--root", cwd)), str(observed["--meeting"]))
+                    if (active is not None and scope != active) or scope != target:
+                        candidate = None
+                        known_labels.clear()
+                    classified = classify_call(args)
+                    fields = ("--consent", "--masking", "--sensitivity", "--routes", "--retain-source") if kind == "gate" else ("--map",)
+                    if classified and classified[0] == kind and any(observed.get(key) != options.get(key) for key in fields):
+                        candidate = None  # a previously approved payload cannot authorize a changed payload
+                    active = scope
+        elif message.get("role") == "user":
+            for reply in human_replies(message.get("content")):
+                text = focus(reply["text"])
+                tokens = normalize(text)
+                context = text + " " + str(reply.get("question", ""))
+                context_tokens = normalize(context)
+                topic_refusal = (kind == "speakers" and any(t.startswith(("карт", "спикер", "speaker")) for t in tokens) and has_refusal(tokens))
+                if tokens and (tokens == ["нет"] or tokens[0] in {"стоп", "отмена", "подожди", "подождите"} or topic_refusal or
+                               (kind == "gate" and GATE_REFUSAL_RE.search(" ".join(tokens)))):
+                    candidate = {"text": text, "index": index, "source": "source_decision"}
+                    continue
+                if kind == "gate":
+                    related = len({stem for stem in GATE_STEMS for token in context_tokens if token.startswith(stem)}) >= 2
+                else:
+                    names = {token for part in str(options.get("--map", "")).split(";") if "=" in part
+                             for token in normalize(part.split("=", 1)[1].split("(", 1)[0]) if len(token) >= 3}
+                    pairs = [part.split("=", 1) for part in str(options.get("--map", "")).split(";") if "=" in part]
+                    joined = " ".join(context_tokens)
+                    mentioned = set(re.findall(r"\bspeaker\s+\d+\b", joined))
+                    matching = [bool(re.search(r"\b" + re.escape(" ".join(normalize(label))) + r"\s+(?:это\s+)?" + re.escape(" ".join(normalize(name.split("(", 1)[0]))) + r"\b", joined))
+                                for label, name in pairs if " ".join(normalize(label)) in mentioned]
+                    related = bool(names) and bool(matching) and all(matching) and all(" ".join(normalize(label)) in mentioned | known_labels for label, _ in pairs)
+                    # A prior explicit self-identification may establish another label.
+                    # The new answer must still confirm the pairs actually being asked.
+                    known_labels.update(mentioned)
+                if related:
+                    candidate = {"text": text, "index": index, "source": "source_decision"}
+    return candidate if active == target else None
 
 
 def decide(event: dict) -> dict | None:
@@ -242,6 +319,12 @@ def decide(event: dict) -> dict | None:
             reasons.append(f"{LABELS[kind]}: показ и решение в одной команде — владелец не успел ответить")
             continue
         reply = last_human_input(event.get("transcript_path") or "", (lambda text, kind=kind: is_show_command(kind, text)) if kind in SHOW_CALLS else None)
+        if kind in {"gate", "speakers"}:
+            previous = source_reply(event.get("transcript_path") or "", kind, options, str(event.get("cwd") or os.getcwd()))
+            if previous is not None:
+                # source_reply preserves relevant revocations too. An unrelated
+                # question ending in "или нет?" is not a revocation of processing.
+                reply = previous
         if reply is None:
             continue  # не видим реплику — не судим (fail-open)
         if reply.get("shown_index") is not None and reply["index"] < reply["shown_index"]:
